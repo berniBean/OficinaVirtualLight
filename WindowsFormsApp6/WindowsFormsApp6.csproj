@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CFDDA47C-DC84-40D8-9C47-A97811FFADC4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp6</RootNamespace>
+    <AssemblyName>WindowsFormsApp6</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <UpdateUrl>http://localhost/WindowsFormsApp6/</UpdateUrl>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E0819AD25B83DF920CA6A6FB5FF2825495A77B03</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WindowsFormsApp6_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdvancedDataGridView, Version=1.1.24722.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DG.AdvancedDataGridView.1.1.24722.8\lib\net40\AdvancedDataGridView.dll</HintPath>
+    </Reference>
+    <Reference Include="DataGridViewAutoFilter, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataGridView-AutoFilter.1.1.0\lib\net20\DataGridViewAutoFilter.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17" />
+    <Reference Include="Equin.ApplicationFramework.BindingListView">
+      <HintPath>.\Equin.ApplicationFramework.BindingListView.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtendedControls">
+      <HintPath>..\..\DataGridViewMaskedText\ExtendedControls.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentFTP, Version=32.4.4.0, Culture=neutral, PublicKeyToken=f4af092b1d8df44f, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentFTP.32.4.4\lib\net45\FluentFTP.dll</HintPath>
+    </Reference>
+    <Reference Include="GridExtension">
+      <HintPath>..\..\..\..\Documents\visual c#\GridExtension\obj\Debug\GridExtension.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.140.340.80\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="SpreadsheetLight, Version=3.5.0.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.5.0\lib\netstandard2.0\SpreadsheetLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AgendaOHE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AgendaOHE.Designer.cs">
+      <DependentUpon>AgendaOHE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvanceGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AvanceGeneral.Designer.cs">
+      <DependentUpon>AvanceGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AvanceGeneralMultasAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AvanceGeneralMultasAdmin.Designer.cs">
+      <DependentUpon>AvanceGeneralMultasAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Cache\CUserLoggin.cs" />
+    <Compile Include="CAD\BLL\CanhoFiscalBLL.cs" />
+    <Compile Include="CAD\BLL\CCBusquedaRIFBLL.cs" />
+    <Compile Include="CAD\BLL\CCCBusquedaMasivaBLL.cs" />
+    <Compile Include="CAD\BLL\CCCBusquedaMultasBLL.cs" />
+    <Compile Include="CAD\BLL\CCCInformeAvanceBll.cs" />
+    <Compile Include="CAD\BLL\CCNombreBimestreBLL.cs" />
+    <Compile Include="CAD\BLL\CDiasLaboralesBLL.cs" />
+    <Compile Include="CAD\BLL\CEmisionActualBLL.cs" />
+    <Compile Include="CAD\BLL\CoheActivaBLL.cs" />
+    <Compile Include="CAD\BLL\CTableroAdminBLL.cs" />
+    <Compile Include="CAD\BLL\CTableroJefeRCOBLL.cs" />
+    <Compile Include="CAD\BLL\CUsuarioSupBLL.cs" />
+    <Compile Include="CAD\BLL\honorarioBLL.cs" />
+    <Compile Include="CAD\BLL\ListCoheActivaBLL.cs" />
+    <Compile Include="CAD\BO\CanhoFiscalBO.cs" />
+    <Compile Include="CAD\BO\CatableroJefeRCO.cs" />
+    <Compile Include="CAD\BO\CbusquedaMasivaBO.cs" />
+    <Compile Include="CAD\BO\CBusquedaMultasBO.cs" />
+    <Compile Include="CAD\BO\CBusquedaRIFBO.cs" />
+    <Compile Include="CAD\BO\CCelularBO.cs" />
+    <Compile Include="CAD\BO\CConcentradoOficiosBO.cs" />
+    <Compile Include="CAD\BO\CControlMultasBO.cs" />
+    <Compile Include="CAD\BO\CCorreoElectronicoBO.cs" />
+    <Compile Include="CAD\BO\CdiasFeriadosBO.cs" />
+    <Compile Include="CAD\BO\CDirCelularBO.cs" />
+    <Compile Include="CAD\BO\DirectorioBO.cs" />
+    <Compile Include="CAD\BO\CEmisionActualBO.cs" />
+    <Compile Include="CAD\BO\CFechaOficios.cs" />
+    <Compile Include="CAD\BO\CInformeAvance.cs" />
+    <Compile Include="CAD\BO\CListaRequeridosBO.cs" />
+    <Compile Include="CAD\BO\CListaTableroAdmin.cs" />
+    <Compile Include="CAD\BO\CListaURL.cs" />
+    <Compile Include="CAD\BO\CNombreBimestreBO.cs" />
+    <Compile Include="CAD\BO\COficiosBO.cs" />
+    <Compile Include="CAD\BO\CoheActivaBO.cs" />
+    <Compile Include="CAD\BO\CTableroAdminBO.cs" />
+    <Compile Include="CAD\BO\CTelefonoBO.cs" />
+    <Compile Include="CAD\BO\CUrlBO.cs" />
+    <Compile Include="CAD\BO\CUsuarioSup.cs" />
+    <Compile Include="CAD\BO\DiasFeriadosListBO.cs" />
+    <Compile Include="CAD\BO\Directorio\DirectorioCelular.cs" />
+    <Compile Include="CAD\BO\honorarios.cs" />
+    <Compile Include="CAD\BO\ListaCBusquedaMultas.cs" />
+    <Compile Include="CAD\BO\ListaCBusquedaRIF.cs" />
+    <Compile Include="CAD\BO\ListaCDirectorio.cs" />
+    <Compile Include="CAD\BO\ListaClistaRequeridos.cs" />
+    <Compile Include="CAD\BO\ListaCNombreBimestre.cs" />
+    <Compile Include="CAD\BO\ListaHonorarios.cs" />
+    <Compile Include="CAD\BO\ListaInformeAvance.cs" />
+    <Compile Include="CAD\BO\ListaTableroJefeRCO.cs" />
+    <Compile Include="CAD\BO\ListBusquedaMasiva.cs" />
+    <Compile Include="CAD\BO\ListCanhoFiscal.cs" />
+    <Compile Include="CAD\BO\ListCelular.cs" />
+    <Compile Include="CAD\BO\ListCEmisionActual.cs" />
+    <Compile Include="CAD\BO\ListCOficios.cs" />
+    <Compile Include="CAD\BO\ListCoheActiva.cs" />
+    <Compile Include="CAD\BO\ListCorreoElectronico.cs" />
+    <Compile Include="CAD\BO\ListPdfSql.cs" />
+    <Compile Include="CAD\BO\ListTelefono.cs" />
+    <Compile Include="CAD\BO\OficinaHaciendaBO.cs" />
+    <Compile Include="CAD\BO\pdfSQL.cs" />
+    <Compile Include="CAD\DAL\CanhoFiscalDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CanhoFiscalDAL.cs" />
+    <Compile Include="CAD\DAL\CCBusquedaMasivaDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CCBusquedaMasivaDAL.cs" />
+    <Compile Include="CAD\DAL\CCBusquedaMultasDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CCBusquedaMultasDAL.cs" />
+    <Compile Include="CAD\DAL\CCBusquedaRIFDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CCBusquedaRIFDAL.cs" />
+    <Compile Include="CAD\DAL\CCCelularDAL.cs" />
+    <Compile Include="CAD\DAL\CCCNombreBimestreDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CCCNombreBimestreDAL.cs" />
+    <Compile Include="CAD\DAL\CCCorreoElectronicoDAL.cs" />
+    <Compile Include="CAD\DAL\CCInformeAvanceDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CCInformeAvanceDAL.cs" />
+    <Compile Include="CAD\DAL\CControlMultasDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CCTelefonoDAL.cs" />
+    <Compile Include="CAD\DAL\CDiaFeriadoDAL.cs" />
+    <Compile Include="CAD\DAL\CEmisionActualDALPLUs.cs" />
+    <Compile Include="CAD\DAL\CEmisionActualDAL.cs" />
+    <Compile Include="CAD\DAL\ClistaRequeridosDALPLUS.cs" />
+    <Compile Include="CAD\DAL\ClistaRequeridosDAL.cs" />
+    <Compile Include="CAD\DAL\CoheActivoDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CoheActivoDAL.cs" />
+    <Compile Include="CAD\DAL\CTableroAdminDALPLUS.cs" />
+    <Compile Include="CAD\DAL\CTableroAdminDAL.cs" />
+    <Compile Include="CAD\DAL\CUrlDAL.cs" />
+    <Compile Include="CAD\DAL\CUsuarioSupDAL.cs" />
+    <Compile Include="CAD\DAL\CCTableroJefeRCODAL.cs" />
+    <Compile Include="CAD\DAL\DirectorioDAL.cs" />
+    <Compile Include="CAD\DAL\factories\factoryBuscarMultas.cs" />
+    <Compile Include="CAD\DAL\factories\factoryBusqueda.cs" />
+    <Compile Include="CAD\DAL\factories\factoryEmision.cs" />
+    <Compile Include="CAD\DAL\factories\factoryInformes.cs" />
+    <Compile Include="CAD\DAL\factories\factoryMasiva.cs" />
+    <Compile Include="CAD\DAL\factories\factoryNombreBimestre.cs" />
+    <Compile Include="CAD\DAL\factories\factoryOHE.cs" />
+    <Compile Include="CAD\DAL\factories\factoryRequerimientos.cs" />
+    <Compile Include="CAD\DAL\factories\factoryTableroSupervisor.cs" />
+    <Compile Include="CAD\DAL\factories\factoryURL.cs" />
+    <Compile Include="CAD\DAL\factories\factoryYear.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerBusqueda.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerBusquedaMasiva.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerBusquedaMultas.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerEmision.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerInformes.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerNombreBimestre.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerOficiosSQL.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerOHE.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerPDFSql.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerPeriodoFiscal.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerRequeridos.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerTableroSup.cs" />
+    <Compile Include="CAD\DAL\factories\obtenerURL.cs" />
+    <Compile Include="CAD\DAL\FechaOficiosDAL.cs" />
+    <Compile Include="CAD\DAL\OficiosDALPLUS.cs" />
+    <Compile Include="CAD\DAL\OficiosDALRIF.cs" />
+    <Compile Include="CAD\DAL\factories\OficiosFactory.cs" />
+    <Compile Include="CAD\DAL\pdfSQLDALRIF.cs" />
+    <Compile Include="CAD\DAL\factories\pdfSQLFactory.cs" />
+    <Compile Include="CAD\DAL\HonorariosDAL.cs" />
+    <Compile Include="CAD\DAL\pdfSQLDALPLUS.cs" />
+    <Compile Include="CAD\Dominio\CDirectorioDom.cs" />
+    <Compile Include="CAD\pruebaAsyn\buscarDatos.cs" />
+    <Compile Include="CAD\pruebaAsyn\crearFilas.cs" />
+    <Compile Include="DataSetRIF.cs">
+      <DependentUpon>DataSetRIF.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetRIF.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetRIF.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Directorio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Directorio.Designer.cs">
+      <DependentUpon>Directorio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DragDropPDF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DragDropPDF.Designer.cs">
+      <DependentUpon>DragDropPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form4.Designer.cs">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form5.Designer.cs">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPadrePrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPadrePrincipal.Designer.cs">
+      <DependentUpon>FormPadrePrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrincipal.designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IAcoplamiento.cs" />
+    <Compile Include="ListadoMultados.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoMultados.Designer.cs">
+      <DependentUpon>ListadoMultados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoOficios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoOficios.Designer.cs">
+      <DependentUpon>ListadoOficios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoRequeridos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoRequeridos.Designer.cs">
+      <DependentUpon>ListadoRequeridos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pantallaAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pantallaAdmin.Designer.cs">
+      <DependentUpon>pantallaAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaAdminMultas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaAdminMultas.Designer.cs">
+      <DependentUpon>PantallaAdminMultas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pantallaCarga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pantallaCarga.Designer.cs">
+      <DependentUpon>pantallaCarga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaConcentradoOficios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaConcentradoOficios.Designer.cs">
+      <DependentUpon>PantallaConcentradoOficios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaConcentradoOficosMULTAS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaConcentradoOficosMULTAS.Designer.cs">
+      <DependentUpon>PantallaConcentradoOficosMULTAS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PantallaMultasPendientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaMultasPendientes.Designer.cs">
+      <DependentUpon>PantallaMultasPendientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="pdfGestor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="pdfGestor.Designer.cs">
+      <DependentUpon>pdfGestor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Selector de ejercicio Fiscal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Selector de ejercicio Fiscal.Designer.cs">
+      <DependentUpon>Selector de ejercicio Fiscal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="selectorOficios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="selectorOficios.Designer.cs">
+      <DependentUpon>selectorOficios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="structs\AbstractProgress.cs" />
+    <Compile Include="structs\busquedaMasivaDO.cs" />
+    <Compile Include="structs\CargaNumOficios.cs" />
+    <Compile Include="structs\CargaPdf.cs" />
+    <Compile Include="structs\CargarFechasOficios.cs" />
+    <Compile Include="structs\consultaPDF.cs" />
+    <Compile Include="structs\ConvertExcel.cs" />
+    <Compile Include="structs\FtpSettings.cs" />
+    <Compile Include="structs\tipoGestion.cs" />
+    <Compile Include="structs\tipoSesion.cs" />
+    <Compile Include="structs\IProgressAsync.cs" />
+    <Compile Include="structs\pdfAbstract.cs" />
+    <Compile Include="structs\StaticPercentage.cs" />
+    <Compile Include="TableroMultasRIF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableroMultasRIF.Designer.cs">
+      <DependentUpon>TableroMultasRIF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="tableroRequerimietoAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tableroRequerimietoAdmin.Designer.cs">
+      <DependentUpon>tableroRequerimietoAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TaskInfo.cs" />
+    <EmbeddedResource Include="AgendaOHE.resx">
+      <DependentUpon>AgendaOHE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AvanceGeneral.resx">
+      <DependentUpon>AvanceGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AvanceGeneralMultasAdmin.resx">
+      <DependentUpon>AvanceGeneralMultasAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Directorio.resx">
+      <DependentUpon>Directorio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DragDropPDF.resx">
+      <DependentUpon>DragDropPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form4.resx">
+      <DependentUpon>Form4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form5.resx">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPadrePrincipal.resx">
+      <DependentUpon>FormPadrePrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoMultados.resx">
+      <DependentUpon>ListadoMultados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoOficios.resx">
+      <DependentUpon>ListadoOficios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoRequeridos.resx">
+      <DependentUpon>ListadoRequeridos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pantallaAdmin.resx">
+      <DependentUpon>pantallaAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PantallaAdminMultas.resx">
+      <DependentUpon>PantallaAdminMultas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pantallaCarga.resx">
+      <DependentUpon>pantallaCarga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PantallaConcentradoOficios.resx">
+      <DependentUpon>PantallaConcentradoOficios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PantallaConcentradoOficosMULTAS.resx">
+      <DependentUpon>PantallaConcentradoOficosMULTAS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PantallaMultasPendientes.resx">
+      <DependentUpon>PantallaMultasPendientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pdfGestor.resx">
+      <DependentUpon>pdfGestor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Selector de ejercicio Fiscal.resx">
+      <DependentUpon>Selector de ejercicio Fiscal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="selectorOficios.resx">
+      <DependentUpon>selectorOficios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableroMultasRIF.resx">
+      <DependentUpon>TableroMultasRIF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tableroRequerimietoAdmin.resx">
+      <DependentUpon>tableroRequerimietoAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DataSetRIF.xsc">
+      <DependentUpon>DataSetRIF.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetRIF.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetRIF.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetRIF.xss">
+      <DependentUpon>DataSetRIF.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\CleanArchitecture.ClasesDB.COficios.datasource" />
+    <None Include="Properties\DataSources\CleanArchitecture.Concretas.fechaOficios.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.BO.CanhoFiscalBO1.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CatableroJefeRCO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaMultasBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaRIFBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CEmisionActualBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaRequeridosBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaTableroAdmin.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CNombreBimestreBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.COficiosBO1.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CoheActivaBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CTableroAdminBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.DirectorioBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.ListaCNombreBimestre.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.ListaInformeAvance.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.ListCEmisionActual.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.ListCoheActiva.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.OficinaHaciendaBO.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CERRAR.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CROSS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cross3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CAD\Common\" />
+    <Folder Include="CAD\DAL\Clean\" />
+    <Folder Include="CAD\DAL\resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ReporteRIF.rdlc" />
+    <None Include="Resources\Minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="excel.png" />
+    <Content Include="filtrar.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CleanArchitecture\CleanArchitecture.csproj">
+      <Project>{4e14c8ba-14cb-4230-a1d2-5a024df1f438}</Project>
+      <Name>CleanArchitecture</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SingletonDragDrop\SingletonDragDrop.csproj">
+      <Project>{C663E39C-C814-49E5-BACA-52AEF26C07F6}</Project>
+      <Name>SingletonDragDrop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StrategyDragDrop\StrategyDragDrop.csproj">
+      <Project>{7f0866ae-2b86-4ba8-9bff-57bbfae4c997}</Project>
+      <Name>StrategyDragDrop</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

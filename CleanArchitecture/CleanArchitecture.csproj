@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E14C8BA-14CB-4230-A1D2-5A024DF1F438}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CleanArchitecture</RootNamespace>
+    <AssemblyName>CleanArchitecture</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClasesDB\COficios.cs" />
+    <Compile Include="ClasesDB\ControlOficios.cs" />
+    <Compile Include="ClasesDB\ReporteGeneralRequerimientos.cs" />
+    <Compile Include="ClasesDB\ReportePAE.cs" />
+    <Compile Include="ClasesDB\TipoOficios.cs" />
+    <Compile Include="Concretas\dtoFechas.cs" />
+    <Compile Include="Concretas\DtoUsrAdmin.cs" />
+    <Compile Include="Concretas\DtoUsrSudo.cs" />
+    <Compile Include="Concretas\DtoUsrUsuario.cs" />
+    <Compile Include="Concretas\fechaOficios.cs" />
+    <Compile Include="ClasesDB\FechasOficios.cs" />
+    <Compile Include="Concretas\ListFechaOficios.cs" />
+    <Compile Include="Concretas\multasPlus.cs" />
+    <Compile Include="Concretas\OficiosSQLPlus.cs" />
+    <Compile Include="Helpers\DateFormatHelper.cs" />
+    <Compile Include="Helpers\DesktopDirHelper.cs" />
+    <Compile Include="Helpers\FormatLogHelper.cs" />
+    <Compile Include="Helpers\WriterHelperExcel.cs" />
+    <Compile Include="InterfacesUtilidades\IWriter.cs" />
+    <Compile Include="Interfaces\ICelular.cs" />
+    <Compile Include="Interfaces\ICelularConnections.cs" />
+    <Compile Include="Interfaces\IControl.cs" />
+    <Compile Include="Interfaces\IControlMultas.cs" />
+    <Compile Include="Interfaces\IControlMultasConecctions.cs" />
+    <Compile Include="Interfaces\IControlOficios.cs" />
+    <Compile Include="Interfaces\IControlOficiosConnections.cs" />
+    <Compile Include="Interfaces\IControlRequerimientos.cs" />
+    <Compile Include="Interfaces\ICorreoElectronico.cs" />
+    <Compile Include="Interfaces\ICorreoElectronicoConnections.cs" />
+    <Compile Include="Interfaces\IDirCelular.cs" />
+    <Compile Include="Interfaces\IDirCorreo.cs" />
+    <Compile Include="Interfaces\IDirTelefono.cs" />
+    <Compile Include="Interfaces\IFoliosMultas.cs" />
+    <Compile Include="Interfaces\IFoliosRequerimientos.cs" />
+    <Compile Include="Interfaces\IListadoControlMultasConnections.cs" />
+    <Compile Include="Interfaces\IListadoDatoNotificacionConnetions.cs" />
+    <Compile Include="Interfaces\IDatoNotificaciones.cs" />
+    <Compile Include="Interfaces\IDatoNotificacionesConnections.cs" />
+    <Compile Include="Interfaces\IDirecciones.cs" />
+    <Compile Include="Interfaces\IDirectorio.cs" />
+    <Compile Include="Interfaces\IDirectorioConnections.cs" />
+    <Compile Include="Interfaces\IFechaOficios.cs" />
+    <Compile Include="Interfaces\IFechaOficiosConnections.cs" />
+    <Compile Include="Interfaces\IHonorarios.cs" />
+    <Compile Include="Interfaces\IHonorariosConnections.cs" />
+    <Compile Include="Interfaces\IListado.cs" />
+    <Compile Include="Interfaces\IListadoControlConnections.cs" />
+    <Compile Include="Interfaces\IListadoPdfConnections.cs" />
+    <Compile Include="Interfaces\IModulos.cs" />
+    <Compile Include="Interfaces\IMultas.cs" />
+    <Compile Include="Interfaces\IMuncipio.cs" />
+    <Compile Include="Interfaces\IMunicipioRequerimiento.cs" />
+    <Compile Include="Interfaces\IOficinaHaciendaDirectorioConnections.cs" />
+    <Compile Include="Interfaces\IOficinaHaciendaMunicipiosConnections.cs" />
+    <Compile Include="Interfaces\IOficinaHaciendaOficiosConnections.cs" />
+    <Compile Include="Interfaces\ITelefono.cs" />
+    <Compile Include="Interfaces\ITelefonoConnections.cs" />
+    <Compile Include="Interfaces\ITipoOficiosConnections.cs" />
+    <Compile Include="Interfaces\IZonaOficinaConnections.cs" />
+    <Compile Include="Interfaces\IOficinaHaciendaZonaConnections.cs" />
+    <Compile Include="Interfaces\IOficinaHacienda.cs" />
+    <Compile Include="Interfaces\IOperaciones.cs" />
+    <Compile Include="Interfaces\IPdf.cs" />
+    <Compile Include="Interfaces\IRoles.cs" />
+    <Compile Include="Interfaces\IRolOperaciones.cs" />
+    <Compile Include="Interfaces\IUsarioConection.cs" />
+    <Compile Include="Interfaces\ITipoOficios.cs" />
+    <Compile Include="Interfaces\IUsuario.cs" />
+    <Compile Include="Interfaces\IZona.cs" />
+    <Compile Include="Interfaces\IZonaSupervisorConnection.cs" />
+    <Compile Include="Interfaces\IZonaSupervisor.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

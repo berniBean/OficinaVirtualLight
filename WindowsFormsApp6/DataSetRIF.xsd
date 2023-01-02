@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetRIF" targetNamespace="http://tempuri.org/DataSetRIF.xsd" xmlns:mstns="http://tempuri.org/DataSetRIF.xsd" xmlns="http://tempuri.org/DataSetRIF.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetRIF" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetRIF" msprop:Generator_UserDSName="DataSetRIF">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ListadoRIF" msprop:Generator_TableClassName="ListadoRIFDataTable" msprop:Generator_TableVarName="tableListadoRIF" msprop:Generator_RowChangedName="ListadoRIFRowChanged" msprop:Generator_TablePropName="ListadoRIF" msprop:Generator_RowDeletingName="ListadoRIFRowDeleting" msprop:Generator_RowChangingName="ListadoRIFRowChanging" msprop:Generator_RowEvHandlerName="ListadoRIFRowChangeEventHandler" msprop:Generator_RowDeletedName="ListadoRIFRowDeleted" msprop:Generator_RowClassName="ListadoRIFRow" msprop:Generator_UserTableName="ListadoRIF" msprop:Generator_RowEvArgName="ListadoRIFRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="numReq" msprop:Generator_ColumnVarNameInTable="columnnumReq" msprop:Generator_ColumnPropNameInRow="numReq" msprop:Generator_ColumnPropNameInTable="numReqColumn" msprop:Generator_UserColumnName="numReq" type="xs:int" minOccurs="0" />
+              <xs:element name="RFC" msprop:Generator_ColumnVarNameInTable="columnRFC" msprop:Generator_ColumnPropNameInRow="RFC" msprop:Generator_ColumnPropNameInTable="RFCColumn" msprop:Generator_UserColumnName="RFC" type="xs:string" minOccurs="0" />
+              <xs:element name="numCtrl" msprop:Generator_ColumnVarNameInTable="columnnumCtrl" msprop:Generator_ColumnPropNameInRow="numCtrl" msprop:Generator_ColumnPropNameInTable="numCtrlColumn" msprop:Generator_UserColumnName="numCtrl" type="xs:string" minOccurs="0" />
+              <xs:element name="razonSocial" msprop:Generator_ColumnVarNameInTable="columnrazonSocial" msprop:Generator_ColumnPropNameInRow="razonSocial" msprop:Generator_ColumnPropNameInTable="razonSocialColumn" msprop:Generator_UserColumnName="razonSocial" type="xs:string" minOccurs="0" />
+              <xs:element name="localidad" msprop:Generator_ColumnVarNameInTable="columnlocalidad" msprop:Generator_ColumnPropNameInRow="localidad" msprop:Generator_ColumnPropNameInTable="localidadColumn" msprop:Generator_UserColumnName="localidad" type="xs:string" minOccurs="0" />
+              <xs:element name="diligenica" msprop:Generator_ColumnVarNameInTable="columndiligenica" msprop:Generator_ColumnPropNameInRow="diligenica" msprop:Generator_ColumnPropNameInTable="diligenicaColumn" msprop:Generator_UserColumnName="diligenica" type="xs:boolean" minOccurs="0" />
+              <xs:element name="fechaNotificacion" msprop:Generator_ColumnVarNameInTable="columnfechaNotificacion" msprop:Generator_ColumnPropNameInRow="fechaNotificacion" msprop:Generator_ColumnPropNameInTable="fechaNotificacionColumn" msprop:Generator_UserColumnName="fechaNotificacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fechaCitatorio" msprop:Generator_ColumnVarNameInTable="columnfechaCitatorio" msprop:Generator_ColumnPropNameInRow="fechaCitatorio" msprop:Generator_ColumnPropNameInTable="fechaCitatorioColumn" msprop:Generator_UserColumnName="fechaCitatorio" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="oficioEnvioSEFIPLAN" msprop:Generator_ColumnVarNameInTable="columnoficioEnvioSEFIPLAN" msprop:Generator_ColumnPropNameInRow="oficioEnvioSEFIPLAN" msprop:Generator_ColumnPropNameInTable="oficioEnvioSEFIPLANColumn" msprop:Generator_UserColumnName="oficioEnvioSEFIPLAN" type="xs:string" minOccurs="0" />
+              <xs:element name="fechaEnvioSEFIPLAN" msprop:Generator_ColumnVarNameInTable="columnfechaEnvioSEFIPLAN" msprop:Generator_ColumnPropNameInRow="fechaEnvioSEFIPLAN" msprop:Generator_ColumnPropNameInTable="fechaEnvioSEFIPLANColumn" msprop:Generator_UserColumnName="fechaEnvioSEFIPLAN" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fechaEntregaNotificador" msprop:Generator_ColumnVarNameInTable="columnfechaEntregaNotificador" msprop:Generator_ColumnPropNameInRow="fechaEntregaNotificador" msprop:Generator_ColumnPropNameInTable="fechaEntregaNotificadorColumn" msprop:Generator_UserColumnName="fechaEntregaNotificador" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fechaRecepcion" msprop:Generator_ColumnVarNameInTable="columnfechaRecepcion" msprop:Generator_ColumnPropNameInRow="fechaRecepcion" msprop:Generator_ColumnPropNameInTable="fechaRecepcionColumn" msprop:Generator_UserColumnName="fechaRecepcion" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
