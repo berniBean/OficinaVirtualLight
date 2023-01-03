@@ -37,6 +37,7 @@
             this.SelectEmision = new System.Windows.Forms.GroupBox();
             this.cmbAnho = new System.Windows.Forms.ComboBox();
             this.canhoFiscalBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblListo = new System.Windows.Forms.Label();
             this.FechaImpresion = new System.Windows.Forms.Label();
             this.listCEmisionActualBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -49,17 +50,18 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.GroupDatosContribuyente = new System.Windows.Forms.GroupBox();
             this.LayParticulares = new System.Windows.Forms.TableLayoutPanel();
-            this.TituloRFC = new System.Windows.Forms.Label();
-            this.DatoRFC = new System.Windows.Forms.Label();
             this.tituloRS = new System.Windows.Forms.Label();
             this.DatoRS = new System.Windows.Forms.Label();
-            this.TituloObservaciones = new System.Windows.Forms.Label();
-            this.tituloNotasAclaratorias = new System.Windows.Forms.Label();
-            this.lblNotas = new System.Windows.Forms.Label();
-            this.lblObservaciones = new System.Windows.Forms.Label();
+            this.tituloNCTRL = new System.Windows.Forms.Label();
+            this.DatoCTRL = new System.Windows.Forms.Label();
+            this.tituloEstatus = new System.Windows.Forms.Label();
+            this.DatoEstatus = new System.Windows.Forms.Label();
+            this.tituloObservacion = new System.Windows.Forms.Label();
+            this.DatoObservaciones = new System.Windows.Forms.Label();
+            this.tituloDescripcionObservacion = new System.Windows.Forms.Label();
+            this.DatoDescripcion = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblZonaName = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -82,16 +84,8 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DgReqActivos2 = new System.Windows.Forms.DataGridView();
-            this.cNombreBimestreBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.pbCarga = new System.Windows.Forms.ToolStripProgressBar();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.listCoheActivaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cEmisionActualBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,6 +105,14 @@
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cNombreBimestreBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pbCarga = new System.Windows.Forms.ToolStripProgressBar();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listCoheActivaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cEmisionActualBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             oHELabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.PanelDatosLocalizacion.SuspendLayout();
@@ -145,12 +147,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.PanelDatosLocalizacion);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.bindingNavigator1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1370, 428);
+            this.groupBox1.Size = new System.Drawing.Size(1370, 330);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Menú selección";
@@ -163,7 +164,7 @@
             this.PanelDatosLocalizacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelDatosLocalizacion.Location = new System.Drawing.Point(3, 16);
             this.PanelDatosLocalizacion.Name = "PanelDatosLocalizacion";
-            this.PanelDatosLocalizacion.Size = new System.Drawing.Size(1364, 378);
+            this.PanelDatosLocalizacion.Size = new System.Drawing.Size(1364, 280);
             this.PanelDatosLocalizacion.TabIndex = 14;
             // 
             // PanelEmisionRequerimientos
@@ -178,14 +179,15 @@
             this.PanelEmisionRequerimientos.Location = new System.Drawing.Point(0, 0);
             this.PanelEmisionRequerimientos.Name = "PanelEmisionRequerimientos";
             this.PanelEmisionRequerimientos.RowCount = 2;
-            this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.50265F));
-            this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 54.49735F));
-            this.PanelEmisionRequerimientos.Size = new System.Drawing.Size(1364, 378);
+            this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.14286F));
+            this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.85714F));
+            this.PanelEmisionRequerimientos.Size = new System.Drawing.Size(1364, 280);
             this.PanelEmisionRequerimientos.TabIndex = 19;
             // 
             // SelectEmision
             // 
             this.SelectEmision.Controls.Add(this.cmbAnho);
+            this.SelectEmision.Controls.Add(this.lblListo);
             this.SelectEmision.Controls.Add(this.FechaImpresion);
             this.SelectEmision.Controls.Add(this.label1);
             this.SelectEmision.Controls.Add(this.lblFecha);
@@ -197,7 +199,7 @@
             this.SelectEmision.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SelectEmision.Location = new System.Drawing.Point(3, 3);
             this.SelectEmision.Name = "SelectEmision";
-            this.SelectEmision.Size = new System.Drawing.Size(1050, 166);
+            this.SelectEmision.Size = new System.Drawing.Size(1050, 70);
             this.SelectEmision.TabIndex = 0;
             this.SelectEmision.TabStop = false;
             this.SelectEmision.Text = "Seleccion de emision de requerimientos";
@@ -219,11 +221,20 @@
             // 
             this.canhoFiscalBOBindingSource.DataSource = typeof(WindowsFormsApp6.BO.CanhoFiscalBO);
             // 
+            // lblListo
+            // 
+            this.lblListo.AutoSize = true;
+            this.lblListo.Location = new System.Drawing.Point(728, 53);
+            this.lblListo.Name = "lblListo";
+            this.lblListo.Size = new System.Drawing.Size(32, 13);
+            this.lblListo.TabIndex = 13;
+            this.lblListo.Text = "Listo.";
+            // 
             // FechaImpresion
             // 
             this.FechaImpresion.AutoSize = true;
             this.FechaImpresion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listCEmisionActualBindingSource, "_fechaImpresion", true));
-            this.FechaImpresion.Location = new System.Drawing.Point(329, 76);
+            this.FechaImpresion.Location = new System.Drawing.Point(837, 27);
             this.FechaImpresion.Name = "FechaImpresion";
             this.FechaImpresion.Size = new System.Drawing.Size(103, 13);
             this.FechaImpresion.TabIndex = 15;
@@ -245,7 +256,7 @@
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(220, 76);
+            this.lblFecha.Location = new System.Drawing.Point(728, 27);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(103, 13);
             this.lblFecha.TabIndex = 14;
@@ -309,9 +320,9 @@
             // 
             this.GroupDatosContribuyente.Controls.Add(this.LayParticulares);
             this.GroupDatosContribuyente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GroupDatosContribuyente.Location = new System.Drawing.Point(3, 175);
+            this.GroupDatosContribuyente.Location = new System.Drawing.Point(3, 79);
             this.GroupDatosContribuyente.Name = "GroupDatosContribuyente";
-            this.GroupDatosContribuyente.Size = new System.Drawing.Size(1050, 200);
+            this.GroupDatosContribuyente.Size = new System.Drawing.Size(1050, 198);
             this.GroupDatosContribuyente.TabIndex = 13;
             this.GroupDatosContribuyente.TabStop = false;
             this.GroupDatosContribuyente.Text = "Datos particulares del contribuyente";
@@ -319,106 +330,125 @@
             // LayParticulares
             // 
             this.LayParticulares.ColumnCount = 2;
-            this.LayParticulares.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.367946F));
-            this.LayParticulares.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.63206F));
-            this.LayParticulares.Controls.Add(this.TituloRFC, 0, 0);
-            this.LayParticulares.Controls.Add(this.DatoRFC, 1, 0);
-            this.LayParticulares.Controls.Add(this.tituloRS, 0, 1);
-            this.LayParticulares.Controls.Add(this.DatoRS, 1, 1);
-            this.LayParticulares.Controls.Add(this.TituloObservaciones, 0, 2);
-            this.LayParticulares.Controls.Add(this.tituloNotasAclaratorias, 0, 3);
-            this.LayParticulares.Controls.Add(this.lblNotas, 1, 3);
-            this.LayParticulares.Controls.Add(this.lblObservaciones, 1, 2);
+            this.LayParticulares.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.961686F));
+            this.LayParticulares.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 90.03831F));
+            this.LayParticulares.Controls.Add(this.tituloRS, 0, 0);
+            this.LayParticulares.Controls.Add(this.DatoRS, 1, 0);
+            this.LayParticulares.Controls.Add(this.tituloNCTRL, 0, 1);
+            this.LayParticulares.Controls.Add(this.DatoCTRL, 1, 1);
+            this.LayParticulares.Controls.Add(this.tituloEstatus, 0, 2);
+            this.LayParticulares.Controls.Add(this.DatoEstatus, 1, 2);
+            this.LayParticulares.Controls.Add(this.tituloObservacion, 0, 3);
+            this.LayParticulares.Controls.Add(this.DatoObservaciones, 1, 3);
+            this.LayParticulares.Controls.Add(this.tituloDescripcionObservacion, 0, 4);
+            this.LayParticulares.Controls.Add(this.DatoDescripcion, 1, 4);
             this.LayParticulares.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayParticulares.Location = new System.Drawing.Point(3, 16);
             this.LayParticulares.Name = "LayParticulares";
-            this.LayParticulares.RowCount = 4;
+            this.LayParticulares.RowCount = 5;
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayParticulares.Size = new System.Drawing.Size(1044, 181);
+            this.LayParticulares.Size = new System.Drawing.Size(1044, 179);
             this.LayParticulares.TabIndex = 0;
-            // 
-            // TituloRFC
-            // 
-            this.TituloRFC.AutoSize = true;
-            this.TituloRFC.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TituloRFC.Location = new System.Drawing.Point(3, 7);
-            this.TituloRFC.Name = "TituloRFC";
-            this.TituloRFC.Size = new System.Drawing.Size(91, 13);
-            this.TituloRFC.TabIndex = 0;
-            this.TituloRFC.Text = "RFC:";
-            // 
-            // DatoRFC
-            // 
-            this.DatoRFC.AutoSize = true;
-            this.DatoRFC.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DatoRFC.Location = new System.Drawing.Point(100, 7);
-            this.DatoRFC.Name = "DatoRFC";
-            this.DatoRFC.Size = new System.Drawing.Size(941, 13);
-            this.DatoRFC.TabIndex = 1;
-            this.DatoRFC.Text = "label4";
             // 
             // tituloRS
             // 
             this.tituloRS.AutoSize = true;
-            this.tituloRS.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tituloRS.Location = new System.Drawing.Point(3, 27);
+            this.tituloRS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tituloRS.Location = new System.Drawing.Point(3, 0);
             this.tituloRS.Name = "tituloRS";
-            this.tituloRS.Size = new System.Drawing.Size(91, 13);
+            this.tituloRS.Size = new System.Drawing.Size(98, 13);
             this.tituloRS.TabIndex = 2;
             this.tituloRS.Text = "Razón social:";
             // 
             // DatoRS
             // 
             this.DatoRS.AutoSize = true;
-            this.DatoRS.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DatoRS.Location = new System.Drawing.Point(100, 27);
+            this.DatoRS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatoRS.Location = new System.Drawing.Point(107, 0);
             this.DatoRS.Name = "DatoRS";
-            this.DatoRS.Size = new System.Drawing.Size(941, 13);
+            this.DatoRS.Size = new System.Drawing.Size(934, 13);
             this.DatoRS.TabIndex = 3;
-            this.DatoRS.Text = "label4";
             // 
-            // TituloObservaciones
+            // tituloNCTRL
             // 
-            this.TituloObservaciones.AutoSize = true;
-            this.TituloObservaciones.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.TituloObservaciones.Location = new System.Drawing.Point(3, 50);
-            this.TituloObservaciones.Name = "TituloObservaciones";
-            this.TituloObservaciones.Size = new System.Drawing.Size(91, 13);
-            this.TituloObservaciones.TabIndex = 4;
-            this.TituloObservaciones.Text = "Observaciones:";
+            this.tituloNCTRL.AutoSize = true;
+            this.tituloNCTRL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tituloNCTRL.Location = new System.Drawing.Point(3, 20);
+            this.tituloNCTRL.Name = "tituloNCTRL";
+            this.tituloNCTRL.Size = new System.Drawing.Size(98, 13);
+            this.tituloNCTRL.TabIndex = 4;
+            this.tituloNCTRL.Text = "Número de control:";
             // 
-            // tituloNotasAclaratorias
+            // DatoCTRL
             // 
-            this.tituloNotasAclaratorias.AutoSize = true;
-            this.tituloNotasAclaratorias.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tituloNotasAclaratorias.Location = new System.Drawing.Point(3, 63);
-            this.tituloNotasAclaratorias.Name = "tituloNotasAclaratorias";
-            this.tituloNotasAclaratorias.Size = new System.Drawing.Size(91, 13);
-            this.tituloNotasAclaratorias.TabIndex = 5;
-            this.tituloNotasAclaratorias.Text = "Notas:";
+            this.DatoCTRL.AutoSize = true;
+            this.DatoCTRL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatoCTRL.Location = new System.Drawing.Point(107, 20);
+            this.DatoCTRL.Name = "DatoCTRL";
+            this.DatoCTRL.Size = new System.Drawing.Size(934, 13);
+            this.DatoCTRL.TabIndex = 5;
             // 
-            // lblNotas
+            // tituloEstatus
             // 
-            this.lblNotas.AutoSize = true;
-            this.lblNotas.Location = new System.Drawing.Point(100, 63);
-            this.lblNotas.Name = "lblNotas";
-            this.lblNotas.Size = new System.Drawing.Size(35, 13);
-            this.lblNotas.TabIndex = 6;
-            this.lblNotas.Text = "label4";
+            this.tituloEstatus.AutoSize = true;
+            this.tituloEstatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tituloEstatus.Location = new System.Drawing.Point(3, 40);
+            this.tituloEstatus.Name = "tituloEstatus";
+            this.tituloEstatus.Size = new System.Drawing.Size(98, 13);
+            this.tituloEstatus.TabIndex = 6;
+            this.tituloEstatus.Text = "Estatus:";
             // 
-            // lblObservaciones
+            // DatoEstatus
             // 
-            this.lblObservaciones.AutoSize = true;
-            this.lblObservaciones.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblObservaciones.Location = new System.Drawing.Point(100, 50);
-            this.lblObservaciones.Name = "lblObservaciones";
-            this.lblObservaciones.Size = new System.Drawing.Size(941, 13);
-            this.lblObservaciones.TabIndex = 7;
-            this.lblObservaciones.Text = "label4";
+            this.DatoEstatus.AutoSize = true;
+            this.DatoEstatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatoEstatus.Location = new System.Drawing.Point(107, 40);
+            this.DatoEstatus.Name = "DatoEstatus";
+            this.DatoEstatus.Size = new System.Drawing.Size(934, 13);
+            this.DatoEstatus.TabIndex = 7;
+            // 
+            // tituloObservacion
+            // 
+            this.tituloObservacion.AutoSize = true;
+            this.tituloObservacion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tituloObservacion.Location = new System.Drawing.Point(3, 63);
+            this.tituloObservacion.Name = "tituloObservacion";
+            this.tituloObservacion.Size = new System.Drawing.Size(98, 13);
+            this.tituloObservacion.TabIndex = 8;
+            this.tituloObservacion.Text = "Observaciones:";
+            // 
+            // DatoObservaciones
+            // 
+            this.DatoObservaciones.AutoSize = true;
+            this.DatoObservaciones.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatoObservaciones.Location = new System.Drawing.Point(107, 63);
+            this.DatoObservaciones.Name = "DatoObservaciones";
+            this.DatoObservaciones.Size = new System.Drawing.Size(934, 13);
+            this.DatoObservaciones.TabIndex = 9;
+            // 
+            // tituloDescripcionObservacion
+            // 
+            this.tituloDescripcionObservacion.AutoSize = true;
+            this.tituloDescripcionObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(3, 81);
+            this.tituloDescripcionObservacion.Name = "tituloDescripcionObservacion";
+            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(98, 98);
+            this.tituloDescripcionObservacion.TabIndex = 10;
+            this.tituloDescripcionObservacion.Text = "Descripcion:";
+            // 
+            // DatoDescripcion
+            // 
+            this.DatoDescripcion.AutoSize = true;
+            this.DatoDescripcion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatoDescripcion.Location = new System.Drawing.Point(107, 81);
+            this.DatoDescripcion.Name = "DatoDescripcion";
+            this.DatoDescripcion.Size = new System.Drawing.Size(934, 13);
+            this.DatoDescripcion.TabIndex = 11;
             // 
             // btnGuardar
             // 
@@ -438,15 +468,6 @@
             this.lblZonaName.Name = "lblZonaName";
             this.lblZonaName.Size = new System.Drawing.Size(0, 13);
             this.lblZonaName.TabIndex = 18;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(679, 407);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Listo.";
             // 
             // bindingNavigator1
             // 
@@ -475,7 +496,7 @@
             this.toolStripSeparator4,
             this.guardarToolStripButton,
             this.toolStripSeparator});
-            this.bindingNavigator1.Location = new System.Drawing.Point(3, 394);
+            this.bindingNavigator1.Location = new System.Drawing.Point(3, 296);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -524,7 +545,6 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Posición";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -566,7 +586,6 @@
             // 
             // toolStripTextBusqueda
             // 
-            this.toolStripTextBusqueda.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBusqueda.Name = "toolStripTextBusqueda";
             this.toolStripTextBusqueda.Size = new System.Drawing.Size(200, 31);
             this.toolStripTextBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBusqueda_KeyDown);
@@ -632,7 +651,7 @@
             this.groupBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cNombreBimestreBOBindingSource, "OHE", true));
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1364, 194);
+            this.groupBox2.Size = new System.Drawing.Size(1364, 287);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
@@ -642,6 +661,7 @@
             this.DgReqActivos2.AllowUserToAddRows = false;
             this.DgReqActivos2.AllowUserToDeleteRows = false;
             this.DgReqActivos2.AutoGenerateColumns = false;
+            this.DgReqActivos2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DgReqActivos2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgReqActivos2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -670,72 +690,15 @@
             this.DgReqActivos2.Location = new System.Drawing.Point(3, 16);
             this.DgReqActivos2.Name = "DgReqActivos2";
             this.DgReqActivos2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DgReqActivos2.Size = new System.Drawing.Size(1358, 175);
+            this.DgReqActivos2.Size = new System.Drawing.Size(1358, 268);
             this.DgReqActivos2.TabIndex = 0;
             this.DgReqActivos2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellContentDoubleClick);
+            this.DgReqActivos2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellEnter);
             this.DgReqActivos2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgReqActivos_CellValidating);
             this.DgReqActivos2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgReqActivos_DataError);
             this.DgReqActivos2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgReqActivos_EditingControlShowing);
             this.DgReqActivos2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgReqActivos_KeyDown);
-            // 
-            // cNombreBimestreBOBindingSource
-            // 
-            this.cNombreBimestreBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CNombreBimestreBO);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 428);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.30202F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.697987F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1370, 210);
-            this.tableLayoutPanel1.TabIndex = 11;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pbCarga,
-            this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 200);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1370, 10);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // pbCarga
-            // 
-            this.pbCarga.Name = "pbCarga";
-            this.pbCarga.Size = new System.Drawing.Size(100, 4);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 5);
-            this.lblStatus.TextChanged += new System.EventHandler(this.lblStatus_TextChanged);
-            // 
-            // listCoheActivaBindingSource
-            // 
-            this.listCoheActivaBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListCoheActiva);
-            // 
-            // cEmisionActualBOBindingSource
-            // 
-            this.cEmisionActualBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CEmisionActualBO);
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -750,7 +713,8 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "RFC";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -758,6 +722,7 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "Número de control";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -844,6 +809,7 @@
             this.dataGridViewTextBoxColumn14.HeaderText = "Estatus";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Visible = false;
             // 
             // MalCapturado
             // 
@@ -857,18 +823,21 @@
             this.ActaNotificacion.DataPropertyName = "ActaNotificacion";
             this.ActaNotificacion.HeaderText = "ActaNotificacion";
             this.ActaNotificacion.Name = "ActaNotificacion";
+            this.ActaNotificacion.Visible = false;
             // 
             // ActaCitatorio
             // 
             this.ActaCitatorio.DataPropertyName = "ActaCitatorio";
             this.ActaCitatorio.HeaderText = "ActaCitatorio";
             this.ActaCitatorio.Name = "ActaCitatorio";
+            this.ActaCitatorio.Visible = false;
             // 
             // NotificacionCitatorio
             // 
             this.NotificacionCitatorio.DataPropertyName = "NotificacionCitatorio";
             this.NotificacionCitatorio.HeaderText = "NotificacionCitatorio";
             this.NotificacionCitatorio.Name = "NotificacionCitatorio";
+            this.NotificacionCitatorio.Visible = false;
             // 
             // dataGridViewTextBoxColumn15
             // 
@@ -905,6 +874,7 @@
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn15.Visible = false;
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -921,6 +891,64 @@
             this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
             this.dataGridViewCheckBoxColumn2.ReadOnly = true;
             this.dataGridViewCheckBoxColumn2.Visible = false;
+            // 
+            // cNombreBimestreBOBindingSource
+            // 
+            this.cNombreBimestreBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CNombreBimestreBO);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 330);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.30202F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.697987F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1370, 308);
+            this.tableLayoutPanel1.TabIndex = 11;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pbCarga,
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 293);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1370, 15);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // pbCarga
+            // 
+            this.pbCarga.Name = "pbCarga";
+            this.pbCarga.Size = new System.Drawing.Size(100, 9);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 10);
+            this.lblStatus.TextChanged += new System.EventHandler(this.lblStatus_TextChanged);
+            // 
+            // listCoheActivaBindingSource
+            // 
+            this.listCoheActivaBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListCoheActiva);
+            // 
+            // cEmisionActualBOBindingSource
+            // 
+            this.cEmisionActualBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CEmisionActualBO);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             // 
             // Form1
             // 
@@ -995,7 +1023,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.BindingSource cListaRequeridosBOBindingSource;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblListo;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar pbCarga;
         private System.Windows.Forms.ToolStripStatusLabel lblStatus;
@@ -1012,19 +1040,21 @@
         private System.Windows.Forms.ComboBox cmbOHE;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.GroupBox GroupDatosContribuyente;
-        private System.Windows.Forms.TableLayoutPanel LayParticulares;
-        private System.Windows.Forms.Label TituloRFC;
-        private System.Windows.Forms.Label DatoRFC;
-        private System.Windows.Forms.Label tituloRS;
-        private System.Windows.Forms.Label DatoRS;
-        private System.Windows.Forms.Label TituloObservaciones;
-        private System.Windows.Forms.Label tituloNotasAclaratorias;
-        private System.Windows.Forms.Label lblNotas;
-        private System.Windows.Forms.Label lblObservaciones;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label lblZonaName;
+        private System.Windows.Forms.TableLayoutPanel LayParticulares;
+        private System.Windows.Forms.Label tituloRS;
+        private System.Windows.Forms.Label DatoRS;
+        private System.Windows.Forms.Label tituloNCTRL;
+        private System.Windows.Forms.Label DatoCTRL;
+        private System.Windows.Forms.Label tituloEstatus;
+        private System.Windows.Forms.Label DatoEstatus;
+        private System.Windows.Forms.Label tituloObservacion;
+        private System.Windows.Forms.Label DatoObservaciones;
+        private System.Windows.Forms.Label tituloDescripcionObservacion;
+        private System.Windows.Forms.Label DatoDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;

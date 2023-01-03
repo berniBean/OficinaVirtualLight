@@ -163,6 +163,7 @@
     <Compile Include="CAD\BLL\ListCoheActivaBLL.cs" />
     <Compile Include="CAD\BO\CanhoFiscalBO.cs" />
     <Compile Include="CAD\BO\CatableroJefeRCO.cs" />
+    <Compile Include="CAD\BO\CatObservacionesBO.cs" />
     <Compile Include="CAD\BO\CbusquedaMasivaBO.cs" />
     <Compile Include="CAD\BO\CBusquedaMultasBO.cs" />
     <Compile Include="CAD\BO\CBusquedaRIFBO.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="CAD\BO\CCorreoElectronicoBO.cs" />
     <Compile Include="CAD\BO\CdiasFeriadosBO.cs" />
     <Compile Include="CAD\BO\CDirCelularBO.cs" />
+    <Compile Include="CAD\BO\CListaCatObservaciones.cs" />
     <Compile Include="CAD\BO\DirectorioBO.cs" />
     <Compile Include="CAD\BO\CEmisionActualBO.cs" />
     <Compile Include="CAD\BO\CFechaOficios.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="CAD\BO\ListTelefono.cs" />
     <Compile Include="CAD\BO\OficinaHaciendaBO.cs" />
     <Compile Include="CAD\BO\pdfSQL.cs" />
+    <Compile Include="CAD\CatObservacionesDAL.cs" />
     <Compile Include="CAD\DAL\CanhoFiscalDALPLUS.cs" />
     <Compile Include="CAD\DAL\CanhoFiscalDAL.cs" />
     <Compile Include="CAD\DAL\CCBusquedaMasivaDALPLUS.cs" />

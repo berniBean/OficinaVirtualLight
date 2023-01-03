@@ -360,7 +360,7 @@ namespace WindowsFormsApp6
                 backgroundWorker1.ReportProgress(i * 100 / listReq.Count, tiG);
             }
             pbCarga.Value = 0;
-            label3.Text = "Listo.";
+            lblListo.Text = "Listo.";
             MessageBox.Show("Guardado completado");
 
             
@@ -587,7 +587,7 @@ namespace WindowsFormsApp6
                 i++;
             }
             pbCarga.Value = 0;
-            label3.Text = "Listo.";
+            lblListo.Text = "Listo.";
             MessageBox.Show("Finalizado");
 
         }
@@ -923,7 +923,7 @@ namespace WindowsFormsApp6
                                                   "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 pbCarga.Value = 0;
-                label3.Text = "Listo.";
+                lblListo.Text = "Listo.";
                 MessageBox.Show("Finalizado");
                 return columna;
                
@@ -1476,7 +1476,7 @@ namespace WindowsFormsApp6
         //listPeriodo[0].NomEmision.ToString();
         private void DgReqActivos2_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 1)
             {
 
                 listaUrl = obUrl.listaURI();
@@ -1498,8 +1498,18 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DatoRFC.Text = DgReqActivos2.CurrentRow.Cells[1].Value.ToString();
+            DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
             DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();
+            DatoEstatus.Text = DgReqActivos2.CurrentRow.Cells[13].Value.ToString();
+            DatoObservaciones.Text = DgReqActivos2.CurrentRow.Cells[18].Value.ToString();
+        }
+
+        private void DgReqActivos2_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
+            DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();
+            DatoEstatus.Text = DgReqActivos2.CurrentRow.Cells[13].Value.ToString();
+            DatoObservaciones.Text = DgReqActivos2.CurrentRow.Cells[18].Value.ToString();
         }
 
         private void btnBusquedaMasiva_Click(object sender, EventArgs e)
@@ -1542,7 +1552,7 @@ namespace WindowsFormsApp6
 
                 }
             pbCarga.Value = 0;
-            label3.Text = "Listo.";
+            lblListo.Text = "Listo.";
             MessageBox.Show("Finalizado");
         }
 
@@ -1551,8 +1561,8 @@ namespace WindowsFormsApp6
 
             TaskInfo tiG = (TaskInfo)e.UserState;
             pbCarga.Value = e.ProgressPercentage;
-            label3.Text = tiG.mensaje;
-            label3.Update();
+            lblListo.Text = tiG.mensaje;
+            lblListo.Update();
             
             
             
