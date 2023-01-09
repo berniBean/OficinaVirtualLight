@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using System.Data;
 using WindowsFormsApp6.CAD.BO;
 
-namespace WindowsFormsApp6.CAD
+namespace WindowsFormsApp6.CAD.DAL
 {
     public class CatObservacionesDAL
     {
         private readonly string StrConn;
         private readonly CatObservacionesBO _catObservaciones;
 
+
+        public CatObservacionesDAL()
+        {
+            StrConn = System.Configuration.ConfigurationManager.AppSettings["k1"];
+        }
         public CatObservacionesDAL(CatObservacionesBO catObservaciones)
         {
             _catObservaciones = catObservaciones;
-            StrConn = System.Configuration.ConfigurationManager.AppSettings["k1"];
+
         }
 
         public CListaCatObservaciones GetCatObservacion()

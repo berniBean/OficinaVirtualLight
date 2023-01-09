@@ -210,7 +210,7 @@
     <Compile Include="CAD\BO\ListTelefono.cs" />
     <Compile Include="CAD\BO\OficinaHaciendaBO.cs" />
     <Compile Include="CAD\BO\pdfSQL.cs" />
-    <Compile Include="CAD\CatObservacionesDAL.cs" />
+    <Compile Include="CAD\DAL\CatObservacionesDAL.cs" />
     <Compile Include="CAD\DAL\CanhoFiscalDALPLUS.cs" />
     <Compile Include="CAD\DAL\CanhoFiscalDAL.cs" />
     <Compile Include="CAD\DAL\CCBusquedaMasivaDALPLUS.cs" />
@@ -552,6 +552,7 @@
     <None Include="Properties\DataSources\CleanArchitecture.Concretas.fechaOficios.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.BO.CanhoFiscalBO1.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CatableroJefeRCO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CatObservacionesBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaMultasBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaRIFBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CEmisionActualBO.datasource" />

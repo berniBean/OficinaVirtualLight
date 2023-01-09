@@ -4,6 +4,8 @@ using System.Net;
 using System.Windows.Forms;
 
 using System.IO;
+using WindowsFormsApp6.CAD.DAL;
+using WindowsFormsApp6.CAD.BO;
 
 namespace WindowsFormsApp6
 {
@@ -32,6 +34,10 @@ namespace WindowsFormsApp6
         private string path;
         private string folder;
         private string fullFilePath;
+
+        private CatObservacionesDAL catalogo = new CatObservacionesDAL();
+        private CatObservacionesBO ObCatalogo = new CatObservacionesBO();
+        private CListaCatObservaciones ListaObservaciones;
         public pdfGestor(int tipo,string numReq,string RFC,string rs,string idSAT,string diligencia,string citatorio,string notificacion, string URI,string emision,string ohe)
         {
             InitializeComponent();
@@ -60,6 +66,9 @@ namespace WindowsFormsApp6
             folder = path + "\\temp";
             fullFilePath = folder + "\\" + _idSAT + ".pdf";
             abrirArchivo();
+            CargarCatalogo();
+
+
         }
 
         struct FtpSetting
@@ -120,6 +129,12 @@ namespace WindowsFormsApp6
             }
         }
 
+        private void CargarCatalogo()
+        {
+            ListaObservaciones = catalogo.GetCatObservacion();
+
+            cmbObservacion.DataSource = ListaObservaciones;
+        }
         private void abrirArchivo()
         {
            

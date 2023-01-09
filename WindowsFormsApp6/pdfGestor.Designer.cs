@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pdfGestor));
             this.LayObservaciones = new AxAcroPDFLib.AxAcroPDF();
             this.btnAbrir = new System.Windows.Forms.Button();
@@ -60,7 +61,10 @@
             this.rbCitatorio = new System.Windows.Forms.RadioButton();
             this.rbAmbos = new System.Windows.Forms.RadioButton();
             this.rbNotificacion = new System.Windows.Forms.RadioButton();
+            this.splitObservacion = new System.Windows.Forms.SplitContainer();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             this.cmbObservacion = new System.Windows.Forms.ComboBox();
+            this.catObservacionesBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.boxNotas = new System.Windows.Forms.GroupBox();
             this.textNotas = new System.Windows.Forms.RichTextBox();
             this.boxAcciones = new System.Windows.Forms.GroupBox();
@@ -68,8 +72,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SplitControlesObservaciones = new System.Windows.Forms.SplitContainer();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.splitObservacion = new System.Windows.Forms.SplitContainer();
-            this.lblDescripcion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.LayObservaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.PanelDeDatos.SuspendLayout();
@@ -81,6 +83,11 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitObservacion)).BeginInit();
+            this.splitObservacion.Panel1.SuspendLayout();
+            this.splitObservacion.Panel2.SuspendLayout();
+            this.splitObservacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource)).BeginInit();
             this.boxNotas.SuspendLayout();
             this.boxAcciones.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -88,10 +95,6 @@
             this.SplitControlesObservaciones.Panel1.SuspendLayout();
             this.SplitControlesObservaciones.Panel2.SuspendLayout();
             this.SplitControlesObservaciones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitObservacion)).BeginInit();
-            this.splitObservacion.Panel1.SuspendLayout();
-            this.splitObservacion.Panel2.SuspendLayout();
-            this.splitObservacion.SuspendLayout();
             this.SuspendLayout();
             // 
             // LayObservaciones
@@ -414,14 +417,48 @@
             this.rbNotificacion.Text = "Acta de notificación";
             this.rbNotificacion.UseVisualStyleBackColor = true;
             // 
+            // splitObservacion
+            // 
+            this.splitObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitObservacion.Location = new System.Drawing.Point(0, 0);
+            this.splitObservacion.Name = "splitObservacion";
+            this.splitObservacion.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitObservacion.Panel1
+            // 
+            this.splitObservacion.Panel1.Controls.Add(this.lblDescripcion);
+            // 
+            // splitObservacion.Panel2
+            // 
+            this.splitObservacion.Panel2.Controls.Add(this.cmbObservacion);
+            this.splitObservacion.Size = new System.Drawing.Size(375, 143);
+            this.splitObservacion.SplitterDistance = 60;
+            this.splitObservacion.TabIndex = 4;
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDescripcion.Location = new System.Drawing.Point(0, 0);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(35, 13);
+            this.lblDescripcion.TabIndex = 0;
+            this.lblDescripcion.Text = "label8";
+            // 
             // cmbObservacion
             // 
+            this.cmbObservacion.DataSource = this.catObservacionesBOBindingSource;
+            this.cmbObservacion.DisplayMember = "ConatenadoObservacion";
             this.cmbObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cmbObservacion.FormattingEnabled = true;
             this.cmbObservacion.Location = new System.Drawing.Point(0, 0);
             this.cmbObservacion.Name = "cmbObservacion";
             this.cmbObservacion.Size = new System.Drawing.Size(375, 21);
             this.cmbObservacion.TabIndex = 3;
+            // 
+            // catObservacionesBOBindingSource
+            // 
+            this.catObservacionesBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatObservacionesBO);
             // 
             // boxNotas
             // 
@@ -501,34 +538,6 @@
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // splitObservacion
-            // 
-            this.splitObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitObservacion.Location = new System.Drawing.Point(0, 0);
-            this.splitObservacion.Name = "splitObservacion";
-            this.splitObservacion.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitObservacion.Panel1
-            // 
-            this.splitObservacion.Panel1.Controls.Add(this.lblDescripcion);
-            // 
-            // splitObservacion.Panel2
-            // 
-            this.splitObservacion.Panel2.Controls.Add(this.cmbObservacion);
-            this.splitObservacion.Size = new System.Drawing.Size(375, 143);
-            this.splitObservacion.SplitterDistance = 62;
-            this.splitObservacion.TabIndex = 4;
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblDescripcion.Location = new System.Drawing.Point(0, 0);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(35, 13);
-            this.lblDescripcion.TabIndex = 0;
-            this.lblDescripcion.Text = "label8";
-            // 
             // pdfGestor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -551,6 +560,12 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitObservacion.Panel1.ResumeLayout(false);
+            this.splitObservacion.Panel1.PerformLayout();
+            this.splitObservacion.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitObservacion)).EndInit();
+            this.splitObservacion.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource)).EndInit();
             this.boxNotas.ResumeLayout(false);
             this.boxAcciones.ResumeLayout(false);
             this.boxAcciones.PerformLayout();
@@ -559,11 +574,6 @@
             this.SplitControlesObservaciones.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitControlesObservaciones)).EndInit();
             this.SplitControlesObservaciones.ResumeLayout(false);
-            this.splitObservacion.Panel1.ResumeLayout(false);
-            this.splitObservacion.Panel1.PerformLayout();
-            this.splitObservacion.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitObservacion)).EndInit();
-            this.splitObservacion.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -610,5 +620,6 @@
         private System.Windows.Forms.GroupBox boxAcciones;
         private System.Windows.Forms.SplitContainer splitObservacion;
         private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.BindingSource catObservacionesBOBindingSource;
     }
 }
