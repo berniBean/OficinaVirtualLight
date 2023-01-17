@@ -61,7 +61,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("actualizaObservacionesPLUS_observaciones", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("actualizaObservacionesPLUS_Notasobservaciones", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -69,7 +69,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     //Parametros
                     OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
                     OrdenSql.Parameters.AddWithValue("@_observaciones",  bo.Observaciones);
-                    OrdenSql.Parameters.AddWithValue("@_malCapturado", bo.MalCapturado);
+                    OrdenSql.Parameters.AddWithValue("@_notasObservaciones", bo.NotasObservaciones);
                     OrdenSql.Parameters.AddWithValue("@_actaNotificacion", bo.ActaNotificacion);
                     OrdenSql.Parameters.AddWithValue("@_actaCitatorio", bo.ActaCitatorio);
                     OrdenSql.Parameters.AddWithValue("@_notificacionCitatorio", bo.NotificacionCitatorio);

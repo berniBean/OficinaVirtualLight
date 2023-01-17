@@ -346,11 +346,11 @@
             this.LayParticulares.Location = new System.Drawing.Point(3, 16);
             this.LayParticulares.Name = "LayParticulares";
             this.LayParticulares.RowCount = 5;
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayParticulares.Size = new System.Drawing.Size(1044, 179);
             this.LayParticulares.TabIndex = 0;
@@ -369,16 +369,17 @@
             // 
             this.DatoRS.AutoSize = true;
             this.DatoRS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.DatoRS.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatoRS.Location = new System.Drawing.Point(107, 0);
             this.DatoRS.Name = "DatoRS";
-            this.DatoRS.Size = new System.Drawing.Size(934, 13);
+            this.DatoRS.Size = new System.Drawing.Size(934, 26);
             this.DatoRS.TabIndex = 3;
             // 
             // tituloNCTRL
             // 
             this.tituloNCTRL.AutoSize = true;
             this.tituloNCTRL.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tituloNCTRL.Location = new System.Drawing.Point(3, 20);
+            this.tituloNCTRL.Location = new System.Drawing.Point(3, 32);
             this.tituloNCTRL.Name = "tituloNCTRL";
             this.tituloNCTRL.Size = new System.Drawing.Size(98, 13);
             this.tituloNCTRL.TabIndex = 4;
@@ -388,7 +389,7 @@
             // 
             this.DatoCTRL.AutoSize = true;
             this.DatoCTRL.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoCTRL.Location = new System.Drawing.Point(107, 20);
+            this.DatoCTRL.Location = new System.Drawing.Point(107, 32);
             this.DatoCTRL.Name = "DatoCTRL";
             this.DatoCTRL.Size = new System.Drawing.Size(934, 13);
             this.DatoCTRL.TabIndex = 5;
@@ -397,7 +398,7 @@
             // 
             this.tituloEstatus.AutoSize = true;
             this.tituloEstatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tituloEstatus.Location = new System.Drawing.Point(3, 40);
+            this.tituloEstatus.Location = new System.Drawing.Point(3, 50);
             this.tituloEstatus.Name = "tituloEstatus";
             this.tituloEstatus.Size = new System.Drawing.Size(98, 13);
             this.tituloEstatus.TabIndex = 6;
@@ -407,7 +408,7 @@
             // 
             this.DatoEstatus.AutoSize = true;
             this.DatoEstatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoEstatus.Location = new System.Drawing.Point(107, 40);
+            this.DatoEstatus.Location = new System.Drawing.Point(107, 50);
             this.DatoEstatus.Name = "DatoEstatus";
             this.DatoEstatus.Size = new System.Drawing.Size(934, 13);
             this.DatoEstatus.TabIndex = 7;
@@ -416,7 +417,7 @@
             // 
             this.tituloObservacion.AutoSize = true;
             this.tituloObservacion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tituloObservacion.Location = new System.Drawing.Point(3, 63);
+            this.tituloObservacion.Location = new System.Drawing.Point(3, 69);
             this.tituloObservacion.Name = "tituloObservacion";
             this.tituloObservacion.Size = new System.Drawing.Size(98, 13);
             this.tituloObservacion.TabIndex = 8;
@@ -426,7 +427,7 @@
             // 
             this.DatoObservaciones.AutoSize = true;
             this.DatoObservaciones.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoObservaciones.Location = new System.Drawing.Point(107, 63);
+            this.DatoObservaciones.Location = new System.Drawing.Point(107, 69);
             this.DatoObservaciones.Name = "DatoObservaciones";
             this.DatoObservaciones.Size = new System.Drawing.Size(934, 13);
             this.DatoObservaciones.TabIndex = 9;
@@ -435,9 +436,9 @@
             // 
             this.tituloDescripcionObservacion.AutoSize = true;
             this.tituloDescripcionObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(3, 81);
+            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(3, 91);
             this.tituloDescripcionObservacion.Name = "tituloDescripcionObservacion";
-            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(98, 98);
+            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(98, 88);
             this.tituloDescripcionObservacion.TabIndex = 10;
             this.tituloDescripcionObservacion.Text = "Descripcion:";
             // 
@@ -445,7 +446,7 @@
             // 
             this.DatoDescripcion.AutoSize = true;
             this.DatoDescripcion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoDescripcion.Location = new System.Drawing.Point(107, 81);
+            this.DatoDescripcion.Location = new System.Drawing.Point(107, 91);
             this.DatoDescripcion.Name = "DatoDescripcion";
             this.DatoDescripcion.Size = new System.Drawing.Size(934, 13);
             this.DatoDescripcion.TabIndex = 11;

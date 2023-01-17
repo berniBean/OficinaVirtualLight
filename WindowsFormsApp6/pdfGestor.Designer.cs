@@ -58,10 +58,10 @@
             this.panelDescripcionObservaciones = new System.Windows.Forms.TableLayoutPanel();
             this.BoxIndetificarPorblema = new System.Windows.Forms.GroupBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.rbCitatorio = new System.Windows.Forms.RadioButton();
-            this.rbAmbos = new System.Windows.Forms.RadioButton();
-            this.rbNotificacion = new System.Windows.Forms.RadioButton();
+            this.ChkChitatorio = new System.Windows.Forms.CheckBox();
+            this.chkActaNotificacion = new System.Windows.Forms.CheckBox();
             this.splitObservacion = new System.Windows.Forms.SplitContainer();
+            this.lblDescripcionCorta = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.cmbObservacion = new System.Windows.Forms.ComboBox();
             this.catObservacionesBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -69,9 +69,11 @@
             this.textNotas = new System.Windows.Forms.RichTextBox();
             this.boxAcciones = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.catObservacionesBOBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SplitControlesObservaciones = new System.Windows.Forms.SplitContainer();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.txtDescripcionCorta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.LayObservaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.PanelDeDatos.SuspendLayout();
@@ -90,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource)).BeginInit();
             this.boxNotas.SuspendLayout();
             this.boxAcciones.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitControlesObservaciones)).BeginInit();
             this.SplitControlesObservaciones.Panel1.SuspendLayout();
@@ -119,7 +122,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(149, 35);
+            this.btnGuardar.Location = new System.Drawing.Point(501, 54);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 4;
@@ -129,7 +132,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(266, 35);
+            this.btnEliminar.Location = new System.Drawing.Point(118, 35);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 5;
@@ -176,8 +179,8 @@
             this.PanelDeDatos.Location = new System.Drawing.Point(3, 16);
             this.PanelDeDatos.Name = "PanelDeDatos";
             this.PanelDeDatos.RowCount = 4;
-            this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 39.22652F));
+            this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.77348F));
             this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.PanelDeDatos.Size = new System.Drawing.Size(591, 663);
@@ -203,7 +206,7 @@
             this.BoxGeneralesRequerimientos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxGeneralesRequerimientos.Location = new System.Drawing.Point(3, 3);
             this.BoxGeneralesRequerimientos.Name = "BoxGeneralesRequerimientos";
-            this.BoxGeneralesRequerimientos.Size = new System.Drawing.Size(585, 266);
+            this.BoxGeneralesRequerimientos.Size = new System.Drawing.Size(585, 207);
             this.BoxGeneralesRequerimientos.TabIndex = 24;
             this.BoxGeneralesRequerimientos.TabStop = false;
             this.BoxGeneralesRequerimientos.Text = "Generales";
@@ -333,9 +336,9 @@
             // 
             this.BoxObservaciones.Controls.Add(this.panelDescripcionObservaciones);
             this.BoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BoxObservaciones.Location = new System.Drawing.Point(3, 275);
+            this.BoxObservaciones.Location = new System.Drawing.Point(3, 216);
             this.BoxObservaciones.Name = "BoxObservaciones";
-            this.BoxObservaciones.Size = new System.Drawing.Size(585, 266);
+            this.BoxObservaciones.Size = new System.Drawing.Size(585, 324);
             this.BoxObservaciones.TabIndex = 25;
             this.BoxObservaciones.TabStop = false;
             this.BoxObservaciones.Text = "Observaciones del requerimiento";
@@ -352,7 +355,7 @@
             this.panelDescripcionObservaciones.RowCount = 2;
             this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.42105F));
             this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.57895F));
-            this.panelDescripcionObservaciones.Size = new System.Drawing.Size(579, 247);
+            this.panelDescripcionObservaciones.Size = new System.Drawing.Size(579, 305);
             this.panelDescripcionObservaciones.TabIndex = 0;
             // 
             // BoxIndetificarPorblema
@@ -361,7 +364,7 @@
             this.BoxIndetificarPorblema.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxIndetificarPorblema.Location = new System.Drawing.Point(3, 3);
             this.BoxIndetificarPorblema.Name = "BoxIndetificarPorblema";
-            this.BoxIndetificarPorblema.Size = new System.Drawing.Size(573, 162);
+            this.BoxIndetificarPorblema.Size = new System.Drawing.Size(573, 202);
             this.BoxIndetificarPorblema.TabIndex = 0;
             this.BoxIndetificarPorblema.TabStop = false;
             this.BoxIndetificarPorblema.Text = "Identificar las observaciones";
@@ -374,48 +377,35 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.rbCitatorio);
-            this.splitContainer2.Panel1.Controls.Add(this.rbAmbos);
-            this.splitContainer2.Panel1.Controls.Add(this.rbNotificacion);
+            this.splitContainer2.Panel1.Controls.Add(this.ChkChitatorio);
+            this.splitContainer2.Panel1.Controls.Add(this.chkActaNotificacion);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitObservacion);
-            this.splitContainer2.Size = new System.Drawing.Size(567, 143);
+            this.splitContainer2.Size = new System.Drawing.Size(567, 183);
             this.splitContainer2.SplitterDistance = 188;
             this.splitContainer2.TabIndex = 4;
             // 
-            // rbCitatorio
+            // ChkChitatorio
             // 
-            this.rbCitatorio.AutoSize = true;
-            this.rbCitatorio.Location = new System.Drawing.Point(22, 41);
-            this.rbCitatorio.Name = "rbCitatorio";
-            this.rbCitatorio.Size = new System.Drawing.Size(63, 17);
-            this.rbCitatorio.TabIndex = 1;
-            this.rbCitatorio.Text = "Citatorio";
-            this.rbCitatorio.UseVisualStyleBackColor = true;
+            this.ChkChitatorio.AutoSize = true;
+            this.ChkChitatorio.Location = new System.Drawing.Point(23, 38);
+            this.ChkChitatorio.Name = "ChkChitatorio";
+            this.ChkChitatorio.Size = new System.Drawing.Size(114, 17);
+            this.ChkChitatorio.TabIndex = 4;
+            this.ChkChitatorio.Text = "Citatorio de espera";
+            this.ChkChitatorio.UseVisualStyleBackColor = true;
             // 
-            // rbAmbos
+            // chkActaNotificacion
             // 
-            this.rbAmbos.AutoSize = true;
-            this.rbAmbos.Location = new System.Drawing.Point(22, 64);
-            this.rbAmbos.Name = "rbAmbos";
-            this.rbAmbos.Size = new System.Drawing.Size(57, 17);
-            this.rbAmbos.TabIndex = 2;
-            this.rbAmbos.Text = "Ambos";
-            this.rbAmbos.UseVisualStyleBackColor = true;
-            // 
-            // rbNotificacion
-            // 
-            this.rbNotificacion.AutoSize = true;
-            this.rbNotificacion.Checked = true;
-            this.rbNotificacion.Location = new System.Drawing.Point(22, 18);
-            this.rbNotificacion.Name = "rbNotificacion";
-            this.rbNotificacion.Size = new System.Drawing.Size(119, 17);
-            this.rbNotificacion.TabIndex = 0;
-            this.rbNotificacion.TabStop = true;
-            this.rbNotificacion.Text = "Acta de notificación";
-            this.rbNotificacion.UseVisualStyleBackColor = true;
+            this.chkActaNotificacion.AutoSize = true;
+            this.chkActaNotificacion.Location = new System.Drawing.Point(22, 15);
+            this.chkActaNotificacion.Name = "chkActaNotificacion";
+            this.chkActaNotificacion.Size = new System.Drawing.Size(120, 17);
+            this.chkActaNotificacion.TabIndex = 3;
+            this.chkActaNotificacion.Text = "Acta de notificación";
+            this.chkActaNotificacion.UseVisualStyleBackColor = true;
             // 
             // splitObservacion
             // 
@@ -426,14 +416,25 @@
             // 
             // splitObservacion.Panel1
             // 
+            this.splitObservacion.Panel1.Controls.Add(this.txtDescripcionCorta);
+            this.splitObservacion.Panel1.Controls.Add(this.lblDescripcionCorta);
             this.splitObservacion.Panel1.Controls.Add(this.lblDescripcion);
             // 
             // splitObservacion.Panel2
             // 
             this.splitObservacion.Panel2.Controls.Add(this.cmbObservacion);
-            this.splitObservacion.Size = new System.Drawing.Size(375, 143);
-            this.splitObservacion.SplitterDistance = 60;
+            this.splitObservacion.Size = new System.Drawing.Size(375, 183);
+            this.splitObservacion.SplitterDistance = 59;
             this.splitObservacion.TabIndex = 4;
+            // 
+            // lblDescripcionCorta
+            // 
+            this.lblDescripcionCorta.AutoSize = true;
+            this.lblDescripcionCorta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblDescripcionCorta.Location = new System.Drawing.Point(0, 0);
+            this.lblDescripcionCorta.Name = "lblDescripcionCorta";
+            this.lblDescripcionCorta.Size = new System.Drawing.Size(0, 13);
+            this.lblDescripcionCorta.TabIndex = 1;
             // 
             // lblDescripcion
             // 
@@ -455,6 +456,7 @@
             this.cmbObservacion.Name = "cmbObservacion";
             this.cmbObservacion.Size = new System.Drawing.Size(375, 21);
             this.cmbObservacion.TabIndex = 3;
+            this.cmbObservacion.SelectedIndexChanged += new System.EventHandler(this.cmbObservacion_SelectedIndexChanged);
             // 
             // catObservacionesBOBindingSource
             // 
@@ -464,9 +466,9 @@
             // 
             this.boxNotas.Controls.Add(this.textNotas);
             this.boxNotas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.boxNotas.Location = new System.Drawing.Point(3, 171);
+            this.boxNotas.Location = new System.Drawing.Point(3, 211);
             this.boxNotas.Name = "boxNotas";
-            this.boxNotas.Size = new System.Drawing.Size(573, 73);
+            this.boxNotas.Size = new System.Drawing.Size(573, 91);
             this.boxNotas.TabIndex = 1;
             this.boxNotas.TabStop = false;
             this.boxNotas.Text = "Notas de observaciones";
@@ -476,18 +478,18 @@
             this.textNotas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textNotas.Location = new System.Drawing.Point(3, 16);
             this.textNotas.Name = "textNotas";
-            this.textNotas.Size = new System.Drawing.Size(567, 54);
+            this.textNotas.Size = new System.Drawing.Size(567, 72);
             this.textNotas.TabIndex = 0;
             this.textNotas.Text = "";
             // 
             // boxAcciones
             // 
             this.boxAcciones.Controls.Add(this.btnAbrir);
-            this.boxAcciones.Controls.Add(this.lblStatus);
             this.boxAcciones.Controls.Add(this.btnGuardar);
+            this.boxAcciones.Controls.Add(this.lblStatus);
             this.boxAcciones.Controls.Add(this.btnEliminar);
             this.boxAcciones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.boxAcciones.Location = new System.Drawing.Point(3, 547);
+            this.boxAcciones.Location = new System.Drawing.Point(3, 546);
             this.boxAcciones.Name = "boxAcciones";
             this.boxAcciones.Size = new System.Drawing.Size(585, 83);
             this.boxAcciones.TabIndex = 26;
@@ -501,6 +503,10 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(0, 13);
             this.lblStatus.TabIndex = 16;
+            // 
+            // catObservacionesBOBindingSource1
+            // 
+            this.catObservacionesBOBindingSource1.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatObservacionesBO);
             // 
             // groupBox2
             // 
@@ -538,6 +544,16 @@
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // txtDescripcionCorta
+            // 
+            this.txtDescripcionCorta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDescripcionCorta.Enabled = false;
+            this.txtDescripcionCorta.Location = new System.Drawing.Point(0, 0);
+            this.txtDescripcionCorta.Multiline = true;
+            this.txtDescripcionCorta.Name = "txtDescripcionCorta";
+            this.txtDescripcionCorta.Size = new System.Drawing.Size(375, 59);
+            this.txtDescripcionCorta.TabIndex = 2;
+            // 
             // pdfGestor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -569,6 +585,7 @@
             this.boxNotas.ResumeLayout(false);
             this.boxAcciones.ResumeLayout(false);
             this.boxAcciones.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.SplitControlesObservaciones.Panel1.ResumeLayout(false);
             this.SplitControlesObservaciones.Panel2.ResumeLayout(false);
@@ -611,9 +628,6 @@
         private System.Windows.Forms.TableLayoutPanel panelDescripcionObservaciones;
         private System.Windows.Forms.GroupBox BoxIndetificarPorblema;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.RadioButton rbCitatorio;
-        private System.Windows.Forms.RadioButton rbAmbos;
-        private System.Windows.Forms.RadioButton rbNotificacion;
         private System.Windows.Forms.ComboBox cmbObservacion;
         private System.Windows.Forms.GroupBox boxNotas;
         private System.Windows.Forms.RichTextBox textNotas;
@@ -621,5 +635,10 @@
         private System.Windows.Forms.SplitContainer splitObservacion;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.BindingSource catObservacionesBOBindingSource;
+        private System.Windows.Forms.CheckBox chkActaNotificacion;
+        private System.Windows.Forms.CheckBox ChkChitatorio;
+        private System.Windows.Forms.Label lblDescripcionCorta;
+        private System.Windows.Forms.BindingSource catObservacionesBOBindingSource1;
+        private System.Windows.Forms.TextBox txtDescripcionCorta;
     }
 }

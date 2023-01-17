@@ -232,6 +232,7 @@ namespace WindowsFormsApp6.CAD.BO
         }
 
         private string _observaciones;
+        public string NotasObservaciones { get; set; }
         public string Observaciones
         {
             get { return _observaciones; }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using WindowsFormsApp6.CAD.DAL;
 using WindowsFormsApp6.CAD.BO;
+using WindowsFormsApp6.CAD.DAL.factories;
 
 namespace WindowsFormsApp6
 {
@@ -38,6 +39,8 @@ namespace WindowsFormsApp6
         private CatObservacionesDAL catalogo = new CatObservacionesDAL();
         private CatObservacionesBO ObCatalogo = new CatObservacionesBO();
         private CListaCatObservaciones ListaObservaciones;
+
+        obtenerRequeridos obReq;
         public pdfGestor(int tipo,string numReq,string RFC,string rs,string idSAT,string diligencia,string citatorio,string notificacion, string URI,string emision,string ohe)
         {
             InitializeComponent();
@@ -65,6 +68,8 @@ namespace WindowsFormsApp6
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             folder = path + "\\temp";
             fullFilePath = folder + "\\" + _idSAT + ".pdf";
+
+            obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
             abrirArchivo();
             CargarCatalogo();
 
@@ -123,10 +128,33 @@ namespace WindowsFormsApp6
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(backgroundWorker.IsBusy != true)
-            {
-                backgroundWorker.RunWorkerAsync();
-            }
+            CListaRequeridosBO observacion = new CListaRequeridosBO();
+
+            if (chkActaNotificacion.Checked)            
+                observacion.ActaNotificacion = true;            
+            else            
+                observacion.ActaNotificacion = false;
+
+
+            if (ChkChitatorio.Checked)
+                observacion.ActaCitatorio = true;
+            else
+                observacion.ActaCitatorio = false;
+
+            if (chkActaNotificacion.Checked && ChkChitatorio.Checked)
+                observacion.NotificacionCitatorio = true;
+            else
+                observacion.NotificacionCitatorio = false;
+
+            observacion.NumCtrl = _idSAT;
+            observacion.Observaciones = cmbObservacion.Text;
+            observacion.NotasObservaciones = textNotas.Text;
+
+            obReq.ObservacionesRequerimientos(observacion);
+            //if(backgroundWorker.IsBusy != true)
+            //{
+            //    backgroundWorker.RunWorkerAsync();
+            //}
         }
 
         private void CargarCatalogo()
@@ -134,6 +162,15 @@ namespace WindowsFormsApp6
             ListaObservaciones = catalogo.GetCatObservacion();
 
             cmbObservacion.DataSource = ListaObservaciones;
+            
+            
+        }
+
+        private void cmbObservacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = cmbObservacion.SelectedIndex;
+            var descripcion = ListaObservaciones[index].Descripcion.ToString();
+            txtDescripcionCorta.Text = descripcion;
         }
         private void abrirArchivo()
         {
@@ -289,6 +326,8 @@ namespace WindowsFormsApp6
             lblStatus.Text = "Carga completada";
             MessageBox.Show("Archivo: " + _idSAT + ".pdf" + " Guardado");
         }
+
+ 
 
 
     }
