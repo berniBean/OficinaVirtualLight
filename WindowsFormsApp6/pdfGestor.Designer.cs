@@ -61,6 +61,7 @@
             this.ChkChitatorio = new System.Windows.Forms.CheckBox();
             this.chkActaNotificacion = new System.Windows.Forms.CheckBox();
             this.splitObservacion = new System.Windows.Forms.SplitContainer();
+            this.txtDescripcionCorta = new System.Windows.Forms.TextBox();
             this.lblDescripcionCorta = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.cmbObservacion = new System.Windows.Forms.ComboBox();
@@ -69,11 +70,9 @@
             this.textNotas = new System.Windows.Forms.RichTextBox();
             this.boxAcciones = new System.Windows.Forms.GroupBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.catObservacionesBOBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SplitControlesObservaciones = new System.Windows.Forms.SplitContainer();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.txtDescripcionCorta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.LayObservaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.PanelDeDatos.SuspendLayout();
@@ -92,7 +91,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource)).BeginInit();
             this.boxNotas.SuspendLayout();
             this.boxAcciones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitControlesObservaciones)).BeginInit();
             this.SplitControlesObservaciones.Panel1.SuspendLayout();
@@ -427,6 +425,16 @@
             this.splitObservacion.SplitterDistance = 59;
             this.splitObservacion.TabIndex = 4;
             // 
+            // txtDescripcionCorta
+            // 
+            this.txtDescripcionCorta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtDescripcionCorta.Enabled = false;
+            this.txtDescripcionCorta.Location = new System.Drawing.Point(0, 0);
+            this.txtDescripcionCorta.Multiline = true;
+            this.txtDescripcionCorta.Name = "txtDescripcionCorta";
+            this.txtDescripcionCorta.Size = new System.Drawing.Size(375, 59);
+            this.txtDescripcionCorta.TabIndex = 2;
+            // 
             // lblDescripcionCorta
             // 
             this.lblDescripcionCorta.AutoSize = true;
@@ -504,10 +512,6 @@
             this.lblStatus.Size = new System.Drawing.Size(0, 13);
             this.lblStatus.TabIndex = 16;
             // 
-            // catObservacionesBOBindingSource1
-            // 
-            this.catObservacionesBOBindingSource1.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatObservacionesBO);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.LayObservaciones);
@@ -544,16 +548,6 @@
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // txtDescripcionCorta
-            // 
-            this.txtDescripcionCorta.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDescripcionCorta.Enabled = false;
-            this.txtDescripcionCorta.Location = new System.Drawing.Point(0, 0);
-            this.txtDescripcionCorta.Multiline = true;
-            this.txtDescripcionCorta.Name = "txtDescripcionCorta";
-            this.txtDescripcionCorta.Size = new System.Drawing.Size(375, 59);
-            this.txtDescripcionCorta.TabIndex = 2;
-            // 
             // pdfGestor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,7 +579,6 @@
             this.boxNotas.ResumeLayout(false);
             this.boxAcciones.ResumeLayout(false);
             this.boxAcciones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.catObservacionesBOBindingSource1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.SplitControlesObservaciones.Panel1.ResumeLayout(false);
             this.SplitControlesObservaciones.Panel2.ResumeLayout(false);
@@ -638,7 +631,6 @@
         private System.Windows.Forms.CheckBox chkActaNotificacion;
         private System.Windows.Forms.CheckBox ChkChitatorio;
         private System.Windows.Forms.Label lblDescripcionCorta;
-        private System.Windows.Forms.BindingSource catObservacionesBOBindingSource1;
         private System.Windows.Forms.TextBox txtDescripcionCorta;
     }
 }
