@@ -175,6 +175,8 @@
     <Compile Include="CAD\BO\CdiasFeriadosBO.cs" />
     <Compile Include="CAD\BO\CDirCelularBO.cs" />
     <Compile Include="CAD\BO\CListaCatObservaciones.cs" />
+    <Compile Include="CAD\BO\CListNotificadores.cs" />
+    <Compile Include="CAD\BO\CNotificadoresBO.cs" />
     <Compile Include="CAD\BO\DirectorioBO.cs" />
     <Compile Include="CAD\BO\CEmisionActualBO.cs" />
     <Compile Include="CAD\BO\CFechaOficios.cs" />
@@ -233,6 +235,7 @@
     <Compile Include="CAD\DAL\CEmisionActualDAL.cs" />
     <Compile Include="CAD\DAL\ClistaRequeridosDALPLUS.cs" />
     <Compile Include="CAD\DAL\ClistaRequeridosDAL.cs" />
+    <Compile Include="CAD\DAL\CNotificadoresDAL.cs" />
     <Compile Include="CAD\DAL\CoheActivoDALPLUS.cs" />
     <Compile Include="CAD\DAL\CoheActivoDAL.cs" />
     <Compile Include="CAD\DAL\CTableroAdminDALPLUS.cs" />
@@ -557,6 +560,7 @@
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaMultasBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaRIFBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CEmisionActualBO.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaCatObservaciones.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaRequeridosBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaTableroAdmin.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CNombreBimestreBO.datasource" />

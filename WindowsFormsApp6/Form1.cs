@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WindowsFormsApp6.structs;
 using CleanArchitecture.Helpers;
+using WindowsFormsApp6.CAD.DAL;
 
 namespace WindowsFormsApp6
 {
@@ -38,6 +39,7 @@ namespace WindowsFormsApp6
         private CanhoFiscalBLL bd = new CanhoFiscalBLL();
         private CanhoFiscalBO obListaAnho = new CanhoFiscalBO();
         obtenerPeriodoFiscal obListYear;
+
         //obtenerPeriodoFiscal obListYear =  factoryYear.maker(factoryYear.RIF
         /// <summary>
         /// 
@@ -62,10 +64,16 @@ namespace WindowsFormsApp6
         obtenerRequeridos  obReq;
         //private CListaRequeridosBO obListaRqe = new CListaRequeridosBO();
         private ListaClistaRequeridos listReq;
+        private CListNotificadores listNotificador;
+        private CListaCatObservaciones ListaObservaciones;
         private DataSet dsListado = new DataSet();
         private DataTable dt = new DataTable();
 
         private CDiasLaboralesBLL bdDias = new CDiasLaboralesBLL();
+        private CNotificadoresDAL CatalogoNotificadores = new CNotificadoresDAL();
+        private CatObservacionesDAL catalogo = new CatObservacionesDAL();
+
+
         TaskInfo tiG = new TaskInfo();
 
         obtenerURL obUrl;
@@ -1067,10 +1075,13 @@ namespace WindowsFormsApp6
 
         private void cargaRequerimientos()
         {
+            ListaObservaciones = catalogo.GetCatObservacion();
+            listNotificador = CatalogoNotificadores.GetListadoNotificadores(cmbOHE.Text);
             listReq = obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
-            
 
-            
+
+
+            cListaCatObservacionesBindingSource.DataSource = ListaObservaciones;
             cListaRequeridosBOBindingSource.DataSource = listReq;
             DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
 
@@ -1427,7 +1438,19 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (DgReqActivos2.CurrentCell.ColumnIndex != 5|| DgReqActivos2.CurrentCell.ColumnIndex != 8)
+            var colIndex = DgReqActivos2.CurrentCell.ColumnIndex;
+            var colName = DgReqActivos2.Columns[colIndex].Name;
+
+            if(colName == "NombreNotificador")
+            {
+                TextBox textBox = (TextBox)e.Control;
+                textBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                textBox.AutoCompleteCustomSource = GetSuggestName("NombreNotificador");
+                textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            }
+            
+
+            if (DgReqActivos2.CurrentCell.ColumnIndex != 5 || DgReqActivos2.CurrentCell.ColumnIndex != 8 )
             {
                 try
                 {
@@ -1439,15 +1462,46 @@ namespace WindowsFormsApp6
                 catch (InvalidCastException ex)
                 {
 
-                    
+
                 }
 
             }
         }
 
+        private AutoCompleteStringCollection GetSuggestName(string Columna)
+        {
+            string[] s;
+            AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+
+            if (Columna == "NombreNotificador")
+            {
+                var query = listNotificador.Select(element => new
+                {
+                    element.IdNotificador,
+                    element.NombreNotificador
+                }).Distinct();
+                s = query.Select(p => p.NombreNotificador).ToArray();
+                
+                collection.AddRange(s);
+            }
+
+
+
+
+
+             
+
+
+            return collection;
+        }
+
         private void dText_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (DgReqActivos2.CurrentCell.ColumnIndex == 5 || DgReqActivos2.CurrentCell.ColumnIndex == 6)
+            var colIndex = DgReqActivos2.CurrentCell.ColumnIndex;
+            var colName = DgReqActivos2.Columns[colIndex].Name;
+            
+            if (colName== "ActaNotificacion" || colName == "ActaCitatorio" || colName == "NotificacionCitatorio" 
+                || colName == "Diligencia" || colName == "NombreNotificador" || colName == "Observaciones" || colName == "NotasObservaciones")
             {
                 e.Handled = false;
             }

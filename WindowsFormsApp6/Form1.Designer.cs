@@ -102,7 +102,9 @@
             this.ActaNotificacion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ActaCitatorio = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NotificacionCitatorio = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Observaciones = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cListaCatObservacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.NotasObservaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.cNombreBimestreBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -128,6 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgReqActivos2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaCatObservacionesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cNombreBimestreBOBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -685,7 +688,8 @@
             this.ActaNotificacion,
             this.ActaCitatorio,
             this.NotificacionCitatorio,
-            this.dataGridViewTextBoxColumn15,
+            this.Observaciones,
+            this.NotasObservaciones,
             this.dataGridViewCheckBoxColumn1,
             this.dataGridViewCheckBoxColumn2});
             this.DgReqActivos2.DataSource = this.cListaRequeridosBOBindingSource;
@@ -790,7 +794,6 @@
             this.NombreNotificador.DataPropertyName = "NombreNotificador";
             this.NombreNotificador.HeaderText = "Nombre del notificador";
             this.NombreNotificador.Name = "NombreNotificador";
-            this.NombreNotificador.Visible = false;
             // 
             // dataGridViewTextBoxColumn11
             // 
@@ -826,58 +829,38 @@
             this.ActaNotificacion.DataPropertyName = "ActaNotificacion";
             this.ActaNotificacion.HeaderText = "ActaNotificacion";
             this.ActaNotificacion.Name = "ActaNotificacion";
-            this.ActaNotificacion.Visible = false;
             // 
             // ActaCitatorio
             // 
             this.ActaCitatorio.DataPropertyName = "ActaCitatorio";
             this.ActaCitatorio.HeaderText = "ActaCitatorio";
             this.ActaCitatorio.Name = "ActaCitatorio";
-            this.ActaCitatorio.Visible = false;
             // 
             // NotificacionCitatorio
             // 
             this.NotificacionCitatorio.DataPropertyName = "NotificacionCitatorio";
             this.NotificacionCitatorio.HeaderText = "NotificacionCitatorio";
             this.NotificacionCitatorio.Name = "NotificacionCitatorio";
-            this.NotificacionCitatorio.Visible = false;
             // 
-            // dataGridViewTextBoxColumn15
+            // Observaciones
             // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "Observaciones";
-            this.dataGridViewTextBoxColumn15.HeaderText = "Observaciones";
-            this.dataGridViewTextBoxColumn15.Items.AddRange(new object[] {
-            "1 Fecha mal capturada",
-            "2 Día inhábil ",
-            "3 Documentación incompleta",
-            "4 carece de firma en el apartado de con quien se entiende la diligencia",
-            "5 Falta firma de quien recibe el Citatorio",
-            "6 escribir con letra legible",
-            "7 anota que no procedio Citatorio, cuando sí procedio Citatorio",
-            "8 tachadura",
-            "9 Carácter o relacion con el contribuyente",
-            "10 No anotaron quien recibe el citatorio",
-            "11 No anotaron quien recibe el Acta de notificación",
-            "12 carece de nombre del notificador",
-            "13 falto anotar día mes y año (fecha)",
-            "14 anota que no precedió Citatorio cuando sí precedio",
-            "15 anota que si precedió Citatorio cuando no precedio",
-            "16 no describe si precedio citatorio",
-            "17 notifico a tercera persona sin previo citatorio",
-            "18 no anota con que se identifica persona que recibe y número de identificación",
-            "19 firmas diferentes y recibio la misma persona",
-            "20 NL Fecha mal capturada",
-            "21 NL Documentación incompleta",
-            "22 NL carece de croquis de ubicación del domicilio",
-            "23 NL manifiesta no se encontro el domicilio, sin precisar si es colonia, calle o" +
-                " número.",
-            "24 NL falta descripción  de el porque no se llevó a cabo la diligencia",
-            "25 NL no se busco otra alternativa (vecino), o asistir a otra hora",
-            "26 NL no requisito el formato"});
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn15.Visible = false;
+            this.Observaciones.DataPropertyName = "Observaciones";
+            this.Observaciones.DataSource = this.cListaCatObservacionesBindingSource;
+            this.Observaciones.DisplayMember = "ConatenadoObservacion";
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            this.Observaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Observaciones.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // cListaCatObservacionesBindingSource
+            // 
+            this.cListaCatObservacionesBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaCatObservaciones);
+            // 
+            // NotasObservaciones
+            // 
+            this.NotasObservaciones.DataPropertyName = "NotasObservaciones";
+            this.NotasObservaciones.HeaderText = "NotasObservaciones";
+            this.NotasObservaciones.Name = "NotasObservaciones";
             // 
             // dataGridViewCheckBoxColumn1
             // 
@@ -982,6 +965,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgReqActivos2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaCatObservacionesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cNombreBimestreBOBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -1056,6 +1040,7 @@
         private System.Windows.Forms.Label DatoObservaciones;
         private System.Windows.Forms.Label tituloDescripcionObservacion;
         private System.Windows.Forms.Label DatoDescripcion;
+        private System.Windows.Forms.BindingSource cListaCatObservacionesBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1074,7 +1059,8 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn ActaNotificacion;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ActaCitatorio;
         private System.Windows.Forms.DataGridViewCheckBoxColumn NotificacionCitatorio;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Observaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NotasObservaciones;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
     }
