@@ -58,6 +58,11 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
+        public override ListCoheActiva ListadoNotificadoresOHE(string idSup)
+        {
+            throw new NotImplementedException();
+        }
+
         public override ListCoheActiva listadosOHE(string idSup, string periodo)
         {
             return GetOHE(idSup, periodo);

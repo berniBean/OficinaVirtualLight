@@ -27,7 +27,7 @@ namespace WindowsFormsApp6
         private int datoID;
         private string temp;
         private int _tipo;
-
+        
         
 
         BusquedaDelegado BusquedaMasivaDelegada;
@@ -337,7 +337,7 @@ namespace WindowsFormsApp6
 
         private void cmbOHE_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 13)
+           if (e.KeyValue == 13)
             {
                 CargarRequerimientos();
                 CargarNombreBimestre();
@@ -577,12 +577,21 @@ namespace WindowsFormsApp6
 
         }
 
+        private void SeleccionFila(DataGridView dataGrid)
+        {
+            dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private void SeleccionCeldas(DataGridView dataGrid)
+        {
+            dataGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
+        }
         private void ClearSelection(DataGridView dataGrid)
         {
-            
 
+            
             int i = 1;
-            int total = DgReqActivos2.Rows.Count;
+            int total = DgReqActivos2.Rows.Count;           
             foreach (DataGridViewCell cell in dataGrid.SelectedCells)
                 {
 
@@ -658,7 +667,14 @@ namespace WindowsFormsApp6
             if (e.Control && e.KeyCode == Keys.F)
             {
                 e.Handled = true;
+                SeleccionFila(DgReqActivos2);
 
+            }
+
+            if(e.Control && e.KeyCode == Keys.N)
+            {
+                e.Handled = true;
+                SeleccionCeldas(DgReqActivos2);
             }
 
 
@@ -1076,7 +1092,7 @@ namespace WindowsFormsApp6
         private void cargaRequerimientos()
         {
             ListaObservaciones = catalogo.GetCatObservacion();
-            listNotificador = CatalogoNotificadores.GetListadoNotificadores(cmbOHE.Text);
+            listNotificador = CatalogoNotificadores.GetNotificadorSupervisor(datoID);
             listReq = obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
 
 
@@ -1444,7 +1460,7 @@ namespace WindowsFormsApp6
             if(colName == "NombreNotificador")
             {
                 TextBox textBox = (TextBox)e.Control;
-                textBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                textBox.AutoCompleteMode = AutoCompleteMode.Suggest;
                 textBox.AutoCompleteCustomSource = GetSuggestName("NombreNotificador");
                 textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
@@ -1475,12 +1491,15 @@ namespace WindowsFormsApp6
 
             if (Columna == "NombreNotificador")
             {
+                
+
                 var query = listNotificador.Select(element => new
                 {
                     element.IdNotificador,
-                    element.NombreNotificador
+                    element.ConcatenadoNotificador,
+                   
                 }).Distinct();
-                s = query.Select(p => p.NombreNotificador).ToArray();
+                s = query.Select(p => p.ConcatenadoNotificador).ToArray();
                 
                 collection.AddRange(s);
             }
@@ -1496,7 +1515,7 @@ namespace WindowsFormsApp6
         }
 
         private void dText_KeyPress(object sender, KeyPressEventArgs e)
-        {
+       {
             var colIndex = DgReqActivos2.CurrentCell.ColumnIndex;
             var colName = DgReqActivos2.Columns[colIndex].Name;
             

@@ -56,6 +56,7 @@
             this.multasPDFPLUS = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuCerrar = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBusquedaMasiva = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,7 @@
             this.busquedaPLUS = new System.Windows.Forms.ToolStripMenuItem();
             this.tableroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.muestraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notificadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             this.opcionMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.dATOSPLUSToolStripMenuItem,
+            this.notificadoresToolStripMenuItem,
             this.menuAgenda,
             this.toolStripSeparator1,
             this.usuarioToolStripMenuItem,
@@ -302,6 +304,12 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
+            // usuarioToolStripMenuItem
+            // 
+            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuarioToolStripMenuItem.Text = "&Usuario";
+            // 
             // menuCerrar
             // 
             this.menuCerrar.MergeIndex = 3;
@@ -356,11 +364,12 @@
             this.muestraToolStripMenuItem.Text = "muestra";
             this.muestraToolStripMenuItem.Visible = false;
             // 
-            // usuarioToolStripMenuItem
+            // notificadoresToolStripMenuItem
             // 
-            this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.usuarioToolStripMenuItem.Text = "&Usuario";
+            this.notificadoresToolStripMenuItem.Name = "notificadoresToolStripMenuItem";
+            this.notificadoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notificadoresToolStripMenuItem.Text = "&Notificadores";
+            this.notificadoresToolStripMenuItem.Click += new System.EventHandler(this.notificadoresToolStripMenuItem_Click);
             // 
             // FormPadrePrincipal
             // 
@@ -418,5 +427,6 @@
         private System.Windows.Forms.ToolStripMenuItem multasPDFPLUS;
         private System.Windows.Forms.ToolStripMenuItem menuAvance;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notificadoresToolStripMenuItem;
     }
 }

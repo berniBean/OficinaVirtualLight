@@ -299,6 +299,12 @@
     <Compile Include="DragDropPDF.Designer.cs">
       <DependentUpon>DragDropPDF.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditaNotificadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditaNotificadores.Designer.cs">
+      <DependentUpon>EditaNotificadores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -464,6 +470,9 @@
     <EmbeddedResource Include="DragDropPDF.resx">
       <DependentUpon>DragDropPDF.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditaNotificadores.resx">
+      <DependentUpon>EditaNotificadores.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -555,6 +564,7 @@
     <None Include="Properties\DataSources\CleanArchitecture.ClasesDB.COficios.datasource" />
     <None Include="Properties\DataSources\CleanArchitecture.Concretas.fechaOficios.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.BO.CanhoFiscalBO1.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BLL.ListCoheActivaBLL.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CatableroJefeRCO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CatObservacionesBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CBusquedaMultasBO.datasource" />
@@ -563,6 +573,7 @@
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaCatObservaciones.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaRequeridosBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListaTableroAdmin.datasource" />
+    <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CListNotificadores.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CNombreBimestreBO.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.COficiosBO1.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.CAD.BO.CoheActivaBO.datasource" />
@@ -627,6 +638,8 @@
   <ItemGroup>
     <None Include="excel.png" />
     <Content Include="filtrar.png" />
+    <Content Include="Img\delete.png" />
+    <Content Include="Img\Editar.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

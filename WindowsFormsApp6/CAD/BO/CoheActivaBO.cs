@@ -6,6 +6,7 @@ namespace WindowsFormsApp6.CAD.BO
     public class CoheActivaBO : INotifyPropertyChanged
     {
         private string _ohe;
+        public int IdclaveOHE { get; set; }
 
         public string OHE {
             get { return _ohe; }

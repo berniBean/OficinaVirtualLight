@@ -214,6 +214,13 @@ namespace WindowsFormsApp6
             MeDir.Show();
         }
 
+        private void notificadoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EditaNotificadores Notificadores = new EditaNotificadores();
+            Notificadores.MdiParent = this;
+            Notificadores.Show();
+        }
+
 
 
 

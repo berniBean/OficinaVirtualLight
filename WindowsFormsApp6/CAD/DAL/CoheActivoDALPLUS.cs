@@ -21,6 +21,45 @@ namespace WindowsFormsApp6.CAD.DAL
                 strConn = conn;
         }
 
+        public ListCoheActiva GetOHENotificadores(string idSup)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("GetListadoOHENotificadores", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    OrdenSql.Parameters.AddWithValue("@idSup", idSup);
+                    //Crear conexion para todos los datos
+                    ListCoheActiva listOHE = new ListCoheActiva();
+                    conn.Open();
+                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+
+                    while (lector.Read())
+                    {
+
+                        CoheActivaBO fila = new CoheActivaBO()
+                        {
+                            IdclaveOHE = (int)lector["idclaveOHE"],
+                            OHE = (string)lector["ohe"]
+                        };
+                        
+                        listOHE.Add(fila);
+                    }
+
+                    return listOHE;
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw new ApplicationException("Error " + e);
+            }
+        }
+
         public ListCoheActiva GetOHE(string idSup, string periodo) {
             try
             {
@@ -61,6 +100,11 @@ namespace WindowsFormsApp6.CAD.DAL
         public override ListCoheActiva listadosOHE(string idSup, string periodo)
         {
             return GetOHE(idSup, periodo);
+        }
+
+        public override ListCoheActiva ListadoNotificadoresOHE(string idSup)
+        {
+            return GetOHENotificadores(idSup);
         }
     }
 }

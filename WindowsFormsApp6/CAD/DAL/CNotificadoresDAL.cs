@@ -1,10 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WindowsFormsApp6.CAD.BO;
 
 namespace WindowsFormsApp6.CAD.DAL
@@ -23,6 +19,53 @@ namespace WindowsFormsApp6.CAD.DAL
         {
             _catNotificadores = catNotificadores;
         }
+
+       
+        public CListNotificadores GetNotificadorSupervisor(int idSupervisor)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(StrConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("GetNotificadoresSupervisor", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    OrdenSql.Parameters.AddWithValue("@_idSupervisor", idSupervisor);
+
+                    //Crear conexion para todos los datos
+                    CListNotificadores listNotificadores = new CListNotificadores();
+                    conn.Open();
+                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+
+                    while (lector.Read())
+                    {
+
+
+                        CNotificadoresBO fila = new CNotificadoresBO()
+                        {
+                            IdNotificador = (string)lector["idNotificador"],
+                            ClaveNotificador = (string)lector["ClaveNotificador"],
+                            NombreNotificador = (string)lector["nombreNotificador"],
+                            ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
+
+
+                        };
+
+                        listNotificadores.Add(fila);
+
+
+                    }
+                    return listNotificadores;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
 
         public CListNotificadores GetListadoNotificadores(string Oficina)
         {
@@ -48,6 +91,7 @@ namespace WindowsFormsApp6.CAD.DAL
                         CNotificadoresBO fila = new CNotificadoresBO()
                         {
                             IdNotificador = (string)lector["idNotificador"],
+                            IdClaveOHE = (int)lector["idclaveOHE"],
                             ClaveNotificador = (string)lector["ClaveNotificador"],
                             NombreNotificador = (string)lector["nombreNotificador"]
 
@@ -58,6 +102,76 @@ namespace WindowsFormsApp6.CAD.DAL
 
                     }
                     return listNotificadores;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void NuevoNotificador(CNotificadoresBO bo)
+        {
+            try
+            {
+                using(MySqlConnection conn = new MySqlConnection(StrConn))
+                {
+                    
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void EditaNotificador(CNotificadoresBO bo)
+        {
+            try
+            {
+                using (MySqlConnection conn= new MySqlConnection(StrConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("EditNotificador", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    //Parametros
+                    OrdenSql.Parameters.AddWithValue("@_idNotificador", bo.IdNotificador);
+                    OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
+                    OrdenSql.Parameters.AddWithValue("@_NombreNotificador", bo.NombreNotificador);
+
+                    //Abrir la conexion de base de Datos
+                    conn.Open();
+                    OrdenSql.ExecuteNonQuery();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void EliminarNotificador(CNotificadoresBO bo)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(StrConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("EliminarRegistro", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    //Parametros
+                    OrdenSql.Parameters.AddWithValue("@_idNotificador", bo.IdNotificador);
+
+                    //Abrir la conexion de base de Datos
+                    conn.Open();
+                    OrdenSql.ExecuteNonQuery();
                 }
             }
             catch (Exception)

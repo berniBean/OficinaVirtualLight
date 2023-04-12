@@ -701,7 +701,7 @@
             this.DgReqActivos2.TabIndex = 0;
             this.DgReqActivos2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellContentDoubleClick);
-            this.DgReqActivos2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellEnter);
+            this.DgReqActivos2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgReqActivos_CellValidating);
             this.DgReqActivos2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgReqActivos_DataError);
             this.DgReqActivos2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgReqActivos_EditingControlShowing);
