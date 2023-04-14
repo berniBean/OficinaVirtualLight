@@ -1570,18 +1570,26 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
+            var query = listNotificador.FirstOrDefault(x => x.ClaveNotificador.Equals(DgReqActivos2.CurrentRow.Cells[10].Value.ToString()));
+
             DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
             DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();
             DatoEstatus.Text = DgReqActivos2.CurrentRow.Cells[13].Value.ToString();
             DatoObservaciones.Text = DgReqActivos2.CurrentRow.Cells[18].Value.ToString();
+            DatoNotificador.Text = query == null ?  "" : query.NombreNotificador.ToString(); 
+            
         }
 
         private void DgReqActivos2_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+            var query = listNotificador.FirstOrDefault(x => x.ClaveNotificador.Equals(DgReqActivos2.CurrentRow.Cells[10].Value.ToString()));
+
             DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
             DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();
             DatoEstatus.Text = DgReqActivos2.CurrentRow.Cells[13].Value.ToString();
             DatoObservaciones.Text = DgReqActivos2.CurrentRow.Cells[18].Value.ToString();
+            DatoNotificador.Text = query == null ? "" : query.NombreNotificador.ToString();
         }
 
         private void btnBusquedaMasiva_Click(object sender, EventArgs e)
@@ -1645,7 +1653,15 @@ namespace WindowsFormsApp6
 
         }
 
-
+        private void DgReqActivos2_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.ColumnIndex == 10 && e.RowIndex != -1)
+            {
+                DataGridViewCell cell = DgReqActivos2.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (cell.Value != null)
+                    cell.Value = cell.Value.ToString().ToUpper() ;
+            }
+        }
     }
 }
 

@@ -581,7 +581,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_fechaEnvioSEFIPLAN", VerificaFecha(bo.FechaEnvioSefiplan, bo.FechaNotificacion, bo.Diligencia));
                     OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
                     OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Modificado, bo.Diligencia));
-                    OrdenSql.Parameters.AddWithValue("@_nombreNotificador", bo.NombreNotificador.Substring(0, bo.NombreNotificador.IndexOf("/")));
+                    OrdenSql.Parameters.AddWithValue("@_nombreNotificador", VerificaNotificador( bo.NombreNotificador));
                     //OrdenSql.Parameters.AddWithValue("@_observaciones", OficioVacio(bo.Observaciones));
                     //Abrir la conexion de base de Datos
                     conn.Open();
@@ -593,6 +593,8 @@ namespace WindowsFormsApp6.CAD.DAL
             }
 
         }
+
+
 
         public void ModificaMultasRif(CListaRequeridosBO bo)
         {
@@ -632,6 +634,23 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
         //metodos internos 
+        private object VerificaNotificador(string nombreNotificador)
+        {
+            try
+            {
+                if(nombreNotificador != null)
+                {
+                    return  nombreNotificador.Length > 0 ? nombreNotificador.Substring(0, nombreNotificador.IndexOf("/")) : nombreNotificador;
+                }
+
+                return null;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         private object VerificaPAgo(DateTime fechaPago, DateTime fechaNotificacion, string diligencia, double importe)
         {
 
