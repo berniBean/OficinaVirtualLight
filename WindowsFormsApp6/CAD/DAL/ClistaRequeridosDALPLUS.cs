@@ -166,7 +166,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             (string)lector["numCtrl"],//_numCtrl
                             (string)lector["razonSocial"],//_razonSocial
                             (string)lector["localidad"],//_localidad
-                            lector["diligenica"] is DBNull ? "" : ((Int32)lector["diligenica"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligenica"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia
+                            lector["diligenica"] is DBNull ? "" : ((Int32)lector["diligenica"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligenica"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia                        
                             Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//_fechaNotificacion
                             Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
                             Convert.ToString(lector["oficioEnvioSEFIPLAN"]),//_oficioSEFIPLAN
@@ -180,7 +180,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             Convert.ToBoolean(lector["NotificacionCitatorio"] is DBNull ? null : lector["NotificacionCitatorio"]),
                             Convert.ToString(lector["observaciones"]),//_observaciones
                             Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"])//nombreNotificador
-                            );
+                            ); ;
                         listOHE.Add(fila);
 
 
@@ -523,29 +523,28 @@ namespace WindowsFormsApp6.CAD.DAL
                     while (lector.Read())
                     {
 
-                        CListaRequeridosBO fila = new CListaRequeridosBO(
-                            Convert.ToInt32(lector["numReq"]), //_numReq
-                            (string)lector["RFC"], //_RFC
-                            (string)lector["numCtrl"],//_numCtrl
-                            (string)lector["razonSocial"],//_razonSocial
-                            (string)lector["localidad"],//_localidad
-                            lector["diligenica"] is DBNull ? "" : ((Int32)lector["diligenica"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligenica"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia                        
-                            Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//_fechaNotificacion
-                            Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
-                            Convert.ToString(lector["oficioEnvioSEFIPLAN"]),//_oficioSEFIPLAN
-                            Convert.ToDateTime(lector["fechaEnvioSEFIPLAN"] is DBNull ? null : lector["fechaEnvioSEFIPLAN"]),//_fechaEnvioSefiplan
-                            Convert.ToDateTime(lector["fechaEntregaNotificador"] is DBNull ? null : lector["fechaEntregaNotificador"]),//_fechaEntregaNotificador
-                            Convert.ToDateTime(lector["fechaRecepcion"] is DBNull ? null : lector["fechaRecepcion"]),//_fechaRecepcion
-                            (string)lector["estatus"],//_estatus
-                            Convert.ToBoolean(lector["MalCapturado"] is DBNull ? null : lector["MalCapturado"]),
-                            Convert.ToBoolean(lector["ActaNotificacion"] is DBNull ? null : lector["ActaNotificacion"]),
-                            Convert.ToBoolean(lector["ActaCitatorio"] is DBNull ? null : lector["ActaCitatorio"]),
-                            Convert.ToBoolean(lector["NotificacionCitatorio"] is DBNull ? null : lector["NotificacionCitatorio"]),
-                            Convert.ToString(lector["observaciones"]),//_observaciones
-                            Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"])//nombreNotificador
+                        CListaRequeridosBO fila = new CListaRequeridosBO();
+                        fila.NumReq = Convert.ToInt32(lector["numReq"]); //_numReq
+                        fila.Rfc = (string)lector["RFC"]; //_RFC
+                        fila.NumCtrl = (string)lector["numCtrl"];//_numCtrl
+                        fila.RazonSocial = (string)lector["razonSocial"];//_razonSocial
+                        fila.Localidad = (string)lector["localidad"];//_localidad
+                        fila.Diligencia = lector["diligenica"] is DBNull ? "" : ((Int32)lector["diligenica"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligenica"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO"));//_diligencia                        
+                        fila.FechaNotificacion = Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]);//_fechaNotificacion
+                        fila.FechaCitatorio = Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]);//__fechaCitatorio
+                        fila.OficioSEFIPLAN = Convert.ToString(lector["oficioEnvioSEFIPLAN"]);//_oficioSEFIPLAN
+                        fila.FechaEnvioSefiplan =Convert.ToDateTime(lector["fechaEnvioSEFIPLAN"] is DBNull ? null : lector["fechaEnvioSEFIPLAN"]);//_fechaEnvioSefiplan
+                        fila.FechaEntregaNotificador=Convert.ToDateTime(lector["fechaEntregaNotificador"] is DBNull ? null : lector["fechaEntregaNotificador"]);//_fechaEntregaNotificador
+                        fila.FechaRecepcion=Convert.ToDateTime(lector["fechaRecepcion"] is DBNull ? null : lector["fechaRecepcion"]);//_fechaRecepcion
+                        fila.Estatus = (string)lector["estatus"];//_estatus
+                        fila.MalCapturado=Convert.ToBoolean(lector["MalCapturado"] is DBNull ? null : lector["MalCapturado"]);
+                        fila.ActaNotificacion=Convert.ToBoolean(lector["ActaNotificacion"] is DBNull ? null : lector["ActaNotificacion"]);
+                        fila.ActaCitatorio=Convert.ToBoolean(lector["ActaCitatorio"] is DBNull ? null : lector["ActaCitatorio"]);
+                        fila.NotificacionCitatorio=Convert.ToBoolean(lector["NotificacionCitatorio"] is DBNull ? null : lector["NotificacionCitatorio"]);
+                        fila.Observaciones=Convert.ToString(lector["observaciones"]);//_observaciones
+                        fila.NombreNotificador=Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"]);//nombreNotificador
+                        fila.NotasObservaciones = Convert.ToString(lector["notasObservaciones"] is DBNull ? null : lector["notasObservaciones"]);//nombreNotificador
 
-
-                            ); ;;
                         listOHE.Add(fila);
                         
                         

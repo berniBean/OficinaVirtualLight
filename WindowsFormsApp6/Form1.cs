@@ -1570,8 +1570,9 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            var query = listNotificador.FirstOrDefault(x => x.ClaveNotificador.Equals(DgReqActivos2.CurrentRow.Cells[10].Value.ToString()));
+            CNotificadoresBO query = default;
+            if(DgReqActivos2.CurrentRow.Cells[10].Value !=null)
+                query = listNotificador.FirstOrDefault(x => x.ClaveNotificador.Equals(DgReqActivos2.CurrentRow.Cells[10].Value.ToString()));
 
             DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
             DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();

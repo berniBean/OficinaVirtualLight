@@ -356,11 +356,26 @@ namespace WindowsFormsApp6.CAD.BO
 
         
         //constructor para requerimientos
-        public CListaRequeridosBO(int numReq, string RFC, string numCtrl, string razonSocial, string localidad,
-            string diligencia, DateTime fechaNotificacion, DateTime fechaCitatorio, string oficioSEFIPLAN,
-            DateTime fechaEnvioSefiplan, DateTime fechaEntregaNotificador, DateTime fechaRecepcion, string estatus,bool malCapturado,
-            bool actaNotificacion, bool actaCitatorio, bool notificacionCitatorio,
-            string observaciones, string nombreNotificador) {
+        public CListaRequeridosBO(
+            int numReq, 
+            string RFC, 
+            string numCtrl, 
+            string razonSocial, 
+            string localidad,
+            string diligencia, 
+            DateTime fechaNotificacion, 
+            DateTime fechaCitatorio, 
+            string oficioSEFIPLAN,
+            DateTime fechaEnvioSefiplan, 
+            DateTime fechaEntregaNotificador, 
+            DateTime fechaRecepcion, 
+            string estatus,
+            bool malCapturado,
+            bool actaNotificacion, 
+            bool actaCitatorio, 
+            bool notificacionCitatorio,
+            string observaciones, 
+            string nombreNotificador) {
             _numReq = numReq;
             _RFC = RFC;
             _numCtrl = numCtrl;
@@ -370,15 +385,14 @@ namespace WindowsFormsApp6.CAD.BO
             _fechaNotificacion = fechaNotificacion;
             __fechaCitatorio = fechaCitatorio;
             _oficioSEFIPLAN = oficioSEFIPLAN;
-            _fechaEntregaNotificador = fechaEntregaNotificador;          
-            _fechaEnvioSefiplan = fechaEnvioSefiplan;
+            _fechaEntregaNotificador = fechaEntregaNotificador;
             _fechaRecepcion = fechaRecepcion;
+            _fechaEnvioSefiplan = fechaEnvioSefiplan;
+            
             _malCapturado = malCapturado;
             _actaNotificacion = actaNotificacion;
             _actaCitatorio = actaCitatorio;
-            _notificacionCitatorio = notificacionCitatorio;
-
-
+            _notificacionCitatorio = notificacionCitatorio;           
             _estatus = estatus;
 
             _nombreNotificador = nombreNotificador;

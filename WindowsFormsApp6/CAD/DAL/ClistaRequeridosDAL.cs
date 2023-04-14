@@ -533,21 +533,21 @@ namespace WindowsFormsApp6.CAD.DAL
                             Convert.ToString(lector["observaciones"]),//_observaciones
                             Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"])//nombreNotificador
 
-                           //Convert.ToInt32(lector["numReq"]), //_numReq
-                           // (string)lector["RFC"], //_RFC
-                           // (string)lector["numCtrl"],//_numCtrl
-                           // (string)lector["razonSocial"],//_razonSocial
-                           // (string)lector["localidad"],//_localidad
-                           // lector["diligenica"] is DBNull ? "" : ((Int32)lector["diligenica"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligenica"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia                        
-                           // Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//_fechaNotificacion
-                           // Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
-                           // Convert.ToString(lector["oficioEnvioSEFIPLAN"]),//_oficioSEFIPLAN
-                           // Convert.ToDateTime(lector["fechaEnvioSEFIPLAN"] is DBNull ? null : lector["fechaEnvioSEFIPLAN"]),//_fechaEnvioSefiplan
-                           // Convert.ToDateTime(lector["fechaEntregaNotificador"] is DBNull ? null : lector["fechaEntregaNotificador"]),//_fechaEntregaNotificador
-                           // Convert.ToDateTime(lector["fechaRecepcion"] is DBNull ? null : lector["fechaRecepcion"]),//_fechaRecepcion
-                           // (string)lector["estatus"],//_estatus
-                           // Convert.ToString(lector["observaciones"]),//_observaciones
-                           // Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"])//nombreNotificador
+                            //Convert.ToInt32(lector["numReq"]), //_numReq
+                            // (string)lector["RFC"], //_RFC
+                            // (string)lector["numCtrl"],//_numCtrl
+                            // (string)lector["razonSocial"],//_razonSocial
+                            // (string)lector["localidad"],//_localidad
+                            // lector["diligenica"] is DBNull ? "" : ((Int32)lector["diligenica"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligenica"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia                        
+                            // Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//_fechaNotificacion
+                            // Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
+                            // Convert.ToString(lector["oficioEnvioSEFIPLAN"]),//_oficioSEFIPLAN
+                            // Convert.ToDateTime(lector["fechaEnvioSEFIPLAN"] is DBNull ? null : lector["fechaEnvioSEFIPLAN"]),//_fechaEnvioSefiplan
+                            // Convert.ToDateTime(lector["fechaEntregaNotificador"] is DBNull ? null : lector["fechaEntregaNotificador"]),//_fechaEntregaNotificador
+                            // Convert.ToDateTime(lector["fechaRecepcion"] is DBNull ? null : lector["fechaRecepcion"]),//_fechaRecepcion
+                            // (string)lector["estatus"],//_estatus
+                            // Convert.ToString(lector["observaciones"]),//_observaciones
+                            // Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"])//nombreNotificador
 
 
                             );;
