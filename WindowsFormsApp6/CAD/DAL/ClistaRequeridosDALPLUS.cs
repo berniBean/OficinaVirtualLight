@@ -2,7 +2,6 @@
 using System;
 using WindowsFormsApp6.CAD.BO;
 using System.Data;
-
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.DAL.factories;
 

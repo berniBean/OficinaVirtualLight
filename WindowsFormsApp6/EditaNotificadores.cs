@@ -101,22 +101,9 @@ namespace WindowsFormsApp6
             Notificador.IdClaveOHE = oficina.IdclaveOHE;
             Notificador.ClaveNotificador = txtClaveNot.Text;
             Notificador.NombreNotificador = txtNombre.Text;
-            
-            //AGregar las filas al DR y asignar valores correspondientes
 
+            CatalogoNotificadores.NuevoNotificador(Notificador);
 
-
-            
-            //DataTable dt = new DataTable();
-            //dt = DGNotificadores.DataSource as DataTable;
-            
-            //DataRow data = dt.NewRow();
-
-            //data["claveNotificador"] = txtClaveNot.Text;
-            //data["nombreNotificador"] = txtNombre.Text;
-
-            //dt.Rows.Add(data);
-            NuevosNotificadores.Add(Notificador);
             txtClaveNot.Clear();
             txtNombre.Clear();
             CargarNotificadores();
@@ -155,6 +142,8 @@ namespace WindowsFormsApp6
                 {
                     CatalogoNotificadores.EliminarNotificador(Notificador);
                 }
+
+                CargarNotificadores();
             }
         }
 

@@ -115,9 +115,23 @@ namespace WindowsFormsApp6.CAD.DAL
         {
             try
             {
-                using(MySqlConnection conn = new MySqlConnection(StrConn))
+                using (MySqlConnection conn = new MySqlConnection(StrConn))
                 {
+                    MySqlCommand OrdenSql = new MySqlCommand("NuevoNotificador", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    //Parametros
                     
+                    OrdenSql.Parameters.AddWithValue("@_idNotificador", bo.IdNotificador);
+                    OrdenSql.Parameters.AddWithValue("@_claveOHE", bo.IdClaveOHE);
+                    OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
+                    OrdenSql.Parameters.AddWithValue("@_NombreNotificador", bo.NombreNotificador);
+
+                    //Abrir la conexion de base de Datos
+                    conn.Open();
+                    OrdenSql.ExecuteNonQuery();
                 }
             }
             catch (Exception)
@@ -161,7 +175,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(StrConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("EliminarRegistro", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("EliminarNotificador", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
