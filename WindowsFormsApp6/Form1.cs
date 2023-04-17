@@ -27,6 +27,7 @@ namespace WindowsFormsApp6
         private int datoID;
         private string temp;
         private int _tipo;
+        private bool seleccion = true;
         
         
 
@@ -579,11 +580,13 @@ namespace WindowsFormsApp6
 
         private void SeleccionFila(DataGridView dataGrid)
         {
+            seleccion = true;
             dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void SeleccionCeldas(DataGridView dataGrid)
         {
+            seleccion = false;
             dataGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         private void ClearSelection(DataGridView dataGrid)
@@ -625,7 +628,13 @@ namespace WindowsFormsApp6
             if (e.KeyValue == 46 && DgReqActivos2.CurrentCell.ReadOnly != true)
             { //suprimir
 
-                ClearSelection(DgReqActivos2);
+                if(seleccion.Equals(false))
+                    ClearSelection(DgReqActivos2);
+                else
+                    MessageBox.Show(string.Format("Para poder borrar celdas con la tecla \"Supr\" debe presionar \"Ctrl + n\" primero."),
+                          "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
                 e.Handled = true;
 
             }
