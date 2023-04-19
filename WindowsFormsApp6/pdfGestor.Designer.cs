@@ -340,6 +340,7 @@
             this.BoxObservaciones.TabIndex = 25;
             this.BoxObservaciones.TabStop = false;
             this.BoxObservaciones.Text = "Observaciones del requerimiento";
+            this.BoxObservaciones.Visible = false;
             // 
             // panelDescripcionObservaciones
             // 

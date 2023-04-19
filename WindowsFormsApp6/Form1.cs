@@ -622,7 +622,34 @@ namespace WindowsFormsApp6
             else if ((e.KeyValue == 110 || e.KeyValue == 78) && DgReqActivos2.CurrentCell.ColumnIndex == 5)
                 DgReqActivos2.CurrentCell.Value = "NO LOCALIZADO";
 
+            
+            
+            //funcion de copiado
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                if (seleccion.Equals(false))
+                    copiar_portapapeles(DgReqActivos2);
+                else
+                    MessageBox.Show(string.Format("Para poder borrar celdas con la tecla \"Supr\" debe presionar \"Ctrl + n\" primero."),
+                          "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+                e.Handled = true;
+            }
+            else if (e.Control && e.KeyCode == Keys.V)
+            {
+                if (seleccion.Equals(false))
+                    pegar_portapapeles(DgReqActivos2);
+                else
+                    MessageBox.Show(string.Format("Para poder borrar celdas con la tecla \"Supr\" debe presionar \"Ctrl + n\" primero."),
+                          "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+
+                e.Handled = true;
+                
+
+
+
+            }
 
 
             if (e.KeyValue == 46 && DgReqActivos2.CurrentCell.ReadOnly != true)
@@ -657,21 +684,7 @@ namespace WindowsFormsApp6
 
             }
 
-            //funcion de copiado
-            if (e.Control && e.KeyCode == Keys.C)
-            {
-                copiar_portapapeles(DgReqActivos2);
-                e.Handled = true;
-            }
-            else if (e.Control && e.KeyCode == Keys.V)
-            {
 
-                e.Handled = true;
-                pegar_portapapeles(DgReqActivos2);
-               
-
-
-            }
 
             if (e.Control && e.KeyCode == Keys.F)
             {
@@ -1102,6 +1115,7 @@ namespace WindowsFormsApp6
         {
             ListaObservaciones = catalogo.GetCatObservacion();
             listNotificador = CatalogoNotificadores.GetNotificadorSupervisor(datoID);
+            Cache.CUserLoggin.Notificadores = listNotificador;
             listReq = obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
 
 
@@ -1469,7 +1483,7 @@ namespace WindowsFormsApp6
             if(colName == "NombreNotificador")
             {
                 TextBox textBox = (TextBox)e.Control;
-                textBox.AutoCompleteMode = AutoCompleteMode.Suggest;
+                textBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 textBox.AutoCompleteCustomSource = GetSuggestName("NombreNotificador");
                 textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
             }
@@ -1511,6 +1525,7 @@ namespace WindowsFormsApp6
                 s = query.Select(p => p.ConcatenadoNotificador).ToArray();
                 
                 collection.AddRange(s);
+                
             }
 
 
@@ -1579,27 +1594,23 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            CNotificadoresBO query = default;
-            if(DgReqActivos2.CurrentRow.Cells[10].Value !=null)
-                query = listNotificador.FirstOrDefault(x => x.ClaveNotificador.Equals(DgReqActivos2.CurrentRow.Cells[10].Value.ToString()));
 
             DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
             DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();
             DatoEstatus.Text = DgReqActivos2.CurrentRow.Cells[13].Value.ToString();
             DatoObservaciones.Text = DgReqActivos2.CurrentRow.Cells[18].Value.ToString();
-            DatoNotificador.Text = query == null ?  "" : query.NombreNotificador.ToString(); 
+
             
         }
 
         private void DgReqActivos2_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            var query = listNotificador.FirstOrDefault(x => x.ClaveNotificador.Equals(DgReqActivos2.CurrentRow.Cells[10].Value.ToString()));
 
             DatoCTRL.Text = DgReqActivos2.CurrentRow.Cells[2].Value.ToString();
             DatoRS.Text = DgReqActivos2.CurrentRow.Cells[3].Value.ToString();
             DatoEstatus.Text = DgReqActivos2.CurrentRow.Cells[13].Value.ToString();
             DatoObservaciones.Text = DgReqActivos2.CurrentRow.Cells[18].Value.ToString();
-            DatoNotificador.Text = query == null ? "" : query.NombreNotificador.ToString();
+
         }
 
         private void btnBusquedaMasiva_Click(object sender, EventArgs e)

@@ -4,6 +4,8 @@ using WindowsFormsApp6.CAD.BO;
 using System.Data;
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Cache;
+using System.Linq;
 
 namespace WindowsFormsApp6.CAD.DAL
 {
@@ -11,6 +13,7 @@ namespace WindowsFormsApp6.CAD.DAL
     {
         private readonly string strConn;
 
+        CListNotificadores notificador = CUserLoggin.Notificadores;
 
         public ClistaRequeridosDALPLUS() {
             strConn = System.Configuration.ConfigurationManager.AppSettings["K1"];
@@ -506,7 +509,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("listaRequeridosPLUS_observaciones", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("listaRequeridosPLUS_Notificadores", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -632,21 +635,30 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
         //metodos internos 
-        private object VerificaNotificador(string nombreNotificador)
+        private string VerificaNotificador(string nombreNotificador)
         {
             try
             {
-                if(nombreNotificador != null)
+                if (nombreNotificador == "" || nombreNotificador != null)
                 {
-                    return  nombreNotificador.Length > 0 ? nombreNotificador.Substring(0, nombreNotificador.IndexOf("/")) : nombreNotificador;
+                    if (!nombreNotificador.Contains("/")) 
+                    {
+                        CNotificadoresBO notificadores = CUserLoggin.Notificadores.FirstOrDefault(x => x.ClaveNotificador.Equals(nombreNotificador));
+                        return notificadores.IdNotificador.ToString();
+
+                    }
+
+                    var id =  nombreNotificador.Length > 0 ? nombreNotificador.Substring(0, nombreNotificador.IndexOf("/")) : nombreNotificador;
+                    CNotificadoresBO notificador = CUserLoggin.Notificadores.FirstOrDefault(x => x.ClaveNotificador.Equals(id));
+                    return notificador.IdNotificador.ToString();
                 }
 
                 return null;
             }
-            catch (Exception)
+            catch (NullReferenceException)
             {
 
-                throw;
+                return null;
             }
         }
         private object VerificaPAgo(DateTime fechaPago, DateTime fechaNotificacion, string diligencia, double importe)

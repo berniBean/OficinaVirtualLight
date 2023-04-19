@@ -60,8 +60,6 @@
             this.DatoObservaciones = new System.Windows.Forms.Label();
             this.tituloEstatus = new System.Windows.Forms.Label();
             this.DatoEstatus = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.DatoNotificador = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblZonaName = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -347,18 +345,16 @@
             this.LayParticulares.Controls.Add(this.DatoObservaciones, 1, 4);
             this.LayParticulares.Controls.Add(this.tituloEstatus, 0, 3);
             this.LayParticulares.Controls.Add(this.DatoEstatus, 1, 3);
-            this.LayParticulares.Controls.Add(this.label3, 0, 2);
-            this.LayParticulares.Controls.Add(this.DatoNotificador, 1, 2);
             this.LayParticulares.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LayParticulares.Location = new System.Drawing.Point(3, 16);
             this.LayParticulares.Name = "LayParticulares";
             this.LayParticulares.RowCount = 6;
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayParticulares.Size = new System.Drawing.Size(1044, 179);
             this.LayParticulares.TabIndex = 0;
@@ -405,9 +401,9 @@
             // 
             this.tituloDescripcionObservacion.AutoSize = true;
             this.tituloDescripcionObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(3, 121);
+            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(3, 101);
             this.tituloDescripcionObservacion.Name = "tituloDescripcionObservacion";
-            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(98, 58);
+            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(98, 78);
             this.tituloDescripcionObservacion.TabIndex = 10;
             this.tituloDescripcionObservacion.Text = "Descripcion:";
             // 
@@ -415,7 +411,7 @@
             // 
             this.DatoDescripcion.AutoSize = true;
             this.DatoDescripcion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoDescripcion.Location = new System.Drawing.Point(107, 121);
+            this.DatoDescripcion.Location = new System.Drawing.Point(107, 101);
             this.DatoDescripcion.Name = "DatoDescripcion";
             this.DatoDescripcion.Size = new System.Drawing.Size(934, 13);
             this.DatoDescripcion.TabIndex = 11;
@@ -425,9 +421,9 @@
             // 
             this.tituloObservacion.AutoSize = true;
             this.tituloObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloObservacion.Location = new System.Drawing.Point(3, 97);
+            this.tituloObservacion.Location = new System.Drawing.Point(3, 80);
             this.tituloObservacion.Name = "tituloObservacion";
-            this.tituloObservacion.Size = new System.Drawing.Size(98, 24);
+            this.tituloObservacion.Size = new System.Drawing.Size(98, 21);
             this.tituloObservacion.TabIndex = 8;
             this.tituloObservacion.Text = "Observaciones:";
             // 
@@ -435,7 +431,7 @@
             // 
             this.DatoObservaciones.AutoSize = true;
             this.DatoObservaciones.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoObservaciones.Location = new System.Drawing.Point(107, 97);
+            this.DatoObservaciones.Location = new System.Drawing.Point(107, 80);
             this.DatoObservaciones.Name = "DatoObservaciones";
             this.DatoObservaciones.Size = new System.Drawing.Size(934, 13);
             this.DatoObservaciones.TabIndex = 9;
@@ -445,9 +441,9 @@
             // 
             this.tituloEstatus.AutoSize = true;
             this.tituloEstatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloEstatus.Location = new System.Drawing.Point(3, 74);
+            this.tituloEstatus.Location = new System.Drawing.Point(3, 59);
             this.tituloEstatus.Name = "tituloEstatus";
-            this.tituloEstatus.Size = new System.Drawing.Size(98, 23);
+            this.tituloEstatus.Size = new System.Drawing.Size(98, 21);
             this.tituloEstatus.TabIndex = 6;
             this.tituloEstatus.Text = "Estatus:";
             // 
@@ -455,31 +451,11 @@
             // 
             this.DatoEstatus.AutoSize = true;
             this.DatoEstatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoEstatus.Location = new System.Drawing.Point(107, 74);
+            this.DatoEstatus.Location = new System.Drawing.Point(107, 59);
             this.DatoEstatus.Name = "DatoEstatus";
             this.DatoEstatus.Size = new System.Drawing.Size(934, 13);
             this.DatoEstatus.TabIndex = 7;
             this.DatoEstatus.Text = "Estatus";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(3, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 24);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Notificador:";
-            // 
-            // DatoNotificador
-            // 
-            this.DatoNotificador.AutoSize = true;
-            this.DatoNotificador.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoNotificador.Location = new System.Drawing.Point(107, 50);
-            this.DatoNotificador.Name = "DatoNotificador";
-            this.DatoNotificador.Size = new System.Drawing.Size(934, 13);
-            this.DatoNotificador.TabIndex = 13;
-            this.DatoNotificador.Text = "label4";
             // 
             // btnGuardar
             // 
@@ -1091,7 +1067,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NotasObservaciones;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label DatoNotificador;
     }
 }
