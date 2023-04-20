@@ -1521,7 +1521,7 @@ namespace WindowsFormsApp6
                     element.IdNotificador,
                     element.ConcatenadoNotificador,
                    
-                }).Distinct();
+                }).OrderBy(x => x.IdNotificador);
                 s = query.Select(p => p.ConcatenadoNotificador).ToArray();
                 
                 collection.AddRange(s);
