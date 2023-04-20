@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableroMultasRIF));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.miniToolStrip = new System.Windows.Forms.StatusStrip();
             this.pbCarga = new System.Windows.Forms.ToolStripProgressBar();
@@ -417,14 +417,14 @@
             this._totalImporte,
             this._honorarios});
             this.dgMultasPendiente.DataSource = this.listaInformeAvanceBindingSource;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMultasPendiente.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMultasPendiente.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgMultasPendiente.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgMultasPendiente.Location = new System.Drawing.Point(3, 3);
             this.dgMultasPendiente.Name = "dgMultasPendiente";
@@ -590,7 +590,7 @@
             this.dgTablaMultasRIF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgTablaMultasRIF.Location = new System.Drawing.Point(3, 293);
             this.dgTablaMultasRIF.Name = "dgTablaMultasRIF";
-            this.dgTablaMultasRIF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgTablaMultasRIF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTablaMultasRIF.Size = new System.Drawing.Size(1364, 317);
             this.dgTablaMultasRIF.TabIndex = 5;
             this.dgTablaMultasRIF.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellContentDoubleClick);

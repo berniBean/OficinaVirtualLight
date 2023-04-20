@@ -671,6 +671,7 @@
             this.DgReqActivos2.AllowUserToDeleteRows = false;
             this.DgReqActivos2.AutoGenerateColumns = false;
             this.DgReqActivos2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.DgReqActivos2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.DgReqActivos2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgReqActivos2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,

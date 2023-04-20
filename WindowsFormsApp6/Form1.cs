@@ -630,7 +630,7 @@ namespace WindowsFormsApp6
                 if (seleccion.Equals(false))
                     copiar_portapapeles(DgReqActivos2);
                 else
-                    MessageBox.Show(string.Format("Para poder borrar celdas con la tecla \"Supr\" debe presionar \"Ctrl + n\" primero."),
+                    MessageBox.Show(string.Format("Para poder copiar texto con  \"Ctrl + C\" debe presionar \"Ctrl + n\" primero."),
                           "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 
                 e.Handled = true;
@@ -640,7 +640,7 @@ namespace WindowsFormsApp6
                 if (seleccion.Equals(false))
                     pegar_portapapeles(DgReqActivos2);
                 else
-                    MessageBox.Show(string.Format("Para poder borrar celdas con la tecla \"Supr\" debe presionar \"Ctrl + n\" primero."),
+                    MessageBox.Show(string.Format("Para poder pegar texto con \"Ctrl + v\" debe presionar \"Ctrl + n\" primero."),
                           "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
 

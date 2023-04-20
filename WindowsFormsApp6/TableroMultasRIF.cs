@@ -35,6 +35,7 @@ namespace WindowsFormsApp6
         private string tipoMulta;
         private DateTime fechaImpresion;
         private int _tipo;
+        private bool Seleccion = true;
 
         
 
@@ -665,7 +666,13 @@ namespace WindowsFormsApp6
             if (e.KeyValue == 46 && dgTablaMultasRIF.CurrentCell.ReadOnly != true)
             { //suprimir
 
-                ClearSelection(dgTablaMultasRIF);
+                if (Seleccion.Equals(false))
+                    ClearSelection(dgTablaMultasRIF);
+                else
+                    MessageBox.Show(string.Format("Para poder borrar celdas con la tecla \"Supr\" debe presionar \"Ctrl + n\" primero."),
+                          "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
                 e.Handled = true;
 
             }
@@ -688,14 +695,25 @@ namespace WindowsFormsApp6
             //funcion de copiado
             if (e.Control && e.KeyCode == Keys.C)
             {
-                copiar_portapapeles(dgTablaMultasRIF);
+                if (Seleccion.Equals(false))
+                    copiar_portapapeles(dgMultasPendiente);
+                else
+                    MessageBox.Show(string.Format("Para poder copiar texto con  \"Ctrl + C\" debe presionar \"Ctrl + n\" primero."),
+                          "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 e.Handled = true;
             }
             else if (e.Control && e.KeyCode == Keys.V)
             {
 
+                if (Seleccion.Equals(false))
+                    pegar_portapapeles(dgTablaMultasRIF);
+                else
+                    MessageBox.Show(string.Format("Para poder pegar texto con \"Ctrl + v\" debe presionar \"Ctrl + n\" primero."),
+                          "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
                 e.Handled = true;
-                pegar_portapapeles(dgTablaMultasRIF);
 
 
 
@@ -704,7 +722,14 @@ namespace WindowsFormsApp6
             if (e.Control && e.KeyCode == Keys.F)
             {
                 e.Handled = true;
+                SeleccionFila(dgTablaMultasRIF);
 
+            }
+
+            if(e.Control && e.KeyCode == Keys.N)
+            {
+                e.Handled = true;
+                SeleccionCeldas(dgTablaMultasRIF);
             }
         }
 
@@ -1690,6 +1715,19 @@ namespace WindowsFormsApp6
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+
+        private void SeleccionFila(DataGridView dataGrid)
+        {
+            Seleccion = true;
+            dataGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        }
+
+        private void SeleccionCeldas(DataGridView dataGrid)
+        {
+            Seleccion = false;
+            dataGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
     }
 }
