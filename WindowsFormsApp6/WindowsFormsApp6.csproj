@@ -211,6 +211,7 @@
     <Compile Include="CAD\BO\CListaCatObservaciones.cs" />
     <Compile Include="CAD\BO\CListNotificadores.cs" />
     <Compile Include="CAD\BO\CNotificadoresBO.cs" />
+    <Compile Include="CAD\BO\COficioPAEBO.cs" />
     <Compile Include="CAD\BO\DirectorioBO.cs" />
     <Compile Include="CAD\BO\CEmisionActualBO.cs" />
     <Compile Include="CAD\BO\CFechaOficios.cs" />

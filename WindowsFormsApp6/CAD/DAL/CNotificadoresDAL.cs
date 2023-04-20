@@ -129,6 +129,8 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
                     OrdenSql.Parameters.AddWithValue("@_NombreNotificador", bo.NombreNotificador);
 
+                    
+
                     //Abrir la conexion de base de Datos
                     conn.Open();
                     OrdenSql.ExecuteNonQuery();

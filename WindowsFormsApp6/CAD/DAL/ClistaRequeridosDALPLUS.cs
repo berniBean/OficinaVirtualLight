@@ -796,6 +796,8 @@ namespace WindowsFormsApp6.CAD.DAL
             ModificaObservacionesMultasRIF(bo);
         }
 
+        
+
         public override void EjecucionMulta(CListaRequeridosBO bo)
         {
             ModificaEjecucion(bo);

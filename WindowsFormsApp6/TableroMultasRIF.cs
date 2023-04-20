@@ -1039,6 +1039,7 @@ namespace WindowsFormsApp6
         {
             TaskInfo ti = (TaskInfo)e.Argument;
             BackgroundWorker bw = sender as BackgroundWorker;
+            CListaRequeridosBO Multa = new CListaRequeridosBO();
 
             //extrae el argumento
 
@@ -1181,11 +1182,15 @@ namespace WindowsFormsApp6
                 bw.WorkerReportsProgress = true;
                 bw.ReportProgress(p + 1, ti);
 
+
+
+
                 hojaExcel.Cells[i, "B"].NumberFormat = "000000";
                 hojaExcel.Cells[i, "G"].NumberFormat = "dd \"de\" mmmm \"de\" aaaa";
                 hojaExcel.Cells[i, "H"].NumberFormat = "dd \"de\" mmmm \"de\" aaaa";
 
-
+                Multa._idMultaRif = row.Cells[0].Value.ToString();
+                Multa.Ejecucion = "enviado";
 
                 hojaExcel.Cells[i, "A"] = row.Cells[1].Value.ToString();//tipo multa
                 hojaExcel.Cells[i, "B"] = row.Cells[2].Value.ToString();//Número de multa
@@ -1196,7 +1201,8 @@ namespace WindowsFormsApp6
                 hojaExcel.Cells[i, "G"] = Convert.ToDateTime(row.Cells[10].Value.ToString());//fecha notificación
                 hojaExcel.Cells[i, "H"] = Convert.ToDateTime(row.Cells[15].Value.ToString());//fecha vencimiento
 
-
+                //modificar estado a enviado
+                obReq.EjecucionMulta(Multa);
 
                 p++;
                 i++;
@@ -1614,9 +1620,15 @@ namespace WindowsFormsApp6
         //listado para ejecución fiscal
         private void tsEjecucionFiscal_Click(object sender, EventArgs e)
         {
+            COficioPAEBO pae = new COficioPAEBO();
             listReq = obReq.ListadoEjecucionFiscal(Convert.ToString(idEmision), OHE);//bdReq.GetListadoEjecucionFiscal (Convert.ToString(idEmision), OHE);
             cListaRequeridosBOBindingSource.DataSource = listReq;
             dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
+
+            string date = DateTime.UtcNow.ToString("d");
+            pae.tipoPAE = 2;
+            pae.FechaCreacion = Convert.ToDateTime(date);
+
 
             bindingNavigator1.Enabled = false;
             try
