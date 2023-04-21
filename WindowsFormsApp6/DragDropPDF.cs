@@ -107,12 +107,25 @@ namespace WindowsFormsApp6
 
         private IEnumerable<consultaPDF> QueryPDF()
         {
-            var consulta = from local in pdfLocal
+            IEnumerable<consultaPDF> consulta = default;
+            
+            if (chRemplazo.Checked) {
+                consulta = from local in pdfLocal
+                           join db in listadoPDFDB on local._name equals db.numReq
+                           select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+
+            }
+            else
+            {
+                consulta = from local in pdfLocal
                            join db in listadoPDFDB on local._name equals db.numReq
                            where db.estatusPDF.Equals("pendiente")
                            select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+            }
 
-            
+
+
+
 
             if (consulta.Any())
             {

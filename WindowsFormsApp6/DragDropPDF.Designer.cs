@@ -42,6 +42,7 @@ namespace WindowsFormsApp6
             this.splitDivisor = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tpbProgresBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.chRemplazo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,6 +62,7 @@ namespace WindowsFormsApp6
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.chRemplazo);
             this.splitContainer1.Panel1.Controls.Add(this.lblNombre);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
             this.splitContainer1.Panel1.Controls.Add(this.lblEmision);
@@ -197,6 +199,16 @@ namespace WindowsFormsApp6
             this.tpbProgresBar.Name = "tpbProgresBar";
             this.tpbProgresBar.Size = new System.Drawing.Size(100, 24);
             // 
+            // chRemplazo
+            // 
+            this.chRemplazo.AutoSize = true;
+            this.chRemplazo.Location = new System.Drawing.Point(15, 333);
+            this.chRemplazo.Name = "chRemplazo";
+            this.chRemplazo.Size = new System.Drawing.Size(106, 17);
+            this.chRemplazo.TabIndex = 8;
+            this.chRemplazo.Text = "Reemplazar PDF";
+            this.chRemplazo.UseVisualStyleBackColor = true;
+            // 
             // DragDropPDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -236,5 +248,6 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblAño;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chRemplazo;
     }
 }

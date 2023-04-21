@@ -1625,10 +1625,10 @@ namespace WindowsFormsApp6
             cListaRequeridosBOBindingSource.DataSource = listReq;
             dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
 
-            string date = DateTime.UtcNow.ToString("d");
+            
             pae.tipoPAE = 2;
-            pae.FechaCreacion = Convert.ToDateTime(date);
-
+            pae.FechaCreacion = DateTime.UtcNow;
+            
 
             bindingNavigator1.Enabled = false;
             try
