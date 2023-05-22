@@ -93,8 +93,8 @@ namespace WindowsFormsApp6.CAD.DAL
                             IdNotificador = (string)lector["idNotificador"],
                             IdClaveOHE = (int)lector["idclaveOHE"],
                             ClaveNotificador = (string)lector["ClaveNotificador"],
-                            NombreNotificador = (string)lector["nombreNotificador"]
-
+                            NombreNotificador = (string)lector["nombreNotificador"],
+                            ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
                         };
 
                         listNotificadores.Add(fila);

@@ -1202,7 +1202,7 @@ namespace WindowsFormsApp6
                 hojaExcel.Cells[i, "H"] = Convert.ToDateTime(row.Cells[15].Value.ToString());//fecha vencimiento
 
                 //modificar estado a enviado
-                obReq.EjecucionMulta(Multa);
+                //obReq.EjecucionMulta(Multa);
 
                 p++;
                 i++;

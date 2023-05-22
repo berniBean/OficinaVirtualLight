@@ -1114,7 +1114,7 @@ namespace WindowsFormsApp6
         private void cargaRequerimientos()
         {
             ListaObservaciones = catalogo.GetCatObservacion();
-            listNotificador = CatalogoNotificadores.GetNotificadorSupervisor(datoID);
+            listNotificador = CatalogoNotificadores.GetListadoNotificadores(cmbOHE.Text);
             Cache.CUserLoggin.Notificadores = listNotificador;
             listReq = obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
 

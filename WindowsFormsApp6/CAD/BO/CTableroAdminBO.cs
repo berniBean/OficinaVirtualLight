@@ -14,7 +14,9 @@ namespace WindowsFormsApp6.CAD.BO
         public int _anho { get; set; }
         public string _detalleEmision { get; set; }
         public string _observaciones { get; set; }
+        public string _notasObservaciones { get; set; }
         public string _malCapturado { get; set; }
+        public string _nombreNotificador { get; set; }
 
         public int _totalEmision { get; set; }
 
@@ -105,7 +107,7 @@ namespace WindowsFormsApp6.CAD.BO
 
 
         //Listado Requerimientos Completo
-        public CTableroAdminBO(string Zona, string Ohe,string municipio, int NumReq, string RFC,string TipoC, string NumCtrl, string Rs,  string Diligencia, DateTime Notificacion, DateTime Citatorio, string Estatus, string PDF,string malCapturado ,string observaciones) 
+        public CTableroAdminBO(string Zona, string Ohe,string municipio, int NumReq, string RFC,string TipoC, string NumCtrl, string Rs,  string Diligencia, DateTime Notificacion, DateTime Citatorio, string Estatus, string PDF,string malCapturado ,string observaciones, string notas, string notificador) 
         {
             _zona = Zona;
             _ohe = Ohe;
@@ -122,6 +124,8 @@ namespace WindowsFormsApp6.CAD.BO
             _pdf = PDF;
             _malCapturado = malCapturado;
             _observaciones = observaciones;
+            _notasObservaciones = notas;
+            _nombreNotificador = notificador;
         }
 
         //RIF

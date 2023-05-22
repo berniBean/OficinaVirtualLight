@@ -31,6 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoRequeridos));
             this.requeridos = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.tbBusqueda = new System.Windows.Forms.ToolStripTextBox();
+            this.tsbFiltrar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsExcel = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsProgreso = new System.Windows.Forms.ToolStripProgressBar();
+            this.FilterStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ShowAllLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridZona = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridOHE = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridNumReq = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
@@ -43,25 +55,15 @@
             this.dataGridFN = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridEstatus = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridPDF = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this._nombreNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridMalCapturado = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridObvservaciones = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.tbBusqueda = new System.Windows.Forms.ToolStripTextBox();
-            this.tsbFiltrar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.tsExcel = new System.Windows.Forms.ToolStripButton();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tsProgreso = new System.Windows.Forms.ToolStripProgressBar();
-            this.FilterStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ShowAllLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._notasObservaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.requeridos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaTableroAdminBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaTableroAdminBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // requeridos
@@ -83,8 +85,10 @@
             this.dataGridFN,
             this.dataGridEstatus,
             this.dataGridPDF,
+            this._nombreNotificador,
             this.dataGridMalCapturado,
-            this.dataGridObvservaciones});
+            this.dataGridObvservaciones,
+            this._notasObservaciones});
             this.requeridos.DataSource = this.cListaTableroAdminBindingSource;
             this.requeridos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.requeridos.Location = new System.Drawing.Point(3, 33);
@@ -96,136 +100,6 @@
             this.requeridos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellContentClick);
             this.requeridos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellContentDoubleClick);
             this.requeridos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.requeridos_DataBindingComplete);
-            // 
-            // dataGridZona
-            // 
-            this.dataGridZona.DataPropertyName = "_zona";
-            this.dataGridZona.FilteringEnabled = false;
-            this.dataGridZona.HeaderText = "Zona";
-            this.dataGridZona.Name = "dataGridZona";
-            this.dataGridZona.ReadOnly = true;
-            this.dataGridZona.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridOHE
-            // 
-            this.dataGridOHE.DataPropertyName = "_ohe";
-            this.dataGridOHE.FilteringEnabled = false;
-            this.dataGridOHE.HeaderText = "OHE";
-            this.dataGridOHE.Name = "dataGridOHE";
-            this.dataGridOHE.ReadOnly = true;
-            this.dataGridOHE.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridNumReq
-            // 
-            this.dataGridNumReq.DataPropertyName = "_numReq";
-            this.dataGridNumReq.FilteringEnabled = false;
-            this.dataGridNumReq.HeaderText = "Numero Requerimiento";
-            this.dataGridNumReq.Name = "dataGridNumReq";
-            this.dataGridNumReq.ReadOnly = true;
-            this.dataGridNumReq.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridNumCtrl
-            // 
-            this.dataGridNumCtrl.DataPropertyName = "_numCtrl";
-            this.dataGridNumCtrl.FilteringEnabled = false;
-            this.dataGridNumCtrl.HeaderText = "Numero de control";
-            this.dataGridNumCtrl.Name = "dataGridNumCtrl";
-            this.dataGridNumCtrl.ReadOnly = true;
-            this.dataGridNumCtrl.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridRFC
-            // 
-            this.dataGridRFC.DataPropertyName = "_rfc";
-            this.dataGridRFC.FilteringEnabled = false;
-            this.dataGridRFC.HeaderText = "RFC";
-            this.dataGridRFC.Name = "dataGridRFC";
-            this.dataGridRFC.ReadOnly = true;
-            this.dataGridRFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridTipoC
-            // 
-            this.dataGridTipoC.DataPropertyName = "_tipoc";
-            this.dataGridTipoC.FilteringEnabled = false;
-            this.dataGridTipoC.HeaderText = "Tipo contribuyente";
-            this.dataGridTipoC.Name = "dataGridTipoC";
-            this.dataGridTipoC.ReadOnly = true;
-            this.dataGridTipoC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridRS
-            // 
-            this.dataGridRS.DataPropertyName = "_rs";
-            this.dataGridRS.HeaderText = "Razon Social";
-            this.dataGridRS.Name = "dataGridRS";
-            this.dataGridRS.ReadOnly = true;
-            this.dataGridRS.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // dataGridDiligencia
-            // 
-            this.dataGridDiligencia.DataPropertyName = "_diligencia";
-            this.dataGridDiligencia.FilteringEnabled = false;
-            this.dataGridDiligencia.HeaderText = "Diligencia";
-            this.dataGridDiligencia.Name = "dataGridDiligencia";
-            this.dataGridDiligencia.ReadOnly = true;
-            this.dataGridDiligencia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridFC
-            // 
-            this.dataGridFC.DataPropertyName = "_fechaCitatorio";
-            this.dataGridFC.FilteringEnabled = false;
-            this.dataGridFC.HeaderText = "Fecha citatorio";
-            this.dataGridFC.Name = "dataGridFC";
-            this.dataGridFC.ReadOnly = true;
-            this.dataGridFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridFN
-            // 
-            this.dataGridFN.DataPropertyName = "_fechaNotificacion";
-            this.dataGridFN.FilteringEnabled = false;
-            this.dataGridFN.HeaderText = "Fecha Notificacion";
-            this.dataGridFN.Name = "dataGridFN";
-            this.dataGridFN.ReadOnly = true;
-            this.dataGridFN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridEstatus
-            // 
-            this.dataGridEstatus.DataPropertyName = "_estatus";
-            this.dataGridEstatus.FilteringEnabled = false;
-            this.dataGridEstatus.HeaderText = "Estatus";
-            this.dataGridEstatus.Name = "dataGridEstatus";
-            this.dataGridEstatus.ReadOnly = true;
-            this.dataGridEstatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridPDF
-            // 
-            this.dataGridPDF.DataPropertyName = "_pdf";
-            this.dataGridPDF.FilteringEnabled = false;
-            this.dataGridPDF.HeaderText = "PDF";
-            this.dataGridPDF.Name = "dataGridPDF";
-            this.dataGridPDF.ReadOnly = true;
-            this.dataGridPDF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridMalCapturado
-            // 
-            this.dataGridMalCapturado.DataPropertyName = "_malCapturado";
-            this.dataGridMalCapturado.FilteringEnabled = false;
-            this.dataGridMalCapturado.HeaderText = "Mal caputurado";
-            this.dataGridMalCapturado.Name = "dataGridMalCapturado";
-            this.dataGridMalCapturado.ReadOnly = true;
-            this.dataGridMalCapturado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridObvservaciones
-            // 
-            this.dataGridObvservaciones.DataPropertyName = "_observaciones";
-            this.dataGridObvservaciones.FilteringEnabled = false;
-            this.dataGridObvservaciones.HeaderText = "Observaciones";
-            this.dataGridObvservaciones.Name = "dataGridObvservaciones";
-            this.dataGridObvservaciones.ReadOnly = true;
-            this.dataGridObvservaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cListaTableroAdminBindingSource
-            // 
-            this.cListaTableroAdminBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaTableroAdmin);
             // 
             // tableLayoutPanel1
             // 
@@ -337,6 +211,150 @@
             this.ShowAllLabel.Text = "Show &All";
             this.ShowAllLabel.Click += new System.EventHandler(this.ShowAllLabel_Click);
             // 
+            // cListaTableroAdminBindingSource
+            // 
+            this.cListaTableroAdminBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaTableroAdmin);
+            // 
+            // dataGridZona
+            // 
+            this.dataGridZona.DataPropertyName = "_zona";
+            this.dataGridZona.FilteringEnabled = false;
+            this.dataGridZona.HeaderText = "Zona";
+            this.dataGridZona.Name = "dataGridZona";
+            this.dataGridZona.ReadOnly = true;
+            this.dataGridZona.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridOHE
+            // 
+            this.dataGridOHE.DataPropertyName = "_ohe";
+            this.dataGridOHE.FilteringEnabled = false;
+            this.dataGridOHE.HeaderText = "OHE";
+            this.dataGridOHE.Name = "dataGridOHE";
+            this.dataGridOHE.ReadOnly = true;
+            this.dataGridOHE.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridNumReq
+            // 
+            this.dataGridNumReq.DataPropertyName = "_numReq";
+            this.dataGridNumReq.FilteringEnabled = false;
+            this.dataGridNumReq.HeaderText = "Numero Requerimiento";
+            this.dataGridNumReq.Name = "dataGridNumReq";
+            this.dataGridNumReq.ReadOnly = true;
+            this.dataGridNumReq.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridNumCtrl
+            // 
+            this.dataGridNumCtrl.DataPropertyName = "_numCtrl";
+            this.dataGridNumCtrl.FilteringEnabled = false;
+            this.dataGridNumCtrl.HeaderText = "Numero de control";
+            this.dataGridNumCtrl.Name = "dataGridNumCtrl";
+            this.dataGridNumCtrl.ReadOnly = true;
+            this.dataGridNumCtrl.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridRFC
+            // 
+            this.dataGridRFC.DataPropertyName = "_rfc";
+            this.dataGridRFC.FilteringEnabled = false;
+            this.dataGridRFC.HeaderText = "RFC";
+            this.dataGridRFC.Name = "dataGridRFC";
+            this.dataGridRFC.ReadOnly = true;
+            this.dataGridRFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridTipoC
+            // 
+            this.dataGridTipoC.DataPropertyName = "_tipoc";
+            this.dataGridTipoC.FilteringEnabled = false;
+            this.dataGridTipoC.HeaderText = "Tipo contribuyente";
+            this.dataGridTipoC.Name = "dataGridTipoC";
+            this.dataGridTipoC.ReadOnly = true;
+            this.dataGridTipoC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridRS
+            // 
+            this.dataGridRS.DataPropertyName = "_rs";
+            this.dataGridRS.HeaderText = "Razon Social";
+            this.dataGridRS.Name = "dataGridRS";
+            this.dataGridRS.ReadOnly = true;
+            this.dataGridRS.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridRS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // dataGridDiligencia
+            // 
+            this.dataGridDiligencia.DataPropertyName = "_diligencia";
+            this.dataGridDiligencia.FilteringEnabled = false;
+            this.dataGridDiligencia.HeaderText = "Diligencia";
+            this.dataGridDiligencia.Name = "dataGridDiligencia";
+            this.dataGridDiligencia.ReadOnly = true;
+            this.dataGridDiligencia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridFC
+            // 
+            this.dataGridFC.DataPropertyName = "_fechaCitatorio";
+            this.dataGridFC.FilteringEnabled = false;
+            this.dataGridFC.HeaderText = "Fecha citatorio";
+            this.dataGridFC.Name = "dataGridFC";
+            this.dataGridFC.ReadOnly = true;
+            this.dataGridFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridFN
+            // 
+            this.dataGridFN.DataPropertyName = "_fechaNotificacion";
+            this.dataGridFN.FilteringEnabled = false;
+            this.dataGridFN.HeaderText = "Fecha Notificacion";
+            this.dataGridFN.Name = "dataGridFN";
+            this.dataGridFN.ReadOnly = true;
+            this.dataGridFN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridEstatus
+            // 
+            this.dataGridEstatus.DataPropertyName = "_estatus";
+            this.dataGridEstatus.FilteringEnabled = false;
+            this.dataGridEstatus.HeaderText = "Estatus";
+            this.dataGridEstatus.Name = "dataGridEstatus";
+            this.dataGridEstatus.ReadOnly = true;
+            this.dataGridEstatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridPDF
+            // 
+            this.dataGridPDF.DataPropertyName = "_pdf";
+            this.dataGridPDF.FilteringEnabled = false;
+            this.dataGridPDF.HeaderText = "PDF";
+            this.dataGridPDF.Name = "dataGridPDF";
+            this.dataGridPDF.ReadOnly = true;
+            this.dataGridPDF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // _nombreNotificador
+            // 
+            this._nombreNotificador.DataPropertyName = "_nombreNotificador";
+            this._nombreNotificador.HeaderText = "Notificador";
+            this._nombreNotificador.Name = "_nombreNotificador";
+            this._nombreNotificador.ReadOnly = true;
+            // 
+            // dataGridMalCapturado
+            // 
+            this.dataGridMalCapturado.DataPropertyName = "_malCapturado";
+            this.dataGridMalCapturado.FilteringEnabled = false;
+            this.dataGridMalCapturado.HeaderText = "Mal caputurado";
+            this.dataGridMalCapturado.Name = "dataGridMalCapturado";
+            this.dataGridMalCapturado.ReadOnly = true;
+            this.dataGridMalCapturado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridObvservaciones
+            // 
+            this.dataGridObvservaciones.DataPropertyName = "_observaciones";
+            this.dataGridObvservaciones.FilteringEnabled = false;
+            this.dataGridObvservaciones.HeaderText = "Observaciones";
+            this.dataGridObvservaciones.Name = "dataGridObvservaciones";
+            this.dataGridObvservaciones.ReadOnly = true;
+            this.dataGridObvservaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // _notasObservaciones
+            // 
+            this._notasObservaciones.DataPropertyName = "_notasObservaciones";
+            this._notasObservaciones.HeaderText = "Notas";
+            this._notasObservaciones.Name = "_notasObservaciones";
+            this._notasObservaciones.ReadOnly = true;
+            // 
             // ListadoRequeridos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -346,13 +364,13 @@
             this.Name = "ListadoRequeridos";
             this.Text = "ListadoRequeridos";
             ((System.ComponentModel.ISupportInitialize)(this.requeridos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaTableroAdminBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaTableroAdminBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -419,6 +437,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataX;
         private System.Windows.Forms.ToolStripButton tsExcel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _observaciones;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridZona;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridOHE;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridNumReq;
@@ -431,8 +450,9 @@
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridFN;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridEstatus;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridPDF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn _observaciones;
-        private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridObvservaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _nombreNotificador;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridMalCapturado;
+        private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridObvservaciones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _notasObservaciones;
     }
 }

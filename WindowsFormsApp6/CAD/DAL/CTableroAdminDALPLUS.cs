@@ -268,7 +268,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("listadoCompletoJefePLUS_actaNotificacion", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("listadoCompletoJefePLUS_Notificadores", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -298,7 +298,9 @@ namespace WindowsFormsApp6.CAD.DAL
                             FormatLogHelper.TipoActa(Convert.ToString(lector["ActaCitatorio"] is DBNull ? null : lector["ActaCitatorio"]), 
                                                         Convert.ToString(lector["ActaNotificacion"] is DBNull ? null : lector["ActaNotificacion"]), 
                                                         Convert.ToString(lector["NotificacionCitatorio"] is DBNull ? null : lector["NotificacionCitatorio"])),
-                            FormatLogHelper.CutNumberOb(Convert.ToString(lector["observaciones"] is DBNull ? null :  lector["observaciones"]))
+                            FormatLogHelper.CutNumberOb(Convert.ToString(lector["observaciones"] is DBNull ? null :  lector["observaciones"])),
+                            Convert.ToString(lector["notasObservaciones"] is DBNull ? null : lector["notasObservaciones"]),
+                            Convert.ToString(lector["nombreNotificador"] is DBNull ? null : lector["nombreNotificador"])
 
 
                             ) ;
