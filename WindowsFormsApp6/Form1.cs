@@ -355,7 +355,7 @@ namespace WindowsFormsApp6
             {
                 if (listReq[i].Modificado && listReq[i].Estatus != "enviado")
                     obReq.ModificarRequerimientos(listReq[i]);//bdReq.ModificarFechasRIF(listReq[i]);
-                if (listReq[i].ModificaObservacion || listReq[i].ModificaMalCapturado)
+                if (listReq[i].ModificaObservacion || listReq[i].ModificaMalCapturado || listReq[i].ModificaNombreNotificador)
                     obReq.ObservacionesRequerimientos(listReq[i]);//bdReq.ModificarObservacionesRIF(listReq[i]);
 
 

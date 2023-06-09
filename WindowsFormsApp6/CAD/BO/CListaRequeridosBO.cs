@@ -214,7 +214,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _nombreNotificador = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("NombreNotificador"));
+                OnPropertyChangedNombreNotificador(new PropertyChangedEventArgs("NombreNotificador"));
             }
         }
         private string _estatus;
@@ -337,7 +337,15 @@ namespace WindowsFormsApp6.CAD.BO
             get { return _modificaFechaPago; }
             set { _modificaFechaPago = value; }
         }
-        
+
+        private bool _modificaNombreNotificador;
+        public bool ModificaNombreNotificador
+        {
+            get { return _modificaNombreNotificador; }
+            set { _modificaNombreNotificador = value; }
+        }
+
+
 
         public string _zona { get; set; }
         public string _OHE { get; set; }
@@ -601,6 +609,17 @@ namespace WindowsFormsApp6.CAD.BO
             {
                 _modificaNotificacionCitatorio = true;
                 PropertyChanged(this, e);
+            }
+        }
+
+
+        private void OnPropertyChangedNombreNotificador(PropertyChangedEventArgs e)
+        {
+            if(PropertyChanged != null)
+            {
+                _modificaNombreNotificador = true;
+                PropertyChanged(this, e);
+
             }
         }
 

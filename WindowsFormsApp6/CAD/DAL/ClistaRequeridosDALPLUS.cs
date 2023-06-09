@@ -61,7 +61,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("actualizaObservacionesPLUS_Notasobservaciones", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("actualizaObservacionesPLUS_NotasobservacionesNotificador", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -73,6 +73,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_actaNotificacion", bo.ActaNotificacion);
                     OrdenSql.Parameters.AddWithValue("@_actaCitatorio", bo.ActaCitatorio);
                     OrdenSql.Parameters.AddWithValue("@_notificacionCitatorio", bo.NotificacionCitatorio);
+                    OrdenSql.Parameters.AddWithValue("@_nombreNotificador", VerificaNotificador(bo.NombreNotificador));
                     //Abrir la conexion de base de Datos
                     conn.Open();
                     OrdenSql.ExecuteNonQuery();
@@ -569,7 +570,7 @@ namespace WindowsFormsApp6.CAD.DAL
             try {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("actualizaDatosRequerimientoPLUS", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("actualizaDatosRequerimientoPLUS_Simple", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -582,7 +583,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_fechaEnvioSEFIPLAN", VerificaFecha(bo.FechaEnvioSefiplan, bo.FechaNotificacion, bo.Diligencia));
                     OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
                     OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Modificado, bo.Diligencia));
-                    OrdenSql.Parameters.AddWithValue("@_nombreNotificador", VerificaNotificador( bo.NombreNotificador));
+                   
                     //OrdenSql.Parameters.AddWithValue("@_observaciones", OficioVacio(bo.Observaciones));
                     //Abrir la conexion de base de Datos
                     conn.Open();
