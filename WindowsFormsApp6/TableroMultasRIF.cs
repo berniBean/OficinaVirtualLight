@@ -696,7 +696,17 @@ namespace WindowsFormsApp6
             if (e.Control && e.KeyCode == Keys.C)
             {
                 if (Seleccion.Equals(false))
-                    copiar_portapapeles(dgMultasPendiente);
+                {
+                    if (dgMultasPendiente.Focused)
+                    {
+                        copiar_portapapeles(dgMultasPendiente);
+                    }
+                    else if (dgTablaMultasRIF.Focused)
+                    {
+                        copiar_portapapeles(dgTablaMultasRIF);
+                    }
+                }
+                    
                 else
                     MessageBox.Show(string.Format("Para poder copiar texto con  \"Ctrl + C\" debe presionar \"Ctrl + n\" primero."),
                           "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -1167,7 +1177,7 @@ namespace WindowsFormsApp6
             objCelda.Value = "EMISION REQUERIMIENTO";
 
             objCelda = hojaExcel.Range["G7", Type.Missing];
-            objCelda.Value = "FECHA DE CITATORIO";
+            objCelda.Value = "FECHA DE NOTIFICACIÓN";
 
             objCelda = hojaExcel.Range["H7", Type.Missing];
             objCelda.Value = "FECHA DE VENCIMIENTO MULTA";

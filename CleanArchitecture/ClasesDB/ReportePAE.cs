@@ -9,7 +9,7 @@
         public string RazonSocial { get; set; }
         public string EmisionReq { get; set; }
         public string NumReq { get; set; }
-        public string FechaCitatorio { get; set; }
+        public string FechaNotificacion { get; set; }
         public string FechaVencimiento { get; set; }
 
     }
