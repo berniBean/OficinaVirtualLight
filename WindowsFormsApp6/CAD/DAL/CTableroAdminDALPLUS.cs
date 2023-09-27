@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using WindowsFormsApp6.CAD.BO;
 using MySql.Data.MySqlClient;
 using System.Data;
 using WindowsFormsApp6.CAD.DAL.factories;
-using System.Windows.Forms;
 using CleanArchitecture.Helpers;
 
 namespace WindowsFormsApp6.CAD.DAL
@@ -370,7 +366,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("tableroMultasGenPLUSAdmin", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("tableroMultasGenPLUSAdmin2", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };

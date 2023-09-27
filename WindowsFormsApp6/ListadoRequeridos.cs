@@ -13,6 +13,7 @@ using Singleton;
 using WindowsFormsApp6.Cache;
 using CleanArchitecture.ClasesDB;
 using CleanArchitecture.Helpers;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApp6
 {
@@ -80,9 +81,9 @@ namespace WindowsFormsApp6
 
 
 
-        private void SetRequeimientoComo(string diligencia)
+        private Task SetRequeimientoComo(string diligencia)
         {
-            return;
+            return default;
         }
         private async void tsExcel_Click(object sender, EventArgs e)
         {
@@ -307,7 +308,7 @@ namespace WindowsFormsApp6
             Ibusqueda.ShowDialog();
         }
 
-        private async void DescargaPDF()
+        private async Task DescargaPDF()
         {
             await new CargaPdf(tsProgreso, listadoPDF, _tipoSesion).pdfDescarga(QueryPDF().ToList());
             tsProgreso.Value = 0;

@@ -4,6 +4,6 @@ namespace CleanArchitecture.InterfacesUtilidades
 {
     public interface IWriter<T>
     {
-        Task Writer(T data);
+        Task WriterAsync(T data);
     }
 }

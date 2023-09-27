@@ -33,6 +33,11 @@ namespace WindowsFormsApp6.structs
             await processWrite(data, reportarProgreso);
         }
 
+        public Task WriterAsync(List<ReporteGeneralRequerimientos> data)
+        {
+            throw new NotImplementedException();
+        }
+
         private async Task processWrite(List<ReporteGeneralRequerimientos> data, IProgress<int> progress)
         {
             _fileName = DesktopDirHelper.DireccionDef();

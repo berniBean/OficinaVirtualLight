@@ -18,6 +18,9 @@ using System.Linq;
 using WindowsFormsApp6.structs;
 using CleanArchitecture.Helpers;
 using WindowsFormsApp6.CAD.DAL;
+using System.Threading;
+using System.Threading.Tasks;
+using WindowsFormsApp6.Helper;
 
 namespace WindowsFormsApp6
 {
@@ -35,6 +38,8 @@ namespace WindowsFormsApp6
         SetRequerimiento setRequerimientoDelegado;      
 
         SetFecha SetFechaDelegado;
+
+        
 
 
         private CanhoFiscalBLL bd = new CanhoFiscalBLL();
@@ -348,50 +353,31 @@ namespace WindowsFormsApp6
             }
         }
 
-        private void ActualizarBD()
+        private async Task ActualizarBD()
         {
-
-            for (int i = 0; i < listReq.Count; i++)
-            {
-                if (listReq[i].Modificado && listReq[i].Estatus != "enviado")
-                    obReq.ModificarRequerimientos(listReq[i]);//bdReq.ModificarFechasRIF(listReq[i]);
-                if (listReq[i].ModificaObservacion || listReq[i].ModificaMalCapturado || listReq[i].ModificaNombreNotificador)
-                    obReq.ObservacionesRequerimientos(listReq[i]);//bdReq.ModificarObservacionesRIF(listReq[i]);
-
-
-
-
-                //backgroundWorker1.ReportProgress(i * 100 / listReq.Count);
-                //lblStatus.Text = Convert.ToString(i * 100 / listReq.Count);
-
-                tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / listReq.Count);
-                backgroundWorker1.ReportProgress(i * 100 / listReq.Count, tiG);
-            }
-            pbCarga.Value = 0;
-            lblListo.Text = "Listo.";
-            MessageBox.Show("Guardado completado");
-
-            
+            string TipoDato = "requerimiento";
+            ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, lblListo, TipoDato, obReq );
+            await actualizaBD.GuardarAsync(listReq);
         }
 
 
         //Método para ejecutar la acción guardar
-        private  void BtnGuardar_Click(object sender, EventArgs e)
+        private  async void BtnGuardar_Click(object sender, EventArgs e)
         {
             //validarColumna();
-              guardar();
+              await guardar();
         }
 
-        private void guardarToolStripButton_Click(object sender, EventArgs e)
+        private async void guardarToolStripButton_Click(object sender, EventArgs e)
         {
-            guardar();
+            await guardar();
         }
 
-        private void guardar()
+        private async Task guardar()
         {
            
             MessageBox.Show("TotalReq Actualizados:" + listReq.Count);
-            ActualizarBD();
+            await ActualizarBD();
             CargarRequerimientos();
         }
 
@@ -564,7 +550,7 @@ namespace WindowsFormsApp6
         {
             if (e.KeyValue == 13) {
                 if (!Modificado())
-                    ActualizarBD();
+                    ActualizarBD().Wait();
                 if (!string.IsNullOrEmpty(toolStripTextBusqueda.Text))
                 {
 
@@ -792,6 +778,7 @@ namespace WindowsFormsApp6
             DataGridViewCell objeto_celda;
             foreach (string linea in lineas)
             {
+                
                 if (fila < datagrid.RowCount && linea.Length > 0)
                 {
                     string[] celdas = linea.Split('\t');
@@ -1140,223 +1127,7 @@ namespace WindowsFormsApp6
 
         #region "crear archivo Excel"
 
-        private void excelDatos(Object sender, DoWorkEventArgs e)
-        {
-            TaskInfo ti = (TaskInfo)e.Argument;
-            BackgroundWorker bw = sender as BackgroundWorker;
-            
-            //extrae el argumento
-
-            ti.mensaje = "Procesando datos ";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-
-            int finalRow;
-            Excel.Application miExcel = default(Excel.Application);
-            Excel.Workbook libroExcel = default(Excel.Workbook);
-            Excel.Worksheet hojaExcel = default(Excel.Worksheet);
-
-
-
-            miExcel = new Excel.Application();
-            //miExcel.Visible = true;
-
-            libroExcel = miExcel.Workbooks.Add();
-
-            hojaExcel = libroExcel.Worksheets[1];
-            hojaExcel.Name = groupBox2.Text;
-            hojaExcel.Visible = Excel.XlSheetVisibility.xlSheetVisible;
-
-
-
-            ti.max = listNomBim[0].Total;
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-            hojaExcel.Activate();
-
-            Excel.Range oRange;
-            Excel.Range objCelda;
-
-
-            oRange = hojaExcel.Range["A7", "E7"];
-            oRange.Interior.ColorIndex = 15;
-            oRange = hojaExcel.Range["F7", "J7"];
-            oRange.Interior.ColorIndex = 16;
-
-            oRange = hojaExcel.Range["K7", "L7"];
-            oRange.Interior.ColorIndex = 3;
-
-            oRange = hojaExcel.Range["E7", "L7"];
-            oRange.ColumnWidth = 15;
-
-
-
-            objCelda = hojaExcel.Range["B1", Type.Missing];
-            objCelda.Value = "REF_NUM";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C1", "D1"];//ref_num
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = listNomBim[0].NombreEmision;
-
-
-            oRange.Cells.Locked = true;
-
-            objCelda = hojaExcel.Range["B2", Type.Missing];
-            objCelda.Value = "ZONA";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C2", "D2"];//ref_num
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = lblZonaName.Text;
-            oRange.Cells.Locked = true;
-
-            objCelda = hojaExcel.Range["B3", Type.Missing];
-            objCelda.Value = "OHE";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C3", "D3"];//ref_num
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = ti.cmbOHE;
-            oRange.Cells.Locked = true;
-
-
-
-
-            objCelda = hojaExcel.Range["B4", Type.Missing];
-            objCelda.Value = "Fecha emisión";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C4", "D4"];//ref_num
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.NumberFormat = "dd \"de\" mmmm \"de\" yyyy";
-            oRange.Value = e.Result = listNomBim[0].FechaEmision;
-            oRange.Cells.Locked = true;
-
-            objCelda = hojaExcel.Range["B5", Type.Missing];
-            objCelda.Value = "Total requerimientos:";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C5", "D5"];
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = listNomBim[0].Total;
-            oRange.Locked = true;
-
-
-
-
-            objCelda = hojaExcel.Range["A7", Type.Missing];
-            objCelda.Value = "Num";
-
-            objCelda = hojaExcel.Range["B7", Type.Missing];
-            objCelda.Value = "RFC";
-
-            objCelda = hojaExcel.Range["C7", Type.Missing];
-            objCelda.Value = "NUM_CONTROL";
-
-            objCelda = hojaExcel.Range["D7", Type.Missing];
-            objCelda.Value = "RAZÓN SOCIAL";
-
-            objCelda = hojaExcel.Range["E7", Type.Missing];
-            objCelda.Value = "LOCALIDAD";
-
-            objCelda = hojaExcel.Range["F7", Type.Missing];
-            objCelda.Value = "FECHA \nACTA / NO LOCALIZADO";
-
-            objCelda = hojaExcel.Range["G7", Type.Missing];
-            objCelda.Value = "FECHA DE \nCITATORIO";
-
-            objCelda = hojaExcel.Range["H7", Type.Missing];
-            objCelda.Value = "FECHA DE \nNOTIFICACION";
-
-            objCelda = hojaExcel.Range["I7", Type.Missing];
-            objCelda.Value = "OFICIO \nENVIO A SEFIPLAN";
-
-            objCelda = hojaExcel.Range["J7", Type.Missing];
-            objCelda.Value = "FECHA DE \nENVIO A SEFIPLAN";
-
-            objCelda = hojaExcel.Range["K7", Type.Missing];
-            objCelda.Value = "FECHA \n DE ENTREGA \nAL NOTIFICADOR";
-
-            objCelda = hojaExcel.Range["L7", Type.Missing];
-            objCelda.Value = "NOMBRE DEL \nNOTIFICADOR";
-
-
-
-
-            int i = 8;
-            int p = 0;
-            finalRow = i;
-
-            foreach (DataGridViewRow row in ti.DatosRif.Rows)
-            {
-                ti.mensaje = "Agregando registros" + (p + 1).ToString();
-                bw.WorkerReportsProgress = true;
-                bw.ReportProgress(p + 1, ti);
-
-                hojaExcel.Cells[i, "A"].NumberFormat = "000000";
-
-                hojaExcel.Cells[i, "A"] = row.Cells[0].Value.ToString();
-                hojaExcel.Cells[i, "B"] = row.Cells[1].Value.ToString();
-                hojaExcel.Cells[i, "C"] = row.Cells[2].Value.ToString();
-                hojaExcel.Cells[i, "D"] = row.Cells[3].Value.ToString();
-                hojaExcel.Cells[i, "e"] = row.Cells[4].Value.ToString();
-
-                p++;
-                i++;
-            }
-            ti.mensaje = "Listado RIF generado";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(p, ti);
-
-
-            hojaExcel.Columns["A:E"].EntireColumn.AutoFit();
-            string finalRo;
-            finalRo = "L" + i;
-            oRange = hojaExcel.Range["E7", finalRo];
-            oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
-            oRange = hojaExcel.Range["A7", "L7"];
-            oRange.Cells.Locked = true;
-
-            oRange = hojaExcel.Range["F8", finalRo];
-            oRange.Cells.Locked = false;
-
-            hojaExcel.Protect("vicrif", true);
-
-            string s = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string ruta = s + "\\RIF";
-
-            if (!Directory.Exists(ruta))
-                Directory.CreateDirectory(ruta);
-            try
-            {
-
-                libroExcel.SaveAs(s + @"\RIF\" + ti.CmbEmision + "_" + hojaExcel.Name + " " + ti.cmbOHE + "_" + listNomBim[0].Total.ToString() + ".xls");
-                libroExcel.Close();
-                releaseObject(libroExcel);
-                MessageBox.Show("Libro guardado en Escritorio\\RIF");
-            }
-            catch (COMException ce)
-            {
-
-                if ((uint)ce.ErrorCode == 0x800A03EC)
-                {
-                    libroExcel.Close();
-                    releaseObject(libroExcel);
-                }
-
-
-            }
-
-            ti.mensaje = "Listo.";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-
-        }
+     
 
 
         private void _hilo1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -1403,28 +1174,11 @@ namespace WindowsFormsApp6
             }
         }
 
-        private void releaseObject(object ob) {
 
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(ob);
-                ob = null;
-            }
-            catch (Exception ex)
-            {
-
-                ob = null;
-                MessageBox.Show("Error al liberar"+ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
 
 
         //crear archivo de excel con hilo de ejecucion 1
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private async void toolStripButton2_Click(object sender, EventArgs e)
         {
             cmbAnho.Enabled = false;
             CmbEmision.Enabled = false;
@@ -1434,30 +1188,29 @@ namespace WindowsFormsApp6
             btnExcel.Enabled = false;
             DgReqActivos2.Enabled = false;
             bindingNavigator1.Enabled = false;
-            try
-            {
-                BackgroundWorker _hilo1 = new BackgroundWorker();
-                _hilo1.DoWork += new DoWorkEventHandler(excelDatos);
-                _hilo1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_hilo1_RunWorkerCompleted);
-                _hilo1.ProgressChanged += new ProgressChangedEventHandler(_hilo1_ProgressChanged);
 
-                TaskInfo ti = new TaskInfo();
-                
-                ti.cmbOHE = cmbOHE.Text;
-                ti.CmbEmision = lblEmision.Text;
-                ti.DatosRif = DgReqActivos2;
-                ti.mensaje = "Procesando carga de datos . . .";
+            ExcelDataDto datos = new ExcelDataDto();
+            datos.CmbOHE = cmbOHE.Text;
+            datos.LblEmision = lblEmision.Text;
+            datos.Name = groupBox2.Text; 
+            datos.NombreEmision = listNomBim[0].NombreEmision;
+            datos.LblZonaName = lblZonaName.Text;
+            datos.FechaEmision = listNomBim[0].FechaEmision;
 
-                _hilo1.RunWorkerAsync(ti);
-
-            }
-            catch (Exception ex)
-            {
+            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, lblListo, datos) ;
+            await excel.WriterAsync(listReq);
 
 
-                lblStatus.Text += ex.Source.ToString() + " - " + ex.Message + "\r\n";
+            lblStatus.Text = "";
+            cmbAnho.Enabled = true;
+            CmbEmision.Enabled = true;
+            cmbOHE.Enabled = true;
+            btnGuardar.Enabled = true;
+            btnExcel.Enabled = true;
+            DgReqActivos2.Enabled = true;
+            bindingNavigator1.Enabled = true;
 
-            }
+            
         }
         #endregion
 
@@ -1624,39 +1377,20 @@ namespace WindowsFormsApp6
 
         }
 
-        private void SetFechaComo(DateTime fecha)
+        private Task SetFechaComo(DateTime fecha)
         {
 
-          
+            return default;
 
 
         }
 
 
-        private void SetRequeimientoComo(string diligencia)
+        private async Task SetRequeimientoComo(string diligencia)
         {
-            
-            tiG.tipoMulta = diligencia;
-            int i = 1;
-            int total = DgReqActivos2.Rows.Count;
-            if (diligencia != "")
-
-                foreach (DataGridViewRow dg in DgReqActivos2.Rows)
-                {
-
-                    dg.Cells[5].Value = diligencia;
-                    tiG.mensaje = string.Format( "procesando...{0}% ", i * 100 / total);
-                    backgroundWorker1.ReportProgress(i*100/total, tiG);
-                   
-                    i++;
-                    
-
-                }
-            pbCarga.Value = 0;
-            lblListo.Text = "Listo.";
-            MessageBox.Show("Finalizado");
+            SetRegistroComo setR = new SetRegistroComo(pbCarga, DgReqActivos2, diligencia, lblListo);
+                await setR.SetRegistro();
         }
-
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
 

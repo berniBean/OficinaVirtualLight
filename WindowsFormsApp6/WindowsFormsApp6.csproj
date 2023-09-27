@@ -2,6 +2,7 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <LangVersion>8.0</LangVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CFDDA47C-DC84-40D8-9C47-A97811FFADC4}</ProjectGuid>
@@ -382,6 +383,7 @@
     <Compile Include="FormPrincipal.designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ExcelDataDto.cs" />
     <Compile Include="IAcoplamiento.cs" />
     <Compile Include="ListadoMultados.cs">
       <SubType>Form</SubType>
@@ -465,6 +467,7 @@
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="structs\AbstractProgress.cs" />
+    <Compile Include="structs\ActualizaBDAsync.cs" />
     <Compile Include="structs\busquedaMasivaDO.cs" />
     <Compile Include="structs\CargaNumOficios.cs" />
     <Compile Include="structs\CargaPdf.cs" />
@@ -472,11 +475,14 @@
     <Compile Include="structs\consultaPDF.cs" />
     <Compile Include="structs\ConvertExcel.cs" />
     <Compile Include="structs\FtpSettings.cs" />
+    <Compile Include="structs\IProgressAsync1.cs" />
+    <Compile Include="structs\SetRegistroComo.cs" />
     <Compile Include="structs\tipoGestion.cs" />
     <Compile Include="structs\tipoSesion.cs" />
     <Compile Include="structs\IProgressAsync.cs" />
     <Compile Include="structs\pdfAbstract.cs" />
     <Compile Include="structs\StaticPercentage.cs" />
+    <Compile Include="structs\ToExcelAsync.cs" />
     <Compile Include="TableroMultasRIF.cs">
       <SubType>Form</SubType>
     </Compile>

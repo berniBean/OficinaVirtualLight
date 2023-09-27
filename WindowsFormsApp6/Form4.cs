@@ -5,9 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.BLL;
-using WindowsFormsApp6.CAD.pruebaAsyn;
 using WindowsFormsApp6.structs;
-using wpfCreaExcel;
 
 namespace WindowsFormsApp6
 {
@@ -20,19 +18,19 @@ namespace WindowsFormsApp6
         public delegate void BusquedaDelegado(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda);
         public event BusquedaDelegado ejecutar;
 
-        public delegate void SetRequerimiento(string diligencia);        
+        public delegate Task SetRequerimiento(string diligencia);        
         public event SetRequerimiento setDiligencia;
 
-        public delegate void SetTipoMulta(string tipoM);
+        public delegate Task SetTipoMulta(string tipoM);
         public event SetTipoMulta setTipoM;
 
-        public delegate void DescargarDelegado();
+        public delegate Task DescargarDelegado();
         public event DescargarDelegado ejecutarDescarga;
 
 
         private int _tipo;
 
-        public delegate void SetFecha(DateTime fecha);
+        public delegate Task SetFecha(DateTime fecha);
         public event SetFecha setFechaReq;
 
         private CCCBusquedaMasivaBLL bd = new CCCBusquedaMasivaBLL();

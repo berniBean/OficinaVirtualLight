@@ -86,20 +86,24 @@ namespace WindowsFormsApp6
         {
             listadoPDFDB =await listadoPDF.listadoPdfMultasSql(_emision);
         }
-        private async void DescargaPDF()
+        private async Task DescargaPDF()
         {
             await new CargaPdf(tsProgress, listadoPDF,_tipoSesion).pdfDescarga(QueryPDF().ToList());
             tsProgress.Value = 0;
         }
 
-        private void SetRequeimientoComo(string diligencia)
+        private Task  SetRequeimientoComo(string diligencia)
         {
-            return;
+            return default;
         }
-        private void setTipoMulta(string tipoM)
+        private async Task setTipoMulta(string tipoM)
         {
-            if (tipoM != "")
-                tipoMulta = tipoM;
+            await Task.Run(() =>
+            {
+                if (tipoM != "")
+                    tipoMulta = tipoM;
+            });
+
 
         }
         private void  setDTable(ListaClistaRequeridos listadoMultas) 

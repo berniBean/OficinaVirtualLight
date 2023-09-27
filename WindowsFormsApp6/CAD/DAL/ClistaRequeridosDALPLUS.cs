@@ -453,7 +453,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("tableroRegistroMultasSupervisorPLUS", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("tableroRegistroMultasSupervisorPLUS2", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -584,7 +584,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
                     OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Modificado, bo.Diligencia));
                    
-                    //OrdenSql.Parameters.AddWithValue("@_observaciones", OficioVacio(bo.Observaciones));
+
                     //Abrir la conexion de base de Datos
                     conn.Open();
                     OrdenSql.ExecuteNonQuery();

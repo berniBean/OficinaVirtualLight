@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using WindowsFormsApp6.structs;
 using System.Linq;
 using CleanArchitecture.Helpers;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApp6
 {
@@ -247,32 +248,54 @@ namespace WindowsFormsApp6
             
         }
 
-        private void SetRequeimientoComo(string diligencia)
+        private async Task SetRequeimientoComo(string diligencia)
         {
             tiG.tipoMulta = diligencia;
             int i = 1;
             int total = dgTablaMultasRIF.Rows.Count;
 
-            if (diligencia != "")
-                foreach (DataGridViewRow dg in dgTablaMultasRIF.Rows)
+            await Task.Run(() =>
+            {
+                try
                 {
 
-                    dg.Cells[8].Value = diligencia;
+                    if (diligencia != "")
+                        foreach (DataGridViewRow dg in dgTablaMultasRIF.Rows)
+                        {
 
-                    tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / total);
-                    backgroundWorker1.ReportProgress(i * 100 / total, tiG);
+                            dg.Cells[8].Value = diligencia;
 
-                    i++;
+                            tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / total);
+                            backgroundWorker1.ReportProgress(i * 100 / total, tiG);
+
+                            i++;
+                        }
                 }
-            pbCarga.Value = 0;
-            label1.Text = "Listo.";
-            MessageBox.Show("Finalizado");
+                catch (Exception)
+                {
+
+                    throw;
+                }
+                finally
+                {
+                    pbCarga.Value = 0;
+                    label1.Text = "Listo.";
+                    MessageBox.Show("Finalizado");
+                }
+            });
+
+
+
         }
 
-        private void setTipoMulta(string tipoM)
+        private async Task setTipoMulta(string tipoM)
         {
-            if (tipoM != "")
-                tipoMulta = tipoM;
+            await Task.Run(() =>
+            {
+                if (tipoM != "")
+                    tipoMulta = tipoM;
+            });
+
 
         }
         #endregion

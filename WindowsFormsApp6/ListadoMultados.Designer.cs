@@ -1,4 +1,5 @@
 ﻿
+
 namespace WindowsFormsApp6
 {
     partial class ListadoMultados
