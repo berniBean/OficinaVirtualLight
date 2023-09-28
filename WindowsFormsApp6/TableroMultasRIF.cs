@@ -16,6 +16,7 @@ using WindowsFormsApp6.structs;
 using System.Linq;
 using CleanArchitecture.Helpers;
 using System.Threading.Tasks;
+using WindowsFormsApp6.Helper;
 
 namespace WindowsFormsApp6
 {
@@ -1612,34 +1613,42 @@ namespace WindowsFormsApp6
                 GC.Collect();
             }
         }
-        private void tsExcelMultas_Click(object sender, EventArgs e)
+        private async void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            bindingNavigator1.Enabled = false;
+
+            ExcelDataDto datos = new ExcelDataDto();
+            datos.LblEmision = emisionMulta;
+            datos.LblZonaName = lblZonaName;
+            datos.CmbOHE = OHE;
+            datos.FechaEmision = fechaMulta;
+            datos.TipoMultaEmision = tipoMultaEmision;
+
+            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, label1, datos, "MultasConDatos");
+            await excel.WriterAsync(listReq);
+
+            bindingNavigator1.Enabled = true;
+        }
+        private async void tsExcelMultas_Click(object sender, EventArgs e)
         {
 
 
 
             bindingNavigator1.Enabled = false;
-            
-            try
-            {
-                BackgroundWorker _hilo1 = new BackgroundWorker();
-                _hilo1.DoWork += new DoWorkEventHandler(excelDatos);
-                _hilo1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_hilo1_RunWorkerCompleted);
-                _hilo1.ProgressChanged += new ProgressChangedEventHandler(_hilo1_ProgressChanged);
 
-                TaskInfo ti = new TaskInfo();
-                ti.DatosRif = dgTablaMultasRIF;
-                ti.mensaje = "Procesando carga de datos . . .";
+            ExcelDataDto datos = new ExcelDataDto();
+            datos.LblEmision = emisionMulta;
+            datos.LblZonaName = lblZonaName;
+            datos.CmbOHE = OHE;
+            datos.FechaEmision = fechaMulta;            
+            datos.TipoMultaEmision = tipoMultaEmision;
 
-                _hilo1.RunWorkerAsync(ti);
+            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, label1, datos, "MultasSinDatos");
+            await excel.WriterAsync(listReq);
 
-            }
-            catch (Exception ex)
-            {
+            bindingNavigator1.Enabled = true;
 
 
-                lblStatus.Text += ex.Source.ToString() + " - " + ex.Message + "\r\n";
-
-            }
         }
 
 
@@ -1774,5 +1783,7 @@ namespace WindowsFormsApp6
             Seleccion = false;
             dataGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
+
+
     }
 }

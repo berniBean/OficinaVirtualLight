@@ -58,6 +58,7 @@
     <Compile Include="Helpers\DateFormatHelper.cs" />
     <Compile Include="Helpers\DesktopDirHelper.cs" />
     <Compile Include="Helpers\FormatLogHelper.cs" />
+    <Compile Include="Helpers\TipeCreditHelper.cs" />
     <Compile Include="Helpers\WriterHelperExcel.cs" />
     <Compile Include="InterfacesUtilidades\IWriter.cs" />
     <Compile Include="Interfaces\ICelular.cs" />

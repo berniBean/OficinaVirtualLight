@@ -1197,7 +1197,7 @@ namespace WindowsFormsApp6
             datos.LblZonaName = lblZonaName.Text;
             datos.FechaEmision = listNomBim[0].FechaEmision;
 
-            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, lblListo, datos) ;
+            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, lblListo, datos, "ListadoSinDatos") ;
             await excel.WriterAsync(listReq);
 
 
@@ -1416,6 +1416,39 @@ namespace WindowsFormsApp6
                 if (cell.Value != null)
                     cell.Value = cell.Value.ToString().ToUpper() ;
             }
+        }
+
+        private async void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            cmbAnho.Enabled = false;
+            CmbEmision.Enabled = false;
+            cmbOHE.Enabled = false;
+
+            btnGuardar.Enabled = false;
+            btnExcel.Enabled = false;
+            DgReqActivos2.Enabled = false;
+            bindingNavigator1.Enabled = false;
+
+            ExcelDataDto datos = new ExcelDataDto();
+            datos.CmbOHE = cmbOHE.Text;
+            datos.LblEmision = lblEmision.Text;
+            datos.Name = groupBox2.Text;
+            datos.NombreEmision = listNomBim[0].NombreEmision;
+            datos.LblZonaName = lblZonaName.Text;
+            datos.FechaEmision = listNomBim[0].FechaEmision;
+
+            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, lblListo, datos, "ListadoConDatos");
+            await excel.WriterAsync(listReq);
+
+
+            lblStatus.Text = "";
+            cmbAnho.Enabled = true;
+            CmbEmision.Enabled = true;
+            cmbOHE.Enabled = true;
+            btnGuardar.Enabled = true;
+            btnExcel.Enabled = true;
+            DgReqActivos2.Enabled = true;
+            bindingNavigator1.Enabled = true;
         }
     }
 }

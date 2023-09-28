@@ -37,7 +37,6 @@
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -63,25 +62,32 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dgMultasPendiente = new System.Windows.Forms.DataGridView();
-            this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oheDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this._extp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._incp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalReqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pendientesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._pndPdf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noLocalizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noTrabajado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._vencidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._cobrados = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._totalImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._honorarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.listaInformeAvanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.label1 = new System.Windows.Forms.Label();
             this.dgTablaMultasRIF = new System.Windows.Forms.DataGridView();
             this._idMultaRif = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Honorarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ejecucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModificaFechaPago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oheDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.totalReqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pendientesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.localizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noLocalizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listaInformeAvanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tipoMultaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numMultaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rfcDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,26 +98,21 @@
             this.Diligencia = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.FechaCitatorio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaNotificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Honorarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cumplioAntesDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Vencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ejecucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.observacionesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modificadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.modificaObservacionDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ModificaFechaPago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultasPendiente)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaInformeAvanceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTablaMultasRIF)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaInformeAvanceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // backgroundWorker1
@@ -189,7 +190,8 @@
             this.guardarToolStripButton,
             this.toolStripSeparator3,
             this.imprimirToolStripButton,
-            this.toolStripSeparator});
+            this.toolStripSeparator,
+            this.toolStripButton1});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 258);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -200,10 +202,6 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(1370, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // cListaRequeridosBOBindingSource
-            // 
-            this.cListaRequeridosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaRequeridosBO);
             // 
             // bindingNavigatorCountItem
             // 
@@ -434,23 +432,6 @@
             this.dgMultasPendiente.TabIndex = 4;
             this.dgMultasPendiente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultasPendiente_CellContentClick);
             // 
-            // zonaDataGridViewTextBoxColumn
-            // 
-            this.zonaDataGridViewTextBoxColumn.DataPropertyName = "_zona";
-            this.zonaDataGridViewTextBoxColumn.HeaderText = "ZONA";
-            this.zonaDataGridViewTextBoxColumn.Name = "zonaDataGridViewTextBoxColumn";
-            this.zonaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.zonaDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // oheDataGridViewTextBoxColumn
-            // 
-            this.oheDataGridViewTextBoxColumn.DataPropertyName = "Ohe";
-            this.oheDataGridViewTextBoxColumn.HeaderText = "OHE";
-            this.oheDataGridViewTextBoxColumn.Name = "oheDataGridViewTextBoxColumn";
-            this.oheDataGridViewTextBoxColumn.ReadOnly = true;
-            this.oheDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.oheDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // _extp
             // 
             this._extp.DataPropertyName = "_extp";
@@ -465,40 +446,12 @@
             this._incp.Name = "_incp";
             this._incp.ReadOnly = true;
             // 
-            // totalReqDataGridViewTextBoxColumn
-            // 
-            this.totalReqDataGridViewTextBoxColumn.DataPropertyName = "TotalReq";
-            this.totalReqDataGridViewTextBoxColumn.HeaderText = "Emitidos";
-            this.totalReqDataGridViewTextBoxColumn.Name = "totalReqDataGridViewTextBoxColumn";
-            this.totalReqDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // pendientesDataGridViewTextBoxColumn
-            // 
-            this.pendientesDataGridViewTextBoxColumn.DataPropertyName = "Pendientes";
-            this.pendientesDataGridViewTextBoxColumn.HeaderText = "Pendientes";
-            this.pendientesDataGridViewTextBoxColumn.Name = "pendientesDataGridViewTextBoxColumn";
-            this.pendientesDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // _pndPdf
             // 
             this._pndPdf.DataPropertyName = "_pndPdf";
             this._pndPdf.HeaderText = "Pendientes PDF";
             this._pndPdf.Name = "_pndPdf";
             this._pndPdf.ReadOnly = true;
-            // 
-            // localizadoDataGridViewTextBoxColumn
-            // 
-            this.localizadoDataGridViewTextBoxColumn.DataPropertyName = "Localizado";
-            this.localizadoDataGridViewTextBoxColumn.HeaderText = "Localizado";
-            this.localizadoDataGridViewTextBoxColumn.Name = "localizadoDataGridViewTextBoxColumn";
-            this.localizadoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // noLocalizadoDataGridViewTextBoxColumn
-            // 
-            this.noLocalizadoDataGridViewTextBoxColumn.DataPropertyName = "NoLocalizado";
-            this.noLocalizadoDataGridViewTextBoxColumn.HeaderText = "No localizado";
-            this.noLocalizadoDataGridViewTextBoxColumn.Name = "noLocalizadoDataGridViewTextBoxColumn";
-            this.noLocalizadoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // noTrabajado
             // 
@@ -534,10 +487,6 @@
             this._honorarios.HeaderText = "Honorarios";
             this._honorarios.Name = "_honorarios";
             this._honorarios.ReadOnly = true;
-            // 
-            // listaInformeAvanceBindingSource
-            // 
-            this.listaInformeAvanceBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListaInformeAvance);
             // 
             // monthCalendar1
             // 
@@ -606,6 +555,103 @@
             this._idMultaRif.Name = "_idMultaRif";
             this._idMultaRif.ReadOnly = true;
             this._idMultaRif.Visible = false;
+            // 
+            // FechaPago
+            // 
+            this.FechaPago.DataPropertyName = "FechaPago";
+            this.FechaPago.HeaderText = "FechaPago";
+            this.FechaPago.Name = "FechaPago";
+            // 
+            // Importe
+            // 
+            this.Importe.DataPropertyName = "Importe";
+            this.Importe.HeaderText = "Importe";
+            this.Importe.Name = "Importe";
+            // 
+            // Honorarios
+            // 
+            this.Honorarios.DataPropertyName = "Honorarios";
+            this.Honorarios.HeaderText = "Honorarios";
+            this.Honorarios.Name = "Honorarios";
+            this.Honorarios.ReadOnly = true;
+            // 
+            // Ejecucion
+            // 
+            this.Ejecucion.DataPropertyName = "Ejecucion";
+            this.Ejecucion.HeaderText = "Ejecución";
+            this.Ejecucion.Name = "Ejecucion";
+            this.Ejecucion.ReadOnly = true;
+            // 
+            // ModificaFechaPago
+            // 
+            this.ModificaFechaPago.DataPropertyName = "ModificaFechaPago";
+            this.ModificaFechaPago.HeaderText = "ModificaFechaPago";
+            this.ModificaFechaPago.Name = "ModificaFechaPago";
+            this.ModificaFechaPago.ReadOnly = true;
+            this.ModificaFechaPago.Visible = false;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(80, 22);
+            this.toolStripButton1.Text = "Datos multas";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // cListaRequeridosBOBindingSource
+            // 
+            this.cListaRequeridosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaRequeridosBO);
+            // 
+            // zonaDataGridViewTextBoxColumn
+            // 
+            this.zonaDataGridViewTextBoxColumn.DataPropertyName = "_zona";
+            this.zonaDataGridViewTextBoxColumn.HeaderText = "ZONA";
+            this.zonaDataGridViewTextBoxColumn.Name = "zonaDataGridViewTextBoxColumn";
+            this.zonaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.zonaDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // oheDataGridViewTextBoxColumn
+            // 
+            this.oheDataGridViewTextBoxColumn.DataPropertyName = "Ohe";
+            this.oheDataGridViewTextBoxColumn.HeaderText = "OHE";
+            this.oheDataGridViewTextBoxColumn.Name = "oheDataGridViewTextBoxColumn";
+            this.oheDataGridViewTextBoxColumn.ReadOnly = true;
+            this.oheDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.oheDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // totalReqDataGridViewTextBoxColumn
+            // 
+            this.totalReqDataGridViewTextBoxColumn.DataPropertyName = "TotalReq";
+            this.totalReqDataGridViewTextBoxColumn.HeaderText = "Emitidos";
+            this.totalReqDataGridViewTextBoxColumn.Name = "totalReqDataGridViewTextBoxColumn";
+            this.totalReqDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // pendientesDataGridViewTextBoxColumn
+            // 
+            this.pendientesDataGridViewTextBoxColumn.DataPropertyName = "Pendientes";
+            this.pendientesDataGridViewTextBoxColumn.HeaderText = "Pendientes";
+            this.pendientesDataGridViewTextBoxColumn.Name = "pendientesDataGridViewTextBoxColumn";
+            this.pendientesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // localizadoDataGridViewTextBoxColumn
+            // 
+            this.localizadoDataGridViewTextBoxColumn.DataPropertyName = "Localizado";
+            this.localizadoDataGridViewTextBoxColumn.HeaderText = "Localizado";
+            this.localizadoDataGridViewTextBoxColumn.Name = "localizadoDataGridViewTextBoxColumn";
+            this.localizadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // noLocalizadoDataGridViewTextBoxColumn
+            // 
+            this.noLocalizadoDataGridViewTextBoxColumn.DataPropertyName = "NoLocalizado";
+            this.noLocalizadoDataGridViewTextBoxColumn.HeaderText = "No localizado";
+            this.noLocalizadoDataGridViewTextBoxColumn.Name = "noLocalizadoDataGridViewTextBoxColumn";
+            this.noLocalizadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // listaInformeAvanceBindingSource
+            // 
+            this.listaInformeAvanceBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListaInformeAvance);
             // 
             // tipoMultaDataGridViewTextBoxColumn
             // 
@@ -682,25 +728,6 @@
             this.FechaNotificacion.HeaderText = "FECHA NOTIFICACIÓN";
             this.FechaNotificacion.Name = "FechaNotificacion";
             // 
-            // FechaPago
-            // 
-            this.FechaPago.DataPropertyName = "FechaPago";
-            this.FechaPago.HeaderText = "FechaPago";
-            this.FechaPago.Name = "FechaPago";
-            // 
-            // Importe
-            // 
-            this.Importe.DataPropertyName = "Importe";
-            this.Importe.HeaderText = "Importe";
-            this.Importe.Name = "Importe";
-            // 
-            // Honorarios
-            // 
-            this.Honorarios.DataPropertyName = "Honorarios";
-            this.Honorarios.HeaderText = "Honorarios";
-            this.Honorarios.Name = "Honorarios";
-            this.Honorarios.ReadOnly = true;
-            // 
             // cumplioAntesDataGridViewCheckBoxColumn
             // 
             this.cumplioAntesDataGridViewCheckBoxColumn.DataPropertyName = "CumplioAntes";
@@ -721,13 +748,6 @@
             this.Estatus.HeaderText = "Estatus";
             this.Estatus.Name = "Estatus";
             this.Estatus.ReadOnly = true;
-            // 
-            // Ejecucion
-            // 
-            this.Ejecucion.DataPropertyName = "Ejecucion";
-            this.Ejecucion.HeaderText = "Ejecución";
-            this.Ejecucion.Name = "Ejecucion";
-            this.Ejecucion.ReadOnly = true;
             // 
             // observacionesDataGridViewTextBoxColumn
             // 
@@ -751,14 +771,6 @@
             this.modificaObservacionDataGridViewCheckBoxColumn.ReadOnly = true;
             this.modificaObservacionDataGridViewCheckBoxColumn.Visible = false;
             // 
-            // ModificaFechaPago
-            // 
-            this.ModificaFechaPago.DataPropertyName = "ModificaFechaPago";
-            this.ModificaFechaPago.HeaderText = "ModificaFechaPago";
-            this.ModificaFechaPago.Name = "ModificaFechaPago";
-            this.ModificaFechaPago.ReadOnly = true;
-            this.ModificaFechaPago.Visible = false;
-            // 
             // TableroMultasRIF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -773,14 +785,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultasPendiente)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaInformeAvanceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTablaMultasRIF)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaInformeAvanceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -858,5 +870,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn modificadoDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn modificaObservacionDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ModificaFechaPago;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

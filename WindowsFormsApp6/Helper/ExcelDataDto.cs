@@ -9,6 +9,7 @@ namespace WindowsFormsApp6.Helper
         public string Name { get; set; }
         public string NombreEmision { get; set; }
         public string LblZonaName { get; set; }
+        public string TipoMultaEmision { get; set; }
         public DateTime FechaEmision { get; set; }
 
     }

@@ -79,6 +79,7 @@
             this.btnBusquedaMasiva = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnExcel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.guardarToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -500,6 +501,7 @@
             this.btnBusquedaMasiva,
             this.toolStripSeparator2,
             this.btnExcel,
+            this.toolStripButton1,
             this.toolStripSeparator4,
             this.guardarToolStripButton,
             this.toolStripSeparator});
@@ -628,6 +630,17 @@
             this.btnExcel.Size = new System.Drawing.Size(38, 28);
             this.btnExcel.Text = "Excel";
             this.btnExcel.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(70, 28);
+            this.toolStripButton1.Text = "Excel datos";
+            this.toolStripButton1.ToolTipText = "Excel";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripSeparator4
             // 
@@ -1068,5 +1081,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NotasObservaciones;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
