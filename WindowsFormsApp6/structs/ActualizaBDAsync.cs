@@ -6,111 +6,105 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper.Strategy;
+using WindowsFormsApp6.Helper.Strategy.Concretas;
 
 namespace WindowsFormsApp6.structs
 {
-    class ActualizaBDAsync : AbstractProgress
+    class ActualizaBDAsync : IWriterAsync
     {
         private readonly ToolStripProgressBar _progressBar;
         private readonly Label _lblProgress;
-        private readonly obtenerRequeridos _obReq;
-        private readonly string _tipoDato;
-
+        private readonly obtenerRequeridos _obReq;        
+        private SaveDBContext _saveDBContext;
 
         public ActualizaBDAsync(ToolStripProgressBar progressBar, Label lblProgress, string tipoDato, obtenerRequeridos obReq = null)
         {
             _progressBar = progressBar;
             _lblProgress = lblProgress;
             _obReq = obReq;
-            _tipoDato = tipoDato;
+
+            if (tipoDato.Equals("requerimiento"))
+                _saveDBContext = new SaveDBContext(new StoreRequerimientosAsync(_progressBar, _lblProgress, _obReq));
+            if (tipoDato.Equals("multas"))
+                _saveDBContext = new SaveDBContext(new StoreMultasAsync(_progressBar, _lblProgress, _obReq));
         }
 
-        public async Task GuardarAsync(IEnumerable<CListaRequeridosBO> consulta)
+        public async Task SaveChangesAsync(IEnumerable<CListaRequeridosBO> consulta)
         {
-            await ProcesoGuardadoAsync(consulta.ToList(), reportarProgreso);
+            await ProcesoGuardadoAsync(consulta.ToList());
         }
 
-        private async Task ProcesoGuardadoAsync(List<CListaRequeridosBO> listaClistaRequeridos, IProgress<int> progress = null)
+
+        private async Task ProcesoGuardadoAsync(List<CListaRequeridosBO> listaClistaRequeridos)
         {
-            using var semaforo = new SemaphoreSlim(50);
-            var tareas = new List<Task<bool>>();
-            var total = listaClistaRequeridos.Count();
-            var i = 0;
+            #region Antiguo
+            //using var semaforo = new SemaphoreSlim(50);
+            //var tareas = new List<Task<bool>>();
+            //var total = listaClistaRequeridos.Count();
+            //var i = 0;
 
 
-            var gato = (from item in listaClistaRequeridos
-                        where (item.Modificado && item.Estatus != "enviado") || (item.ModificaObservacion || item.ModificaMalCapturado || item.ModificaNombreNotificador)
-                        select new CListaRequeridosBO()
-                        {
-                            Diligencia = item.Diligencia,
-                            FechaNotificacion = item.FechaNotificacion,
-                            FechaCitatorio = item.FechaCitatorio,
-                            OficioSEFIPLAN = item.OficioSEFIPLAN,
-                            FechaEnvioSefiplan = item.FechaEnvioSefiplan,
-                            NumCtrl = item.NumCtrl,
-                            Estatus = item.Estatus,
-                            Observaciones = item.Observaciones,
-                            NotasObservaciones = item.NotasObservaciones,
-                            ActaNotificacion = item.ActaNotificacion,
-                            ActaCitatorio = item.ActaCitatorio,
-                            NotificacionCitatorio = item.NotificacionCitatorio,
-                            NombreNotificador = item.NombreNotificador
-                        }).ToList();
+            //var gato = (from item in listaClistaRequeridos
+            //            where (item.Modificado && item.Estatus != "enviado") || (item.ModificaObservacion || item.ModificaMalCapturado || item.ModificaNombreNotificador)
+            //            select new CListaRequeridosBO()
+            //            {
+            //                Diligencia = item.Diligencia,
+            //                FechaNotificacion = item.FechaNotificacion,
+            //                FechaCitatorio = item.FechaCitatorio,
+            //                OficioSEFIPLAN = item.OficioSEFIPLAN,
+            //                FechaEnvioSefiplan = item.FechaEnvioSefiplan,
+            //                NumCtrl = item.NumCtrl,
+            //                Estatus = item.Estatus,
+            //                Observaciones = item.Observaciones,
+            //                NotasObservaciones = item.NotasObservaciones,
+            //                ActaNotificacion = item.ActaNotificacion,
+            //                ActaCitatorio = item.ActaCitatorio,
+            //                NotificacionCitatorio = item.NotificacionCitatorio,
+            //                NombreNotificador = item.NombreNotificador
+            //            }).ToList();
 
-            await Task.Run(() =>
-            {
-
-
+            //await Task.Run(() =>
+            //{
 
 
-                tareas = gato.Select(async r =>
-               {
 
-                   await semaforo.WaitAsync();
-                   try
-                   {
-                       if (progress != null)
-                       {
-                           i++;
-                           _obReq.ModificarRequerimientos(r);
-                           _obReq.ObservacionesRequerimientos(r);
 
-                           progress.Report(StaticPercentage.PercentageProgress(i, total));
+            //    tareas = gato.Select(async r =>
+            //   {
 
-                       }
+            //       await semaforo.WaitAsync();
+            //       try
+            //       {
+            //           if (progress != null)
+            //           {
+            //               i++;
+            //               _obReq.ModificarRequerimientos(r);
+            //               _obReq.ObservacionesRequerimientos(r);
 
-                       return r.Modificado;
-                   }
-                   finally
-                   {
-                       semaforo.Release();
+            //               progress.Report(StaticPercentage.PercentageProgress(i, total));
 
-                   }
-               }).ToList();
-            });
+            //           }
 
-            await Task.WhenAll(tareas);
+            //           return r.Modificado;
+            //       }
+            //       finally
+            //       {
+            //           semaforo.Release();
 
-            MessageBox.Show("Guardado completado");
+            //       }
+            //   }).ToList();
+            //});
 
-            progress.Report(0);
+            //await Task.WhenAll(tareas);
+
+            //MessageBox.Show("Guardado completado");
+
+            //progress.Report(0);
+            #endregion
+
+            await _saveDBContext.RunStrategySaveDB(listaClistaRequeridos);
         }
 
-        public override void ReportarProgreso(int porcentaje)
-        {
-
-            _progressBar.Value = porcentaje;
-
-            if (porcentaje != 100 && porcentaje > 0)
-            {
-                _lblProgress.Text = string.Format("procesando...{0}% ", porcentaje);
-            }
-            else
-            {
-                _lblProgress.Text = "Listo.";
-            }
-
-
-        }
     }
 }

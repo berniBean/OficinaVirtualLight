@@ -16,7 +16,6 @@ namespace WindowsFormsApp6.structs
         private readonly ToolStripStatusLabel _tsStatus;
         private readonly Label _lblProgress;
         private readonly ExcelDataDto _datos;
-
         private ExcelMakerContext _contextExcel;
 
         public ToExcelAsync(ToolStripProgressBar progressBar, ToolStripStatusLabel tsStatus, Label lblProgress, ExcelDataDto datos, string tipo)
@@ -33,6 +32,8 @@ namespace WindowsFormsApp6.structs
                 _contextExcel = new ExcelMakerContext(new ExcelMultasSinDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("MultasConDatos"))
                 _contextExcel = new ExcelMakerContext(new ExcelMultasConDatos(_progressBar, _tsStatus, _lblProgress));
+            if (tipo.Equals("Ejecucion"))
+                _contextExcel = new ExcelMakerContext(new ExcelEjecucion(_progressBar, _tsStatus, _lblProgress));
         }
 
 
@@ -47,11 +48,6 @@ namespace WindowsFormsApp6.structs
             await _contextExcel.RunStrategyExcel(listaRequerimientos, _datos);
 
         }
-
-
-
-
-
 
 
     }

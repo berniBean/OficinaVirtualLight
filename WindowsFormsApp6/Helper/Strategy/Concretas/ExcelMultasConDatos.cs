@@ -154,7 +154,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             objCelda.Value = "NUMERO DE \nREQUERIMIENTO";
 
             objCelda = hojaExcel.Range["H7", Type.Missing];
-            objCelda.Value = "LOCALIZADO \nNO LOCALIZADO";
+            objCelda.Value = "NO LOCALIZADO";
 
             objCelda = hojaExcel.Range["I7", Type.Missing];
             objCelda.Value = "FECHA \nCITATORIO";
@@ -190,6 +190,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             hojaExcel.Cells[i, "B"].NumberFormat = "000000";
                             hojaExcel.Cells[i, "G"].NumberFormat = "000000";
                             hojaExcel.Cells[i, "L"].NumberFormat = "[$$-en-US] #,##0.00";
+
 
 
                             hojaExcel.Cells[i, "A"] = item._tipoMulta;//tipo multa
@@ -232,8 +233,13 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
 
             hojaExcel.Columns["A:G"].EntireColumn.AutoFit();
+            
             string finalRo;
             finalRo = "N" + i;
+
+            oRange = hojaExcel.Range["H8", finalRo];
+            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+
             oRange = hojaExcel.Range["G7", finalRo];
             oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
@@ -244,6 +250,8 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             oRange.Cells.Locked = false;
 
 
+
+
             string s = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             string ruta = s + "\\RIF";
 
@@ -252,7 +260,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             try
             {
 
-                libroExcel.SaveAs(s + @"\RIF\" + _datos.TipoMultaEmision + hojaExcel.Name + "_" + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() + ".xls");
+                libroExcel.SaveAs(s + @"\RIF\" + _datos.TipoMultaEmision + hojaExcel.Name + "_" + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() +"_CDatos" + ".xls");
                 libroExcel.Close();
                 releaseObject(libroExcel);
                 MessageBox.Show("Libro guardado en Escritorio\\RIF");

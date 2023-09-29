@@ -74,7 +74,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("tablaMultasSupervisorPLUSXPDF", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("tablaMultasSupervisorPLUSXPDF2", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };

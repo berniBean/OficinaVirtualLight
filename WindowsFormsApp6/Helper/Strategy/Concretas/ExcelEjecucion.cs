@@ -18,22 +18,19 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
         private readonly ToolStripProgressBar _progressBar;
         private readonly ToolStripStatusLabel _tsStatus;
         private readonly Label _lblProgress;
-        private readonly ExcelDataDto _datos;
 
-        private ExcelMakerContext _contextExcel;
 
-        public ExcelEjecucion(ToolStripProgressBar progressBar, ToolStripStatusLabel tsStatus, Label lblProgress, ExcelDataDto datos, ExcelMakerContext contextExcel)
+        public ExcelEjecucion(ToolStripProgressBar progressBar, ToolStripStatusLabel tsStatus, Label lblProgress)
         {
             _progressBar = progressBar;
             _tsStatus = tsStatus;
             _lblProgress = lblProgress;
-            _datos = datos;
-            _contextExcel = contextExcel;
+
         }
 
-        public Task MakeExcelAsync(IEnumerable<CListaRequeridosBO> listaRequerimientos, ExcelDataDto datos)
+        public async Task MakeExcelAsync(IEnumerable<CListaRequeridosBO> listaRequerimientos, ExcelDataDto datos)
         {
-            throw new NotImplementedException();
+            await ExeclProcessAsync(listaRequerimientos.ToList(), datos, reportarProgreso);
         }
 
         private async Task ExeclProcessAsync(List<CListaRequeridosBO> listaRequerimientos, ExcelDataDto _datos, IProgress<int> progress = null)
@@ -54,7 +51,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             libroExcel = miExcel.Workbooks.Add();
 
             hojaExcel = libroExcel.Worksheets[1];
-            hojaExcel.Name = _datos.Name;
+            hojaExcel.Name = _datos.LblEmision;
             hojaExcel.Visible = Excel.XlSheetVisibility.xlSheetVisible;
 
 
@@ -80,7 +77,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             oRange.Merge(true);
             oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
             //oRange.NumberFormat = "dd \"de\" mmmm \"de\" yyyy";
-            oRange.Value = _datos.NombreEmision;
+            oRange.Value = _datos.LblEmision;
 
 
             oRange.Cells.Locked = true;

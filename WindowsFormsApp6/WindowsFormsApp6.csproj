@@ -389,9 +389,12 @@
     <Compile Include="Helper\Strategy\Concretas\ExcelListadoSinDatos.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelMultasConDatos.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelMultasSinDatos.cs" />
+    <Compile Include="Helper\Strategy\Concretas\StoreMultasAsync.cs" />
+    <Compile Include="Helper\Strategy\Concretas\StoreRequerimientosAsync.cs" />
     <Compile Include="Helper\Strategy\ExcelMakerContext.cs" />
     <Compile Include="Helper\Strategy\IStrategyExcel.cs" />
     <Compile Include="Helper\Strategy\IWriter.cs" />
+    <Compile Include="Helper\Strategy\SaveDBContext.cs" />
     <Compile Include="IAcoplamiento.cs" />
     <Compile Include="ListadoMultados.cs">
       <SubType>Form</SubType>

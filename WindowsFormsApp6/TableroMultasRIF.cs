@@ -335,38 +335,28 @@ namespace WindowsFormsApp6
             }
         }
         
-        private void ActualizarBD()
+        private async Task ActualizarBD()
         {
-            
-            for (int i = 0; i < listReq.Count; i++)
-            {
 
-                if (listReq[i].Modificado && listReq[i].Estatus != "enviado")
-                    obReq.ModificaMultas(listReq[i]);//bdReq.ModificaMultasRif(listReq[i]);
-                if (listReq[i].ModificaObservacion)
-                    obReq.ObservacionesMultas(listReq[i]);//bdReq.ModificaObservacionesMultasRIF(listReq[i]);
+            string TipoDato = "multas";
+            ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, label1, TipoDato, obReq);
+            await actualizaBD.SaveChangesAsync(listReq);
 
-                tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / listReq.Count);
-                backgroundWorker1.ReportProgress(i * 100 / listReq.Count, tiG);
-            }
-            pbCarga.Value = 0;
-            label1.Text = "Listo.";
-            MessageBox.Show("Guardado completado");
         }
 
 
-        private void guardarToolStripButton_Click(object sender, EventArgs e)
+        private async  void guardarToolStripButton_Click(object sender, EventArgs e)
         {
-            guardar();
+            await guardar();
             cargarAvanceZona();
             cargarMultasRIF();
         }
 
-        private void guardar()
+        private async Task guardar()
         {
             //multaVencida();
-            MessageBox.Show("TotalReq Actualizados:" + listReq.Count);
-            ActualizarBD();
+           
+             await ActualizarBD();
         }
 
 
@@ -1069,550 +1059,11 @@ namespace WindowsFormsApp6
         }
         #endregion
         //Archivo ejecucionFiscal
-        private void excelEjecucion(Object sender, DoWorkEventArgs e)
-        {
-            TaskInfo ti = (TaskInfo)e.Argument;
-            BackgroundWorker bw = sender as BackgroundWorker;
-            CListaRequeridosBO Multa = new CListaRequeridosBO();
 
-            //extrae el argumento
-
-            ti.mensaje = "Procesando datos ";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-
-            int finalRow;
-            Excel.Application miExcel = default(Excel.Application);
-            Excel.Workbook libroExcel = default(Excel.Workbook);
-            Excel.Worksheet hojaExcel = default(Excel.Worksheet);
-
-
-
-            miExcel = new Excel.Application();
-            //miExcel.Visible = true;
-
-            libroExcel = miExcel.Workbooks.Add();
-
-            hojaExcel = libroExcel.Worksheets[1];
-            hojaExcel.Name = emisionMulta;
-            hojaExcel.Visible = Excel.XlSheetVisibility.xlSheetVisible;
-
-           
-            
-
-
-
-
-
-
-            ti.max = Convert.ToInt32(totalReq);
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-            hojaExcel.Activate();
-
-            Excel.Range oRange;
-            Excel.Range objCelda;
-
-
-            oRange = hojaExcel.Range["A7", "H7"];
-            oRange.Interior.ColorIndex = 15;
-
-
-
-            
-
-
-            //referencia general multa RIF [ref_num]
-            objCelda = hojaExcel.Range["B1", Type.Missing];
-            objCelda.Value = "REF_NUM";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C1", "D1"];//ref_num
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            //oRange.NumberFormat = "dd \"de\" mmmm \"de\" yyyy";
-            oRange.Value = emisionMulta;
-
-
-            oRange.Cells.Locked = true;
-            //referencia general multa RIF [ZONA]
-            objCelda = hojaExcel.Range["B2", Type.Missing];
-            objCelda.Value = "ZONA";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C2", "D2"];//ZONA
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = lblZonaName;
-            oRange.Cells.Locked = true;
-
-            //referencia general multa RIF [OHE]
-            objCelda = hojaExcel.Range["B3", Type.Missing];
-            objCelda.Value = "OHE";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C3", "D3"];//OHE
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = OHE;
-            oRange.Cells.Locked = true;
-
-
-
-            //referencia general multa RIF [FECHA EMISIÓN]
-            objCelda = hojaExcel.Range["B4", Type.Missing];
-            objCelda.Value = "Fecha emisión";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C4", "D4"];//FECHA EMISIÓN
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.NumberFormat = "dd \"de\" mmmm \"de\" yyyy";
-            oRange.Value = e.Result = DateTime.Today;
-            oRange.Cells.Locked = true;
-
-            //referencia general multa RIF [TOTAL REQUERIMIENTOS]
-            objCelda = hojaExcel.Range["B5", Type.Missing];
-            objCelda.Value = "Total requerimientos:";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C5", "D5"];//TOTAL REQUERIMIENTOS
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = ti.DatosRif.Rows.Count;
-            oRange.Locked = true;
-
-
-
-
-            objCelda = hojaExcel.Range["A7", Type.Missing];
-            objCelda.Value = "TIPO MULTA";
-
-            objCelda = hojaExcel.Range["B7", Type.Missing];
-            objCelda.Value = "NÚMERO \nDE MULTA";
-
-            objCelda = hojaExcel.Range["C7", Type.Missing];
-            objCelda.Value = "RFC";
-
-            objCelda = hojaExcel.Range["D7", Type.Missing];
-            objCelda.Value = "NÚMERO DE CONTROL SAT";
-
-            objCelda = hojaExcel.Range["E7", Type.Missing];
-            objCelda.Value = "RAZÓN SOCIAL";
-
-            objCelda = hojaExcel.Range["F7", Type.Missing];
-            objCelda.Value = "EMISION REQUERIMIENTO";
-
-            objCelda = hojaExcel.Range["G7", Type.Missing];
-            objCelda.Value = "FECHA DE NOTIFICACIÓN";
-
-            objCelda = hojaExcel.Range["H7", Type.Missing];
-            objCelda.Value = "FECHA DE VENCIMIENTO MULTA";
-
-            int i = 8;
-            int p = 0;
-            finalRow = i;
-
-            foreach (DataGridViewRow row in ti.DatosRif.Rows)
-            {
-                ti.mensaje = "Agregando registros" + (p + 1).ToString();
-                bw.WorkerReportsProgress = true;
-                bw.ReportProgress(p + 1, ti);
-
-
-
-
-                hojaExcel.Cells[i, "B"].NumberFormat = "000000";
-                hojaExcel.Cells[i, "G"].NumberFormat = "dd \"de\" mmmm \"de\" aaaa";
-                hojaExcel.Cells[i, "H"].NumberFormat = "dd \"de\" mmmm \"de\" aaaa";
-
-                Multa._idMultaRif = row.Cells[0].Value.ToString();
-                Multa.Ejecucion = "enviado";
-
-                hojaExcel.Cells[i, "A"] = row.Cells[1].Value.ToString();//tipo multa
-                hojaExcel.Cells[i, "B"] = row.Cells[2].Value.ToString();//Número de multa
-                hojaExcel.Cells[i, "C"] = row.Cells[3].Value.ToString();//rfc
-                hojaExcel.Cells[i, "D"] = row.Cells[4].Value.ToString();//Número de control SAT
-                hojaExcel.Cells[i, "e"] = row.Cells[5].Value.ToString();//razón social
-                hojaExcel.Cells[i, "F"] = row.Cells[6].Value.ToString();//emisión requerimientos
-                hojaExcel.Cells[i, "G"] = Convert.ToDateTime(row.Cells[10].Value.ToString());//fecha notificación
-                hojaExcel.Cells[i, "H"] = Convert.ToDateTime(row.Cells[15].Value.ToString());//fecha vencimiento
-
-                //modificar estado a enviado
-                //obReq.EjecucionMulta(Multa);
-
-                p++;
-                i++;
-            }
-
-
-            ti.mensaje = "Listado RIF generado";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(p, ti);
-
-
-            hojaExcel.Columns["A:H"].EntireColumn.AutoFit();
-            string finalRo;
-            finalRo = "N" + i;
-            oRange = hojaExcel.Range["H7", finalRo];
-            oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-            
-
-            string s = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string ruta = s + "\\RIF";
-
-
-            if (ti.DatosRif.Rows.Count == 0)
-                MessageBox.Show("Sin registros paraenviar");
-            else
-            {
-
-                if (!Directory.Exists(ruta))
-                    Directory.CreateDirectory(ruta);
-                try
-                {
-
-                    libroExcel.SaveAs(s + @"\RIF\" + "EJECUCION_" + hojaExcel.Name + "_" + OHE + "_" + ti.DatosRif.Rows.Count + ".xlsx");
-                    libroExcel.Close();
-                    releaseObject(libroExcel);
-                    MessageBox.Show("Libro guardado en Escritorio\\RIF");
-                }
-                catch (COMException ce)
-                {
-
-                    if ((uint)ce.ErrorCode == 0x800A03EC)
-                    {
-                        libroExcel.Close();
-                        releaseObject(libroExcel);
-                    }
-
-
-                }
-            }
-
-          
-
-            ti.mensaje = "Listo.";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-
-        }
 
         #region "Creacion archivo excel"
-        private void excelDatos(Object sender, DoWorkEventArgs e)
-        {
 
 
-            
-            TaskInfo ti = (TaskInfo)e.Argument;
-            BackgroundWorker bw = sender as BackgroundWorker;
-
-            //extrae el argumento
-
-            ti.mensaje = "Procesando datos ";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-
-            int finalRow;
-            Excel.Application miExcel = default(Excel.Application);
-            Excel.Workbook libroExcel = default(Excel.Workbook);
-            Excel.Worksheet hojaExcel = default(Excel.Worksheet);
-
-           
-            
-            
-
-
-            miExcel = new Excel.Application();
-            //miExcel.Visible = true;
-
-            libroExcel = miExcel.Workbooks.Add();
-
-            hojaExcel = libroExcel.Worksheets[1];
-            hojaExcel.Visible = Excel.XlSheetVisibility.xlSheetVisible;
-            hojaExcel.Name = emisionMulta;
-
-
-            totalReq = Convert.ToString( ti.DatosRif.Rows.Count);
-
-            ti.max = Convert.ToInt32 (totalReq);
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-            hojaExcel.Activate();
-
-            Excel.Range oRange;
-            Excel.Range objCelda;
-
-            
-            oRange = hojaExcel.Range["A7", "E7"];
-            oRange.Interior.ColorIndex = 15;
-            oRange = hojaExcel.Range["F7", "J7"];
-            oRange.Interior.ColorIndex = 16;
-
-            oRange = hojaExcel.Range["K7", "M7"];
-            oRange.Interior.ColorIndex = 3;
-
-            oRange = hojaExcel.Range["E7", "M7"];
-            oRange.ColumnWidth = 15;
-
-            oRange = hojaExcel.Range["N7", "N7"];
-            oRange.ColumnWidth = 36;
-
-            oRange = hojaExcel.Range["N7", "N7"];
-            oRange.Interior.ColorIndex = 16;
-
-
-
-
-            //referencia general multa RIF [ref_num]
-            objCelda = hojaExcel.Range["B1", Type.Missing];
-            objCelda.Value = "REF_NUM";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C1", "D1"];//ref_num
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            //oRange.NumberFormat = "dd \"de\" mmmm \"de\" yyyy";
-            oRange.Value = emisionMulta;
-
-
-            oRange.Cells.Locked = true;
-            //referencia general multa RIF [ZONA]
-            objCelda = hojaExcel.Range["B2", Type.Missing];
-            objCelda.Value = "ZONA";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C2", "D2"];//ZONA
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = lblZonaName;
-            oRange.Cells.Locked = true;
-
-            //referencia general multa RIF [OHE]
-            objCelda = hojaExcel.Range["B3", Type.Missing];
-            objCelda.Value = "OHE";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C3", "D3"];//OHE
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = OHE;
-            oRange.Cells.Locked = true;
-
-
-
-            //referencia general multa RIF [FECHA EMISIÓN]
-            objCelda = hojaExcel.Range["B4", Type.Missing];
-            objCelda.Value = "Fecha emisión";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C4", "D4"];//FECHA EMISIÓN
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.NumberFormat = "dd \"de\" mmmm \"de\" yyyy";
-            oRange.Value = e.Result = fechaMulta;
-            oRange.Cells.Locked = true;
-
-            //referencia general multa RIF [TOTAL REQUERIMIENTOS]
-            objCelda = hojaExcel.Range["B5", Type.Missing];
-            objCelda.Value = "Total requerimientos:";
-            oRange.Cells.Locked = true;
-            oRange = hojaExcel.Range["C5", "D5"];//TOTAL REQUERIMIENTOS
-            oRange.Merge(true);
-            oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignLeft;
-            oRange.Value = ti.DatosRif.Rows.Count;
-            oRange.Locked = true;
-
-
-
-
-            objCelda = hojaExcel.Range["A7", Type.Missing];
-            objCelda.Value = "TIPO MULTA";
-
-            objCelda = hojaExcel.Range["B7", Type.Missing];
-            objCelda.Value = "NÚMERO \nDE MULTA";
-
-            objCelda = hojaExcel.Range["C7", Type.Missing];
-            objCelda.Value = "RFC";
-
-            objCelda = hojaExcel.Range["D7", Type.Missing];
-            objCelda.Value = "NÚMERO DE CONTROL SAT";
-
-            objCelda = hojaExcel.Range["E7", Type.Missing];
-            objCelda.Value = "RAZÓN SOCIAL";
-
-            objCelda = hojaExcel.Range["F7", Type.Missing];
-            objCelda.Value = "EMISION REQUERIMIENTO";
-
-            objCelda = hojaExcel.Range["G7", Type.Missing];
-            objCelda.Value = "NUMERO DE \nREQUERIMIENTO";
-
-            objCelda = hojaExcel.Range["H7", Type.Missing];
-            objCelda.Value = "LOCALIZADO \nNO LOCALIZADO";
-
-            objCelda = hojaExcel.Range["I7", Type.Missing];
-            objCelda.Value = "FECHA \nCITATORIO";
-
-            objCelda = hojaExcel.Range["J7", Type.Missing];
-            objCelda.Value = "FECHA DE \nNOTIFICACIÓN";
-
-            objCelda = hojaExcel.Range["K7", Type.Missing];
-            objCelda.Value = "FECHA DE \nPAGO";
-
-            objCelda = hojaExcel.Range["L7", Type.Missing];
-            objCelda.Value = "IMPORTE";
-
-            objCelda = hojaExcel.Range["M7", Type.Missing];
-            objCelda.Value = "CUMPLIO \nANTES";
-
-            objCelda = hojaExcel.Range["N7", Type.Missing];
-            objCelda.Value = "OBSERVACIONES";
-            
-
-
-            int i = 8;
-            int p = 0;
-            finalRow = i;
-
-            foreach (DataGridViewRow row in ti.DatosRif.Rows)
-            {
-                ti.mensaje = "Agregando registros" + (p + 1).ToString();
-                bw.WorkerReportsProgress = true;
-                bw.ReportProgress(p + 1, ti);
-
-                hojaExcel.Cells[i, "B"].NumberFormat = "000000";
-                hojaExcel.Cells[i, "G"].NumberFormat = "000000";
-
-
-                hojaExcel.Cells[i, "A"] = row.Cells[1].Value.ToString();//tipo multa
-                hojaExcel.Cells[i, "B"] = row.Cells[2].Value.ToString();//Número de multa
-                hojaExcel.Cells[i, "C"] = row.Cells[3].Value.ToString();//rfc
-                hojaExcel.Cells[i, "D"] = row.Cells[4].Value.ToString();//Número de control SAT
-                hojaExcel.Cells[i, "e"] = row.Cells[5].Value.ToString();//razón social
-                hojaExcel.Cells[i, "F"] = row.Cells[6].Value.ToString();//emisión requerimientos
-                hojaExcel.Cells[i, "G"] = row.Cells[7].Value.ToString();//número de requerimiento
-                /*hojaExcel.Cells[i, "H"] = row.Cells[8].Value.ToString();//localizado No localizado
-                hojaExcel.Cells[i, "I"] = row.Cells[9].Value.ToString();//fecha citatorio
-                hojaExcel.Cells[i, "J"] = row.Cells[10].Value.ToString();//fecha notificacion
-                hojaExcel.Cells[i, "K"] = row.Cells[11].Value.ToString();//fecha de pago
-                hojaExcel.Cells[i, "L"] = row.Cells[12].Value.ToString();//importe*/
-                //hojaExcel.Cells[i, "M"] = row.Cells[13].Value.ToString();//cumplió antes
-                //hojaExcel.Cells[i, "N"] = row.Cells[15].Value.ToString();//cumplió antes*/
-
-
-
-                p++;
-                i++;
-            }
-
-            
-            ti.mensaje = "Listado RIF generado";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(p, ti);
-
-
-            hojaExcel.Columns["A:G"].EntireColumn.AutoFit();
-            string finalRo;
-            finalRo = "N" + i;
-            oRange = hojaExcel.Range["G7", finalRo];
-            oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
-
-            oRange = hojaExcel.Range["A7", "N7"];
-            oRange.Cells.Locked = true;
-
-            oRange = hojaExcel.Range["H8", finalRo];
-            oRange.Cells.Locked = false;
-
-            hojaExcel.Protect("vicrif", true);
-
-            string s = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string ruta = s + "\\RIF";
-
-            if (!Directory.Exists(ruta))
-                Directory.CreateDirectory(ruta);
-            try
-            {
-                
-                libroExcel.SaveAs(s + @"\RIF\" + tipoMultaEmision + hojaExcel.Name + "_"+ OHE  +"_"+ totalReq + ".xls");
-                libroExcel.Close();
-                releaseObject(libroExcel);
-                MessageBox.Show("Libro guardado en Escritorio\\RIF");
-            }
-            catch (COMException ce)
-            {
-
-                if ((uint)ce.ErrorCode == 0x800A03EC)
-                {
-                    libroExcel.Close();
-                    releaseObject(libroExcel);
-                }
-
-
-            }
-
-            ti.mensaje = "Listo.";
-            bw.WorkerReportsProgress = true;
-            bw.ReportProgress(0, ti);
-
-
-        }
-
-
-        private void _hilo1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            try
-            {
-                TaskInfo ti = (TaskInfo)e.UserState;
-                //Asignamos los máximos de las barras de progreso y los registros a procesar
-                pbCarga.Maximum = ti.DatosRif.Rows.Count;
-                //Actualizamos la barra de progreso
-                pbCarga.Value = e.ProgressPercentage;
-                //Asignamos los datos de la factura
-                if (ti.mensaje != "")
-                {
-                    lblStatus.Text = ti.mensaje;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                lblStatus.Text = ex.Message;
-            }
-        }
-
-        private void _hilo1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            try
-            {
-                lblStatus.Text = "Proceso completado";
-                bindingNavigator1.Enabled = true;
-                cargarMultasRIF();
-
-
-            }
-            catch (Exception ex)
-            {
-
-                lblStatus.Text = ex.Message;
-
-            }
-        }
-
-        private void releaseObject(object ob)
-        {
-
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(ob);
-                ob = null;
-            }
-            catch (Exception ex)
-            {
-
-                ob = null;
-                MessageBox.Show("Error al liberar" + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
         private async void toolStripButton1_Click(object sender, EventArgs e)
         {
             bindingNavigator1.Enabled = false;
@@ -1631,8 +1082,6 @@ namespace WindowsFormsApp6
         }
         private async void tsExcelMultas_Click(object sender, EventArgs e)
         {
-
-
 
             bindingNavigator1.Enabled = false;
 
@@ -1660,43 +1109,25 @@ namespace WindowsFormsApp6
 
         #endregion
         //listado para ejecución fiscal
-        private void tsEjecucionFiscal_Click(object sender, EventArgs e)
+        private async void tsEjecucionFiscal_Click(object sender, EventArgs e)
         {
-            COficioPAEBO pae = new COficioPAEBO();
             listReq = obReq.ListadoEjecucionFiscal(Convert.ToString(idEmision), OHE);//bdReq.GetListadoEjecucionFiscal (Convert.ToString(idEmision), OHE);
             cListaRequeridosBOBindingSource.DataSource = listReq;
             dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
 
-            
-            pae.tipoPAE = 2;
-            pae.FechaCreacion = DateTime.UtcNow;
-            
-
             bindingNavigator1.Enabled = false;
-            try
-            {
-                BackgroundWorker _hilo1 = new BackgroundWorker();
-                _hilo1.DoWork += new DoWorkEventHandler(excelEjecucion);
-                _hilo1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_hilo1_RunWorkerCompleted);
-                _hilo1.ProgressChanged += new ProgressChangedEventHandler(_hilo1_ProgressChanged);
 
-                TaskInfo ti = new TaskInfo();
-                ti.DatosRif = dgTablaMultasRIF;
-                ti.mensaje = "Procesando carga de datos . . .";
+            ExcelDataDto datos = new ExcelDataDto();
+            datos.LblEmision = emisionMulta;
+            datos.LblZonaName = lblZonaName;
+            datos.CmbOHE = OHE;
+            datos.FechaEmision = fechaMulta;
+            datos.TipoMultaEmision = tipoMultaEmision;
 
-                _hilo1.RunWorkerAsync(ti);
+            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, label1, datos, "Ejecucion");
+            await excel.WriterAsync(listReq);
 
-            }
-            catch (Exception ex)
-            {
-
-
-                lblStatus.Text += ex.Source.ToString() + " - " + ex.Message + "\r\n";
-
-            }
-
-            
-
+            bindingNavigator1.Enabled = true;
 
         }
 
@@ -1715,13 +1146,13 @@ namespace WindowsFormsApp6
             visorImpresor.Visible = true;
         }
 
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            TaskInfo tiG = (TaskInfo)e.UserState;
-            pbCarga.Value = e.ProgressPercentage;
-            label1.Text = tiG.mensaje;
-            label1.Update();
-        }
+        //private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        //{
+        //    TaskInfo tiG = (TaskInfo)e.UserState;
+        //    pbCarga.Value = e.ProgressPercentage;
+        //    label1.Text = tiG.mensaje;
+        //    label1.Update();
+        //}
 
         private void dgTablaMultasRIF_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -1746,12 +1177,12 @@ namespace WindowsFormsApp6
 
         }
 
-        private void toolStripTextBusquedaMultas_KeyDown(object sender, KeyEventArgs e)
+        private async void toolStripTextBusquedaMultas_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13)
             {
                 if (!Modificado())
-                    ActualizarBD();
+                   await ActualizarBD();
                 if (!string.IsNullOrEmpty(toolStripTextBusquedaMultas.Text))
                 {
 

@@ -554,7 +554,6 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Posición";
             this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -596,7 +595,6 @@
             // 
             // toolStripTextBusqueda
             // 
-            this.toolStripTextBusqueda.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBusqueda.Name = "toolStripTextBusqueda";
             this.toolStripTextBusqueda.Size = new System.Drawing.Size(200, 31);
             this.toolStripTextBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBusqueda_KeyDown);

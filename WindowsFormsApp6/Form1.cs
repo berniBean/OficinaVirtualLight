@@ -357,7 +357,7 @@ namespace WindowsFormsApp6
         {
             string TipoDato = "requerimiento";
             ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, lblListo, TipoDato, obReq );
-            await actualizaBD.GuardarAsync(listReq);
+            await actualizaBD.SaveChangesAsync(listReq);
         }
 
 
@@ -376,7 +376,7 @@ namespace WindowsFormsApp6
         private async Task guardar()
         {
            
-            MessageBox.Show("TotalReq Actualizados:" + listReq.Count);
+            
             await ActualizarBD();
             CargarRequerimientos();
         }
