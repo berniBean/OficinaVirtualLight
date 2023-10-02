@@ -15,7 +15,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace WindowsFormsApp6.Helper.Strategy.Concretas
 {
 
-    class ExcelListadoConDatos : AbstractProgress, IStrategyExcel
+    class ExcelListadoConDatos : AbstractProgress, IStrategyExcel<CListaRequeridosBO>
     {
         private readonly ToolStripProgressBar _progressBar;
         private readonly ToolStripStatusLabel _tsStatus;
@@ -240,7 +240,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             try
             {
 
-                libroExcel.SaveAs(s + @"\RIF\" + _datos.LblEmision + "_" + hojaExcel.Name + " " + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() + ".xls");
+                libroExcel.SaveAs(WriterHelperExcel.GetNameFile(_datos.Name));
                 libroExcel.Close();
                 releaseObject(libroExcel);
                 MessageBox.Show("Libro guardado en Escritorio\\RIF");

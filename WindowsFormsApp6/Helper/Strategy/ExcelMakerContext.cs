@@ -4,11 +4,11 @@ using WindowsFormsApp6.CAD.BO;
 
 namespace WindowsFormsApp6.Helper.Strategy
 {
-    public class ExcelMakerContext
+    public class ExcelMakerContext<T>
     {
-        private IStrategyExcel _strategyExcel;
+        private IStrategyExcel<T> _strategyExcel;
 
-        public IStrategyExcel StrategyExcel
+        public IStrategyExcel<T> StrategyExcel
         {
             set
             {
@@ -16,12 +16,12 @@ namespace WindowsFormsApp6.Helper.Strategy
             }
         }
 
-        public ExcelMakerContext( IStrategyExcel strategyExcel)
+        public ExcelMakerContext( IStrategyExcel<T> strategyExcel)
         {
             _strategyExcel = strategyExcel;
         }
 
-        public async Task RunStrategyExcel(List<CListaRequeridosBO> listaRequerimientos, ExcelDataDto datos)
+        public async Task RunStrategyExcel(List<T> listaRequerimientos, ExcelDataDto datos)
         {
             await _strategyExcel.MakeExcelAsync(listaRequerimientos, datos);
         }

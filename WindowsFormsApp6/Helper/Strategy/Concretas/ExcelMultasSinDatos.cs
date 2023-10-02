@@ -12,7 +12,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WindowsFormsApp6.Helper.Strategy.Concretas
 {
-    class ExcelMultasSinDatos : AbstractProgress, IStrategyExcel
+    class ExcelMultasSinDatos : AbstractProgress, IStrategyExcel<CListaRequeridosBO>
     {
         private readonly ToolStripProgressBar _progressBar;
         private readonly ToolStripStatusLabel _tsStatus;

@@ -15,8 +15,9 @@ namespace WindowsFormsApp6.structs
         private readonly ToolStripProgressBar _progressBar;
         private readonly ToolStripStatusLabel _tsStatus;
         private readonly Label _lblProgress;
-        private readonly ExcelDataDto _datos;
-        private ExcelMakerContext _contextExcel;
+        private readonly ExcelDataDto _datos;      
+        private ExcelMakerContext<CListaRequeridosBO> _contextExcel;
+        
 
         public ToExcelAsync(ToolStripProgressBar progressBar, ToolStripStatusLabel tsStatus, Label lblProgress, ExcelDataDto datos, string tipo)
         {
@@ -24,22 +25,22 @@ namespace WindowsFormsApp6.structs
             _lblProgress = lblProgress;
             _datos = datos;
             _tsStatus = tsStatus;
-            if (tipo.Equals("ListadoSinDatos"))
-                _contextExcel = new ExcelMakerContext(new ExcelListadoSinDatos(_progressBar, _tsStatus, _lblProgress));
+            if (tipo.Equals("ListadoSinDatos"))            
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelListadoSinDatos(_progressBar, _tsStatus, _lblProgress));                           
             if (tipo.Equals("ListadoConDatos"))
-                _contextExcel = new ExcelMakerContext(new ExcelListadoConDatos(_progressBar, _tsStatus, _lblProgress));
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelListadoConDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("MultasSinDatos"))
-                _contextExcel = new ExcelMakerContext(new ExcelMultasSinDatos(_progressBar, _tsStatus, _lblProgress));
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelMultasSinDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("MultasConDatos"))
-                _contextExcel = new ExcelMakerContext(new ExcelMultasConDatos(_progressBar, _tsStatus, _lblProgress));
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelMultasConDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("Ejecucion"))
-                _contextExcel = new ExcelMakerContext(new ExcelEjecucion(_progressBar, _tsStatus, _lblProgress));
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelEjecucion(_progressBar, _tsStatus, _lblProgress));
         }
 
 
         public async Task WriterAsync(IEnumerable<CListaRequeridosBO> data)
         {
-
+                
             await MakeExcelAsync(data.ToList());
         }
 

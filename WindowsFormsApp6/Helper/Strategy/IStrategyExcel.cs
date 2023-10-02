@@ -8,8 +8,8 @@ using WindowsFormsApp6.CAD.BO;
 
 namespace WindowsFormsApp6.Helper.Strategy
 {
-    public interface IStrategyExcel 
+    public interface IStrategyExcel<T>
     {
-        Task MakeExcelAsync(IEnumerable<CListaRequeridosBO> listaRequerimientos, ExcelDataDto datos);
+        Task MakeExcelAsync(IEnumerable<T> listaRequerimientos, ExcelDataDto datos = null);
     }
 }

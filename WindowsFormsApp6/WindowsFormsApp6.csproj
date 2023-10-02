@@ -385,6 +385,7 @@
     </Compile>
     <Compile Include="Helper\ExcelDataDto.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelEjecucion.cs" />
+    <Compile Include="Helper\Strategy\Concretas\ExcelInformeRequermiento.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelListadoConDatos.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelListadoSinDatos.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelMultasConDatos.cs" />
@@ -494,6 +495,7 @@
     <Compile Include="structs\pdfAbstract.cs" />
     <Compile Include="structs\StaticPercentage.cs" />
     <Compile Include="structs\ToExcelAsync.cs" />
+    <Compile Include="structs\ToExcelTableroAsync.cs" />
     <Compile Include="TableroMultasRIF.cs">
       <SubType>Form</SubType>
     </Compile>

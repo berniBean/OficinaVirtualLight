@@ -222,7 +222,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("avanceEmisionGeneralPLUS", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("AvanceTipoC", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -234,17 +234,16 @@ namespace WindowsFormsApp6.CAD.DAL
 
                     while (lector.Read())
                     {
-                        CTableroAdminBO fila = new CTableroAdminBO(
-                        Convert.ToString(lector["zona"] is DBNull ? null : lector["zona"]),
-                            Convert.ToString(lector["OHE"] is DBNull ? null : lector["OHE"]),
-                            Convert.ToInt16(lector["Total"] is DBNull ? null : lector["total"]),
-                            Convert.ToInt16(lector["pendientes"] is DBNull ? null : lector["pendientes"]),
-                            Convert.ToInt16(lector["Localizado"] is DBNull ? null : lector["Localizado"]),
-                            Convert.ToInt16(lector["Nolocalizado"] is DBNull ? null : lector["Nolocalizado"]),
-                            Convert.ToInt16(lector["NoTrabajado"] is DBNull ? null : lector["NoTrabajado"]),
-                            Convert.ToInt16(lector["porcentajeFalla"] is DBNull ? null : lector["porcentajeFalla"]),
-                            Convert.ToInt16(lector["pndPDF"] is DBNull ? null : lector["pndPDF"])
-                            );
+                        CTableroAdminBO fila = new CTableroAdminBO();
+
+                        fila._zona = Convert.ToString(lector["zona"] is DBNull ? null : lector["zona"]);
+                        fila._ohe = Convert.ToString(lector["OHE"] is DBNull ? null : lector["OHE"]);
+                        fila._numCtrl = Convert.ToString(lector["numCtrl"] is DBNull ? null : lector["numCtrl"]);
+                        fila._diligencia = Convert.ToString(lector["diligenica"] is DBNull ? null : lector["diligenica"]);
+                        fila._estatus = Convert.ToString(lector["estatus"] is DBNull ? null : lector["estatus"]);
+                        fila._tipoc = Convert.ToString(lector["tipoc"] is DBNull ? null : lector["tipoc"]);
+                        fila._pdf = Convert.ToString(lector["pdf"] is DBNull ? null : lector["pdf"]);
+                        
                         listTablero.Add(fila);
 
                     }

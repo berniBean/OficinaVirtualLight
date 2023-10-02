@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AvanceGeneral));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this._noTrabajado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oheDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pendientesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.localizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noLocalizadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._noTrabajado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeFallaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.municipioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numReqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,10 +68,16 @@
             this.cobradosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalImporteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.honorariosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTableroAdminBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._pndPDF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTableroAdminBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.lblStatus = new System.Windows.Forms.ToolStripLabel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTableroAdminBOBindingSource)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -120,18 +127,11 @@
             this._pndPDF});
             this.dataGridView1.DataSource = this.cTableroAdminBOBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1223, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(1217, 406);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // _noTrabajado
-            // 
-            this._noTrabajado.DataPropertyName = "_noTrabajado";
-            this._noTrabajado.HeaderText = "No trabajado";
-            this._noTrabajado.Name = "_noTrabajado";
-            this._noTrabajado.ReadOnly = true;
             // 
             // zonaDataGridViewTextBoxColumn
             // 
@@ -174,6 +174,13 @@
             this.noLocalizadoDataGridViewTextBoxColumn.HeaderText = "No Localizado";
             this.noLocalizadoDataGridViewTextBoxColumn.Name = "noLocalizadoDataGridViewTextBoxColumn";
             this.noLocalizadoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // _noTrabajado
+            // 
+            this._noTrabajado.DataPropertyName = "_noTrabajado";
+            this._noTrabajado.HeaderText = "No trabajado";
+            this._noTrabajado.Name = "_noTrabajado";
+            this._noTrabajado.ReadOnly = true;
             // 
             // porcentajeFallaDataGridViewTextBoxColumn
             // 
@@ -414,10 +421,6 @@
             this.honorariosDataGridViewTextBoxColumn.ReadOnly = true;
             this.honorariosDataGridViewTextBoxColumn.Visible = false;
             // 
-            // cTableroAdminBOBindingSource
-            // 
-            this.cTableroAdminBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CTableroAdminBO);
-            // 
             // _pndPDF
             // 
             this._pndPDF.DataPropertyName = "_pndPDF";
@@ -425,17 +428,62 @@
             this._pndPDF.Name = "_pndPDF";
             this._pndPDF.ReadOnly = true;
             // 
+            // cTableroAdminBOBindingSource
+            // 
+            this.cTableroAdminBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CTableroAdminBO);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.lblStatus});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1223, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(83, 22);
+            this.toolStripButton1.Text = "Informe excel";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 22);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 25);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1223, 425);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            // 
             // AvanceGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1223, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.toolStrip1);
             this.Name = "AvanceGeneral";
             this.Text = "AvanceGeneral";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTableroAdminBOBindingSource)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -481,5 +529,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalImporteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn honorariosDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn _pndPDF;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripLabel lblStatus;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

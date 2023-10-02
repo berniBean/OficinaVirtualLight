@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace WindowsFormsApp6.CAD.BO
 {
-    public class CTableroAdminBO
+    public class CTableroAdminBO 
     {
+        //tableroXtipoC
+        
+
+
         //tableroJEFEPLUS
         public int _idEmision { get; set; }
         public string _referenciaNumercia { get; set; }
@@ -189,6 +190,6 @@ namespace WindowsFormsApp6.CAD.BO
             
         }
 
-
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
