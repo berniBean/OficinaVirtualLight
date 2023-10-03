@@ -101,9 +101,37 @@ namespace WindowsFormsApp6
 
         private async void toolStripButton1_Click(object sender, EventArgs e)
         {
+            var raton = (from item in _datosQuery
+                         group item by new {item._emision} into grupo
+                        select new ExcelDataDto
+                        {
+                            Total = grupo.Count(),
+                            Localizado =  grupo.Count(d => d._diligencia.Equals("LOCALIZADO")),
+                            NoLocalizado = grupo.Count(d => d._diligencia.Equals("NO LOCALIZADO")),
+                            NoTrabajado = grupo.Count(d => d._diligencia.Equals("NO TRABAJADO")),
+                            PorcentajeFalla = StaticPercentage.PercentageProgress(grupo.Count(d => d._diligencia.Equals("NO LOCALIZADO")), grupo.Count()),
+                            PendientePdf = grupo.Count(d => d._pdf.Equals("pendiente")),
+                            Fisicas = grupo.Count(d=>d._tipoc.Equals("F")),
+                            Morales = grupo.Count(d => d._tipoc.Equals("M"))
+
+                        }).ToList();
+
+
             ExcelDataDto datos = new ExcelDataDto();
             datos.Name = WriterHelperExcel.GetNameFile( _nombreEmision);
             datos.LblEmision = _nombreEmision;
+            foreach (var item in raton)
+            {
+                datos.Total = item.Total;
+                datos.Localizado = item.Localizado;
+                datos.NoLocalizado = item.NoLocalizado;
+                datos.NoTrabajado = item.NoTrabajado;
+                datos.PorcentajeFalla = item.PorcentajeFalla;
+                datos.PendientePdf = item.PendientePdf;
+                datos.Fisicas = item.Fisicas;
+                datos.Morales = item.Morales;
+            }
+            
             ToExcelTableroAsync excel = new ToExcelTableroAsync(lblStatus, datos, "InformePlus");
             await  excel.WriterAsync(_datosQuery);
 

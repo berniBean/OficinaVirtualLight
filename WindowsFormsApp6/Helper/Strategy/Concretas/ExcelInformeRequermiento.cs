@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleanArchitecture.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
         public async Task MakeExcelAsync(IEnumerable<CTableroAdminBO> listaRequerimientos, ExcelDataDto datos = null)
         {
-            await ExeclProcessAsync(ListadoReq(listaRequerimientos.ToList()), datos,reportarProgreso);
+            await ExeclProcessAsync(ListadoReq(listaRequerimientos.ToList()), datos, reportarProgreso);
         }
 
         private List<CTableroAdminBO> ListadoReq(List<CTableroAdminBO> listaRequerimientos)
@@ -41,7 +42,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             _noTrabajado = grupo.Count(d => d._diligencia.Equals("NO TRABAJADO")),
                             _pendiente = grupo.Count(d => d._diligencia == null),
                             _pndPDF = grupo.Count(d => d._pdf.Equals("pendiente")),
-                            
+
 
                         }).ToList();
 
@@ -52,23 +53,29 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
         private List<CTableroAdminBO> ListadoReqTotales(List<CTableroAdminBO> listaRequerimientos)
         {
+
+
             var raton = (from item in listaRequerimientos
                          group item by new { item._tipoc } into grupo
                          select new CTableroAdminBO
                          {
                              _tipoM = grupo.Count(d => d._tipoc.Contains("F")).ToString(),
-                             _tipoc = grupo.Count(d => d._tipoc.Contains("M")).ToString()
+                             _tipoc = grupo.Count(d => d._tipoc.Contains("M")).ToString(),
+                             _total = grupo.Count(),
+                             _localizado = grupo.Count(d => d._diligencia.Equals("LOCALIZADO")),
+                             _noLocalizado = grupo.Count(d => d._diligencia.Equals("NO LOCALIZADO")),
+                             _noTrabajado = grupo.Count(d => d._diligencia.Equals("NO TRABAJADO")),
+                             _porcentajeFalla = StaticPercentage.PercentageProgress(grupo.Count(d => d._diligencia.Equals("NO LOCALIZADO")), grupo.Count()),
+                             _pndPDF = grupo.Count(d => d._pdf.Equals("pendiente"))
                          }).ToList();
             return raton;
         }
 
 
-        private async Task ExeclProcessAsync(List<CTableroAdminBO> listaRequerimientos,ExcelDataDto _datos, IProgress<int> progress = null) 
+        private async Task ExeclProcessAsync(List<CTableroAdminBO> listaRequerimientos, ExcelDataDto _datos, IProgress<int> progress = null)
         {
             using var semaforo = new SemaphoreSlim(50);
             var tareas = new List<Task<string>>();
-
-
 
 
             #region ConfiguracionReporteExcel
@@ -88,6 +95,8 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
 
             hojaExcel.Activate();
+         
+
 
             Excel.Range oRange;
             Excel.Range objCelda;
@@ -99,12 +108,11 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             oRange = hojaExcel.Range["B1", "F1"];//ref_num
             oRange.Merge(true);
             oRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
-            oRange.Value = _datos.LblZonaName;
             oRange.Cells.Locked = true;
 
 
-
-
+            objCelda = hojaExcel.Range["G1", Type.Missing];
+            objCelda.Value = "Fecha de corte: " + DateFormatHelper.FechaCorta(DateTime.Now);
 
 
 
@@ -149,7 +157,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                     {
                         if (progress != null)
                         {
-                            
+
 
 
                             hojaExcel.Cells[i, "A"] = item._zona;//tipo multa
@@ -158,7 +166,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             hojaExcel.Cells[i, "D"] = item._localizado;//Número de control SAT
                             hojaExcel.Cells[i, "e"] = item._noLocalizado;//razón social
                             hojaExcel.Cells[i, "F"] = item._noTrabajado;//emisión requerimientos
-                            hojaExcel.Cells[i, "G"] = StaticPercentage.PercentageProgress( item._noLocalizado , item._total).ToString() + "%";//fecha notificación
+                            hojaExcel.Cells[i, "G"] = StaticPercentage.PercentageProgress(item._noLocalizado, item._total).ToString() + "%";//fecha notificación
                             hojaExcel.Cells[i, "H"] = item._pndPDF;//fecha vencimiento
 
                             p++;
@@ -181,11 +189,76 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
             await Task.WhenAll(tareas);
 
-            hojaExcel.Columns["A:H"].EntireColumn.AutoFit();
             string finalRo;
+
+
+            finalRo = "B" + i ;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = "Total";
+
+            finalRo = "C" + i;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.Total;
+
+            finalRo = "D" + i;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.Localizado;
+
+            finalRo = "E" + i;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.NoLocalizado;
+
+            finalRo = "F" + i;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.NoTrabajado;
+
+            finalRo = "G" + i;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.PorcentajeFalla + "%";
+
+            finalRo = "H" + i;
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.PendientePdf;
+
+            hojaExcel.Columns["A:H"].EntireColumn.AutoFit();
+
             finalRo = "N" + i;
             oRange = hojaExcel.Range["H2", finalRo];
             oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+
+            finalRo = "D" + (i + 3);
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = "FISICAS";
+
+
+            finalRo = "E" + (i + 3);
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.Fisicas;
+
+            finalRo = "D" + (i + 4);
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = "MORALES";
+
+            finalRo = "E" + (i + 4);
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.Morales;
+
+            finalRo = "D" + (i + 5);
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = "TOTALES";
+
+            finalRo = "E" + (i + 5);
+            objCelda = hojaExcel.Range[finalRo];
+            objCelda.Value = _datos.Total;
+
+
+            oRange = hojaExcel.Range["D" + (i + 3) + ":" + "E" + (i + 5)];
+            oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
+
+
+
+
 
 
             string s = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -246,7 +319,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
         public override void ReportarProgreso(int porcentaje)
         {
-            
+
 
             if (porcentaje != 100 && porcentaje > 0)
             {
@@ -259,6 +332,6 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             }
         }
 
- 
+
     }
 }
