@@ -87,7 +87,7 @@ namespace WindowsFormsApp6
                             _localizado = grupo.Count(d => d._diligencia.Equals("LOCALIZADO")),
                             _noLocalizado = grupo.Count(d => d._diligencia.Equals("NO LOCALIZADO")),
                             _noTrabajado = grupo.Count(d => d._diligencia.Equals("NO TRABAJADO")),
-                            _pendiente = grupo.Count(d => d._diligencia == null),
+                            _pendientes = grupo.Count(d => d._estatus.Equals("pendiente")),
                             _porcentajeFalla = StaticPercentage.PercentageProgress(grupo.Count(d => d._diligencia.Equals("NO LOCALIZADO")), grupo.Count()),
                             _pndPDF = grupo.Count(d => d._pdf.Equals("pendiente")),
 
