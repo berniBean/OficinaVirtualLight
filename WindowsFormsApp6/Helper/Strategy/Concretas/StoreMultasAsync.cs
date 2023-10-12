@@ -50,7 +50,8 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             CumplioAntes = item.CumplioAntes,
                             _fechaVencimiento = item._fechaVencimiento,
                             Estatus = item.Estatus,
-                            Ejecucion = item.Ejecucion
+                            Ejecucion = item.Ejecucion,
+                           Observaciones = item.Observaciones
 
                         }).ToList();
 
