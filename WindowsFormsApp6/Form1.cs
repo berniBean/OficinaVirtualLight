@@ -1199,6 +1199,9 @@ namespace WindowsFormsApp6
 
             ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, lblListo, datos, "ListadoSinDatos") ;
             await excel.WriterAsync(listReq);
+         
+
+            
 
 
             lblStatus.Text = "";
@@ -1441,6 +1444,9 @@ namespace WindowsFormsApp6
             await excel.WriterAsync(listReq);
 
 
+
+            
+
             lblStatus.Text = "";
             cmbAnho.Enabled = true;
             CmbEmision.Enabled = true;
@@ -1450,6 +1456,10 @@ namespace WindowsFormsApp6
             DgReqActivos2.Enabled = true;
             bindingNavigator1.Enabled = true;
         }
+
+ 
+
+
     }
 }
 

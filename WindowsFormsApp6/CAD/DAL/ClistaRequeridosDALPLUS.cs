@@ -582,7 +582,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_oficioSEFIPLAN", OficioVacio(bo.OficioSEFIPLAN, bo.FechaNotificacion, bo.Diligencia));
                     OrdenSql.Parameters.AddWithValue("@_fechaEnvioSEFIPLAN", VerificaFecha(bo.FechaEnvioSefiplan, bo.FechaNotificacion, bo.Diligencia));
                     OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
-                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Modificado, bo.Diligencia));
+                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Diligencia));
                    
 
                     //Abrir la conexion de base de Datos
@@ -619,7 +619,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_honorarios", VerificaHonorarios( bo.Honorarios, bo.Diligencia, bo.Importe, bo.FechaPago));//importeMulta
                     OrdenSql.Parameters.AddWithValue("@_cumplioAntes",verificaCumplioAntes( bo.CumplioAntes, bo.Diligencia));//cumplioAntes
                     OrdenSql.Parameters.AddWithValue("@_fechaVencimientoMulta", VerificaFecha(bo._fechaVencimiento, bo.FechaNotificacion, bo.Diligencia));//fechaVencimiento
-                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Modificado, bo.Diligencia));//estatus
+                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Diligencia));//estatus
                     OrdenSql.Parameters.AddWithValue("@_ejecucion",verificaEjecucion(bo.Ejecucion,bo.Diligencia, bo.FechaNotificacion, bo.FechaPago, bo._fechaVencimiento, bo.Importe));//estatus
                     //OrdenSql.Parameters.AddWithValue("@_observaciones", OficioVacio(bo.Observaciones));
                     //Abrir la conexion de base de Datos
@@ -719,9 +719,8 @@ namespace WindowsFormsApp6.CAD.DAL
 
 
 
-        private object verificaEstatus(string estatus, DateTime fechaNotificacion, bool Modificado,string setDiligencia )
+        private object verificaEstatus(string estatus, DateTime fechaNotificacion,string setDiligencia )
         {
-            if (Modificado != false)
                 if ((fechaNotificacion == Convert.ToDateTime("01/01/0001") && setDiligencia != "NO TRABAJADO") || setDiligencia == "")
                     estatus = "pendiente";
                 else

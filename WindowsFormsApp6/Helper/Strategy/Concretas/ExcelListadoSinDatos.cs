@@ -54,6 +54,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
             Excel.Range oRange;
             Excel.Range objCelda;
+            Excel.Range dataCellValidation;
 
 
             oRange = hojaExcel.Range["A7", "E7"];
@@ -170,9 +171,15 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                     await semaforo.WaitAsync();
                     try
                     {
+                        dataCellValidation = hojaExcel.Range["F8"];
                         if (progress != null)
                         {
                             hojaExcel.Cells[i, "A"].NumberFormat = "000000";
+                            hojaExcel.Cells[i, "F"].NumberFormat = "dd/mm/aaaa";
+                            hojaExcel.Cells[i, "G"].NumberFormat = "dd/mm/aaaa";
+                            hojaExcel.Cells[i, "H"].NumberFormat = "dd/mm/aaaa";
+
+   
 
                             hojaExcel.Cells[i, "A"] = item.NumReq.ToString();
                             hojaExcel.Cells[i, "B"] = item.Rfc.ToString();
@@ -185,6 +192,9 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
                             progress.Report(StaticPercentage.PercentageProgress(p, listaRequerimientos.Count));
                         }
+
+
+
 
                         return item.Modificado;
 
@@ -199,17 +209,24 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             });
 
             await Task.WhenAll(tareas);
+
+
+            
+
             hojaExcel.Columns["A:E"].EntireColumn.AutoFit();
             string finalRo;
             finalRo = "L" + i;
             oRange = hojaExcel.Range["E7", finalRo];
             oRange.CurrentRegion.Borders.LineStyle = Excel.XlLineStyle.xlContinuous;
 
+
+
             oRange = hojaExcel.Range["A7", "L7"];
             oRange.Cells.Locked = true;
-
+            
             oRange = hojaExcel.Range["F8", finalRo];
             oRange.Cells.Locked = false;
+
 
             hojaExcel.Protect("vicrif", true);
 
@@ -237,10 +254,13 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
 
             }
+             
+            
 
             progress.Report(0);
             #endregion
         }
+
 
         private void releaseObject(object ob)
         {

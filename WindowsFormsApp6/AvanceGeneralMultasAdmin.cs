@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
+using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
 
 namespace WindowsFormsApp6
@@ -15,6 +16,7 @@ namespace WindowsFormsApp6
     public partial class AvanceGeneralMultasAdmin : Form
     {
         obtenerTableroSup tableroAvance;
+        CListaTableroAdmin _avance;
 
         private int _emision;
         public AvanceGeneralMultasAdmin(int emision, int tipoS)
@@ -48,7 +50,13 @@ namespace WindowsFormsApp6
         {
             dataGridView1.AutoResizeColumns();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            _avance = await tableroAvance.GetAvanceMultasAdmin(_emision, CUserLoggin.idUser);
             cTableroAdminBOBindingSource.DataSource = await tableroAvance.GetAvanceMultasAdmin(_emision, CUserLoggin.idUser);
+
+        }
+
+        private void tsExporExcel_Click(object sender, EventArgs e)
+        {
 
         }
     }
