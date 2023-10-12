@@ -230,7 +230,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             oRange = hojaExcel.Range["F8", finalRo];
             oRange.Cells.Locked = false;
 
-            hojaExcel.Protect("vicrif", true);
+            //hojaExcel.Protect("vicrif", true);
 
             string s = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
             string ruta = s + "\\RIF";
@@ -240,7 +240,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             try
             {
 
-                libroExcel.SaveAs(WriterHelperExcel.GetNameFile(_datos.Name));
+                libroExcel.SaveAs(s + @"\RIF\" + _datos.LblEmision + "_" + hojaExcel.Name + " " + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() + "conDatos.xls");
                 libroExcel.Close();
                 releaseObject(libroExcel);
                 MessageBox.Show("Libro guardado en Escritorio\\RIF");
