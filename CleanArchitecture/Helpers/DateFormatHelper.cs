@@ -19,7 +19,17 @@ namespace CleanArchitecture.Helpers
             if (fecha.ToString() == "01/01/0001 12:00:00 a. m.")
                 return null;
 
-            var item = Convert.ToDateTime(fecha).ToString(@"dd/MM/yyyy");
+            var item = Convert.ToDateTime(fecha).ToString("MM/dd/yyyy");
+            return item;
+        }
+
+        public static string FechaCortaInterop(DateTime? fecha)
+        {
+
+            if (fecha.ToString() == "01/01/0001 12:00:00 a. m.")
+                return null;
+
+            var item = Convert.ToDateTime(fecha).ToString("dd/MM/yyyy");
             return item;
         }
     }

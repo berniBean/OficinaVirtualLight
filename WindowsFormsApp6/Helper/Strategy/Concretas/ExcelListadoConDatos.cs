@@ -182,6 +182,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                         {
                             hojaExcel.Cells[i, "A"].NumberFormat = "000000";
 
+
                             hojaExcel.Cells[i, "A"] = item.NumReq.ToString();
                             hojaExcel.Cells[i, "B"] = item.Rfc.ToString();
                             hojaExcel.Cells[i, "C"] = item.NumCtrl.ToString();
@@ -189,7 +190,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             hojaExcel.Cells[i, "E"] = item.Localidad.ToString();
                             hojaExcel.Cells[i, "F"] = item.Diligencia == "NO LOCALIZADO" ? DateFormatHelper.FechaCorta(item.FechaNotificacion) : default;
                             hojaExcel.Cells[i, "G"] = DateFormatHelper.FechaCorta(item.FechaCitatorio);
-                            hojaExcel.Cells[i, "H"] = item.Diligencia == "LOCALIZADO" ? DateFormatHelper.FechaCorta(item.FechaNotificacion) : default;
+                            hojaExcel.Cells[i, "H"] = item.Diligencia == "LOCALIZADO" ? DateFormatHelper.FechaCorta(item.FechaNotificacion): default;
                             hojaExcel.Cells[i, "i"] = item.OficioSEFIPLAN;
                             hojaExcel.Cells[i, "j"] = DateFormatHelper.FechaCorta(item.FechaEnvioSefiplan);
                             hojaExcel.Cells[i, "k"] = DateFormatHelper.FechaCorta(item.FechaEntregaNotificador);
