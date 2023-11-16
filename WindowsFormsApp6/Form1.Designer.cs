@@ -713,7 +713,7 @@
             this.DgReqActivos2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DgReqActivos2.Location = new System.Drawing.Point(3, 16);
             this.DgReqActivos2.Name = "DgReqActivos2";
-            this.DgReqActivos2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgReqActivos2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DgReqActivos2.Size = new System.Drawing.Size(1358, 268);
             this.DgReqActivos2.TabIndex = 0;
             this.DgReqActivos2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);

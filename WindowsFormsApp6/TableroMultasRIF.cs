@@ -1177,26 +1177,6 @@ namespace WindowsFormsApp6
 
         }
 
-        private async void toolStripTextBusquedaMultas_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyValue == 13)
-            {
-                if (!Modificado())
-                   await ActualizarBD();
-                if (!string.IsNullOrEmpty(toolStripTextBusquedaMultas.Text))
-                {
-
-                    busquedaLista();
-
-                }
-
-                else
-                    cargarMultasRIF();
-            }
-
-            
-        }
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 

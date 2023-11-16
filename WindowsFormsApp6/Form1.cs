@@ -171,11 +171,6 @@ namespace WindowsFormsApp6
             CargarNombreBimestre();
             DgReqActivos2.ReadOnly = false;
             cargarDiasCalendario();
-
-
-            
-
-
         }
 
         private void DgReqActivos_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -552,9 +547,8 @@ namespace WindowsFormsApp6
                 if (!Modificado())
                     ActualizarBD().Wait();
                 if (!string.IsNullOrEmpty(toolStripTextBusqueda.Text))
-                {
-
-                    busquedaLista();
+                {                    
+                    BusquedaLinQ(toolStripTextBusqueda.Text);
 
                 }
 
@@ -562,6 +556,54 @@ namespace WindowsFormsApp6
                     cargaRequerimientos();
             }
 
+        }
+
+        private void BusquedaLinQ(string datoBusqueda)
+        {
+            int totalBusqueda;
+            if(string.IsNullOrEmpty(datoBusqueda))
+            {
+                DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+            }
+            if (datoBusqueda.Equals("PENDIENTE"))
+            {
+                var consulta = (from item in listReq
+                                where item.Estatus.Contains("pendiente") ||
+                                item._estatusPDF.Contains("pendiente")
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+
+                if(totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se enecontraron datos");
+                    return;
+                }
+                else
+                {
+                    DgReqActivos2.DataSource = consulta;
+                }
+
+            }
+            else
+            {
+                var consulta = (from item in listReq
+                                where item.Rfc.Contains(datoBusqueda) ||
+                                item.RazonSocial.Contains(datoBusqueda) ||
+                                item.NumCtrl.Contains(datoBusqueda)
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+                if(totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    DgReqActivos2.DataSource = consulta;
+                }
+            }
+
+            toolStripTextBusqueda.SelectAll();
         }
 
         private void SeleccionFila(DataGridView dataGrid)
