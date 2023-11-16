@@ -168,6 +168,7 @@ namespace WindowsFormsApp6
         {
             listReq = obReq.MultasRIFSup(Convert.ToString(idEmision), OHE);//bdReq.GetMultasRIFSup(Convert.ToString(idEmision), OHE);
             cListaRequeridosBOBindingSource.DataSource = listReq;
+            dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
             dgTablaMultasRIF.AutoResizeColumns();
             dgTablaMultasRIF.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
@@ -700,6 +701,7 @@ namespace WindowsFormsApp6
             if (e.KeyValue == 13 && dgTablaMultasRIF.CurrentCell.ReadOnly != true) //enter
             {
 
+
                 e.Handled = true;
                 dgTablaMultasRIF.BeginEdit(true);
 
@@ -755,6 +757,59 @@ namespace WindowsFormsApp6
                 e.Handled = true;
                 SeleccionCeldas(dgTablaMultasRIF);
             }
+        }
+
+        private void busqiedaLinQ(string text)
+        {
+            int totalMultas;
+
+            if (string.IsNullOrEmpty(text))
+            {
+               dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
+            }
+
+            if (text.Equals("PENDIENTE"))
+            {
+                var consulta = (from item in listReq
+                                where item.Estatus.Contains("pendiente") ||
+                                item._estatusPDF.Contains("pendiente")
+                                select item).ToList();
+                totalMultas = consulta.Count();
+
+                if (totalMultas.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    dgTablaMultasRIF.DataSource = consulta;
+                }
+
+
+            }
+            else
+            {
+                var consulta = (from item in listReq
+                                where item.Rfc.Contains(text) ||
+                                item.RazonSocial.Contains(text) ||
+                                item.NumCtrl.Contains(text)
+                                select item).ToList();
+                totalMultas = consulta.Count();
+                if (totalMultas.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    dgTablaMultasRIF.DataSource = consulta;
+                }
+            }
+
+            toolStripTextBusquedaMultas.SelectAll();
+
+
         }
 
         public void copiar_portapapeles(DataGridView dataGrid)
@@ -1195,6 +1250,25 @@ namespace WindowsFormsApp6
             dataGrid.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
 
+        private void toolStripTextBusquedaMultas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 13)
+            {
+                if (!Modificado())
+                    ActualizarBD().Wait();
 
+                if (!string.IsNullOrEmpty(toolStripTextBusquedaMultas.Text))
+                {
+                    busqiedaLinQ(toolStripTextBusquedaMultas.Text);
+                }
+                else
+                {
+                    //cargarAvanceZona();
+                    cargarMultasRIF();
+                }
+
+            }
+
+        }
     }
 }
