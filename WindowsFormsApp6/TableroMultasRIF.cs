@@ -1270,5 +1270,40 @@ namespace WindowsFormsApp6
             }
 
         }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void TableroMultasRIF_Load(object sender, EventArgs e)
+        {
+            dgTablaMultasRIF.AllowUserToResizeColumns = true;
+            dgTablaMultasRIF.ColumnHeaderMouseDoubleClick += dgTablaMultasRIF_ColumnHeaderMouseDoubleClick;
+
+        }
+
+        private void dgTablaMultasRIF_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.RowIndex == -1 && e.ColumnIndex != -1)
+            {
+                dgTablaMultasRIF.Columns[e.ColumnIndex].Visible = false;
+            }
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewColumn item in dgTablaMultasRIF.Columns)
+            {
+                if (!item.Visible)
+                {
+                    if(!(item.DataPropertyName.Equals("_idMultaRif")|| item.DataPropertyName.Equals("CumplioAntes")
+                        || item.DataPropertyName.Equals("ModificaFechaPago") 
+                        ||item.DataPropertyName.Equals("ModificaObservacion")
+                        || item.DataPropertyName.Equals("Modificado")))
+                    item.Visible = true;
+                }
+            }
+        }
     }
 }

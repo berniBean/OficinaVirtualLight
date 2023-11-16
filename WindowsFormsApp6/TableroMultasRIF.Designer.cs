@@ -80,6 +80,7 @@
             this.Honorarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ejecucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModificaFechaPago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oheDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
@@ -190,7 +191,8 @@
             this.toolStripSeparator3,
             this.imprimirToolStripButton,
             this.toolStripSeparator,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton2});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 258);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -401,6 +403,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(1566, 252);
             this.tableLayoutPanel2.TabIndex = 7;
+            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // dgMultasPendiente
             // 
@@ -553,6 +556,7 @@
             this.dgTablaMultasRIF.TabIndex = 5;
             this.dgTablaMultasRIF.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellContentDoubleClick);
             this.dgTablaMultasRIF.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgTablaMultasRIF_CellValidating);
+            this.dgTablaMultasRIF.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgTablaMultasRIF_ColumnHeaderMouseDoubleClick);
             this.dgTablaMultasRIF.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgTablaMultasRIF_DataError);
             this.dgTablaMultasRIF.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgTablaMultasRIF_EditingControlShowing);
             this.dgTablaMultasRIF.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgTablaMultasRIF_KeyDown);
@@ -598,6 +602,16 @@
             this.ModificaFechaPago.Name = "ModificaFechaPago";
             this.ModificaFechaPago.ReadOnly = true;
             this.ModificaFechaPago.Visible = false;
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(94, 22);
+            this.toolStripButton2.Text = "Mostrar ocultos";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // cListaRequeridosBOBindingSource
             // 
@@ -779,6 +793,7 @@
             this.Name = "TableroMultasRIF";
             this.Text = "TableroMultasRIF";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TableroMultasRIF_FormClosing);
+            this.Load += new System.EventHandler(this.TableroMultasRIF_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -870,5 +885,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn modificaObservacionDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ModificaFechaPago;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
