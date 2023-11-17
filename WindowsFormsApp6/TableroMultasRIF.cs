@@ -771,8 +771,7 @@ namespace WindowsFormsApp6
             if (text.Equals("PENDIENTE"))
             {
                 var consulta = (from item in listReq
-                                where item.Estatus.Contains("pendiente") ||
-                                item._estatusPDF.Contains("pendiente")
+                                where item.Estatus.Contains("pendiente")
                                 select item).ToList();
                 totalMultas = consulta.Count();
 

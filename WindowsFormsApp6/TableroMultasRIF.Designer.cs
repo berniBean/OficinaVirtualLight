@@ -60,6 +60,7 @@
             this.imprimirToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dgMultasPendiente = new System.Windows.Forms.DataGridView();
@@ -80,7 +81,6 @@
             this.Honorarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ejecucion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ModificaFechaPago = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oheDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
@@ -376,6 +376,16 @@
             this.toolStripButton1.Text = "Datos multas";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(94, 22);
+            this.toolStripButton2.Text = "Mostrar ocultos";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -602,16 +612,6 @@
             this.ModificaFechaPago.Name = "ModificaFechaPago";
             this.ModificaFechaPago.ReadOnly = true;
             this.ModificaFechaPago.Visible = false;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(94, 22);
-            this.toolStripButton2.Text = "Mostrar ocultos";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // cListaRequeridosBOBindingSource
             // 
