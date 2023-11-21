@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace CleanArchitecture.Helpers
 {
@@ -23,6 +24,19 @@ namespace CleanArchitecture.Helpers
             return item;
         }
 
+        public static string ConvertTime(string dateTime)
+        {
+            string formato = "MM/dd/yyyy";
+
+            if(DateTime.TryParseExact(dateTime,formato,CultureInfo.InvariantCulture,DateTimeStyles.None, out DateTime fechaConvertida))
+            {
+                return FechaCortaInterop( fechaConvertida);
+            }
+            else
+            {
+                return default;
+            }
+        }
         public static string FechaCortaInterop(DateTime? fecha)
         {
 

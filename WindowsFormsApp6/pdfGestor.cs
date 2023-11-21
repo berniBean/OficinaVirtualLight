@@ -7,6 +7,7 @@ using System.IO;
 using WindowsFormsApp6.CAD.DAL;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using CleanArchitecture.Helpers;
 
 namespace WindowsFormsApp6
 {
@@ -62,8 +63,8 @@ namespace WindowsFormsApp6
             lblRFC.Text = _RFC;
             lblRs.Text = _rs;
             lblDiligencia.Text = _diligencia;
-            lblCitatorio.Text = _citatorio;
-            lblNotificacion.Text = _notificacion;
+            lblCitatorio.Text = DateFormatHelper.ConvertTime(_citatorio);
+            lblNotificacion.Text =  DateFormatHelper.ConvertTime( _notificacion);
             lblURI.Text = _uri + "/" + _ohe;
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             folder = path + "\\temp";

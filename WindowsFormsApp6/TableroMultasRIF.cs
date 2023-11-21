@@ -782,7 +782,8 @@ namespace WindowsFormsApp6
                 }
                 else
                 {
-                    dgTablaMultasRIF.DataSource = consulta;
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
                 }
 
 
@@ -802,7 +803,8 @@ namespace WindowsFormsApp6
                 }
                 else
                 {
-                    dgTablaMultasRIF.DataSource = consulta;
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
                 }
             }
 

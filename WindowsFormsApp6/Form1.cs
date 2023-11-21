@@ -580,7 +580,8 @@ namespace WindowsFormsApp6
                 }
                 else
                 {
-                    DgReqActivos2.DataSource = consulta;
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
                 }
 
             }
@@ -599,7 +600,8 @@ namespace WindowsFormsApp6
                 }
                 else
                 {
-                    DgReqActivos2.DataSource = consulta;
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
                 }
             }
 
