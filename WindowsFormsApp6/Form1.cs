@@ -30,7 +30,7 @@ namespace WindowsFormsApp6
         private int datoID;
         private string temp;
         private int _tipo;
-        private bool seleccion = true;
+        private bool seleccion = false;
         
         
 
@@ -544,7 +544,7 @@ namespace WindowsFormsApp6
         private void toolStripTextBusqueda_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13) {
-                if (!Modificado())
+                if (Modificado())
                     ActualizarBD().Wait();
                 if (!string.IsNullOrEmpty(toolStripTextBusqueda.Text))
                 {                    

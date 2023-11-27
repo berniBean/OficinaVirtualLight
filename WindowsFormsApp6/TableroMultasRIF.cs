@@ -37,7 +37,7 @@ namespace WindowsFormsApp6
         private string tipoMulta;
         private DateTime fechaImpresion;
         private int _tipo;
-        private bool Seleccion = true;
+        private bool Seleccion = false;
 
         
 
@@ -1255,7 +1255,7 @@ namespace WindowsFormsApp6
         {
             if (e.KeyValue == 13)
             {
-                if (!Modificado())
+                if (Modificado())
                     ActualizarBD().Wait();
 
                 if (!string.IsNullOrEmpty(toolStripTextBusquedaMultas.Text))
