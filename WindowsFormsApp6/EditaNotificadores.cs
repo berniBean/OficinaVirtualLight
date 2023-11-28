@@ -101,6 +101,7 @@ namespace WindowsFormsApp6
             Notificador.IdClaveOHE = oficina.IdclaveOHE;
             Notificador.ClaveNotificador = txtClaveNot.Text;
             Notificador.NombreNotificador = txtNombre.Text;
+            Notificador.Status = true;
 
             CatalogoNotificadores.NuevoNotificador(Notificador);
 
@@ -135,6 +136,7 @@ namespace WindowsFormsApp6
                 var Nombre = DGNotificadores.CurrentRow.Cells[3].Value.ToString();
                 var Notificador = new CNotificadoresBO();
                 Notificador.IdNotificador = Id;
+                Notificador.Status = false;
 
                 var Dr = MessageBox.Show($"Desea eliminar el registro de: {Nombre} ","ELiMINAR REGISTRO",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
 

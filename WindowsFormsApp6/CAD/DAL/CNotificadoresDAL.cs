@@ -73,7 +73,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(StrConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("GetCataloNotificadores", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("GetCataloNotificadores_LOGICO", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -128,6 +128,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_claveOHE", bo.IdClaveOHE);
                     OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
                     OrdenSql.Parameters.AddWithValue("@_NombreNotificador", bo.NombreNotificador);
+                    OrdenSql.Parameters.AddWithValue("@_status", bo.Status);
 
                     
 
@@ -184,6 +185,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
                     //Parametros
                     OrdenSql.Parameters.AddWithValue("@_idNotificador", bo.IdNotificador);
+                    OrdenSql.Parameters.AddWithValue("@_status", bo.Status);
 
                     //Abrir la conexion de base de Datos
                     conn.Open();
