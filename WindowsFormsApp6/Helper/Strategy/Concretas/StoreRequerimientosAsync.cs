@@ -39,7 +39,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
 
             var gato = (from item in listaClistaRequeridos
-                        where (item.Modificado && item.Estatus != "enviado") || (item.ModificaObservacion || item.ModificaMalCapturado || item.ModificaNombreNotificador)
+                        where (item.Modificado && item.Estatus != "enviado") || (item.ModificaObservacion || item.ModificaMalCapturado || item.ModificaNombreNotificador || item.NoteModificate)
                         select new CListaRequeridosBO()
                         {
                             Diligencia = item.Diligencia,

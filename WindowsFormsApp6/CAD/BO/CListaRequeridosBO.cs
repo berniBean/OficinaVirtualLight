@@ -227,8 +227,17 @@ namespace WindowsFormsApp6.CAD.BO
             }
         }
 
+        private string _notasObservaciones;
+        public string NotasObservaciones {
+            get { return _notasObservaciones; } 
+            set { _notasObservaciones = value;
+                OnpropertyChangedNotasObservacion(new PropertyChangedEventArgs("NotasObservaciones"));
+            } 
+        }
+
+
+
         private string _observaciones;
-        public string NotasObservaciones { get; set; }
         public string Observaciones
         {
             get { return _observaciones; }
@@ -238,6 +247,9 @@ namespace WindowsFormsApp6.CAD.BO
                 OnPropertyChangedObservacion(new PropertyChangedEventArgs("Observaciones"));
             }
         }
+
+
+
         private bool _malCapturado;
         public bool MalCapturado
         {
@@ -281,6 +293,12 @@ namespace WindowsFormsApp6.CAD.BO
         }
 
 
+        private bool _NotasObservacionModificado;
+        public bool NoteModificate
+        {
+            get { return _NotasObservacionModificado; }
+            set { _NotasObservacionModificado = value; }
+        }
 
         private bool _modificado;
         public bool Modificado
@@ -566,7 +584,15 @@ namespace WindowsFormsApp6.CAD.BO
         public event PropertyChangedEventHandler PropertyChanged;
 
 
+        private void OnpropertyChangedNotasObservacion(PropertyChangedEventArgs e)
+        {
+            if(PropertyChanged != null)
+            {
+                _NotasObservacionModificado = true;
+                PropertyChanged(this, e);
 
+            }
+        }
         private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)
