@@ -6,18 +6,28 @@ using System.Windows.Forms;
 using WindowsFormsApp6.CAD.DAL.factories;
 using WindowsFormsApp6.Cache;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading;
+using WindowsFormsApp6.structs;
 
 namespace WindowsFormsApp6.CAD.DAL
 {
     class ClistaRequeridosDALPLUS : obtenerRequeridos
     {
-        private readonly string strConn;
+        private readonly string strConn;        
+        private readonly ToolStripProgressBar _progressBar;
+        private readonly Label _lblProgress;
+
 
         CListNotificadores notificador = CUserLoggin.Notificadores;
 
-        public ClistaRequeridosDALPLUS() {
+        public ClistaRequeridosDALPLUS(ToolStripProgressBar progressBar, Label lblProgress) {
             strConn = System.Configuration.ConfigurationManager.AppSettings["K1"];
-            
+            _progressBar = progressBar;
+            _lblProgress = lblProgress;
+
+
         }
 
         public ClistaRequeridosDALPLUS(string conn) {
@@ -55,28 +65,67 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        public void ModificarObservacionesRIF(CListaRequeridosBO bo)
+        public async Task ModificarObservacionesRIF(List<CListaRequeridosBO> bo,IProgress<int> progress = null)
         {
+            using var semaforo = new SemaphoreSlim(50);
+            var tareas = new List<Task<bool>>();
+            var total = bo.Count();
+
+
+            var i = 0;
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("actualizaObservacionesPLUS_NotasobservacionesNotificador", conn)
+                    conn.Open();
+
+                    MySqlCommand OrdenSql = new MySqlCommand("UpdateDGRequerimientos", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
 
+
+                    
+                    await Task.Run(() =>
+                    {
+                        
+                        tareas = bo.Select(async r =>
+                        {
+                            await semaforo.WaitAsync();
+                            try
+                            {
+                                OrdenSql.Parameters.Clear();
+
+                                i++;
+
+                                OrdenSql.Parameters.AddWithValue("@_numCtrl", r.NumCtrl);
+                                OrdenSql.Parameters.AddWithValue("@_observaciones",  r.Observaciones);
+                                OrdenSql.Parameters.AddWithValue("@_notasObservaciones", r.NotasObservaciones);
+                                OrdenSql.Parameters.AddWithValue("@_actaNotificacion", r.ActaNotificacion);
+                                OrdenSql.Parameters.AddWithValue("@_actaCitatorio", r.ActaCitatorio);
+                                OrdenSql.Parameters.AddWithValue("@_notificacionCitatorio", r.NotificacionCitatorio);
+                                OrdenSql.Parameters.AddWithValue("@_nombreNotificador", VerificaNotificador(r.NombreNotificador));
+
+
+                                
+                                OrdenSql.ExecuteNonQuery();
+                                progress.Report(StaticPercentage.PercentageProgress(i, total));
+
+                            }
+                            catch (Exception ex)
+                            {
+
+                                MessageBox.Show(ex.Message);
+                            }
+
+                            return r.Modificado;
+                        }).ToList();
+                    });
+                    await Task.WhenAll(tareas);
+
                     //Parametros
-                    OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
-                    OrdenSql.Parameters.AddWithValue("@_observaciones",  bo.Observaciones);
-                    OrdenSql.Parameters.AddWithValue("@_notasObservaciones", bo.NotasObservaciones);
-                    OrdenSql.Parameters.AddWithValue("@_actaNotificacion", bo.ActaNotificacion);
-                    OrdenSql.Parameters.AddWithValue("@_actaCitatorio", bo.ActaCitatorio);
-                    OrdenSql.Parameters.AddWithValue("@_notificacionCitatorio", bo.NotificacionCitatorio);
-                    OrdenSql.Parameters.AddWithValue("@_nombreNotificador", VerificaNotificador(bo.NombreNotificador));
                     //Abrir la conexion de base de Datos
-                    conn.Open();
-                    OrdenSql.ExecuteNonQuery();
+
 
                 }
             }
@@ -447,7 +496,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
         }
 
-        public ListaClistaRequeridos GetMultasRIFSup(string periodo, string OHE)
+        public async Task<ListaClistaRequeridos> GetMultasRIFSup(string periodo, string OHE)
         {
             try
             {
@@ -464,9 +513,11 @@ namespace WindowsFormsApp6.CAD.DAL
                     //Crear conexion para todos los datos
                     ListaClistaRequeridos listOHE = new ListaClistaRequeridos();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader) await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    
+
+                    while (await lector.ReadAsync())
                     {
 
                         CListaRequeridosBO fila = new CListaRequeridosBO(
@@ -491,9 +542,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             Convert.ToString(lector["estatus"] is DBNull ? null : lector["estatus"]) 
                             );
                         listOHE.Add(fila);
-
-
-
+                        
                     }
                     return listOHE;
 
@@ -505,7 +554,7 @@ namespace WindowsFormsApp6.CAD.DAL
                 throw new ApplicationException("Error " + e);
             }
         }
-        public ListaClistaRequeridos GetRequerimientos(string periodo, string OHE) {
+        public async Task< ListaClistaRequeridos> GetRequerimientos(string periodo, string OHE) {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
@@ -521,9 +570,10 @@ namespace WindowsFormsApp6.CAD.DAL
                     //Crear conexion para todos los datos
                     ListaClistaRequeridos listOHE = new ListaClistaRequeridos();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    
+                    while (await lector.ReadAsync())
                     {
 
                         CListaRequeridosBO fila = new CListaRequeridosBO();
@@ -566,28 +616,74 @@ namespace WindowsFormsApp6.CAD.DAL
 
   
 
-        public void ModificarRequerimientosRIF(CListaRequeridosBO bo) {
+        public async Task ModificarRequerimientosRIF(List<CListaRequeridosBO> bo, IProgress<int> progress = null) {
+            using var semaforo = new SemaphoreSlim(50);
+            var tareas = new List<Task<bool>>();
+            var total = bo.Count();
+
+
+            var i = 0;
+
             try {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("actualizaDatosRequerimientoPLUS_Simple", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("UpdateDGRequerimientos", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
 
-                    //Parametros
-                    OrdenSql.Parameters.AddWithValue("@_diligencia", VerificaDiligencia(bo.Diligencia, bo.FechaNotificacion));
-                    OrdenSql.Parameters.AddWithValue("@_fechaNotificacion", VerificaFecha(bo.FechaNotificacion, bo.FechaNotificacion, bo.Diligencia));
-                    OrdenSql.Parameters.AddWithValue("@_fechaCitatorio", VerificaFecha(bo.FechaCitatorio, bo.FechaNotificacion, bo.Diligencia));
-                    OrdenSql.Parameters.AddWithValue("@_oficioSEFIPLAN", OficioVacio(bo.OficioSEFIPLAN, bo.FechaNotificacion, bo.Diligencia));
-                    OrdenSql.Parameters.AddWithValue("@_fechaEnvioSEFIPLAN", VerificaFecha(bo.FechaEnvioSefiplan, bo.FechaNotificacion, bo.Diligencia));
-                    OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
-                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Diligencia));
-                   
-
-                    //Abrir la conexion de base de Datos
                     conn.Open();
-                    OrdenSql.ExecuteNonQuery();
+                    await Task.Run(() =>
+                    {
+
+                        tareas = bo.Select(async r =>
+                        {
+                            await semaforo.WaitAsync();
+                            try
+                            {
+                                if(progress != null)
+                                {
+                                    OrdenSql.Parameters.Clear();
+
+                                    i++;
+
+                                    //Parametros
+                                    OrdenSql.Parameters.AddWithValue("@_numCtrl", r.NumCtrl);
+                                    OrdenSql.Parameters.AddWithValue("@_diligencia", VerificaDiligencia(r.Diligencia, r.FechaNotificacion));
+                                    OrdenSql.Parameters.AddWithValue("@_fechaNotificacion", VerificaFecha(r.FechaNotificacion, r.FechaNotificacion, r.Diligencia));
+                                    OrdenSql.Parameters.AddWithValue("@_fechaCitatorio", VerificaFecha(r.FechaCitatorio, r.FechaNotificacion, r.Diligencia));
+                                    OrdenSql.Parameters.AddWithValue("@_oficioSEFIPLAN", OficioVacio(r.OficioSEFIPLAN, r.FechaNotificacion, r.Diligencia));
+                                    OrdenSql.Parameters.AddWithValue("@_fechaEnvioSEFIPLAN", VerificaFecha(r.FechaEnvioSefiplan, r.FechaNotificacion, r.Diligencia));                                
+                                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(r.Estatus, r.FechaNotificacion, r.Diligencia));
+                               
+                                    OrdenSql.Parameters.AddWithValue("@_observaciones", r.Observaciones);
+                                    OrdenSql.Parameters.AddWithValue("@_notasObservaciones", r.NotasObservaciones);
+                                    OrdenSql.Parameters.AddWithValue("@_actaNotificacion", r.ActaNotificacion);
+                                    OrdenSql.Parameters.AddWithValue("@_actaCitatorio", r.ActaCitatorio);
+                                    OrdenSql.Parameters.AddWithValue("@_notificacionCitatorio", r.NotificacionCitatorio);
+                                    OrdenSql.Parameters.AddWithValue("@_nombreNotificador", VerificaNotificador(r.NombreNotificador));
+
+
+
+                                    OrdenSql.ExecuteNonQuery();
+                                    progress.Report(StaticPercentage.PercentageProgress(i, total));
+
+                                }
+                                return r.Modificado;
+
+                            }
+                            finally
+                            {
+                                semaforo.Release();
+                            }
+
+                            
+                        }).ToList();
+                    });
+
+                    await Task.WhenAll(tareas);
+
+               
 
                 }
             } catch (MySqlException err) {
@@ -636,6 +732,7 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
         //metodos internos 
+        #region Métodos de verificación
         private string VerificaNotificador(string nombreNotificador)
         {
             try
@@ -782,12 +879,24 @@ namespace WindowsFormsApp6.CAD.DAL
                     return fECHA_DILIGENCIA;
                 }
         }
+        #endregion
 
 
         //seccion de métodos de la factory
-        public override void ObservacionesRequerimientos(CListaRequeridosBO bo)
+        #region Factory
+        public override  async Task ObservacionesRequerimientos(List<CListaRequeridosBO> bo)
         {
-            ModificarObservacionesRIF(bo);
+            await ModificarObservacionesRIF(bo, reportarProgreso);
+        }
+
+        public override async Task ModificarRequerimientos(List<CListaRequeridosBO> bo)
+        {
+           await ModificarRequerimientosRIF(bo, reportarProgreso);
+        }
+
+        public override async Task<ListaClistaRequeridos> Requerimientos(string periodo, string OHE)
+        {
+            return await GetRequerimientos(periodo, OHE);
         }
 
         public override void ObservacionesMultas(CListaRequeridosBO bo)
@@ -808,10 +917,7 @@ namespace WindowsFormsApp6.CAD.DAL
             ModificaPagoMulta(bo);
         }
 
-        public override void ModificarRequerimientos(CListaRequeridosBO bo)
-        {
-            ModificarRequerimientosRIF(bo);
-        }
+
 
         public override void ModificaMultas(CListaRequeridosBO bo)
         {
@@ -843,15 +949,29 @@ namespace WindowsFormsApp6.CAD.DAL
             return GetListaBusqueda(periodo, OHE, dataBusqueda);
         }
 
-        public override ListaClistaRequeridos MultasRIFSup(string periodo, string OHE)
+        public override async Task<ListaClistaRequeridos> MultasRIFSup(string periodo, string OHE)
         {
-            return GetMultasRIFSup(periodo, OHE);
+            return await GetMultasRIFSup(periodo, OHE);
         }
 
-        public override ListaClistaRequeridos Requerimientos(string periodo, string OHE)
-        {
-            return GetRequerimientos(periodo, OHE);
-        }
 
+        #endregion
+
+
+
+        public override void ReportarProgreso(int porcentaje)
+        {
+
+            _progressBar.Value = porcentaje;
+
+            if (porcentaje != 100 && porcentaje > 0)
+            {
+                _lblProgress.Text = string.Format("procesando...{0}% ", porcentaje);
+            }
+            else
+            {
+                _lblProgress.Text = "Listo.";
+            }
+        }
     }
 }

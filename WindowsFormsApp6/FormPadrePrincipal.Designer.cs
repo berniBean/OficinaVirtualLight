@@ -54,6 +54,7 @@
             this.cargaPDFPLUS = new System.Windows.Forms.ToolStripMenuItem();
             this.requerimientosPDFPLUS = new System.Windows.Forms.ToolStripMenuItem();
             this.multasPDFPLUS = new System.Windows.Forms.ToolStripMenuItem();
+            this.notificadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAgenda = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.busquedaPLUS = new System.Windows.Forms.ToolStripMenuItem();
             this.tableroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.muestraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notificadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,6 +107,7 @@
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "DATOS &RIF";
+            this.toolStripMenuItem1.Visible = false;
             // 
             // menuAvance
             // 
@@ -291,6 +292,13 @@
             this.multasPDFPLUS.Text = "&Multas";
             this.multasPDFPLUS.Click += new System.EventHandler(this.multasPDFPLUS_Click);
             // 
+            // notificadoresToolStripMenuItem
+            // 
+            this.notificadoresToolStripMenuItem.Name = "notificadoresToolStripMenuItem";
+            this.notificadoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notificadoresToolStripMenuItem.Text = "&Notificadores";
+            this.notificadoresToolStripMenuItem.Click += new System.EventHandler(this.notificadoresToolStripMenuItem_Click);
+            // 
             // menuAgenda
             // 
             this.menuAgenda.MergeIndex = 2;
@@ -363,13 +371,6 @@
             this.muestraToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.muestraToolStripMenuItem.Text = "muestra";
             this.muestraToolStripMenuItem.Visible = false;
-            // 
-            // notificadoresToolStripMenuItem
-            // 
-            this.notificadoresToolStripMenuItem.Name = "notificadoresToolStripMenuItem";
-            this.notificadoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.notificadoresToolStripMenuItem.Text = "&Notificadores";
-            this.notificadoresToolStripMenuItem.Click += new System.EventHandler(this.notificadoresToolStripMenuItem_Click);
             // 
             // FormPadrePrincipal
             // 

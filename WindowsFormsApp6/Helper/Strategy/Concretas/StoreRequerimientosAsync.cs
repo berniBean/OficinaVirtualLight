@@ -32,22 +32,18 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
         private async Task ProcesoGuardadoAsync(List<CListaRequeridosBO> listaClistaRequeridos, IProgress<int> progress = null)
         {
-            using var semaforo = new SemaphoreSlim(50);
-            var tareas = new List<Task<bool>>();
-            var total = listaClistaRequeridos.Count();
-            var i = 0;
 
 
             var gato = (from item in listaClistaRequeridos
-                        where (item.Modificado && item.Estatus != "enviado") || (item.ModificaObservacion || item.ModificaMalCapturado || item.ModificaNombreNotificador || item.NoteModificate)
+                        where (item.Modificado && item.Estatus != "enviado")
                         select new CListaRequeridosBO()
                         {
+                            NumCtrl = item.NumCtrl,
                             Diligencia = item.Diligencia,
                             FechaNotificacion = item.FechaNotificacion,
                             FechaCitatorio = item.FechaCitatorio,
                             OficioSEFIPLAN = item.OficioSEFIPLAN,
                             FechaEnvioSefiplan = item.FechaEnvioSefiplan,
-                            NumCtrl = item.NumCtrl,
                             Estatus = item.Estatus,
                             Observaciones = item.Observaciones,
                             NotasObservaciones = item.NotasObservaciones,
@@ -59,39 +55,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
             MessageBox.Show("Total documentos Actualizados:" + gato.Count);
 
-            await Task.Run(() =>
-            {
-
-
-
-
-                tareas = gato.Select(async r =>
-                {
-
-                    await semaforo.WaitAsync();
-                    try
-                    {
-                        if (progress != null)
-                        {
-                            i++;
-                            _obReq.ModificarRequerimientos(r);
-                            _obReq.ObservacionesRequerimientos(r);
-
-                            progress.Report(StaticPercentage.PercentageProgress(i, total));
-
-                        }
-
-                        return r.Modificado;
-                    }
-                    finally
-                    {
-                        semaforo.Release();
-
-                    }
-                }).ToList();
-            });
-
-            await Task.WhenAll(tareas);
+            await _obReq.ModificarRequerimientos(gato);
 
             MessageBox.Show("Guardado completado");
 
@@ -99,6 +63,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
         }
 
         public override void ReportarProgreso(int porcentaje)
+        
         {
             _progressBar.Value = porcentaje;
 

@@ -11,6 +11,7 @@ namespace WindowsFormsApp6.CAD.BO
 
         public int _numMulta { get; set; }
 
+
         
 
         private string _ejecucion;
@@ -21,7 +22,7 @@ namespace WindowsFormsApp6.CAD.BO
             set 
             {
                 _ejecucion = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Ejecucion"));
+                
             } 
         
         }
@@ -31,7 +32,7 @@ namespace WindowsFormsApp6.CAD.BO
             get { return _numReq; }
             set {
                 _numReq = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Nombre"));
+                
             }
         }
 
@@ -40,7 +41,7 @@ namespace WindowsFormsApp6.CAD.BO
             get { return _RFC; }
             set {
                 _RFC = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Rfc"));
+                
             }
         }
 
@@ -51,7 +52,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _numCtrl = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("NumCtrl"));
+                
             }
         }
 
@@ -64,7 +65,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _razonSocial = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("RazonSocial"));
+                
             }
         }
 
@@ -75,7 +76,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _localidad = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("Localidad"));
+                
             }
         }
 
@@ -214,7 +215,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _nombreNotificador = value;
-                OnPropertyChangedNombreNotificador(new PropertyChangedEventArgs("NombreNotificador"));
+                OnPropertyChanged(new PropertyChangedEventArgs("NombreNotificador"));
             }
         }
         private string _estatus;
@@ -231,7 +232,7 @@ namespace WindowsFormsApp6.CAD.BO
         public string NotasObservaciones {
             get { return _notasObservaciones; } 
             set { _notasObservaciones = value;
-                OnpropertyChangedNotasObservacion(new PropertyChangedEventArgs("NotasObservaciones"));
+                OnPropertyChanged(new PropertyChangedEventArgs("NotasObservaciones"));
             } 
         }
 
@@ -244,7 +245,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _observaciones = value;
-                OnPropertyChangedObservacion(new PropertyChangedEventArgs("Observaciones"));
+                OnPropertyChanged(new PropertyChangedEventArgs("Observaciones"));
             }
         }
 
@@ -257,7 +258,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _malCapturado = value;
-                OnPropertyChangedMalCaputurado(new PropertyChangedEventArgs("MalCapturado"));
+                OnPropertyChanged(new PropertyChangedEventArgs("MalCapturado"));
             }
         }
 
@@ -268,7 +269,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _actaNotificacion = value;
-                OnPropertyChangedMalCaputurado(new PropertyChangedEventArgs("ActaNotificacion"));
+                OnPropertyChanged(new PropertyChangedEventArgs("ActaNotificacion"));
             }
         }
         private bool _actaCitatorio;
@@ -278,7 +279,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _actaCitatorio = value;
-                OnPropertyChangedMalCaputurado(new PropertyChangedEventArgs("ActaCitatorio"));
+                OnPropertyChanged(new PropertyChangedEventArgs("ActaCitatorio"));
             }
         }
         private bool _notificacionCitatorio;
@@ -288,7 +289,7 @@ namespace WindowsFormsApp6.CAD.BO
             set
             {
                 _notificacionCitatorio = value;
-                OnPropertyChangedMalCaputurado(new PropertyChangedEventArgs("NotificacionCitatorio"));
+                OnPropertyChanged(new PropertyChangedEventArgs("NotificacionCitatorio"));
             }
         }
 
@@ -305,6 +306,12 @@ namespace WindowsFormsApp6.CAD.BO
         {
             get { return _modificado; }
             set { _modificado = value; }
+        }
+        private string _nombreColumna;
+        public string NombreColumna
+        {
+            get { return _nombreColumna; }
+            set { _nombreColumna = value; }
         }
 
         private bool _modificadoMalCapturado;
@@ -597,6 +604,7 @@ namespace WindowsFormsApp6.CAD.BO
         {
             if (PropertyChanged != null)
             {
+                _nombreColumna = e.PropertyName;
                 _modificado = true;
                 PropertyChanged(this, e);
             }

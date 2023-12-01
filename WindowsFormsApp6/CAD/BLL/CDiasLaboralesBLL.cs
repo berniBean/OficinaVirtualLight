@@ -15,9 +15,9 @@ namespace WindowsFormsApp6.CAD.BLL
     {
         private CDiaFeriadoDAL bd = new CDiaFeriadoDAL();
 
-        public List<CdiasFeriadosBO> GetDiasFestivos() 
+        public async Task<List<CdiasFeriadosBO>> GetDiasFestivosAsync() 
         {
-            List<CdiasFeriadosBO> litDias = bd.GetDiasFestivos();
+            List<CdiasFeriadosBO> litDias = await bd.GetDiasFestivos();
             return litDias;
         }
 

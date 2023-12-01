@@ -147,17 +147,17 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        public override ListaInformeAvance AvanceAdmin(int emision)
+        public override async Task<ListaInformeAvance> AvanceAdmin(int emision)
         {
             return GetAvanceAdmin(emision);
         }
 
-        public override ListaInformeAvance AvanceMultaSup(int emision, int supervisor)
+        public override async Task<ListaInformeAvance> AvanceMultaSup(int emision, int supervisor)
         {
             return GetAvanceMultaSup(emision, supervisor);
         }
 
-        public override ListaInformeAvance AvancesReq(int emision, int supervisor)
+        public override async Task<ListaInformeAvance> AvancesReq(int emision, int supervisor)
         {
             return GetAvancesRIF(emision, supervisor);
         }

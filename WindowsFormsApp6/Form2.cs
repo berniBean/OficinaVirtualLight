@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.BLL;
 using WindowsFormsApp6.BO;
@@ -113,12 +114,12 @@ namespace WindowsFormsApp6
             }
 
         }
-        private void CargarRequerimientos()
+        private async Task CargarRequerimientosAsync()
         {
 
             try
             {
-                listAvance = obInformes.AvancesReq(Convert.ToInt16(lblEmision.Text), datoID);//bdAvance.getAvancesRIF(Convert.ToInt16(lblEmision.Text), datoID);
+                listAvance = await obInformes.AvancesReq(Convert.ToInt16(lblEmision.Text), datoID);//bdAvance.getAvancesRIF(Convert.ToInt16(lblEmision.Text), datoID);
                 listaInformeAvanceBindingSource.DataSource = listAvance;
             }
             catch (Exception)
@@ -137,7 +138,7 @@ namespace WindowsFormsApp6
             {
                 CargarPeriodo();
                 CargarNombreBimestre();
-                CargarRequerimientos();
+                CargarRequerimientosAsync();
                 dgAvance.AutoResizeColumns();
                 dgAvance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
@@ -147,7 +148,7 @@ namespace WindowsFormsApp6
         {
             CargarPeriodo();
             CargarNombreBimestre();
-            CargarRequerimientos();
+            CargarRequerimientosAsync();
             dgAvance.AutoResizeColumns();
             dgAvance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
@@ -158,7 +159,7 @@ namespace WindowsFormsApp6
             {
                 CargarPeriodo();
                 CargarNombreBimestre();
-                CargarRequerimientos();
+                CargarRequerimientosAsync();
                 dgAvance.AutoResizeColumns();
                 dgAvance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
@@ -167,7 +168,7 @@ namespace WindowsFormsApp6
 
         private void CmbEmision_Leave(object sender, EventArgs e)
         {
-            CargarRequerimientos();
+            CargarRequerimientosAsync();
             CargarNombreBimestre();
             dgAvance.AutoResizeColumns();
             dgAvance.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -182,7 +183,7 @@ namespace WindowsFormsApp6
             LodadUserDat();
             CargarAnho();
             CargarPeriodo();
-            CargarRequerimientos();
+            CargarRequerimientosAsync().Wait();
             CargarNombreBimestre();
             cmbEmision.Focus();
         }

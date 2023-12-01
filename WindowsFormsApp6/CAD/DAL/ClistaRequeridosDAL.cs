@@ -5,6 +5,8 @@ using System.Data;
 
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.DAL.factories;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace WindowsFormsApp6.CAD.DAL
 {
@@ -46,7 +48,7 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        public void ModificarObservacionesRIF(CListaRequeridosBO bo)
+        public async Task ModificarObservacionesRIF(List<CListaRequeridosBO> bo)
         {
             try
             {
@@ -57,12 +59,19 @@ namespace WindowsFormsApp6.CAD.DAL
                         CommandType = CommandType.StoredProcedure
                     };
 
-                    //Parametros
-                    OrdenSql.Parameters.AddWithValue("@_numCtrl", bo.NumCtrl);
-                    OrdenSql.Parameters.AddWithValue("@_observaciones", bo.Observaciones);
-                    //Abrir la conexion de base de Datos
                     conn.Open();
-                    OrdenSql.ExecuteNonQuery();
+                    foreach (var item in bo)
+                    {
+                        //Parametros
+                        OrdenSql.Parameters.AddWithValue("@_numCtrl", item.NumCtrl);
+                        OrdenSql.Parameters.AddWithValue("@_observaciones", item.Observaciones);
+                        OrdenSql.ExecuteNonQuery();
+                    }
+
+
+                    //Abrir la conexion de base de Datos
+                    
+                    
 
                 }
             }
@@ -433,7 +442,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
         }
 
-        public ListaClistaRequeridos GetMultasRIFSup(string periodo, string OHE)
+        public async Task<ListaClistaRequeridos> GetMultasRIFSup(string periodo, string OHE)
         {
             try
             {
@@ -450,9 +459,9 @@ namespace WindowsFormsApp6.CAD.DAL
                     //Crear conexion para todos los datos
                     ListaClistaRequeridos listOHE = new ListaClistaRequeridos();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader) await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
 
                         CListaRequeridosBO fila = new CListaRequeridosBO(
@@ -759,7 +768,7 @@ namespace WindowsFormsApp6.CAD.DAL
                 }
         }
 
-        public override void ObservacionesRequerimientos(CListaRequeridosBO bo)
+        public override async Task ObservacionesRequerimientos(List<CListaRequeridosBO> bo)
         {
             ModificarObservacionesRIF(bo);
         }
@@ -780,10 +789,10 @@ namespace WindowsFormsApp6.CAD.DAL
             ModificaPagoMulta(bo);
         }
 
-        public override void ModificarRequerimientos(CListaRequeridosBO bo)
-        {
-            ModificarRequerimientosRIF(bo);
-        }
+        //public override void ModificarRequerimientos(CListaRequeridosBO bo)
+        //{
+        //    ModificarRequerimientosRIF(bo);
+        //}
 
         public override void ModificaMultas(CListaRequeridosBO bo)
         {
@@ -815,14 +824,30 @@ namespace WindowsFormsApp6.CAD.DAL
             return GetListaBusqueda(periodo, OHE, dataBusqueda);
         }
 
-        public override ListaClistaRequeridos MultasRIFSup(string periodo, string OHE)
+        //public override async Task<ListaClistaRequeridos> MultasRIFSup(string periodo, string OHE)
+        //{
+        //    return await GetMultasRIFSup(periodo, OHE);
+        //}
+
+        public override Task<ListaClistaRequeridos> Requerimientos(string periodo, string OHE)
         {
-            return GetMultasRIFSup(periodo, OHE);
+            throw new NotImplementedException();
         }
 
-        public override ListaClistaRequeridos Requerimientos(string periodo, string OHE)
+        public override void ReportarProgreso(int porcentaje)
         {
-            return GetRequerimientos(periodo, OHE);
+            throw new NotImplementedException();
+        }
+
+        public override Task ModificarRequerimientos(List<CListaRequeridosBO> bo)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public override Task<ListaClistaRequeridos> MultasRIFSup(string periodo, string OHE)
+        {
+            throw new NotImplementedException();
         }
     }
 }

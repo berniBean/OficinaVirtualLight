@@ -407,9 +407,9 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        public override CListaTableroAdmin TableroMultasSupervisor(int supervisor, int ejercicio)
+        public override async Task<CListaTableroAdmin> TableroMultasSupervisor(int supervisor, int ejercicio)
         {
-            return GetTableroMultasSupervisor(supervisor, ejercicio);
+            throw new NotImplementedException();
         }
 
         public override async Task<CListaTableroAdmin> Tablero(int año)

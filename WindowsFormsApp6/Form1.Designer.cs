@@ -85,15 +85,6 @@
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.DgReqActivos2 = new System.Windows.Forms.DataGridView();
-            this.cListaCatObservacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cNombreBimestreBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.pbCarga = new System.Windows.Forms.ToolStripProgressBar();
-            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.listCoheActivaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cEmisionActualBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,9 +104,18 @@
             this.ActaCitatorio = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NotificacionCitatorio = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.cListaCatObservacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.NotasObservaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.cNombreBimestreBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.pbCarga = new System.Windows.Forms.ToolStripProgressBar();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.listCoheActivaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cEmisionActualBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             oHELabel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.PanelDatosLocalizacion.SuspendLayout();
@@ -554,6 +554,7 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Posición";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -595,6 +596,7 @@
             // 
             // toolStripTextBusqueda
             // 
+            this.toolStripTextBusqueda.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBusqueda.Name = "toolStripTextBusqueda";
             this.toolStripTextBusqueda.Size = new System.Drawing.Size(200, 31);
             this.toolStripTextBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBusqueda_KeyDown);
@@ -716,74 +718,13 @@
             this.DgReqActivos2.TabIndex = 0;
             this.DgReqActivos2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellContentDoubleClick);
+            this.DgReqActivos2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellEndEdit);
             this.DgReqActivos2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgReqActivos_CellValidating);
             this.DgReqActivos2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellValueChanged);
             this.DgReqActivos2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgReqActivos_DataError);
             this.DgReqActivos2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DgReqActivos_EditingControlShowing);
             this.DgReqActivos2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgReqActivos_KeyDown);
-            // 
-            // cListaCatObservacionesBindingSource
-            // 
-            this.cListaCatObservacionesBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaCatObservaciones);
-            // 
-            // cNombreBimestreBOBindingSource
-            // 
-            this.cNombreBimestreBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CNombreBimestreBO);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 330);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.30202F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.697987F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1471, 308);
-            this.tableLayoutPanel1.TabIndex = 11;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pbCarga,
-            this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 293);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1471, 15);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // pbCarga
-            // 
-            this.pbCarga.Name = "pbCarga";
-            this.pbCarga.Size = new System.Drawing.Size(100, 9);
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 10);
-            this.lblStatus.TextChanged += new System.EventHandler(this.lblStatus_TextChanged);
-            // 
-            // listCoheActivaBindingSource
-            // 
-            this.listCoheActivaBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListCoheActiva);
-            // 
-            // cEmisionActualBOBindingSource
-            // 
-            this.cEmisionActualBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CEmisionActualBO);
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -930,6 +871,10 @@
             this.Observaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Observaciones.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // cListaCatObservacionesBindingSource
+            // 
+            this.cListaCatObservacionesBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaCatObservaciones);
+            // 
             // NotasObservaciones
             // 
             this.NotasObservaciones.DataPropertyName = "NotasObservaciones";
@@ -951,6 +896,64 @@
             this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
             this.dataGridViewCheckBoxColumn2.ReadOnly = true;
             this.dataGridViewCheckBoxColumn2.Visible = false;
+            // 
+            // cNombreBimestreBOBindingSource
+            // 
+            this.cNombreBimestreBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CNombreBimestreBO);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 330);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.30202F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.697987F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1471, 308);
+            this.tableLayoutPanel1.TabIndex = 11;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pbCarga,
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 293);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1471, 15);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // pbCarga
+            // 
+            this.pbCarga.Name = "pbCarga";
+            this.pbCarga.Size = new System.Drawing.Size(100, 9);
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 10);
+            this.lblStatus.TextChanged += new System.EventHandler(this.lblStatus_TextChanged);
+            // 
+            // listCoheActivaBindingSource
+            // 
+            this.listCoheActivaBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListCoheActiva);
+            // 
+            // cEmisionActualBOBindingSource
+            // 
+            this.cEmisionActualBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CEmisionActualBO);
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.WorkerReportsProgress = true;
+            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             // 
             // Form1
             // 

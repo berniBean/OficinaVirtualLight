@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 using WindowsFormsApp6.CAD.BO;
 using System.Data;
 using WindowsFormsApp6.CAD.DAL.factories;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp6.CAD.DAL
 {
     public class CCInformeAvanceDALPLUS : obtenerInformes
     {
         private readonly string strConn;
+        private readonly ToolStripProgressBar _progressBar;
+        private readonly Label _lblProgress;
 
-        public CCInformeAvanceDALPLUS() {
+        public CCInformeAvanceDALPLUS(ToolStripProgressBar progressBar, Label lblProgress)
+        {
             strConn = System.Configuration.ConfigurationManager.AppSettings["K1"]; ;
+            _progressBar = progressBar;
+            _lblProgress = lblProgress;
         }
 
         public CCInformeAvanceDALPLUS(string conn)
@@ -25,7 +31,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
 
 
-        public ListaInformeAvance GetAvanceAdmin(int emision) 
+        public async Task<ListaInformeAvance> GetAvanceAdmin(int emision) 
         {
             try
             {
@@ -38,9 +44,9 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_Emision", emision);
                     ListaInformeAvance listAvance = new ListaInformeAvance();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader) await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         CInformeAvance fila = new CInformeAvance(
                                Convert.ToString(lector["referenciaNumerica"] is DBNull ? null : lector["referenciaNumerica"]),
@@ -68,7 +74,7 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
          
-        public ListaInformeAvance GetAvanceMultaSup(int emision, int supervisor)
+        public async Task<ListaInformeAvance> GetAvanceMultaSup(int emision, int supervisor)
         {
             try
             {
@@ -82,9 +88,9 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@idSupervisor", supervisor);
                     ListaInformeAvance listAvance = new ListaInformeAvance();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader) await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         CInformeAvance fila = new CInformeAvance(
                                 Convert.ToString(lector["zona"] is DBNull ? null : lector["zona"]),
@@ -113,7 +119,7 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        public ListaInformeAvance GetAvancesRIF(int emision, int supervisor)
+        public async Task<ListaInformeAvance> GetAvancesRIF(int emision, int supervisor)
         {
             try {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
@@ -126,9 +132,9 @@ namespace WindowsFormsApp6.CAD.DAL
                     OrdenSql.Parameters.AddWithValue("@_supervisor", supervisor);
                     ListaInformeAvance listAvance = new ListaInformeAvance();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader)OrdenSql.ExecuteReader(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         CInformeAvance fila = new CInformeAvance(
                                 Convert.ToString(lector["OHE"] is DBNull ? null : lector["OHE"]),
@@ -147,19 +153,19 @@ namespace WindowsFormsApp6.CAD.DAL
                 throw new ApplicationException("Error " + e);
             }
         }
-        public override ListaInformeAvance AvanceAdmin(int emision)
+        public override async Task<ListaInformeAvance> AvanceAdmin(int emision)
         {
-            return GetAvanceAdmin(emision);
+            return await GetAvanceAdmin(emision);
         }
 
-        public override ListaInformeAvance AvanceMultaSup(int emision, int supervisor)
+        public override async Task<ListaInformeAvance> AvanceMultaSup(int emision, int supervisor)
         {
-            return GetAvanceMultaSup(emision, supervisor);
+            return await GetAvanceMultaSup(emision, supervisor);
         }
 
-        public override ListaInformeAvance AvancesReq(int emision, int supervisor)
+        public override async Task<ListaInformeAvance> AvancesReq(int emision, int supervisor)
         {
-            return GetAvancesRIF(emision, supervisor);
+            return await GetAvancesRIF(emision, supervisor);
         }
     }
 }

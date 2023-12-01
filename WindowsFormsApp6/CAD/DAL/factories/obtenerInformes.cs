@@ -9,8 +9,8 @@ namespace WindowsFormsApp6.CAD.DAL.factories
 {
     public abstract class obtenerInformes
     {
-        public abstract ListaInformeAvance AvanceAdmin(int emision);
-        public abstract ListaInformeAvance AvanceMultaSup(int emision, int supervisor);
-        public abstract ListaInformeAvance AvancesReq(int emision, int supervisor);
+        public abstract Task<ListaInformeAvance> AvanceAdmin(int emision);
+        public abstract Task<ListaInformeAvance> AvanceMultaSup(int emision, int supervisor);
+        public abstract Task<ListaInformeAvance> AvancesReq(int emision, int supervisor);
     }
 }

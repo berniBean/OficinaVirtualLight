@@ -11,7 +11,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
         public abstract Task<CListaTableroAdmin> GetListadoCompleto(int emision, int idSup);
         public abstract Task<CListaTableroAdmin> GetEjerciciosFisales();
         public abstract Task<CListaTableroAdmin> GetEjerciciosMultasFisales();
-        public abstract CListaTableroAdmin TableroMultasSupervisor(int supervisor, int ejercicio);
+        public abstract Task<CListaTableroAdmin> TableroMultasSupervisor(int supervisor, int ejercicio);
         public abstract Task <CListaTableroAdmin> Tablero(int año);
         public abstract Task<CListaTableroAdmin> TableroPLUS(int año);
         public abstract CListaTableroAdmin TableroEjercicioFiscal();

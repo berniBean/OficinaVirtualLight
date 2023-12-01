@@ -48,13 +48,13 @@ namespace WindowsFormsApp6.CAD.BLL
             return listaReq;
         }
 
-        public ListaClistaRequeridos GetMultasRIFSup(string periodo, string OHE)
+        public async Task<ListaClistaRequeridos> GetMultasRIFSup(string periodo, string OHE)
         {
-            ListaClistaRequeridos listaReq = bd.GetMultasRIFSup(periodo, OHE);
+            ListaClistaRequeridos listaReq = await bd.GetMultasRIFSup(periodo, OHE);
             return listaReq;
         }
-        public void ModificarObservacionesRIF(CListaRequeridosBO bo) {
-            bd.ModificarObservacionesRIF(bo);
+        public async Task ModificarObservacionesRIF(List<CListaRequeridosBO> bo) {
+           await bd.ModificarObservacionesRIF(bo);
         }
 
         public void ModificaObservacionesMultasRIF(CListaRequeridosBO bo) 

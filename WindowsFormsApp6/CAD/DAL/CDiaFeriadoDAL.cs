@@ -3,6 +3,7 @@ using System;
 using MySql.Data.MySqlClient;
 using WindowsFormsApp6.CAD.BO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace WindowsFormsApp6.CAD.DAL
 {
@@ -20,7 +21,7 @@ namespace WindowsFormsApp6.CAD.DAL
             strConn = conn;
         }
 
-        public List<CdiasFeriadosBO> GetDiasFestivos()
+        public  async Task< List<CdiasFeriadosBO>> GetDiasFestivos()
         {
             try
             {
@@ -33,9 +34,9 @@ namespace WindowsFormsApp6.CAD.DAL
                     //Crear conexion para todos los datos
                     List<CdiasFeriadosBO> listFeriados = new List<CdiasFeriadosBO>();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader) await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    while ( await lector.ReadAsync())
                     {
 
                         CdiasFeriadosBO fila = new CdiasFeriadosBO(

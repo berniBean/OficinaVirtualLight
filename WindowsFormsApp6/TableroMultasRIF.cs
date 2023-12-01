@@ -109,7 +109,7 @@ namespace WindowsFormsApp6
             setRequerimientoDelegado = new SetRequerimiento(SetRequeimientoComo);
             setTipoMultaDelegada = new SetTipoMulta(setTipoMulta);
             LodadUserDat();
-            cargarAvanceZona();
+            cargarAvanceZonaAsync().Wait();
             CargarHonor();
 
 
@@ -140,9 +140,10 @@ namespace WindowsFormsApp6
             }
         }
 
-        private void cargarDiasCalendario() 
+        private async Task cargarDiasCalendarioAsync() 
         {
-            foreach (var dia in bdDias.GetDiasFestivos())
+            var listado = await  bdDias.GetDiasFestivosAsync();
+            foreach (var dia in listado)
             {
                 
                 monthCalendar1.AddBoldedDate(dia.DiaFeriado);
@@ -152,21 +153,21 @@ namespace WindowsFormsApp6
             monthCalendar1.UpdateBoldedDates();
         }
         #region carga de dataGrid de multas
-        private void cargarAvanceZona()
+        private async Task cargarAvanceZonaAsync()
         {
             dgMultasPendiente.AutoResizeColumns();
             dgMultasPendiente.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-            listAvance = obInforme.AvanceMultaSup(idEmision, idSupervisor);//bdAvance.GetAvanceMultaSup(idEmision , idSupervisor);
+            listAvance = await obInforme.AvanceMultaSup(idEmision, idSupervisor);//bdAvance.GetAvanceMultaSup(idEmision , idSupervisor);
             listaInformeAvanceBindingSource.DataSource = listAvance;
 
 
         }
 
 
-        private void cargarMultasRIF() 
+        private async Task cargarMultasRIFAsync() 
         {
-            listReq = obReq.MultasRIFSup(Convert.ToString(idEmision), OHE);//bdReq.GetMultasRIFSup(Convert.ToString(idEmision), OHE);
+            listReq = await obReq.MultasRIFSup(Convert.ToString(idEmision), OHE);//bdReq.GetMultasRIFSup(Convert.ToString(idEmision), OHE);
             cListaRequeridosBOBindingSource.DataSource = listReq;
             dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
             dgTablaMultasRIF.AutoResizeColumns();
@@ -198,7 +199,7 @@ namespace WindowsFormsApp6
             fechaMulta = CUserLoggin.fechaEmisionMulta;
             emisionMulta = CUserLoggin.nombreEmisionMultaRIF;
             origenMultaRIF = CUserLoggin.origenMultaRIF;
-            cargarDiasCalendario();
+            cargarDiasCalendarioAsync().Wait();
 
 
 
@@ -317,13 +318,13 @@ namespace WindowsFormsApp6
                 }
                 else if (_tipo == 2)
                 {
-                    obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
+                    obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS, pbCarga, label1);
                 }
                 OHE = dgMultasPendiente.Rows[e.RowIndex].Cells[1].Value.ToString();
                 totalReq = dgMultasPendiente.Rows[e.RowIndex].Cells[2].Value.ToString();
 
-                cargarMultasRIF();
-                cargarAvanceZona();
+                cargarMultasRIFAsync().Wait();
+                cargarAvanceZonaAsync().Wait();
             }
 
         }
@@ -349,8 +350,8 @@ namespace WindowsFormsApp6
         private async  void guardarToolStripButton_Click(object sender, EventArgs e)
         {
             await guardar();
-            cargarAvanceZona();
-            cargarMultasRIF();
+            cargarAvanceZonaAsync().Wait();
+            cargarMultasRIFAsync().Wait();
         }
 
         private async Task guardar()
@@ -1265,7 +1266,7 @@ namespace WindowsFormsApp6
                 else
                 {
                     //cargarAvanceZona();
-                    cargarMultasRIF();
+                    cargarMultasRIFAsync().Wait();
                 }
 
             }

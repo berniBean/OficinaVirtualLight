@@ -151,7 +151,7 @@ namespace WindowsFormsApp6
             observacion.Observaciones = cmbObservacion.Text;
             observacion.NotasObservaciones = textNotas.Text;
 
-            obReq.ObservacionesRequerimientos(observacion);
+            //obReq.ObservacionesRequerimientos(observacion);
             //if(backgroundWorker.IsBusy != true)
             //{
             //    backgroundWorker.RunWorkerAsync();

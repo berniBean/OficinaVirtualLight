@@ -45,7 +45,7 @@ namespace WindowsFormsApp6
             actualizarDelegado = new ActualizarDelegado(CargarTablero);
             supervisor = CUserLoggin.idUser;
             
-            CargarTablero();
+            CargarTableroAsync().Wait();
             SetFormating();
             dgTableroMultas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
@@ -58,9 +58,13 @@ namespace WindowsFormsApp6
 
         private void CargarTablero()
         {
+            CargarTableroAsync().Wait();
+        }
+        private async Task CargarTableroAsync()
+        {
             try
             {
-                listTablero = obTablero.TableroMultasSupervisor(supervisor,Convert.ToInt32( cmbEjercicio.Text));//bd.GetGetTableroMultasSupervisor(supervisor);
+                listTablero = await obTablero.TableroMultasSupervisor(supervisor,Convert.ToInt32( cmbEjercicio.Text));//bd.GetGetTableroMultasSupervisor(supervisor);
                 cListaTableroAdminBindingSource.DataSource = listTablero;
             }
             catch (Exception ex)
@@ -131,7 +135,7 @@ namespace WindowsFormsApp6
 
         private  void cmbEjercicio_Leave(object sender, EventArgs e)
         {
-            CargarTablero();
+            CargarTableroAsync();
         }
     }
 }

@@ -78,7 +78,7 @@ namespace WindowsFormsApp6
         private CDiasLaboralesBLL bdDias = new CDiasLaboralesBLL();
         private CNotificadoresDAL CatalogoNotificadores = new CNotificadoresDAL();
         private CatObservacionesDAL catalogo = new CatObservacionesDAL();
-
+        private ListaClistaRequeridos registrosModificados = new ListaClistaRequeridos();
 
         TaskInfo tiG = new TaskInfo();
 
@@ -101,7 +101,7 @@ namespace WindowsFormsApp6
                 obEmision = factoryEmision.maker(factoryEmision.RIF);
                 obOHE = factoryOHE.maker(factoryOHE.RIF);
                 obNomBimestre = factoryNombreBimestre.maker(factoryNombreBimestre.RIF);
-                obReq = factoryRequerimientos.maker(factoryRequerimientos.RIF);
+                obReq = factoryRequerimientos.maker(factoryRequerimientos.RIF, pbCarga,lblListo);
                 obUrl = factoryURL.maker(factoryURL.RIF);
 
             }
@@ -111,7 +111,7 @@ namespace WindowsFormsApp6
                 obEmision = factoryEmision.maker(factoryEmision.PLUS);
                 obOHE = factoryOHE.maker(factoryOHE.PLUS);
                 obNomBimestre = factoryNombreBimestre.maker(factoryNombreBimestre.PLUS);
-                obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
+                obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS, pbCarga, lblListo);
                 obUrl = factoryURL.maker(factoryURL.PLUS);
             }
             
@@ -124,10 +124,10 @@ namespace WindowsFormsApp6
             //toolStripTextBusqueda.Enabled = false;
             guardarToolStripButton.Enabled = false;
             _tipo = tipo;
+            DgReqActivos2.CellEndEdit += DgReqActivos2_CellEndEdit;
 
 
         }
-
 
 
         public Form1()
@@ -146,9 +146,10 @@ namespace WindowsFormsApp6
         }
 
 
-        private void cargarDiasCalendario()
+        private async Task cargarDiasCalendarioAsync()
         {
-            foreach (var dia in bdDias.GetDiasFestivos())
+            
+            foreach (var dia in await  bdDias.GetDiasFestivosAsync())
             {
 
                 monthCalendar1.AddBoldedDate(dia.DiaFeriado);
@@ -170,7 +171,7 @@ namespace WindowsFormsApp6
             CargarOHE();
             CargarNombreBimestre();
             DgReqActivos2.ReadOnly = false;
-            cargarDiasCalendario();
+            cargarDiasCalendarioAsync().Wait();
         }
 
         private void DgReqActivos_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -268,7 +269,7 @@ namespace WindowsFormsApp6
             if (guardarToolStripButton.Enabled == false)
                 guardarToolStripButton.Enabled = true;
 
-            cargaRequerimientos();
+            cargaRequerimientosAsync().Wait();
         }
 
         private void LodadUserDat()
@@ -350,9 +351,19 @@ namespace WindowsFormsApp6
 
         private async Task ActualizarBD()
         {
-            string TipoDato = "requerimiento";
-            ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, lblListo, TipoDato, obReq );
-            await actualizaBD.SaveChangesAsync(listReq);
+            if (registrosModificados.Count > 0)
+            {
+                string TipoDato = "requerimiento";
+                ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, lblListo, TipoDato, obReq );
+                await actualizaBD.SaveChangesAsync(registrosModificados);
+                registrosModificados.Clear();
+            }
+            else
+            {
+
+                MessageBox.Show("Sin modificaciones");
+            }
+
         }
 
 
@@ -421,124 +432,10 @@ namespace WindowsFormsApp6
         
         private void validarCeldas(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex == -1 || e.ColumnIndex == -1)
-            {
-                return;
-            }
-            else
-            {
-                try
-                {
-                    switch (DgReqActivos2.Columns[e.ColumnIndex].Name)
-                    {
 
-
-
-                        case "FechaNotificacion":
-                            try
-                            {
-                                if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) != "")
-                                {
-
-                                    if (!this.EsFecha(e.FormattedValue.ToString()))
-                                    {
-                                        MessageBox.Show("El dato debe ser una fecha tipo dd/mm/aaaa");
-                                        DgReqActivos2.CurrentCell.Value = null; return;
-                                    }
-                                    else
-                                    DgReqActivos2.CurrentCell.Value = Convert.ToDateTime(DgReqActivos2.CurrentCell.EditedFormattedValue);                                   
-                                    FechaValida(Convert.ToDateTime(DgReqActivos2.CurrentCell.Value));
-                                }
-                                else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
-                                {
-                                    return;
-                                }
-                                if (Convert.ToDateTime(DgReqActivos2.CurrentCell.Value) == Convert.ToDateTime("01/01/0001"))
-                                    DgReqActivos2.CurrentCell.Value = null; return;
-                                break;
-
-                            }
-                            catch (FormatException fexcepcion)
-                            {
-
-                                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
-                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-
-                        case "FechaCitatorio":
-                            try
-                            {
-                                
-                                if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) != "")
-                                {
-                                    if (!this.EsFecha(e.FormattedValue.ToString()))
-                                    {
-                                        MessageBox.Show("El dato debe ser una fecha tipo dd/mm/aaaa");
-                                        DgReqActivos2.CurrentCell.Value = null; return;
-                                    }
-                                    else
-                                        DgReqActivos2.CurrentCell.Value = Convert.ToDateTime(DgReqActivos2.CurrentCell.EditedFormattedValue);
-                                    FechaValida(Convert.ToDateTime(DgReqActivos2.CurrentCell.Value));
-                                }
-                                else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
-                                {
-                                    return;
-                                }
-                                if (Convert.ToDateTime(DgReqActivos2.CurrentCell.Value) == Convert.ToDateTime("01/01/0001"))
-                                    DgReqActivos2.CurrentCell.Value = null; return;
-                                break;
-                            }
-                            catch (FormatException fexcepcion)
-                            {
-                                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
-                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-
-
-                        case "FechaEnvio":
-                            try
-                            {
-                                if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) != "")
-                                {
-                                    if (!this.EsFecha(e.FormattedValue.ToString()))
-                                    {
-                                        MessageBox.Show("El dato debe ser una fecha tipo dd/mm/aaaa");
-                                        DgReqActivos2.CurrentCell.Value = null; return;
-                                    }
-                                    else
-                                        DgReqActivos2.CurrentCell.Value = Convert.ToDateTime(DgReqActivos2.CurrentCell.EditedFormattedValue);
-                                    FechaValida(Convert.ToDateTime(DgReqActivos2.CurrentCell.Value));
-                                }
-                                else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
-                                {
-                                    return;
-                                }
-                                if (Convert.ToDateTime(DgReqActivos2.CurrentCell.Value) == Convert.ToDateTime("01/01/0001"))
-                                    DgReqActivos2.CurrentCell.Value = null; return;
-                                break;
-
-                            }
-                            catch (FormatException fexcepcion)
-                            {
-                                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
-                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                return;
-                            }
-
-
-
-                    }
-                }
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    MessageBox.Show("Fuera de rango"); 
-                }
-            }
         }
 
-     
+
 
 
         private void toolStripTextBusqueda_KeyDown(object sender, KeyEventArgs e)
@@ -553,7 +450,7 @@ namespace WindowsFormsApp6
                 }
 
                 else
-                    cargaRequerimientos();
+                    cargaRequerimientosAsync().Wait();
             }
 
         }
@@ -624,14 +521,25 @@ namespace WindowsFormsApp6
 
             
             int i = 1;
-            int total = DgReqActivos2.Rows.Count;           
-            foreach (DataGridViewCell cell in dataGrid.SelectedCells)
-                {
+            int total = DgReqActivos2.Rows.Count;
 
-                   
+            CListaRequeridosBO elementoModificado;
+
+
+            foreach (DataGridViewCell cell in dataGrid.SelectedCells)
+            {
+
+
+               
                 cell.Value = "";
                 tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / total);
                 backgroundWorker1.ReportProgress(i * 100 / total, tiG);
+                elementoModificado =listReq[cell.RowIndex];
+
+                if (!registrosModificados.Contains(elementoModificado))
+                {
+                    registrosModificados.Add(elementoModificado);
+                }
 
                 i++;
             }
@@ -693,6 +601,7 @@ namespace WindowsFormsApp6
 
 
                 e.Handled = true;
+                
 
             }
 
@@ -880,6 +789,8 @@ namespace WindowsFormsApp6
 
         private void fechaValidada(DataGridViewCell objeto_celda)
         {
+            CListaRequeridosBO elementoModificado;
+
             if (objeto_celda.ColumnIndex == 6 || objeto_celda.ColumnIndex == 7)
             {
                 if (Convert.ToString(objeto_celda.EditedFormattedValue) != "")
@@ -887,6 +798,12 @@ namespace WindowsFormsApp6
 
                     if (!this.EsFecha(objeto_celda.Value.ToString()))
                     {
+                        elementoModificado = listReq[objeto_celda.RowIndex];
+                        if (registrosModificados.Contains(elementoModificado))
+                        {
+                            registrosModificados.Remove(elementoModificado);
+                        }
+
                         objeto_celda.ErrorText = "Debe ser una fecha tipo dd/mm/aaaa";
                         objeto_celda.Value = null;
                     }
@@ -897,6 +814,12 @@ namespace WindowsFormsApp6
 
                     if (diaNoLaborar(Convert.ToDateTime(objeto_celda.Value)))
                     {
+                        elementoModificado = listReq[objeto_celda.RowIndex];
+                        if (registrosModificados.Contains(elementoModificado))
+                        {
+                            registrosModificados.Remove(elementoModificado);
+                        }
+
                         objeto_celda.ErrorText = "Este es un día inhábil";
                         objeto_celda.Value = null;
                     }
@@ -939,16 +862,28 @@ namespace WindowsFormsApp6
         {
             int indice=0;
             int carga = 1;
-            try {
+
+            CListaRequeridosBO elementoModificado;
+
+
+
+
+
+            try
+            {
                 DataGridViewCell objeto_celda;
                 foreach (string linea in lineas)
                 {
+
+
                     if (fila < datagrid.RowCount && linea.Length > 0)
                     {
                         string[] celdas = linea.Split('\t');
 
                         for ( indice = 0; indice < celdas.GetLength(0); ++indice)
                         {
+                            
+
                             if (columna + indice < datagrid.ColumnCount)
                             {
                                 objeto_celda = datagrid[columna + indice, fila];
@@ -964,8 +899,15 @@ namespace WindowsFormsApp6
                                             objeto_celda.Value = Convert.ChangeType(celdas[indice], objeto_celda.ValueType);
                                             objeto_celda.Value = objeto_celda.Value.ToString().Trim(new Char[] { '\t', '\n', '\r' });
                                             fechaValidada(objeto_celda);
+
+                                            elementoModificado = listReq[objeto_celda.RowIndex];
+                                            if (!registrosModificados.Contains(elementoModificado))
+                                            {
+                                                registrosModificados.Add(elementoModificado);
+                                            }
+
                                             //A continuación la linea añadida para eliminar los '\r'. De paso, y por si acaso en algún contexto ocurre, tambien los: '\t' y '\n'
-                                            
+
                                             // Fin linea añadida
 
                                         }
@@ -989,6 +931,8 @@ namespace WindowsFormsApp6
                         //lblStatus.Text = Convert.ToString(carga * 100 / lineas.Length);
                         tiG.mensaje = string.Format("procesando...{0}% ", carga * 100 / lineas.Length);
                         backgroundWorker1.ReportProgress(carga * 100 / lineas.Length, tiG);
+
+
                         carga++;
                     }
                     else
@@ -1142,12 +1086,12 @@ namespace WindowsFormsApp6
         }
 
 
-        private void cargaRequerimientos()
+        private async Task cargaRequerimientosAsync()
         {
             ListaObservaciones = catalogo.GetCatObservacion();
             listNotificador = CatalogoNotificadores.GetListadoNotificadores(cmbOHE.Text);
             Cache.CUserLoggin.Notificadores = listNotificador;
-            listReq = obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
+            listReq = await obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
 
 
 
@@ -1501,8 +1445,17 @@ namespace WindowsFormsApp6
             bindingNavigator1.Enabled = true;
         }
 
- 
+        private void DgReqActivos2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
 
+            CListaRequeridosBO elementoModificado = listReq[rowIndex];
+
+            if (!registrosModificados.Contains(elementoModificado))
+            {
+                registrosModificados.Add(elementoModificado);
+            }
+        }
 
     }
 }

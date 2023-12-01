@@ -56,7 +56,7 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        private CListaTableroAdmin GetTableroMultasSupervisor(int supervisor, int ejercicio) 
+        private async Task<CListaTableroAdmin> GetTableroMultasSupervisor(int supervisor, int ejercicio) 
         {
             try
             {
@@ -71,9 +71,9 @@ namespace WindowsFormsApp6.CAD.DAL
 
                     CListaTableroAdmin listTablero = new CListaTableroAdmin();
                     conn.Open();
-                    MySqlDataReader lector = OrdenSql.ExecuteReader();
+                    MySqlDataReader lector = (MySqlDataReader) await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    while (lector.Read())
+                    while (await lector.ReadAsync())
                     {
                         CTableroAdminBO fila = new CTableroAdminBO(
                                 Convert.ToInt16(lector["ejercicio"] is DBNull ? null : lector["ejercicio"]),
@@ -422,9 +422,9 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
-        public override CListaTableroAdmin TableroMultasSupervisor(int supervisor, int ejercicio)
+        public override async Task<CListaTableroAdmin> TableroMultasSupervisor(int supervisor, int ejercicio)
         {
-            return GetTableroMultasSupervisor(supervisor, ejercicio);
+            return await GetTableroMultasSupervisor(supervisor, ejercicio);
         }
 
         public override async Task<CListaTableroAdmin> Tablero(int año)
