@@ -441,8 +441,8 @@ namespace WindowsFormsApp6
         private void toolStripTextBusqueda_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13) {
-                if (Modificado())
-                    ActualizarBD().Wait();
+                //if (registrosModificados.Count > 0)
+                //    ActualizarBD().Wait();
                 if (!string.IsNullOrEmpty(toolStripTextBusqueda.Text))
                 {                    
                     BusquedaLinQ(toolStripTextBusqueda.Text);
@@ -462,7 +462,43 @@ namespace WindowsFormsApp6
             {
                 DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
             }
-            if (datoBusqueda.Equals("PENDIENTE"))
+
+            if (datoBusqueda.Equals("LOCALIZADO"))
+            {
+                var consulta = (from item in listReq
+                                where item.Estatus.Equals("LOCALIZADO")
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+
+                if (totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se enecontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }else if (datoBusqueda.Equals("NO LOCALIZADO"))
+            {
+                var consulta = (from item in listReq
+                                where item.Estatus.Equals("NO LOCALIZADO")
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+
+                if (totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se enecontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }
+            else if (datoBusqueda.Equals("PENDIENTE"))
             {
                 
                 var consulta = (from item in listReq

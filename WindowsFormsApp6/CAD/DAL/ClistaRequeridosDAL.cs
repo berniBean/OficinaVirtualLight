@@ -773,18 +773,18 @@ namespace WindowsFormsApp6.CAD.DAL
             ModificarObservacionesRIF(bo);
         }
 
-        public override void ObservacionesMultas(CListaRequeridosBO bo)
+        public override async Task ObservacionesMultas(CListaRequeridosBO bo)
         {
             
             ModificaObservacionesMultasRIF(bo);
         }
 
-        public override void EjecucionMulta(CListaRequeridosBO bo)
+        public override async Task EjecucionMulta(CListaRequeridosBO bo)
         {
             ModificaEjecucion(bo);
         }
 
-        public override void PagoMulta(CListaRequeridosBO bo)
+        public override async Task PagoMulta(CListaRequeridosBO bo)
         {
             ModificaPagoMulta(bo);
         }
@@ -794,9 +794,9 @@ namespace WindowsFormsApp6.CAD.DAL
         //    ModificarRequerimientosRIF(bo);
         //}
 
-        public override void ModificaMultas(CListaRequeridosBO bo)
+        public override async Task ModificaMultas(List<CListaRequeridosBO> bo)
         {
-            ModificaMultasRif(bo);
+            throw new NotImplementedException();
         }
 
         public override ListaClistaRequeridos ListaBusquedaMasiva(string periodo, string OHE)

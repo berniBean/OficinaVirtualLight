@@ -30,14 +30,10 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
         private async Task ProcesoGuardadoAsync(List<CListaRequeridosBO> listaClistaRequeridos, IProgress<int> progress = null)
         {
-            using var semaforo = new SemaphoreSlim(50);
-            var tareas = new List<Task<bool>>();
-            var total = listaClistaRequeridos.Count();
-            var i = 0;
 
 
             var gato = (from item in listaClistaRequeridos
-                        where (item.Modificado && item.Estatus != "enviado") || (item.ModificaObservacion)
+                        where (item.Estatus != "enviado")
                         select new CListaRequeridosBO()
                         {
                             _idMultaRif = item._idMultaRif,
@@ -51,45 +47,15 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             _fechaVencimiento = item._fechaVencimiento,
                             Estatus = item.Estatus,
                             Ejecucion = item.Ejecucion,
-                           Observaciones = item.Observaciones
+                           Observaciones = item.Observaciones,
+
+                           
 
                         }).ToList();
 
             MessageBox.Show("Total documentos Actualizados:" + gato.Count);
 
-            await Task.Run(() =>
-            {
-
-
-
-
-                tareas = gato.Select(async r =>
-                {
-
-                    await semaforo.WaitAsync();
-                    try
-                    {
-                        if (progress != null)
-                        {
-                            i++;
-                            _obReq.ModificaMultas(r);
-                            _obReq.ObservacionesMultas(r);
-
-                            progress.Report(StaticPercentage.PercentageProgress(i, total));
-
-                        }
-
-                        return r.Modificado;
-                    }
-                    finally
-                    {
-                        semaforo.Release();
-
-                    }
-                }).ToList();
-            });
-
-            await Task.WhenAll(tareas);
+            await _obReq.ModificaMultas(gato);
 
             MessageBox.Show("Guardado completado");
 

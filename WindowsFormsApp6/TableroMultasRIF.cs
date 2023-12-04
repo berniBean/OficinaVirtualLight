@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
@@ -8,8 +7,6 @@ using WindowsFormsApp6.CAD.BO;
 using wpfCreaExcel;
 using Excel = Microsoft.Office.Interop.Excel;
 using static WindowsFormsApp6.Form4;
-using System.IO;
-using System.Runtime.InteropServices;
 using WindowsFormsApp6.CAD.DAL.factories;
 using System.Collections.Generic;
 using WindowsFormsApp6.structs;
@@ -50,6 +47,8 @@ namespace WindowsFormsApp6
         //private CListaRequeridosBO obListaRqe = new CListaRequeridosBO();
         private ListaClistaRequeridos listReq;
         obtenerRequeridos obReq;
+
+        private ListaClistaRequeridos registrosModificados = new ListaClistaRequeridos();
 
 
         //private CCNombreBimestreBLL bdNombreBim = new CCNombreBimestreBLL();
@@ -123,6 +122,8 @@ namespace WindowsFormsApp6
             toolStripTextBusquedaMultas.Enabled = false;
             guardarToolStripButton.Enabled = false;
             bindingNavigator1.Enabled = false;
+
+            dgTablaMultasRIF.CellEndEdit += dgTablaMultasRIF_CellEndEdit;
 
 
         }
@@ -339,10 +340,19 @@ namespace WindowsFormsApp6
         
         private async Task ActualizarBD()
         {
+            if(registrosModificados.Count > 0)
+            {
 
-            string TipoDato = "multas";
-            ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, label1, TipoDato, obReq);
-            await actualizaBD.SaveChangesAsync(listReq);
+                string TipoDato = "multas";
+                ActualizaBDAsync actualizaBD = new ActualizaBDAsync(pbCarga, label1, TipoDato, obReq);
+                await actualizaBD.SaveChangesAsync(registrosModificados);
+                registrosModificados.Clear();
+
+            }
+            else
+            {
+                MessageBox.Show("Sin modificaciones");
+            }
 
         }
 
@@ -365,12 +375,15 @@ namespace WindowsFormsApp6
 
         private void FechaValida(DateTime fechaActual)
         {
+
             if (fechaActual == Convert.ToDateTime("01/01/0001")) return;
 
             if (diaNoLaborar(fechaActual))
             {
                 dgTablaMultasRIF.CurrentCell.ErrorText = "Este es un día inhábil";
                 dgTablaMultasRIF.CurrentCell.Value = null;
+
+
             }
             else
             {
@@ -636,14 +649,31 @@ namespace WindowsFormsApp6
 
         private void ClearSelection(DataGridView dataGrid)
         {
+            int i = 1;
+            int total = dgTablaMultasRIF.Rows.Count;
+
+            CListaRequeridosBO elementoModificado; 
 
             foreach (DataGridViewCell cell in dataGrid.SelectedCells)
             {
 
 
                 cell.Value = "";
+                tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / total);
+                backgroundWorker1.ReportProgress(i * 100 / total, tiG);
+                elementoModificado = listReq[cell.RowIndex];
 
+                if (!registrosModificados.Contains(elementoModificado))
+                {
+                    registrosModificados.Add(elementoModificado);
+                }
+
+                i++;
             }
+
+            pbCarga.Value = 0;
+            label1.Text = "Listo.";
+            MessageBox.Show("Finalizado");
 
 
         }
@@ -769,10 +799,46 @@ namespace WindowsFormsApp6
                dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
             }
 
-            if (text.Equals("PENDIENTE"))
+            if (text.Equals("LOCALIZADO"))
             {
                 var consulta = (from item in listReq
-                                where item.Estatus.Contains("pendiente")
+                                where item.Diligencia.Equals("LOCALIZADO")
+                                select item).ToList();
+                totalMultas = consulta.Count();
+
+                if (totalMultas.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }
+            else if (text.Equals("NO LOCALIZADO"))
+            {
+                var consulta = (from item in listReq
+                                where item.Diligencia.Equals("NO LOCALIZADO")
+                                select item).ToList();
+                totalMultas = consulta.Count();
+
+                if (totalMultas.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }
+            else if (text.Equals("PENDIENTE"))
+            {
+                var consulta = (from item in listReq
+                                where item.Estatus.Equals("pendiente")
                                 select item).ToList();
                 totalMultas = consulta.Count();
 
@@ -788,6 +854,25 @@ namespace WindowsFormsApp6
                 }
 
 
+            }
+
+            else if (text.Equals("LISTO"))
+            {
+                var consulta = (from item in listReq
+                                where item.Estatus.Contains("listo")
+                                select item).ToList();
+                totalMultas = consulta.Count();
+
+                if (totalMultas.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    dgTablaMultasRIF.DataSource = cListaRequeridosBOBindingSource;
+                }
             }
             else
             {
@@ -912,6 +997,8 @@ namespace WindowsFormsApp6
             int indice = 0;
             int carga = 1;
 
+            CListaRequeridosBO elementoModificado;
+
             try
             {
                 DataGridViewCell objeto_celda;
@@ -952,6 +1039,13 @@ namespace WindowsFormsApp6
                                                                                 //ejecucion                                                                 diligencia                                                                  importe                                                                                              vencimiento
                                                 dgTablaMultasRIF.Rows[objeto_celda.RowIndex].Cells[17].Value = multaVencida(dgTablaMultasRIF.Rows[objeto_celda.RowIndex].Cells[8].Value.ToString(), Convert.ToInt32(dgTablaMultasRIF.Rows[objeto_celda.RowIndex].Cells[12].Value.ToString()), Convert.ToDateTime(dgTablaMultasRIF.Rows[objeto_celda.RowIndex].Cells[15].Value.ToString()));
                                             }
+
+                                            elementoModificado = listReq[objeto_celda.RowIndex];
+                                            if (!registrosModificados.Contains(elementoModificado))
+                                            {
+                                                registrosModificados.Add(elementoModificado);
+                                            }
+                                            
 
 
                                             //A continuación la linea añadida para eliminar los '\r'. De paso, y por si acaso en algún contexto ocurre, tambien los: '\t' y '\n'
@@ -1079,13 +1173,23 @@ namespace WindowsFormsApp6
 
         private void fechaValidada(DataGridViewCell objeto_celda)
         {
+
+            CListaRequeridosBO elementoModificado;
+
             if ( objeto_celda.ColumnIndex == 10)
             {
                 if (Convert.ToString(objeto_celda.EditedFormattedValue) != "")
                 {
 
+
                     if (!this.EsFecha(objeto_celda.Value.ToString()))
                     {
+                        elementoModificado = listReq[objeto_celda.RowIndex];
+                        if (registrosModificados.Contains(elementoModificado))
+                        {
+                            registrosModificados.Remove(elementoModificado);
+                        }
+
                         objeto_celda.ErrorText = "Debe ser una fecha tipo dd/mm/aaaa";
                         objeto_celda.Value = null;
                     }
@@ -1096,6 +1200,12 @@ namespace WindowsFormsApp6
 
                     if (diaNoLaborar(Convert.ToDateTime(objeto_celda.Value)))
                     {
+                        elementoModificado = listReq[objeto_celda.RowIndex];
+                        if (registrosModificados.Contains(elementoModificado))
+                        {
+                            registrosModificados.Remove(elementoModificado);
+                        }
+
                         objeto_celda.ErrorText = "Este es un día inhábil";
                         objeto_celda.Value = null;
                     }
@@ -1256,8 +1366,8 @@ namespace WindowsFormsApp6
         {
             if (e.KeyValue == 13)
             {
-                if (Modificado())
-                    ActualizarBD().Wait();
+                //if (registrosModificados.Count > 0)
+                //    ActualizarBD().Wait();
 
                 if (!string.IsNullOrEmpty(toolStripTextBusquedaMultas.Text))
                 {
@@ -1305,6 +1415,18 @@ namespace WindowsFormsApp6
                         || item.DataPropertyName.Equals("Modificado")))
                     item.Visible = true;
                 }
+            }
+        }
+
+        private void dgTablaMultasRIF_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+
+            var elementoModificado = listReq[rowIndex];
+
+            if (!registrosModificados.Contains(elementoModificado))
+            {
+                registrosModificados.Add(elementoModificado);
             }
         }
     }

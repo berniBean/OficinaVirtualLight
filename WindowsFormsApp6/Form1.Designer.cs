@@ -719,7 +719,7 @@
             this.DgReqActivos2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellContentDoubleClick);
             this.DgReqActivos2.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellEndEdit);
-            this.DgReqActivos2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
+            this.DgReqActivos2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellEnter);
             this.DgReqActivos2.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DgReqActivos_CellValidating);
             this.DgReqActivos2.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellValueChanged);
             this.DgReqActivos2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DgReqActivos_DataError);

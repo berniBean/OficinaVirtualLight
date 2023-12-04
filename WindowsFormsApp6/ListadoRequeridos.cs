@@ -161,6 +161,7 @@ namespace WindowsFormsApp6
 
         private void EnableGridFilter(bool v)
         {
+
             dataGridZona.FilteringEnabled = v;
             dataGridOHE.FilteringEnabled = v;
             dataGridNumReq.FilteringEnabled = v;

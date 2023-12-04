@@ -694,8 +694,13 @@ namespace WindowsFormsApp6.CAD.DAL
 
 
 
-        public void ModificaMultasRif(CListaRequeridosBO bo)
+        public async Task ModificaMultasRif(List<CListaRequeridosBO> bo, IProgress<int> progress = null) 
         {
+            using var semaforo = new SemaphoreSlim(50);
+            var tareas = new List<Task<bool>>();
+            var total = bo.Count();
+
+            var i = 0;
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
@@ -704,23 +709,59 @@ namespace WindowsFormsApp6.CAD.DAL
                     {
                         CommandType = CommandType.StoredProcedure
                     };
-
-                    //Parametros
-                    OrdenSql.Parameters.AddWithValue("@_idMultaRif", bo._idMultaRif);//cumplioAntes
-                    OrdenSql.Parameters.AddWithValue("@_diligencia", VerificaDiligencia(bo.Diligencia, bo.FechaNotificacion));//diligencia
-                    OrdenSql.Parameters.AddWithValue("@_fechaNotificacion", VerificaFecha(bo.FechaNotificacion, bo.FechaNotificacion, bo.Diligencia));//notificacion
-                    OrdenSql.Parameters.AddWithValue("@_fechaCitatorio", VerificaFecha(bo.FechaCitatorio, bo.FechaNotificacion, bo.Diligencia));//citatorio
-                    OrdenSql.Parameters.AddWithValue("@_fechaPagoMulta", VerificaPAgo(bo.FechaPago,bo.FechaNotificacion, bo.Diligencia,bo.Importe));//pagoMulta
-                    OrdenSql.Parameters.AddWithValue("@_importePagoMulta",VerificaImporte( bo.Importe, bo.Diligencia, bo.FechaNotificacion, bo.FechaPago));//importeMulta
-                    OrdenSql.Parameters.AddWithValue("@_honorarios", VerificaHonorarios( bo.Honorarios, bo.Diligencia, bo.Importe, bo.FechaPago));//importeMulta
-                    OrdenSql.Parameters.AddWithValue("@_cumplioAntes",verificaCumplioAntes( bo.CumplioAntes, bo.Diligencia));//cumplioAntes
-                    OrdenSql.Parameters.AddWithValue("@_fechaVencimientoMulta", VerificaFecha(bo._fechaVencimiento, bo.FechaNotificacion, bo.Diligencia));//fechaVencimiento
-                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(bo.Estatus, bo.FechaNotificacion, bo.Diligencia));//estatus
-                    OrdenSql.Parameters.AddWithValue("@_ejecucion",verificaEjecucion(bo.Ejecucion,bo.Diligencia, bo.FechaNotificacion, bo.FechaPago, bo._fechaVencimiento, bo.Importe));//estatus
-                    //OrdenSql.Parameters.AddWithValue("@_observaciones", OficioVacio(bo.Observaciones));
-                    //Abrir la conexion de base de Datos
                     conn.Open();
-                    OrdenSql.ExecuteNonQuery();
+
+                    await Task.Run(() =>
+                    {
+
+                        tareas = bo.Select(async r =>
+                        {
+                            await semaforo.WaitAsync();
+                            try
+                            {
+                                if (progress != null)
+                                {
+                                    OrdenSql.Parameters.Clear();
+
+                                    i++;
+
+                                    //Parametros
+                                    OrdenSql.Parameters.AddWithValue("@_idMultaRif", r._idMultaRif);//cumplioAntes
+                                    OrdenSql.Parameters.AddWithValue("@_diligencia", VerificaDiligencia(r.Diligencia, r.FechaNotificacion));//diligencia
+                                    OrdenSql.Parameters.AddWithValue("@_fechaNotificacion", VerificaFecha(r.FechaNotificacion, r.FechaNotificacion, r.Diligencia));//notificacion
+                                    OrdenSql.Parameters.AddWithValue("@_fechaCitatorio", VerificaFecha(r.FechaCitatorio, r.FechaNotificacion, r.Diligencia));//citatorio
+                                    OrdenSql.Parameters.AddWithValue("@_fechaPagoMulta", VerificaPAgo(r.FechaPago, r.FechaNotificacion, r.Diligencia, r.Importe));//pagoMulta
+                                    OrdenSql.Parameters.AddWithValue("@_importePagoMulta", VerificaImporte(r.Importe, r.Diligencia, r.FechaNotificacion, r.FechaPago));//importeMulta
+                                    OrdenSql.Parameters.AddWithValue("@_honorarios", VerificaHonorarios(r.Honorarios, r.Diligencia, r.Importe, r.FechaPago));//importeMulta
+                                    OrdenSql.Parameters.AddWithValue("@_cumplioAntes", verificaCumplioAntes(r.CumplioAntes, r.Diligencia));//cumplioAntes
+                                    OrdenSql.Parameters.AddWithValue("@_fechaVencimientoMulta", VerificaFecha(r._fechaVencimiento, r.FechaNotificacion, r.Diligencia));//fechaVencimiento
+                                    OrdenSql.Parameters.AddWithValue("@_estatus", verificaEstatus(r.Estatus, r.FechaNotificacion, r.Diligencia));//estatus
+                                    OrdenSql.Parameters.AddWithValue("@_ejecucion", verificaEjecucion(r.Ejecucion, r.Diligencia, r.FechaNotificacion, r.FechaPago, r._fechaVencimiento, r.Importe));//estatus
+                                    OrdenSql.Parameters.AddWithValue("@_observaciones", r.Observaciones);
+
+
+
+                                    OrdenSql.ExecuteNonQuery();
+                                    progress.Report(StaticPercentage.PercentageProgress(i, total));
+
+                                }
+                                return r.Modificado;
+
+                            }
+                            finally
+                            {
+                                semaforo.Release();
+                            }
+
+
+                        }).ToList();
+                    });
+
+                    await Task.WhenAll(tareas);
+                    
+
+
+                    //Abrir la conexion de base de Datos
 
                 }
             }
@@ -899,7 +940,7 @@ namespace WindowsFormsApp6.CAD.DAL
             return await GetRequerimientos(periodo, OHE);
         }
 
-        public override void ObservacionesMultas(CListaRequeridosBO bo)
+        public override async Task ObservacionesMultas(CListaRequeridosBO bo)
         {
             
             ModificaObservacionesMultasRIF(bo);
@@ -907,21 +948,21 @@ namespace WindowsFormsApp6.CAD.DAL
 
         
 
-        public override void EjecucionMulta(CListaRequeridosBO bo)
+        public override async Task EjecucionMulta(CListaRequeridosBO bo)
         {
             ModificaEjecucion(bo);
         }
 
-        public override void PagoMulta(CListaRequeridosBO bo)
+        public override async Task PagoMulta(CListaRequeridosBO bo)
         {
             ModificaPagoMulta(bo);
         }
 
 
 
-        public override void ModificaMultas(CListaRequeridosBO bo)
+        public override async Task ModificaMultas(List<CListaRequeridosBO> bo)
         {
-            ModificaMultasRif(bo);
+           await  ModificaMultasRif(bo,reportarProgreso);
         }
 
         public override ListaClistaRequeridos ListaBusquedaMasiva(string periodo, string OHE)

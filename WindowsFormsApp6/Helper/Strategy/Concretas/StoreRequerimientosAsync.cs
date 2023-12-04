@@ -35,7 +35,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
 
             var gato = (from item in listaClistaRequeridos
-                        where (item.Modificado && item.Estatus != "enviado")
+                        where (item.Estatus != "enviado")
                         select new CListaRequeridosBO()
                         {
                             NumCtrl = item.NumCtrl,
