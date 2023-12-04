@@ -559,11 +559,15 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
+                    
                     MySqlCommand OrdenSql = new MySqlCommand("listaRequeridosPLUS_Notificadores", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
-                    if(periodo=="" )
+
+                    
+                    
+                    if (periodo=="" )
                         periodo="0";
                     OrdenSql.Parameters.AddWithValue("@periodo", periodo);
                     OrdenSql.Parameters.AddWithValue("@OHE", OHE);
@@ -572,7 +576,6 @@ namespace WindowsFormsApp6.CAD.DAL
                     conn.Open();
                     MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync(CommandBehavior.CloseConnection);
 
-                    
                     while (await lector.ReadAsync())
                     {
 
@@ -599,9 +602,7 @@ namespace WindowsFormsApp6.CAD.DAL
                         fila.NotasObservaciones = Convert.ToString(lector["notasObservaciones"] is DBNull ? null : lector["notasObservaciones"]);//nombreNotificador
 
                         listOHE.Add(fila);
-                        
-                        
-                        
+
                     }
                     return listOHE;
 

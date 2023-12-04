@@ -466,7 +466,7 @@ namespace WindowsFormsApp6
             if (datoBusqueda.Equals("LOCALIZADO"))
             {
                 var consulta = (from item in listReq
-                                where item.Estatus.Equals("LOCALIZADO")
+                                where item.Diligencia.Equals("LOCALIZADO")
                                 select item).ToList();
                 totalBusqueda = consulta.Count();
 
@@ -483,7 +483,7 @@ namespace WindowsFormsApp6
             }else if (datoBusqueda.Equals("NO LOCALIZADO"))
             {
                 var consulta = (from item in listReq
-                                where item.Estatus.Equals("NO LOCALIZADO")
+                                where item.Diligencia.Equals("NO LOCALIZADO")
                                 select item).ToList();
                 totalBusqueda = consulta.Count();
 
