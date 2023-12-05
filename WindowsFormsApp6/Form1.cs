@@ -523,7 +523,8 @@ namespace WindowsFormsApp6
                 var consulta = (from item in listReq
                                 where item.Rfc.Contains(datoBusqueda) ||
                                 item.RazonSocial.Contains(datoBusqueda) ||
-                                item.NumCtrl.Contains(datoBusqueda)
+                                item.NumCtrl.Contains(datoBusqueda)||
+                                item.NumReq.ToString().Contains(datoBusqueda)
                                 select item).ToList();
                 totalBusqueda = consulta.Count();
                 if(totalBusqueda.Equals(0))

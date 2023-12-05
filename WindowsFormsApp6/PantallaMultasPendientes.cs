@@ -135,7 +135,7 @@ namespace WindowsFormsApp6
 
         private  void cmbEjercicio_Leave(object sender, EventArgs e)
         {
-            CargarTableroAsync();
+            CargarTableroAsync().Wait();
         }
     }
 }

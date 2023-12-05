@@ -323,9 +323,10 @@ namespace WindowsFormsApp6
                 }
                 OHE = dgMultasPendiente.Rows[e.RowIndex].Cells[1].Value.ToString();
                 totalReq = dgMultasPendiente.Rows[e.RowIndex].Cells[2].Value.ToString();
-
+                
+                //cargarAvanceZonaAsync().Wait();
                 cargarMultasRIFAsync().Wait();
-                cargarAvanceZonaAsync().Wait();
+                
             }
 
         }
@@ -879,7 +880,10 @@ namespace WindowsFormsApp6
                 var consulta = (from item in listReq
                                 where item.Rfc.Contains(text) ||
                                 item.RazonSocial.Contains(text) ||
-                                item.NumCtrl.Contains(text)
+                                item.NumCtrl.Contains(text)||
+                                item._numMulta.ToString().Contains(text)
+                               
+                                
                                 select item).ToList();
                 totalMultas = consulta.Count();
                 if (totalMultas.Equals(0))
