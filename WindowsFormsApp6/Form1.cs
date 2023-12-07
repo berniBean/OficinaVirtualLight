@@ -176,7 +176,7 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            if (e.Exception != null && e.Context == DataGridViewDataErrorContexts.Formatting)
+            if (e.Exception != null && e.Context == DataGridViewDataErrorContexts.Formatting && e.ColumnIndex != 18)
             {
                 MessageBox.Show("la fecha debe ser del tipo [dd/mm/aaaa]");
             }
@@ -1270,7 +1270,8 @@ namespace WindowsFormsApp6
             }
             
 
-            if (DgReqActivos2.CurrentCell.ColumnIndex != 5 || DgReqActivos2.CurrentCell.ColumnIndex != 8 )
+            
+            if (DgReqActivos2.CurrentCell.ColumnIndex != 5 || DgReqActivos2.CurrentCell.ColumnIndex != 8 || DgReqActivos2.CurrentCell.ColumnIndex != 18)
             {
                 try
                 {
@@ -1282,7 +1283,7 @@ namespace WindowsFormsApp6
                 catch (InvalidCastException ex)
                 {
 
-
+                   
                 }
 
             }
