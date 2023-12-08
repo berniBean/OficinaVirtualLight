@@ -1616,9 +1616,20 @@ namespace WindowsFormsApp6
             {
                 if (!item.Visible)
                 {
-                    
+                    if(!(item.DataPropertyName.Equals("OficioSEFIPLAN")|| item.DataPropertyName.Equals("FechaEnvioSefiplan")
+                        || item.DataPropertyName.Equals("FechaEntregaNotificador")|| item.DataPropertyName.Equals("FechaRecepcion")
+                        || item.DataPropertyName.Equals("MalCapturado") || item.DataPropertyName.Equals("Modificado")
+                        || item.DataPropertyName.Equals("ModificaObservacion")))
                     item.Visible = true;
                 }
+            }
+        }
+
+        private void DgReqActivos2_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex == -1 && e.ColumnIndex != -1)
+            {
+                DgReqActivos2.Columns[e.ColumnIndex].Visible = false;
             }
         }
     }
