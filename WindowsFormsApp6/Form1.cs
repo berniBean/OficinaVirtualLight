@@ -425,11 +425,126 @@ namespace WindowsFormsApp6
         
         private void DgReqActivos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            validarCeldas(sender, e);
-           
+            if (e.RowIndex == -1 || e.ColumnIndex == -1)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    switch (DgReqActivos2.Columns[e.ColumnIndex].Name)
+                    {
+
+
+
+                        case "FechaNotificacion":
+                            try
+                            {
+                                if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) != "")
+                                {
+
+                                    if (!this.EsFecha(e.FormattedValue.ToString()))
+                                    {
+                                        MessageBox.Show("El dato debe ser una fecha tipo dd/mm/aaaa");
+                                        DgReqActivos2.CurrentCell.Value = null; return;
+                                    }
+                                    else
+                                        DgReqActivos2.CurrentCell.Value = Convert.ToDateTime(DgReqActivos2.CurrentCell.EditedFormattedValue);
+                                    FechaValida(Convert.ToDateTime(DgReqActivos2.CurrentCell.Value));
+                                }
+                                else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
+                                {
+                                    return;
+                                }
+                                if (Convert.ToDateTime(DgReqActivos2.CurrentCell.Value) == Convert.ToDateTime("01/01/0001"))
+                                    DgReqActivos2.CurrentCell.Value = null; return;
+                                break;
+
+                            }
+                            catch (FormatException fexcepcion)
+                            {
+
+                                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
+                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+                        case "FechaCitatorio":
+                            try
+                            {
+
+                                if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) != "")
+                                {
+                                    if (!this.EsFecha(e.FormattedValue.ToString()))
+                                    {
+                                        MessageBox.Show("El dato debe ser una fecha tipo dd/mm/aaaa");
+                                        DgReqActivos2.CurrentCell.Value = null; return;
+                                    }
+                                    else
+                                        DgReqActivos2.CurrentCell.Value = Convert.ToDateTime(DgReqActivos2.CurrentCell.EditedFormattedValue);
+                                    FechaValida(Convert.ToDateTime(DgReqActivos2.CurrentCell.Value));
+                                }
+                                else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
+                                {
+                                    return;
+                                }
+                                if (Convert.ToDateTime(DgReqActivos2.CurrentCell.Value) == Convert.ToDateTime("01/01/0001"))
+                                    DgReqActivos2.CurrentCell.Value = null; return;
+                                break;
+                            }
+                            catch (FormatException fexcepcion)
+                            {
+                                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
+                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+
+                        case "FechaEnvio":
+                            try
+                            {
+                                if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) != "")
+                                {
+                                    if (!this.EsFecha(e.FormattedValue.ToString()))
+                                    {
+                                        MessageBox.Show("El dato debe ser una fecha tipo dd/mm/aaaa");
+                                        DgReqActivos2.CurrentCell.Value = null; return;
+                                    }
+                                    else
+                                        DgReqActivos2.CurrentCell.Value = Convert.ToDateTime(DgReqActivos2.CurrentCell.EditedFormattedValue);
+                                    FechaValida(Convert.ToDateTime(DgReqActivos2.CurrentCell.Value));
+                                }
+                                else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
+                                {
+                                    return;
+                                }
+                                if (Convert.ToDateTime(DgReqActivos2.CurrentCell.Value) == Convert.ToDateTime("01/01/0001"))
+                                    DgReqActivos2.CurrentCell.Value = null; return;
+                                break;
+
+                            }
+                            catch (FormatException fexcepcion)
+                            {
+                                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
+                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+
+
+
+                    }
+                }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    MessageBox.Show("Fuera de rango");
+                }
+            }
+
+
         }
 
-        
+
         private void validarCeldas(object sender, DataGridViewCellValidatingEventArgs e)
         {
 
@@ -1495,6 +1610,17 @@ namespace WindowsFormsApp6
             }
         }
 
+        private void toolStripButton2_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewColumn item in DgReqActivos2.Columns)
+            {
+                if (!item.Visible)
+                {
+                    
+                    item.Visible = true;
+                }
+            }
+        }
     }
 }
 
