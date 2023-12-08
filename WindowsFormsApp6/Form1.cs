@@ -1151,6 +1151,13 @@ namespace WindowsFormsApp6
                                 {
                                     dg.Value = dg.Value;
                                     dg.ErrorText = string.Empty;
+
+                                    elementoModificado = listReq[dg.RowIndex];
+                                    if (!registrosModificados.Contains(elementoModificado))
+                                    {
+                                        registrosModificados.Add(elementoModificado);
+                                    }
+                                    
                                 }
                             }
                             else if (Convert.ToString(DgReqActivos2.CurrentCell.EditedFormattedValue) == "")
@@ -1167,6 +1174,11 @@ namespace WindowsFormsApp6
                         error++;
                     }
 
+                    elementoModificado = listReq[dg.RowIndex];
+                    if (!registrosModificados.Contains(elementoModificado))
+                    {
+                        registrosModificados.Add(elementoModificado);
+                    }
 
                 }
 
