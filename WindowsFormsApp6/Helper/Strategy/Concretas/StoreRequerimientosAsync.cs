@@ -33,8 +33,31 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
         private async Task ProcesoGuardadoAsync(List<CListaRequeridosBO> listaClistaRequeridos, IProgress<int> progress = null)
         {
 
+            List<CListaRequeridosBO> gato = new List<CListaRequeridosBO>();
+            var res = listaClistaRequeridos.Any(x => x.Estatus.Equals("enviado"));
+            
+            if(res)
+            {
+                gato = (from item in listaClistaRequeridos
+                        select new CListaRequeridosBO()
+                        {
+                            NumCtrl = item.NumCtrl,
+                            Observaciones = item.Observaciones,
+                            NotasObservaciones = item.NotasObservaciones,
+                            ActaNotificacion = item.ActaNotificacion,
+                            ActaCitatorio = item.ActaCitatorio,
+                            NotificacionCitatorio = item.NotificacionCitatorio,
+                            NombreNotificador = item.NombreNotificador
+                        }).ToList();
 
-            var gato = (from item in listaClistaRequeridos
+                MessageBox.Show("Total documentos Actualizados:" + gato.Count);
+
+                await _obReq.ObservacionesRequerimientos(gato);
+
+            }
+            else
+            {
+                gato = (from item in listaClistaRequeridos
                         where (item.Estatus != "enviado")
                         select new CListaRequeridosBO()
                         {
@@ -53,9 +76,14 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             NombreNotificador = item.NombreNotificador
                         }).ToList();
 
-            MessageBox.Show("Total documentos Actualizados:" + gato.Count);
+                MessageBox.Show("Total documentos Actualizados:" + gato.Count);
 
-            await _obReq.ModificarRequerimientos(gato);
+                await _obReq.ModificarRequerimientos(gato);
+            }
+            
+ 
+
+
 
             MessageBox.Show("Guardado completado");
 

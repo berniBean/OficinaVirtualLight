@@ -1115,6 +1115,7 @@ namespace WindowsFormsApp6
 
             string[] linea = lineas;
             DateTime fechaActual;
+            CListaRequeridosBO elementoModificado;
 
             try
             {

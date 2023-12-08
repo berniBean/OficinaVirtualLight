@@ -79,7 +79,7 @@ namespace WindowsFormsApp6.CAD.DAL
                 {
                     conn.Open();
 
-                    MySqlCommand OrdenSql = new MySqlCommand("UpdateDGRequerimientos", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("actualizaObservacionesPLUS_NotasobservacionesNotificador", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
