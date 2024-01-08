@@ -279,7 +279,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             Convert.ToString(lector["zona"] is DBNull ? null : lector["zona"]),
                             Convert.ToString(lector["OHE"] is DBNull ? null : lector["OHE"]),
                             Convert.ToString(lector["municipio"] is DBNull ? null : lector["municipio"]),
-                            Convert.ToInt16(lector["numReq"] is DBNull ? null : lector["numReq"]),
+                            Convert.ToInt32(lector["numReq"] is DBNull ? null : lector["numReq"]),
                             Convert.ToString(lector["RFC"] is DBNull ? null : lector["RFC"]),
                             Convert.ToString(lector["tipoc"] is DBNull ? null : lector["tipoc"]),
                             Convert.ToString(lector["NumCtrl"] is DBNull ? null : lector["NumCtrl"]),
@@ -392,7 +392,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             (string)lector["NUM_CTRL_REQUERIMIENTO"],
                             (string)lector["razonSocial"],
                             (string)lector["detalleEmision"],
-                            Convert.ToInt16(lector["numReq"]),
+                            Convert.ToInt32(lector["numReq"]),
                             lector["diligencia"] is DBNull ? "" : ((Int32)lector["diligencia"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligencia"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia
                             Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
                             Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//__fechaCitatorio
