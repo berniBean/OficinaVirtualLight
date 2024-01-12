@@ -96,8 +96,8 @@ namespace WindowsFormsApp6
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     FileInfo fi = new FileInfo(ofd.FileName);
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "BerniNet";
+                    credenciales.Domain = "eflorespp";
+                    credenciales.UserName = "PinkyNet";
                     credenciales.Password = "berni3235";
                     _inputParameter.Server = _uri;
                     _inputParameter.FileName = fi.Name;
@@ -183,8 +183,8 @@ namespace WindowsFormsApp6
 
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "efloresp";
-            credenciales.UserName = "BerniNet";
+            credenciales.Domain = "eflorespp";
+            credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
             ClienteRequest.Credentials = credenciales;
@@ -213,8 +213,8 @@ namespace WindowsFormsApp6
                 File.WriteAllBytes(fullFilePath, oDocument);
                 LayObservaciones.src = fullFilePath;
 
-            }
-            catch (Exception)
+            } 
+            catch (Exception ex)
             {
 
                 MessageBox.Show("Sin archivo de pdf");
@@ -237,8 +237,8 @@ namespace WindowsFormsApp6
             credenciales = new NetworkCredential();
 
 
-            credenciales.Domain = "efloresp";
-            credenciales.UserName = "BerniNet";
+            credenciales.Domain = "eflorespp";
+            credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
             ClienteRequest.Credentials = credenciales;
@@ -264,9 +264,9 @@ namespace WindowsFormsApp6
             
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "efloresp";
-            credenciales.UserName = "BerniNet";
-            credenciales.Password = "berninet2013";
+            credenciales.Domain = "eflorespp";
+            credenciales.UserName = "PinkyNet";
+            credenciales.Password = "berni3235";
 
             ClienteRequest.Credentials = credenciales;
             ClienteRequest.EnableSsl = false;
