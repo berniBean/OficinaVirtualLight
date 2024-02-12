@@ -129,6 +129,7 @@ namespace WindowsFormsApp6
             this.lblNombramiento.Size = new System.Drawing.Size(95, 13);
             this.lblNombramiento.TabIndex = 5;
             this.lblNombramiento.Text = "No Nombramiento:";
+            this.lblNombramiento.Visible = false;
             this.lblNombramiento.Click += new System.EventHandler(this.lblNombramiento_Click);
             // 
             // txtNombre
@@ -144,6 +145,7 @@ namespace WindowsFormsApp6
             this.txtClaveNot.Name = "txtClaveNot";
             this.txtClaveNot.Size = new System.Drawing.Size(208, 20);
             this.txtClaveNot.TabIndex = 3;
+            this.txtClaveNot.Visible = false;
             // 
             // btnGuardar
             // 
@@ -199,6 +201,7 @@ namespace WindowsFormsApp6
             this.claveNotificador.DataPropertyName = "ClaveNotificador";
             this.claveNotificador.HeaderText = "ClaveNotificador";
             this.claveNotificador.Name = "claveNotificador";
+            this.claveNotificador.Visible = false;
             // 
             // nombreNotificador
             // 

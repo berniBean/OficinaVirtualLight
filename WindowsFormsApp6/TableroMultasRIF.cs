@@ -1370,8 +1370,8 @@ namespace WindowsFormsApp6
         {
             if (e.KeyValue == 13)
             {
-                //if (registrosModificados.Count > 0)
-                //    ActualizarBD().Wait();
+                if (registrosModificados.Count > 0)
+                    ActualizarBD().Wait();
 
                 if (!string.IsNullOrEmpty(toolStripTextBusquedaMultas.Text))
                 {

@@ -1,24 +1,20 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data;
-using System.IO;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsApp6.BLL;
 using WindowsFormsApp6.BO;
 using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BLL;
 using WindowsFormsApp6.CAD.BO;
-using WindowsFormsApp6.CAD.DAL.factories; 
+using WindowsFormsApp6.CAD.DAL.factories;
 using wpfCreaExcel;
 using static WindowsFormsApp6.Form4;
-using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
 using System.Linq;
 using WindowsFormsApp6.structs;
 using CleanArchitecture.Helpers;
 using WindowsFormsApp6.CAD.DAL;
-using System.Threading;
 using System.Threading.Tasks;
 using WindowsFormsApp6.Helper;
 
@@ -557,7 +553,12 @@ namespace WindowsFormsApp6
         {
             if (e.KeyValue == 13) {
                 //if (registrosModificados.Count > 0)
-                //    ActualizarBD().Wait();
+                //{
+                //    guardar().Wait();
+                //    //BusquedaLinQ(toolStripTextBusqueda.Text);
+                //}
+                    
+
                 if (!string.IsNullOrEmpty(toolStripTextBusqueda.Text))
                 {                    
                     BusquedaLinQ(toolStripTextBusqueda.Text);
@@ -570,92 +571,7 @@ namespace WindowsFormsApp6
 
         }
 
-        private void BusquedaLinQ(string datoBusqueda)
-        {
-            int totalBusqueda;
-            if(string.IsNullOrEmpty(datoBusqueda))
-            {
-                DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
-            }
-
-            if (datoBusqueda.Equals("LOCALIZADO"))
-            {
-                var consulta = (from item in listReq
-                                where item.Diligencia.Equals("LOCALIZADO")
-                                select item).ToList();
-                totalBusqueda = consulta.Count();
-
-                if (totalBusqueda.Equals(0))
-                {
-                    MessageBox.Show("No se enecontraron datos");
-                    return;
-                }
-                else
-                {
-                    cListaRequeridosBOBindingSource.DataSource = consulta;
-                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
-                }
-            }else if (datoBusqueda.Equals("NO LOCALIZADO"))
-            {
-                var consulta = (from item in listReq
-                                where item.Diligencia.Equals("NO LOCALIZADO")
-                                select item).ToList();
-                totalBusqueda = consulta.Count();
-
-                if (totalBusqueda.Equals(0))
-                {
-                    MessageBox.Show("No se enecontraron datos");
-                    return;
-                }
-                else
-                {
-                    cListaRequeridosBOBindingSource.DataSource = consulta;
-                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
-                }
-            }
-            else if (datoBusqueda.Equals("PENDIENTE"))
-            {
-                
-                var consulta = (from item in listReq
-                                where item.Estatus.Contains("pendiente")                               
-                                select item).ToList();
-                totalBusqueda = consulta.Count();
-
-                if(totalBusqueda.Equals(0))
-                {
-                    MessageBox.Show("No se enecontraron datos");
-                    return;
-                }
-                else
-                {
-                    cListaRequeridosBOBindingSource.DataSource = consulta;
-                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
-                }
-
-            }
-            else
-            {
-                var consulta = (from item in listReq
-                                where item.Rfc.Contains(datoBusqueda) ||
-                                item.RazonSocial.Contains(datoBusqueda) ||
-                                item.NumCtrl.Contains(datoBusqueda)||
-                                item.NumReq.ToString().Contains(datoBusqueda)
-                                select item).ToList();
-                totalBusqueda = consulta.Count();
-                if(totalBusqueda.Equals(0))
-                {
-                    MessageBox.Show("No se encontraron datos");
-                    return;
-                }
-                else
-                {
-                    cListaRequeridosBOBindingSource.DataSource = consulta;
-                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
-                }
-            }
-
-            toolStripTextBusqueda.SelectAll();
-        }
+        
 
         private void SeleccionFila(DataGridView dataGrid)
         {
@@ -1207,7 +1123,106 @@ namespace WindowsFormsApp6
             DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
         }
 
+        private void BusquedaLinQ(string datoBusqueda)
+        {
+            ListaClistaRequeridos listOHE = new ListaClistaRequeridos();
+            List<CListaRequeridosBO> consulta = new List<CListaRequeridosBO>();
 
+            int totalBusqueda;
+            if (string.IsNullOrEmpty(datoBusqueda))
+            {
+                DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+            }
+
+            if (datoBusqueda.Equals("LOCALIZADO"))
+            {
+                 consulta = (from item in listReq
+                                where item.Diligencia.Equals("LOCALIZADO")
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+
+                if (totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se enecontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }
+            else if (datoBusqueda.Equals("NO LOCALIZADO"))
+            {
+                 consulta = (from item in listReq
+                                where item.Diligencia.Equals("NO LOCALIZADO")
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+
+                if (totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se enecontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }
+            else if (datoBusqueda.Equals("PENDIENTE"))
+            {
+
+                 consulta = (from item in listReq
+                                where item.Estatus.Contains("pendiente")
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+
+                if (totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se enecontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+                }
+
+            }
+            else
+            {
+                 consulta = (from item in listReq
+                                where item.Rfc.Contains(datoBusqueda) ||
+                                item.RazonSocial.Contains(datoBusqueda) ||
+                                item.NumCtrl.Contains(datoBusqueda) ||
+                                item.NumReq.ToString().Contains(datoBusqueda)
+                                select item).ToList();
+                totalBusqueda = consulta.Count();
+                if (totalBusqueda.Equals(0))
+                {
+                    MessageBox.Show("No se encontraron datos");
+                    return;
+                }
+                else
+                {
+                    cListaRequeridosBOBindingSource.DataSource = consulta;
+                    DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+                }
+            }
+
+            foreach (var item in consulta)
+            {
+                if (!listOHE.Contains(new CListaRequeridosBO { NumCtrl = item.NumCtrl }))
+                    listOHE.Add(item);
+            }
+            listReq = listOHE;
+            cListaRequeridosBOBindingSource.DataSource = listReq;
+            DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
+
+
+            toolStripTextBusqueda.SelectAll();
+        }
 
         private  void busquedaMasiva(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda)
         {
@@ -1429,10 +1444,10 @@ namespace WindowsFormsApp6
                 var query = listNotificador.Select(element => new
                 {
                     element.IdNotificador,
-                    element.ConcatenadoNotificador,
+                    element.NombreNotificador,
                    
                 }).OrderBy(x => x.IdNotificador);
-                s = query.Select(p => p.ConcatenadoNotificador).ToArray();
+                s = query.Select(p => p.NombreNotificador).ToArray();
                 
                 collection.AddRange(s);
                 

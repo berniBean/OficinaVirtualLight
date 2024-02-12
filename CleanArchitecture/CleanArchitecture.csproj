@@ -56,6 +56,7 @@
     <Compile Include="Concretas\multasPlus.cs" />
     <Compile Include="Concretas\OficiosSQLPlus.cs" />
     <Compile Include="Helpers\DateFormatHelper.cs" />
+    <Compile Include="Helpers\DateValidatorHelper.cs" />
     <Compile Include="Helpers\DesktopDirHelper.cs" />
     <Compile Include="Helpers\FormatLogHelper.cs" />
     <Compile Include="Helpers\TipeCreditHelper.cs" />

@@ -781,9 +781,9 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 if (nombreNotificador == "" || nombreNotificador != null)
                 {
-                    if (!nombreNotificador.Contains("/")) 
+                    if (!nombreNotificador.Contains("/"))
                     {
-                        CNotificadoresBO notificadores = CUserLoggin.Notificadores.FirstOrDefault(x => x.ClaveNotificador.Equals(nombreNotificador));
+                        CNotificadoresBO notificadores = CUserLoggin.Notificadores.FirstOrDefault(x => x.NombreNotificador.Equals(nombreNotificador));
                         return notificadores.IdNotificador.ToString();
 
                     }

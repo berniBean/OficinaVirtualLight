@@ -45,9 +45,9 @@ namespace WindowsFormsApp6.CAD.DAL
                         CNotificadoresBO fila = new CNotificadoresBO()
                         {
                             IdNotificador = (string)lector["idNotificador"],
-                            ClaveNotificador = (string)lector["ClaveNotificador"],
+                            //ClaveNotificador = (string)lector["ClaveNotificador"],
                             NombreNotificador = (string)lector["nombreNotificador"],
-                            ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
+                            //ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
 
 
                         };
@@ -90,11 +90,12 @@ namespace WindowsFormsApp6.CAD.DAL
 
                         CNotificadoresBO fila = new CNotificadoresBO()
                         {
+                            //Convert.ToString(lector["nomEmision"] is DBNull ? "0" : lector["nomEmision"])
                             IdNotificador = (string)lector["idNotificador"],
                             IdClaveOHE = (int)lector["idclaveOHE"],
-                            ClaveNotificador = (string)lector["ClaveNotificador"],
+                            //ClaveNotificador = Convert.ToString(lector["ClaveNotificador"] is DBNull ? "": lector["ClaveNotificador"]),
                             NombreNotificador = (string)lector["nombreNotificador"],
-                            ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
+                            //ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
                         };
 
                         listNotificadores.Add(fila);
@@ -126,7 +127,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     
                     OrdenSql.Parameters.AddWithValue("@_idNotificador", bo.IdNotificador);
                     OrdenSql.Parameters.AddWithValue("@_claveOHE", bo.IdClaveOHE);
-                    OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
+                    //OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
                     OrdenSql.Parameters.AddWithValue("@_NombreNotificador", bo.NombreNotificador);
                     OrdenSql.Parameters.AddWithValue("@_status", bo.Status);
 
@@ -157,7 +158,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
                     //Parametros
                     OrdenSql.Parameters.AddWithValue("@_idNotificador", bo.IdNotificador);
-                    OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
+                    //OrdenSql.Parameters.AddWithValue("@_claveNotificador", bo.ClaveNotificador);
                     OrdenSql.Parameters.AddWithValue("@_NombreNotificador", bo.NombreNotificador);
 
                     //Abrir la conexion de base de Datos
