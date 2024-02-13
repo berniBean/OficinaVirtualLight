@@ -122,7 +122,7 @@ namespace WindowsFormsApp6
 
                 var Notificador = new CNotificadoresBO();
                 Notificador.IdNotificador = Id;
-                Notificador.ClaveNotificador = DGNotificadores.CurrentRow.Cells[2].Value.ToString();
+                //Notificador.ClaveNotificador = DGNotificadores.CurrentRow.Cells[2].Value.ToString();
                 Notificador.NombreNotificador = DGNotificadores.CurrentRow.Cells[3].Value.ToString();
 
                 CatalogoNotificadores.EditaNotificador(Notificador);
