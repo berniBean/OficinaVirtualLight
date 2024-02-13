@@ -381,6 +381,8 @@ namespace WindowsFormsApp6
             
             await ActualizarBD();
             CargarRequerimientos();
+            registrosModificados.Clear();
+
         }
 
 
@@ -552,12 +554,8 @@ namespace WindowsFormsApp6
         private void toolStripTextBusqueda_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == 13) {
-                //if (registrosModificados.Count > 0)
-                //{
-                //    guardar().Wait();
-                //    //BusquedaLinQ(toolStripTextBusqueda.Text);
-                //}
-                    
+                registrosModificados.Clear();
+
 
                 if (!string.IsNullOrEmpty(toolStripTextBusqueda.Text))
                 {                    
@@ -1211,6 +1209,9 @@ namespace WindowsFormsApp6
                 }
             }
 
+
+            toolStripTextBusqueda.SelectAll();
+
             foreach (var item in consulta)
             {
                 if (!listOHE.Contains(new CListaRequeridosBO { NumCtrl = item.NumCtrl }))
@@ -1221,7 +1222,7 @@ namespace WindowsFormsApp6
             DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
 
 
-            toolStripTextBusqueda.SelectAll();
+            
         }
 
         private  void busquedaMasiva(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda)
@@ -1647,7 +1648,7 @@ namespace WindowsFormsApp6
                     if(!(item.DataPropertyName.Equals("OficioSEFIPLAN")|| item.DataPropertyName.Equals("FechaEnvioSefiplan")
                         || item.DataPropertyName.Equals("FechaEntregaNotificador")|| item.DataPropertyName.Equals("FechaRecepcion")
                         || item.DataPropertyName.Equals("MalCapturado") || item.DataPropertyName.Equals("Modificado")
-                        || item.DataPropertyName.Equals("ModificaObservacion")))
+                        || item.DataPropertyName.Equals("ModificaObservacion")|| item.DataPropertyName.Equals("Estatus")))
                     item.Visible = true;
                 }
             }
