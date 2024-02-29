@@ -27,7 +27,7 @@ namespace WindowsFormsApp6.CAD.DAL
             {
                 using (MySqlConnection conn = new MySqlConnection(StrConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("GetNotificadoresSupervisor", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("GetNotificadoresSupervisorStatus", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -47,6 +47,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             IdNotificador = (string)lector["idNotificador"],
                             //ClaveNotificador = (string)lector["ClaveNotificador"],
                             NombreNotificador = (string)lector["nombreNotificador"],
+                            Status = (bool)lector["status"]
                             //ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]
 
 

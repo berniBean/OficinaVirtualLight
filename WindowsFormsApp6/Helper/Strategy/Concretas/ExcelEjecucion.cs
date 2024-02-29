@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleanArchitecture.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -176,8 +177,8 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                             hojaExcel.Cells[i, "D"] = item.NumCtrl;//Número de control SAT
                             hojaExcel.Cells[i, "e"] = item.RazonSocial;//razón social
                             hojaExcel.Cells[i, "F"] = item._detalleEmision;//emisión requerimientos
-                            hojaExcel.Cells[i, "G"] = Convert.ToDateTime(item.FechaNotificacion);//fecha notificación
-                            hojaExcel.Cells[i, "H"] = Convert.ToDateTime(item._fechaVencimiento);//fecha vencimiento
+                            hojaExcel.Cells[i, "G"] = DateFormatHelper.FechaCorta(item.FechaNotificacion);//fecha notificación
+                            hojaExcel.Cells[i, "H"] = DateFormatHelper.FechaCorta(item._fechaVencimiento);//fecha vencimiento
 
                             p++;
                             i++;

@@ -789,7 +789,8 @@ namespace WindowsFormsApp6.CAD.DAL
                     }
 
                     var id =  nombreNotificador.Length > 0 ? nombreNotificador.Substring(0, nombreNotificador.IndexOf("/")) : nombreNotificador;
-                    CNotificadoresBO notificador = CUserLoggin.Notificadores.FirstOrDefault(x => x.ClaveNotificador.Equals(id));
+                    CNotificadoresBO notificador = CUserLoggin.Notificadores.Where(x => x.Status.Equals(1)).FirstOrDefault(x => x.ClaveNotificador.Equals(id));
+                    
                     return notificador.IdNotificador.ToString();
                 }
 

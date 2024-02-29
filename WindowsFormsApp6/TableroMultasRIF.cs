@@ -1295,8 +1295,21 @@ namespace WindowsFormsApp6
             datos.FechaEmision = fechaMulta;
             datos.TipoMultaEmision = tipoMultaEmision;
 
-            ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, label1, datos, "Ejecucion");
-            await excel.WriterAsync(listReq);
+            try
+            {
+                ToExcelAsync excel = new ToExcelAsync(pbCarga, lblStatus, label1, datos, "Ejecucion");
+                await excel.WriterAsync(listReq);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception (ex.ToString());
+            }
+
+
+
+            cargarMultasRIFAsync().Wait();
 
             bindingNavigator1.Enabled = true;
 
