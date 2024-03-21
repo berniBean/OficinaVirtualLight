@@ -81,6 +81,6 @@ namespace CleanArchitecture.Concretas
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
+ 
     }
 }

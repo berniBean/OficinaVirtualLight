@@ -30,7 +30,7 @@ namespace WindowsFormsApp6.structs
             foreach (var item in dataUpdate)
             {
                 indice++;
-                var paso = new COficiosBO() {IdOficio = item.IdOficio, NumOficio = item.NumOficio };
+                var paso = new COficiosBO() {IdOficio = item.IdOficio, NumOficio = item.NumOficio, FechaRetro = item.FechaRetro };
                 await _obtenerOficiosSQL.modificaNumOfico(paso);
                 progress.Report(StaticPercentage.PercentageProgress(indice, dataUpdate.Count));
             }

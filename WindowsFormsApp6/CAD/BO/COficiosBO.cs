@@ -14,14 +14,23 @@ namespace WindowsFormsApp6.CAD.BO
 
         }
 
-
         public COficiosBO(int idOficio, string referencia, string zona, string oHE, int numOficio)
+        {
+            IdOficio = idOficio;
+            IdEmision = referencia;
+            Zona = zona;
+            OHE = oHE;
+            NumOficio = numOficio;
+        }
+
+        public COficiosBO(int idOficio, string referencia, string zona, string oHE, int numOficio,DateTime fechaRetro)
          {
              IdOficio = idOficio;
              IdEmision = referencia;
              Zona = zona;
              OHE = oHE;
              NumOficio = numOficio;
+            FechaRetro = fechaRetro;
 
          }
 

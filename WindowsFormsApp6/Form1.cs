@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
@@ -862,7 +862,7 @@ namespace WindowsFormsApp6
                 if (Convert.ToString(objeto_celda.EditedFormattedValue) != "")
                 {
 
-                    if (!this.EsFecha(objeto_celda.Value.ToString()))
+                    if (!EsFecha(objeto_celda.Value.ToString()))
                     {
                         elementoModificado = listReq[objeto_celda.RowIndex];
                         if (registrosModificados.Contains(elementoModificado))
@@ -1629,6 +1629,7 @@ namespace WindowsFormsApp6
 
         private void DgReqActivos2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            
             int rowIndex = e.RowIndex;
 
             CListaRequeridosBO elementoModificado = listReq[rowIndex];

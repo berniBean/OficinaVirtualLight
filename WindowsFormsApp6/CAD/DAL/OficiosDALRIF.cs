@@ -153,7 +153,8 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                             (string)lector["referenciaNumerica"],
                             (string)lector["zona"],
                             (string)lector["OHE"],
-                            Convert.ToInt32(lector["NumOficio"] is DBNull ? null : lector["NumOficio"])
+                            Convert.ToInt32(lector["NumOficio"] is DBNull ? null : lector["NumOficio"]),
+                            Convert.ToDateTime(lector["fechaRetro"] is DBNull ? null : lector["fechaRetro"])
 
                             );
 

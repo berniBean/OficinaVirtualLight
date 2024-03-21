@@ -160,8 +160,9 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                             (string)lector["referenciaNumerica"],
                             (string)lector["zona"],
                             (string)lector["OHE"],
-                            Convert.ToInt32(lector["NumOficio"] is DBNull ? null : lector["NumOficio"])
-
+                            Convert.ToInt32(lector["NumOficio"] is DBNull ? null : lector["NumOficio"]),
+                            Convert.ToDateTime(lector["fechaRetro"] is DBNull ? null : lector["fechaRetro"])
+                            
                             );
 
                         listOficios.Add(fila);
@@ -191,6 +192,9 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                     //Parametros
                     OrdenSql.Parameters.AddWithValue("@_idOficio", oficios.IdOficio);
                     OrdenSql.Parameters.AddWithValue("@_oficioNum", oficios.NumOficio);
+                    OrdenSql.Parameters.AddWithValue("@_fechaRetro", oficios.FechaRetro);
+                    OrdenSql.Parameters.AddWithValue("@_numGuia", oficios.numGuia);
+
                     //Abrir la conexion de base de Datos
                     await conn.OpenAsync();
                     await OrdenSql.ExecuteNonQueryAsync();

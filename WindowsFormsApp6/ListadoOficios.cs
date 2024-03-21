@@ -1,16 +1,12 @@
 ﻿using CleanArchitecture.Concretas;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper.DataGridHelper;
 using WindowsFormsApp6.structs;
 
 namespace WindowsFormsApp6
@@ -63,7 +59,7 @@ namespace WindowsFormsApp6
             dataGridView1.AutoResizeColumns();
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-
+            
         }
 
         private async void btnGuardar_Click(object sender, EventArgs e)
@@ -72,14 +68,31 @@ namespace WindowsFormsApp6
 
             paso.IdEmision = _emision;
             paso.FechaOficios = paso.FormantFechas(dtpOficio.Text);
-            paso.FechaRetro = paso.FormantFechas(dtpRetro.Text);
+            
 
 
 
 
             cargarFechasOficios.SetFechaOficio(paso);
-            cargarFechasOficios.SetFechaRetro(paso);
             await new CargaNumOficios(tsProgressOficio, obtenerOficiosSQL).oficioModificador(oficios);
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if(e.Control && e.KeyCode == Keys.C)
+                GridHelper<ListCOficios>.CopiarPortapapeles(dataGridView1);
+
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                
+                GridHelper<ListCOficios>.pegar_portapapeles(dataGridView1, CalendarioVacacional, oficios);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 } 

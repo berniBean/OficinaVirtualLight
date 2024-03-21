@@ -30,5 +30,6 @@ namespace WindowsFormsApp6.CAD.BO
         public int total { get; set; }
         public int folioInicio { get; set; }
         public int folioFinal { get; set; }
+       
     }
 }

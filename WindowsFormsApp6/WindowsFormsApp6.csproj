@@ -383,6 +383,7 @@
     <Compile Include="FormPrincipal.designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DataGridHelper\GridHelper.cs" />
     <Compile Include="Helper\ExcelDataDto.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelEjecucion.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelInformeRequermiento.cs" />
