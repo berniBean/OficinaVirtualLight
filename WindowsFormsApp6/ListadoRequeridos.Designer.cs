@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoRequeridos));
             this.requeridos = new System.Windows.Forms.DataGridView();
+            this.dataGridTipoC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this._nombreNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridMalCapturado = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.dataGridObvservaciones = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this._notasObservaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -42,23 +47,21 @@
             this.tsProgreso = new System.Windows.Forms.ToolStripProgressBar();
             this.FilterStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.ShowAllLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OheLabel = new System.Windows.Forms.ToolStripLabel();
+            this.OheSelect = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridZona = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridOHE = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridNumReq = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridNumCtrl = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridRFC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.dataGridTipoC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridRS = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridDiligencia = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridFC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridFN = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridEstatus = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.dataGridPDF = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this._nombreNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridMalCapturado = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.dataGridObvservaciones = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this._notasObservaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.requeridos)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -101,6 +104,47 @@
             this.requeridos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellContentDoubleClick);
             this.requeridos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.requeridos_DataBindingComplete);
             // 
+            // dataGridTipoC
+            // 
+            this.dataGridTipoC.DataPropertyName = "_tipoc";
+            this.dataGridTipoC.FilteringEnabled = false;
+            this.dataGridTipoC.HeaderText = "Tipo contribuyente";
+            this.dataGridTipoC.Name = "dataGridTipoC";
+            this.dataGridTipoC.ReadOnly = true;
+            this.dataGridTipoC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // _nombreNotificador
+            // 
+            this._nombreNotificador.DataPropertyName = "_nombreNotificador";
+            this._nombreNotificador.HeaderText = "Notificador";
+            this._nombreNotificador.Name = "_nombreNotificador";
+            this._nombreNotificador.ReadOnly = true;
+            // 
+            // dataGridMalCapturado
+            // 
+            this.dataGridMalCapturado.DataPropertyName = "_malCapturado";
+            this.dataGridMalCapturado.FilteringEnabled = false;
+            this.dataGridMalCapturado.HeaderText = "Mal caputurado";
+            this.dataGridMalCapturado.Name = "dataGridMalCapturado";
+            this.dataGridMalCapturado.ReadOnly = true;
+            this.dataGridMalCapturado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridObvservaciones
+            // 
+            this.dataGridObvservaciones.DataPropertyName = "_observaciones";
+            this.dataGridObvservaciones.FilteringEnabled = false;
+            this.dataGridObvservaciones.HeaderText = "Observaciones";
+            this.dataGridObvservaciones.Name = "dataGridObvservaciones";
+            this.dataGridObvservaciones.ReadOnly = true;
+            this.dataGridObvservaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // _notasObservaciones
+            // 
+            this._notasObservaciones.DataPropertyName = "_notasObservaciones";
+            this._notasObservaciones.HeaderText = "Notas";
+            this._notasObservaciones.Name = "_notasObservaciones";
+            this._notasObservaciones.ReadOnly = true;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
@@ -121,6 +165,9 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OheLabel,
+            this.OheSelect,
+            this.toolStripSeparator1,
             this.toolStripLabel1,
             this.tbBusqueda,
             this.tsbFiltrar,
@@ -211,9 +258,22 @@
             this.ShowAllLabel.Text = "Show &All";
             this.ShowAllLabel.Click += new System.EventHandler(this.ShowAllLabel_Click);
             // 
-            // cListaTableroAdminBindingSource
+            // OheLabel
             // 
-            this.cListaTableroAdminBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaTableroAdmin);
+            this.OheLabel.Name = "OheLabel";
+            this.OheLabel.Size = new System.Drawing.Size(48, 22);
+            this.OheLabel.Text = "Oficina:";
+            // 
+            // OheSelect
+            // 
+            this.OheSelect.Name = "OheSelect";
+            this.OheSelect.Size = new System.Drawing.Size(121, 25);
+            this.OheSelect.Leave += new System.EventHandler(this.OheSelect_Leave);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // dataGridZona
             // 
@@ -259,15 +319,6 @@
             this.dataGridRFC.Name = "dataGridRFC";
             this.dataGridRFC.ReadOnly = true;
             this.dataGridRFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridTipoC
-            // 
-            this.dataGridTipoC.DataPropertyName = "_tipoc";
-            this.dataGridTipoC.FilteringEnabled = false;
-            this.dataGridTipoC.HeaderText = "Tipo contribuyente";
-            this.dataGridTipoC.Name = "dataGridTipoC";
-            this.dataGridTipoC.ReadOnly = true;
-            this.dataGridTipoC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dataGridRS
             // 
@@ -323,37 +374,9 @@
             this.dataGridPDF.ReadOnly = true;
             this.dataGridPDF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // _nombreNotificador
+            // cListaTableroAdminBindingSource
             // 
-            this._nombreNotificador.DataPropertyName = "_nombreNotificador";
-            this._nombreNotificador.HeaderText = "Notificador";
-            this._nombreNotificador.Name = "_nombreNotificador";
-            this._nombreNotificador.ReadOnly = true;
-            // 
-            // dataGridMalCapturado
-            // 
-            this.dataGridMalCapturado.DataPropertyName = "_malCapturado";
-            this.dataGridMalCapturado.FilteringEnabled = false;
-            this.dataGridMalCapturado.HeaderText = "Mal caputurado";
-            this.dataGridMalCapturado.Name = "dataGridMalCapturado";
-            this.dataGridMalCapturado.ReadOnly = true;
-            this.dataGridMalCapturado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridObvservaciones
-            // 
-            this.dataGridObvservaciones.DataPropertyName = "_observaciones";
-            this.dataGridObvservaciones.FilteringEnabled = false;
-            this.dataGridObvservaciones.HeaderText = "Observaciones";
-            this.dataGridObvservaciones.Name = "dataGridObvservaciones";
-            this.dataGridObvservaciones.ReadOnly = true;
-            this.dataGridObvservaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // _notasObservaciones
-            // 
-            this._notasObservaciones.DataPropertyName = "_notasObservaciones";
-            this._notasObservaciones.HeaderText = "Notas";
-            this._notasObservaciones.Name = "_notasObservaciones";
-            this._notasObservaciones.ReadOnly = true;
+            this.cListaTableroAdminBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaTableroAdmin);
             // 
             // ListadoRequeridos
             // 
@@ -454,5 +477,8 @@
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridMalCapturado;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridObvservaciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn _notasObservaciones;
+        private System.Windows.Forms.ToolStripLabel OheLabel;
+        private System.Windows.Forms.ToolStripComboBox OheSelect;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }

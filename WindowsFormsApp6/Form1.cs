@@ -639,7 +639,7 @@ namespace WindowsFormsApp6
                 
                 e.Handled = true;
             }
-            else if (e.Control && e.KeyCode == Keys.V)
+            else if (e.Control && e.KeyCode == Keys.V && datoID != 4)
             {
                 if (seleccion.Equals(false))
                     pegar_portapapeles(DgReqActivos2);

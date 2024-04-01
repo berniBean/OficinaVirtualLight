@@ -106,12 +106,43 @@ namespace WindowsFormsApp6
 
 
         }
+
+        private void OheSelect_Leave(object sender, EventArgs e)
+        {
+            if (OheSelect.SelectedIndex == 0)
+            {
+                cListaRequeridosBOBindingSource.DataSource = listadoMultas.ToDataTable();
+
+            }
+            else
+            {
+                var consulta = (from multas in listadoMultas
+                                where multas._OHE.Contains(OheSelect.Text)
+                                select multas).ToList();
+
+                cListaRequeridosBOBindingSource.DataSource = consulta;
+            }
+        }
+
         private void  setDTable(ListaClistaRequeridos listadoMultas) 
         {
             cListaRequeridosBOBindingSource.DataSource = listadoMultas.ToDataTable();
 
             dgMultados.AutoResizeColumns();
             dgMultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            List<string> elementos = new List<string>
+            {
+                "--Seleccionar--"
+            };
+            OheSelect.Items.AddRange(elementos.ToArray());
+            OheSelect.SelectedIndex = 0;
+
+            var source = listadoMultas.Select(x => x._OHE).Distinct().ToList();
+            elementos.AddRange(source);
+
+            OheSelect.Sorted = true;
+            OheSelect.ComboBox.DataSource = elementos;
         }
 
         private void busquedaMasiva(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda)
@@ -201,6 +232,16 @@ namespace WindowsFormsApp6
             }
         }
 
+        private void OheSelect_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void dgMultados_Leave(object sender, EventArgs e)
+        {
+
+        }
         private void BusquedaRIF(string datoBusqueda)
         {
             int totalBusqueda;
@@ -346,5 +387,17 @@ namespace WindowsFormsApp6
                 vistaPDf.ShowDialog();
             }
         }
+
+        private void tsBusqueda_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgMultados_LocationChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

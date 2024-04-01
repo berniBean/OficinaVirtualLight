@@ -43,6 +43,11 @@ namespace WindowsFormsApp6
             this.tsFiltrar = new System.Windows.Forms.ToolStripButton();
             this.tsBusquedaMasiva = new System.Windows.Forms.ToolStripButton();
             this.dgMultados = new System.Windows.Forms.DataGridView();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.OheSelect = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idMultaRif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridzona = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridOHE = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
@@ -65,8 +70,6 @@ namespace WindowsFormsApp6
             this.DataGridejecucion = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridestatus = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridestatusPDF = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tsProgreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -74,8 +77,8 @@ namespace WindowsFormsApp6
             this.splitContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultados)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).BeginInit();
             this.toolStripContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tsProgreso
@@ -132,6 +135,9 @@ namespace WindowsFormsApp6
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel2,
+            this.OheSelect,
+            this.toolStripSeparator1,
             this.toolStripLabel1,
             this.tsBusqueda,
             this.tsFiltrar,
@@ -154,6 +160,7 @@ namespace WindowsFormsApp6
             this.tsBusqueda.Name = "tsBusqueda";
             this.tsBusqueda.Size = new System.Drawing.Size(300, 25);
             this.tsBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tsBusqueda_KeyDown);
+            this.tsBusqueda.Click += new System.EventHandler(this.tsBusqueda_Click);
             // 
             // tsFiltrar
             // 
@@ -213,6 +220,43 @@ namespace WindowsFormsApp6
             this.dgMultados.TabIndex = 0;
             this.dgMultados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultados_CellContentClick);
             this.dgMultados.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgMultados_DataBindingComplete);
+            this.dgMultados.LocationChanged += new System.EventHandler(this.dgMultados_LocationChanged);
+            this.dgMultados.Leave += new System.EventHandler(this.dgMultados_Leave);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1414, 425);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(1414, 450);
+            this.toolStripContainer1.TabIndex = 2;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(48, 22);
+            this.toolStripLabel2.Text = "Oficina:";
+            // 
+            // OheSelect
+            // 
+            this.OheSelect.Name = "OheSelect";
+            this.OheSelect.Size = new System.Drawing.Size(121, 25);
+            this.OheSelect.Leave += new System.EventHandler(this.OheSelect_Leave);
+            this.OheSelect.Click += new System.EventHandler(this.OheSelect_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // cListaRequeridosBOBindingSource
+            // 
+            this.cListaRequeridosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaRequeridosBO);
             // 
             // idMultaRif
             // 
@@ -411,23 +455,6 @@ namespace WindowsFormsApp6
             this.DataGridestatusPDF.ReadOnly = true;
             this.DataGridestatusPDF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // cListaRequeridosBOBindingSource
-            // 
-            this.cListaRequeridosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaRequeridosBO);
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1414, 425);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1414, 450);
-            this.toolStripContainer1.TabIndex = 2;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
             // ListadoMultados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,9 +475,9 @@ namespace WindowsFormsApp6
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultados)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,6 +498,9 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.ToolStripButton tsFiltrar;
         private System.Windows.Forms.ToolStripButton tsBusquedaMasiva;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripComboBox OheSelect;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idMultaRif;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn DataGridzona;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn DataGridOHE;

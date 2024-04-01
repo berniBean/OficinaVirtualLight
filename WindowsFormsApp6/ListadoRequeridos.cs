@@ -156,6 +156,20 @@ namespace WindowsFormsApp6
             requeridos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             listadoPDFDB= await listadoPDF.listadoPDFSql(_emision);
 
+            List<string> elementos = new List<string>
+            {
+                "--Seleccionar--"
+            };
+            OheSelect.Items.AddRange(elementos.ToArray());
+            OheSelect.SelectedIndex = 0;
+
+            var source = listadoReq.Select(x => x._ohe).Distinct().ToList();
+            elementos.AddRange(source);
+
+            OheSelect.Sorted = true;
+
+            OheSelect.ComboBox.DataSource = elementos;
+
 
         }
 
@@ -206,6 +220,28 @@ namespace WindowsFormsApp6
             }
         }
 
+
+
+        private void OheSelect_Leave(object sender, EventArgs e)
+        {
+
+            if(OheSelect.SelectedIndex == 0)
+            {
+                cListaTableroAdminBindingSource.DataSource = listadoReq;
+                tbBusqueda.SelectAll();
+            }
+            else
+            {
+                var consulta = (from requerimiento in listadoReq
+                                where requerimiento._ohe.Contains(OheSelect.Text)
+                                select requerimiento).ToList();
+                cListaTableroAdminBindingSource.DataSource = consulta;
+            }
+
+
+
+
+        }
 
         private void BusquedaRIF(string datoBusqueda)
         {
