@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp6.CAD.BO
 {
-    class CdiasFeriadosBO
+    public class CdiasFeriadosBO
     {
         public  DateTime DiaFeriado { get; set; }
 

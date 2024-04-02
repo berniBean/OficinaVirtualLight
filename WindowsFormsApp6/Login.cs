@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BLL;
 
 namespace WindowsFormsApp6
@@ -16,6 +17,7 @@ namespace WindowsFormsApp6
 
         public int id;
         private ErrorProvider ProveerdorDeError = new ErrorProvider();
+        private CDiasLaboralesBLL bdDias = new CDiasLaboralesBLL();
 
         public Login()
         {
@@ -50,7 +52,7 @@ namespace WindowsFormsApp6
                 txtPass.Text = "";
                 txtPass.ForeColor = Color.LightGray;
                 txtPass.UseSystemPasswordChar = true;
-
+                
             }
         }
 
@@ -84,6 +86,7 @@ namespace WindowsFormsApp6
                         mainMenu.Show();
                         mainMenu.FormClosed += Logout;
                         this.Hide();
+                        cargarDiasCalendarioAsync().Wait();
 
                     }
                     else {
@@ -105,6 +108,11 @@ namespace WindowsFormsApp6
             
         }
 
+        private async Task cargarDiasCalendarioAsync()
+        {
+            var listado = await bdDias.GetDiasFestivosAsync();
+            CUserLoggin.DiasFestivos = listado;
+        }
 
         private void msgError(string msg)
         {

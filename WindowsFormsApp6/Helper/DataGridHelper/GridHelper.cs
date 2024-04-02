@@ -11,7 +11,6 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
     {
         private static List<T> ListadoGrid = new List<T>();
         private static List<T> registrosModificados = new List<T>();
-        
 
 
         public static void DgGeneric_CellEndEdit(object sender, DataGridViewCellEventArgs e, List<T> listReq, List<T> registrosModificados)
@@ -33,6 +32,10 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
             Clipboard.SetDataObject(objetoDatos);
         }
 
+        public static void Pegar_portapapeles(DataGridView dataGridView1, MonthCalendar calendarioVacacional, ListaClistaRequeridos doctos)
+        {
+
+        }
         internal static void pegar_portapapeles(DataGridView dataGridView1, MonthCalendar calendarioVacacional, ListCOficios oficios)
         {
             string texto_copiado = Clipboard.GetText();

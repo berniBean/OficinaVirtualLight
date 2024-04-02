@@ -385,6 +385,7 @@
     </Compile>
     <Compile Include="Helper\DataGridHelper\GridHelper.cs" />
     <Compile Include="Helper\ExcelDataDto.cs" />
+    <Compile Include="Helper\Strategy\Concretas\CopyPasteOficios.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelEjecucion.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelInformeRequermiento.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelListadoConDatos.cs" />
@@ -394,6 +395,7 @@
     <Compile Include="Helper\Strategy\Concretas\StoreMultasAsync.cs" />
     <Compile Include="Helper\Strategy\Concretas\StoreRequerimientosAsync.cs" />
     <Compile Include="Helper\Strategy\ExcelMakerContext.cs" />
+    <Compile Include="Helper\Strategy\ICopyPaste.cs" />
     <Compile Include="Helper\Strategy\IStrategyExcel.cs" />
     <Compile Include="Helper\Strategy\IWriter.cs" />
     <Compile Include="Helper\Strategy\SaveDBContext.cs" />

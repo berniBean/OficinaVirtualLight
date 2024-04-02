@@ -158,7 +158,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1572, 646);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1763, 646);
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -200,7 +200,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1572, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1763, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -397,7 +397,7 @@
             this.lblStatus});
             this.statusStrip1.Location = new System.Drawing.Point(0, 624);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1572, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1763, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -415,7 +415,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1566, 252);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1757, 252);
             this.tableLayoutPanel2.TabIndex = 7;
             this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
@@ -454,7 +454,7 @@
             this.dgMultasPendiente.Name = "dgMultasPendiente";
             this.dgMultasPendiente.ReadOnly = true;
             this.dgMultasPendiente.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMultasPendiente.Size = new System.Drawing.Size(1246, 226);
+            this.dgMultasPendiente.Size = new System.Drawing.Size(1399, 226);
             this.dgMultasPendiente.TabIndex = 4;
             this.dgMultasPendiente.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultasPendiente_CellContentClick);
             // 
@@ -567,7 +567,7 @@
             // 
             this.monthCalendar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.monthCalendar1.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
-            this.monthCalendar1.Location = new System.Drawing.Point(1261, 9);
+            this.monthCalendar1.Location = new System.Drawing.Point(1414, 9);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 6;
             // 
@@ -575,9 +575,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(1255, 232);
+            this.label1.Location = new System.Drawing.Point(1408, 232);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(308, 20);
+            this.label1.Size = new System.Drawing.Size(346, 20);
             this.label1.TabIndex = 7;
             this.label1.Text = "Listo.";
             // 
@@ -615,7 +615,7 @@
             this.dgTablaMultasRIF.Location = new System.Drawing.Point(3, 293);
             this.dgTablaMultasRIF.Name = "dgTablaMultasRIF";
             this.dgTablaMultasRIF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgTablaMultasRIF.Size = new System.Drawing.Size(1566, 317);
+            this.dgTablaMultasRIF.Size = new System.Drawing.Size(1757, 317);
             this.dgTablaMultasRIF.TabIndex = 5;
             this.dgTablaMultasRIF.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellContentDoubleClick);
             this.dgTablaMultasRIF.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellEndEdit);
@@ -789,7 +789,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1572, 646);
+            this.ClientSize = new System.Drawing.Size(1763, 646);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "TableroMultasRIF";
             this.Text = "TableroMultasRIF";

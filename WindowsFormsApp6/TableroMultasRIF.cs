@@ -141,9 +141,9 @@ namespace WindowsFormsApp6
             }
         }
 
-        private async Task cargarDiasCalendarioAsync() 
+        private void cargarDiasCalendarioAsync() 
         {
-            var listado = await  bdDias.GetDiasFestivosAsync();
+            var listado = CUserLoggin.DiasFestivos;
             foreach (var dia in listado)
             {
                 
@@ -192,7 +192,7 @@ namespace WindowsFormsApp6
         //informacion de tablero de multas general
         private void LodadUserDat()
         {
-
+            
             idSupervisor = CUserLoggin.idUser;
             idEmision = CUserLoggin.idEmision;
             nomEmision = CUserLoggin.nombreEmision;
@@ -200,7 +200,7 @@ namespace WindowsFormsApp6
             fechaMulta = CUserLoggin.fechaEmisionMulta;
             emisionMulta = CUserLoggin.nombreEmisionMultaRIF;
             origenMultaRIF = CUserLoggin.origenMultaRIF;
-            cargarDiasCalendarioAsync().Wait();
+            cargarDiasCalendarioAsync();
 
 
 

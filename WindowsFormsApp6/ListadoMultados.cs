@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper.DataGridHelper;
 using WindowsFormsApp6.structs;
 using static WindowsFormsApp6.Form4;
 
@@ -20,6 +21,8 @@ namespace WindowsFormsApp6
 {
     public partial class ListadoMultados : Form
     {
+        private CargarFechasOficios cargarFechasOficios;
+
         BusquedaDelegado BusquedaMasivaDelegada;
         SetRequerimiento setRequerimientoDelegado;
         DescargarDelegado DescargarDelegado;
@@ -77,9 +80,20 @@ namespace WindowsFormsApp6
             DescargarDelegado = new DescargarDelegado(DescargaPDF);
 
             cargarTableroListadoMultados();
+            CargarDiasCalendario();
 
             this.dgMultados.Columns[15].DefaultCellStyle.Format = "C";
             this.dgMultados.Columns[16].DefaultCellStyle.Format = "C";
+
+        }
+
+        private void CargarDiasCalendario()
+        {
+            var listado = CUserLoggin.DiasFestivos;
+            foreach(var dia in listado)
+            {
+                ListCalendar.AddBoldedDate(dia.DiaFeriado);
+            }
         }
 
         private async Task  readListadoAsync() 
@@ -130,6 +144,7 @@ namespace WindowsFormsApp6
 
             dgMultados.AutoResizeColumns();
             dgMultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            
 
             List<string> elementos = new List<string>
             {
@@ -232,16 +247,10 @@ namespace WindowsFormsApp6
             }
         }
 
-        private void OheSelect_Click(object sender, EventArgs e)
-        {
-
-        }
 
 
-        private void dgMultados_Leave(object sender, EventArgs e)
-        {
 
-        }
+
         private void BusquedaRIF(string datoBusqueda)
         {
             int totalBusqueda;
@@ -366,9 +375,9 @@ namespace WindowsFormsApp6
             }
         }
 
-        private void dgMultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgMultados_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == 8)
+            if (e.ColumnIndex == 8)
             {
                 listaUrl = obURLR.listaURI();
                 string uri = listaUrl[0]._URL.ToString();
@@ -383,21 +392,91 @@ namespace WindowsFormsApp6
                 string emision = _emision.ToString();
                 int tipo = 1;
 
-                pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
+                pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia, Citatorio, Notificacion, uri, emision, ohe);
                 vistaPDf.ShowDialog();
             }
         }
 
-        private void tsBusqueda_Click(object sender, EventArgs e)
-        {
 
+
+
+
+        private void dgMultados_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(e.RowIndex == -1 && e.ColumnIndex != -1)
+            {
+                dgMultados.Columns[e.ColumnIndex].Visible = false;
+            }
         }
 
-        private void dgMultados_LocationChanged(object sender, EventArgs e)
+        private void ListadoMultados_Load(object sender, EventArgs e)
         {
-
+            dgMultados.ReadOnly = false;
+            foreach(DataGridViewColumn column in dgMultados.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            
         }
 
+        private void dgMultados_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception != null && e.Context == DataGridViewDataErrorContexts.Formatting)
+            {
+                MessageBox.Show("la fecha debe ser del tipo [dd/mm/aaaa]");
+            }
+        }
 
+        private void dgMultados_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if(dgMultados.CurrentCell.ColumnIndex !=11 || dgMultados.CurrentCell.ColumnIndex != 15 || dgMultados.CurrentCell.ColumnIndex != 16)
+            {
+                try
+                {
+                    DataGridViewTextBoxEditingControl dText = (DataGridViewTextBoxEditingControl)e.Control;
+
+                    dText.KeyPress -= new KeyPressEventHandler(dText_KeyPress);
+                    dText.KeyPress += new KeyPressEventHandler(dText_KeyPress);
+                }
+                catch (InvalidCastException ex)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+        private void dText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (dgMultados.CurrentCell.ColumnIndex == 11 || dgMultados.CurrentCell.ColumnIndex == 18 )
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                if (char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (e.KeyChar == 8 || e.KeyChar == '/' || e.KeyChar == '-')
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+
+
+            }
+        }
+
+        private void dgMultados_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.V)
+            {
+                GridHelper<ListaClistaRequeridos>.pegar_portapapeles(dgMultados,ListCalendar,listadoMultas)
+            }
+        }
     }
 }

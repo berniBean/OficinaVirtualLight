@@ -20,6 +20,7 @@ namespace WindowsFormsApp6.Cache
         public static string nombreEmisionMultaRIF { get; set; }
         public static string origenMultaRIF { get; set; }
         public static string tipoMulta { get; set; }
+        public static List<CdiasFeriadosBO> DiasFestivos { get; set; }
 
         public static CListNotificadores Notificadores { get; set; }
 
