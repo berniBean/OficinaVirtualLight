@@ -24,6 +24,7 @@ namespace WindowsFormsApp6.CAD.BO
 
         public string IdNotificador { get; set; }
         public int IdClaveOHE { get; set; }
+        public string Ohe { get; set; }
         public string ClaveNotificador { get; set; }
         public string NombreNotificador { get; set; } 
         public string ConcatenadoNotificador { get; set; }

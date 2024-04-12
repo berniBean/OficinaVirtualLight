@@ -68,17 +68,16 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
 
-        public CListNotificadores GetListadoNotificadores(string Oficina)
+        public CListNotificadores GetListadoNotificadores()
         {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(StrConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("GetCataloNotificadores_LOGICO", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("GetCataloNotificadores_LOGICOCompleto", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
-                    OrdenSql.Parameters.AddWithValue("@_OHE", Oficina);
 
                     //Crear conexion para todos los datos
                     CListNotificadores listNotificadores = new CListNotificadores();
@@ -94,6 +93,7 @@ namespace WindowsFormsApp6.CAD.DAL
                             //Convert.ToString(lector["nomEmision"] is DBNull ? "0" : lector["nomEmision"])
                             IdNotificador = (string)lector["idNotificador"],
                             IdClaveOHE = (int)lector["idclaveOHE"],
+                            Ohe = (string)lector["ohe"],
                             //ClaveNotificador = Convert.ToString(lector["ClaveNotificador"] is DBNull ? "": lector["ClaveNotificador"]),
                             NombreNotificador = (string)lector["nombreNotificador"],
                             //ConcatenadoNotificador = (string)lector["ClaveNotificador"] + "/" + (string)lector["nombreNotificador"]

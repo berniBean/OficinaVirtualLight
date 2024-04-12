@@ -10,10 +10,13 @@ namespace WindowsFormsApp6.CAD.DAL.factories
     public abstract class obtenerPDFSql
     {
         public abstract Task<ListPdfSql> listadoPDFSql(int idEmision);
+        //public abstract Task<>
+        public abstract Task<ListPdfSql> ListadoPdfFirmados(int idEmision);
         public abstract Task modificaEstatusPDf(pdfSQL pdfSQL);
         public abstract Task modificaEstatusMultaPDf(pdfSQL pdfSQL);
 
         public abstract Task<ListPdfSql> listadoPdfMultasSql(int idEmision);
+        public abstract Task<ListPdfSql> listadoPdfMultasFirmadosSql(int idEmision);
 
 
     }

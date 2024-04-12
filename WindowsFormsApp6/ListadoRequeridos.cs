@@ -14,6 +14,7 @@ using WindowsFormsApp6.Cache;
 using CleanArchitecture.ClasesDB;
 using CleanArchitecture.Helpers;
 using System.Threading.Tasks;
+using WindowsFormsApp6.Helper.DataGridHelper;
 
 namespace WindowsFormsApp6
 {
@@ -79,7 +80,17 @@ namespace WindowsFormsApp6
            
         }
 
+        private void CargarDiasCalendarioAsync()
+        {
+            var listado = CUserLoggin.DiasFestivos;
 
+            foreach (var item in listado)
+            {
+                CalendarioFechas.AddBoldedDate(item.DiaFeriado);
+            }
+
+            CalendarioFechas.UpdateBoldedDates();
+        }
 
         private Task SetRequeimientoComo(string diligencia)
         {
@@ -387,6 +398,17 @@ namespace WindowsFormsApp6
 
                 pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatirio,Notificacion, uri, emision, ohe);
                 vistaPDf.ShowDialog();
+            }
+        }
+
+        private void requeridos_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.V)
+            {
+
+                GridHelper<ListadoRequeridos>.pegar_portapapeles(requeridos,CalendarioFechas);
+
+                e.Handled = true;
             }
         }
 

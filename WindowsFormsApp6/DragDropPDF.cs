@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper;
 using WindowsFormsApp6.structs;
 
 namespace WindowsFormsApp6
@@ -27,9 +28,10 @@ namespace WindowsFormsApp6
         private int _ejercicioFiscal;
         private string _nombreEmision;
         private int _tipoSesion;
+        private string _documento;
         
 
-        public DragDropPDF(int emision, int tipoS, int año, string nombre)
+        public DragDropPDF(int emision, int tipoS, int año, string nombre, string documento = null)
         {
             _emision = emision;
             _ejercicioFiscal = año;
@@ -39,6 +41,7 @@ namespace WindowsFormsApp6
             lblAño.Text = _ejercicioFiscal.ToString();
             lblNombre.Text = _nombreEmision;
             _tipoSesion = tipoS;
+            _documento = documento;
             bs = new BindingSource();
 
             if (tipoS == 1)
@@ -50,7 +53,22 @@ namespace WindowsFormsApp6
             if (tipoS == 2)
             {
                 listadoPDF = pdfSQLFactory.maker(pdfSQLFactory.PLUS);
-                readListadoRequerimientosAsync().Wait();
+                if (documento.Equals("firmados"))
+                {
+                    readListadoFirmadosAsync().Wait();
+                }
+
+                if (documento.Equals("oficos"))
+                {
+
+                }
+                    
+
+                else
+                {
+                    readListadoRequerimientosAsync().Wait();
+
+                }
             }
             if (tipoS == 3)
             {
@@ -61,18 +79,43 @@ namespace WindowsFormsApp6
             if (tipoS == 4)
             {
                 listadoPDF = pdfSQLFactory.maker(pdfSQLFactory.PLUS);
-                readListadoMultasAsync().Wait();
+
+                if (documento.Equals("firmados"))
+                {
+                    ReadListMultasFirmadosAsync().Wait();
+                }
+                else
+                {
+                    readListadoMultasAsync().Wait();
+                }
+
+                    
             }
         }
 
+        private async Task readListadoFirmadosAsync()
+        {
+            listadoPDFDB = await listadoPDF.ListadoPdfFirmados(_emision);
+        }
+
+
+
         private async Task readListadoRequerimientosAsync()
         {
+
             listadoPDFDB = await listadoPDF.listadoPDFSql(_emision);
         }
+
+        
 
         private async Task readListadoMultasAsync() 
         {
             listadoPDFDB = await listadoPDF.listadoPdfMultasSql(_emision);
+        }
+
+        private async Task ReadListMultasFirmadosAsync()
+        {
+            listadoPDFDB = await listadoPDF.listadoPdfMultasFirmadosSql(_emision);
         }
 
         private void DropFiles_DragDrop(object sender, DragEventArgs e)
@@ -98,7 +141,7 @@ namespace WindowsFormsApp6
 
 
 
-            bs.DataSource = QueryPDF();
+            bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuionBajo(x.name));
 
             DropFiles.DataSource = bs;
             DropFiles.DisplayMember = "name";
@@ -109,7 +152,7 @@ namespace WindowsFormsApp6
         {
             IEnumerable<consultaPDF> consulta = default;
             
-            if (chRemplazo.Checked) {
+            if (chRemplazo.Checked || _documento.Equals("firmados")) {
                 consulta = from local in pdfLocal
                            join db in listadoPDFDB on local._name equals db.numReq
                            select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
@@ -157,18 +200,40 @@ namespace WindowsFormsApp6
             btnCargar.Enabled = false;
             try
             {
-                await new CargaPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
-                btnCargar.Enabled = true;
+                if (_documento.Equals("firmados"))
+                {
+                    await new CargaFirmadosPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
+                    btnCargar.Enabled = true;
+                }
+                else
+                {
+                    await new CargaPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
+                    btnCargar.Enabled = true;
+                }
             }
             catch (Exception)
             {
-
-                new CargaPdf(tpbProgresBar, listadoPDF, _tipoSesion).crearCarpetaFTP(QueryPDF().ToList());
+                if (_documento.Equals("firmados"))
+                {
+                    new CargaFirmadosPdf(tpbProgresBar, listadoPDF, _tipoSesion).crearCarpetaFTP(QueryPDF().ToList());
+                    
+                }
+                else
+                    new CargaPdf(tpbProgresBar, listadoPDF, _tipoSesion).crearCarpetaFTP(QueryPDF().ToList());
             }
             finally
             {
-                await new CargaPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
-                btnCargar.Enabled = true;
+                if (_documento.Equals("firmados"))
+                {
+                    await new CargaFirmadosPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
+                    btnCargar.Enabled = true;
+                }
+                else
+                {
+
+                    await new CargaPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
+                    btnCargar.Enabled = true;
+                }
             }
                         
 

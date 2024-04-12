@@ -39,6 +39,9 @@ namespace WindowsFormsApp6
                 obtenerOficiosSQL = OficiosFactory.maker(OficiosFactory.PLUS);
             }
             cargarFechasOficios= new CargarFechasOficios(fechaOficiosBindingSource);
+
+
+
             cargarTableroListadoRequeridos().Wait();
             cargarFechas().Wait();
         }
@@ -47,10 +50,10 @@ namespace WindowsFormsApp6
         {
 
             cargarFechasOficios.FechasBs.DataSource = await cargarFechasOficios.GetFechasOficios(_emision);
-            
-
 
         }
+
+
 
         private async Task cargarTableroListadoRequeridos()
         {

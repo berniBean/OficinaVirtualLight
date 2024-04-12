@@ -66,7 +66,7 @@ namespace WindowsFormsApp6
         obtenerRequeridos  obReq;
         //private CListaRequeridosBO obListaRqe = new CListaRequeridosBO();
         private ListaClistaRequeridos listReq;
-        private CListNotificadores listNotificador;
+        private List<CNotificadoresBO> listNotificador;
         private CListaCatObservaciones ListaObservaciones;
         private DataSet dsListado = new DataSet();
         private DataTable dt = new DataTable();
@@ -142,10 +142,11 @@ namespace WindowsFormsApp6
         }
 
 
-        private async Task cargarDiasCalendarioAsync()
+        private void cargarDiasCalendario()
         {
-            
-            foreach (var dia in await  bdDias.GetDiasFestivosAsync())
+            var listado = CUserLoggin.DiasFestivos;
+
+            foreach (var dia in listado)
             {
 
                 monthCalendar1.AddBoldedDate(dia.DiaFeriado);
@@ -167,7 +168,7 @@ namespace WindowsFormsApp6
             CargarOHE();
             CargarNombreBimestre();
             DgReqActivos2.ReadOnly = false;
-            cargarDiasCalendarioAsync().Wait();
+            cargarDiasCalendario();
         }
 
         private void DgReqActivos_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -639,7 +640,7 @@ namespace WindowsFormsApp6
                 
                 e.Handled = true;
             }
-            else if (e.Control && e.KeyCode == Keys.V && datoID != 4)
+            else if (e.Control && e.KeyCode == Keys.V )
             {
                 if (seleccion.Equals(false))
                     pegar_portapapeles(DgReqActivos2);
@@ -1269,12 +1270,11 @@ namespace WindowsFormsApp6
 
         private async Task cargaRequerimientosAsync()
         {
-            ListaObservaciones = catalogo.GetCatObservacion();
-            listNotificador = CatalogoNotificadores.GetListadoNotificadores(cmbOHE.Text);
-            Cache.CUserLoggin.Notificadores = listNotificador;
+            ListaObservaciones = CUserLoggin.ListadoObservaciones;
+            listNotificador = CUserLoggin.Notificadores.Where(x => x.Ohe.Equals(cmbOHE.Text)).ToList();
             listReq = await obReq.Requerimientos(lblEmision.Text, cmbOHE.Text);//bdReq.GatReqGetRequerimientos(lblEmision.Text, cmbOHE.Text);
 
-
+            
 
             cListaCatObservacionesBindingSource.DataSource = ListaObservaciones;
             cListaRequeridosBOBindingSource.DataSource = listReq;

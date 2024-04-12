@@ -92,6 +92,7 @@ namespace WindowsFormsApp6.CAD.BO
 
 
 
+        public int NombreOfico { get; set; }
 
          public int IdOficio { get; set; }
          public string IdEmision { get; set; }

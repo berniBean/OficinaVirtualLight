@@ -179,6 +179,7 @@ namespace WindowsFormsApp6
                     //requerimientos
                     if (tipoSesion == 1 || tipoSesion == 2)
                     {
+                        
                         emision = dgReqPLUS.CurrentRow.Cells[1].Value.ToString();
                         ListadoOficios admin = new ListadoOficios(emision, tipoSesion);
                         admin.ShowDialog();
@@ -193,6 +194,8 @@ namespace WindowsFormsApp6
                     }
 
                 }
+
+
 
             }
 
@@ -209,6 +212,30 @@ namespace WindowsFormsApp6
                     año = Convert.ToInt16(cmbEjercicio.Text);
                     nombreEmision = dgReqPLUS.CurrentRow.Cells[1].Value.ToString();
                     DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision);
+                    gestorPDF.Show();
+                }
+
+                if(e.ColumnIndex == 3)
+                {
+                    int año;
+                    string nombreEmision;
+
+                    emisionInt = Convert.ToInt16(dgReqPLUS.CurrentRow.Cells[2].Value.ToString());
+                    año = Convert.ToInt16(cmbEjercicio.Text);
+                    nombreEmision = dgReqPLUS.CurrentRow.Cells[1].Value.ToString();
+                    DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision, "oficios");
+                    gestorPDF.Show();
+                }
+
+                if(e.ColumnIndex == 4)
+                {
+                    int año;
+                    string nombreEmision;
+
+                    emisionInt = Convert.ToInt16(dgReqPLUS.CurrentRow.Cells[2].Value.ToString());
+                    año = Convert.ToInt16(cmbEjercicio.Text);
+                    nombreEmision = dgReqPLUS.CurrentRow.Cells[1].Value.ToString();
+                    DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision,"firmados");
                     gestorPDF.Show();
                 }
             }

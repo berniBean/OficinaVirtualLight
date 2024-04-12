@@ -383,8 +383,11 @@
     <Compile Include="FormPrincipal.designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\DataGridHelper\GridDataHelper.cs" />
     <Compile Include="Helper\DataGridHelper\GridHelper.cs" />
+    <Compile Include="Helper\DataGridHelper\ModificadosHelper.cs" />
     <Compile Include="Helper\ExcelDataDto.cs" />
+    <Compile Include="Helper\NumberOrderHelper.cs" />
     <Compile Include="Helper\Strategy\Concretas\CopyPasteOficios.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelEjecucion.cs" />
     <Compile Include="Helper\Strategy\Concretas\ExcelInformeRequermiento.cs" />
@@ -394,6 +397,7 @@
     <Compile Include="Helper\Strategy\Concretas\ExcelMultasSinDatos.cs" />
     <Compile Include="Helper\Strategy\Concretas\StoreMultasAsync.cs" />
     <Compile Include="Helper\Strategy\Concretas\StoreRequerimientosAsync.cs" />
+    <Compile Include="Helper\Strategy\CopyPasteMakerContext.cs" />
     <Compile Include="Helper\Strategy\ExcelMakerContext.cs" />
     <Compile Include="Helper\Strategy\ICopyPaste.cs" />
     <Compile Include="Helper\Strategy\IStrategyExcel.cs" />
@@ -484,11 +488,13 @@
     <Compile Include="structs\AbstractProgress.cs" />
     <Compile Include="structs\ActualizaBDAsync.cs" />
     <Compile Include="structs\busquedaMasivaDO.cs" />
+    <Compile Include="structs\CargaFirmadosPdf.cs" />
     <Compile Include="structs\CargaNumOficios.cs" />
     <Compile Include="structs\CargaPdf.cs" />
     <Compile Include="structs\CargarFechasOficios.cs" />
     <Compile Include="structs\consultaPDF.cs" />
     <Compile Include="structs\ConvertExcel.cs" />
+    <Compile Include="structs\CopyPasteDG.cs" />
     <Compile Include="structs\FtpSettings.cs" />
     <Compile Include="structs\IProgressAsync1.cs" />
     <Compile Include="structs\SetRegistroComo.cs" />

@@ -23,7 +23,7 @@ namespace WindowsFormsApp6.Cache
         public static List<CdiasFeriadosBO> DiasFestivos { get; set; }
 
         public static CListNotificadores Notificadores { get; set; }
-
+        public static CListaCatObservaciones ListadoObservaciones { get; set; }
 
 
     }

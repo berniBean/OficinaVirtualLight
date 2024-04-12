@@ -11,6 +11,7 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
     {
         private static List<T> ListadoGrid = new List<T>();
         private static List<T> registrosModificados = new List<T>();
+        
 
 
         public static void DgGeneric_CellEndEdit(object sender, DataGridViewCellEventArgs e, List<T> listReq, List<T> registrosModificados)
@@ -36,7 +37,7 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
         {
 
         }
-        internal static void pegar_portapapeles(DataGridView dataGridView1, MonthCalendar calendarioVacacional, ListCOficios oficios)
+        public static void pegar_portapapeles(DataGridView dataGridView1, MonthCalendar calendarioVacacional, ListCOficios oficios = null)
         {
             string texto_copiado = Clipboard.GetText();
             string[] lineas = texto_copiado.Split('\n');
@@ -50,15 +51,15 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
             if (lineas.Length == 1 && ColumnasArray(lineas, dataGridView1, fila, columna, error))
                 tColumna = pegarUno(lineas, dataGridView1, fila, columna, error);
             else
-                tColumna = pegado(lineas, dataGridView1, oficios, calendarioVacacional, fila, columna, error);
+                tColumna = pegado(lineas, dataGridView1, calendarioVacacional, fila, columna, error);
         }
 
-        private static int pegado(string[] lineas, DataGridView dataGridView1, ListCOficios oficios, MonthCalendar calendarioVacacional, int fila, int columna, int error)
+        public static int pegado(string[] lineas, DataGridView dataGridView1, MonthCalendar calendarioVacacional, int fila, int columna, int error)
         {
             int indice = 0;
             int carga = 1;
 
-            //T elementoModificado;
+            
 
 
 
@@ -95,16 +96,10 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
                                             objeto_celda.Value = objeto_celda.Value.ToString().Trim(new Char[] { '\t', '\n', '\r' });
                                             fechaValidada(objeto_celda, calendarioVacacional, dataGridView1);
 
-                                            //elementoModificado = listado[objeto_celda.RowIndex];
-                                            //elementoModificado = oficios[objeto_celda.RowIndex];
-                                            //if (!registrosModificados.Contains(elementoModificado))
-                                            //{
-                                            //    registrosModificados.Add(elementoModificado);
-                                            //}
+                                            
 
-                                            //A continuación la linea añadida para eliminar los '\r'. De paso, y por si acaso en algún contexto ocurre, tambien los: '\t' y '\n'
+                                            
 
-                                            // Fin linea añadida
 
                                         }
 
@@ -176,7 +171,7 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
 
 
 
-        private static bool ColumnasArray(string[] lineas, DataGridView datagrid, int fila, int columna, int error)
+        public static bool ColumnasArray(string[] lineas, DataGridView datagrid, int fila, int columna, int error)
         {
             int indice = 0;
             bool resultado = true;
@@ -272,36 +267,21 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
 
         private static void fechaValidada(DataGridViewCell objeto_celda, MonthCalendar calendar, DataGridView DGRegistros) 
         {
-            T elementoModificado;
+            
 
-            if (objeto_celda.ColumnIndex == 6 || objeto_celda.ColumnIndex == 7)
-            {
+
                 if (Convert.ToString(objeto_celda.EditedFormattedValue) != "")
                 {
 
                     if (!EsFecha(objeto_celda.Value.ToString()))
                     {
-                        elementoModificado = ListadoGrid[objeto_celda.RowIndex];
-                        if (registrosModificados.Contains(elementoModificado))
-                        {
-                            registrosModificados.Remove(elementoModificado);
-                        }
-
-                        objeto_celda.ErrorText = "Debe ser una fecha tipo dd/mm/aaaa";
                         objeto_celda.Value = null;
                     }
                     else
 
-
-
-
                     if (diaNoLaborar(Convert.ToDateTime(objeto_celda.Value), calendar))
                     {
-                        elementoModificado = ListadoGrid[objeto_celda.RowIndex];
-                        if (registrosModificados.Contains(elementoModificado))
-                        {
-                            registrosModificados.Remove(elementoModificado);
-                        }
+
 
                         objeto_celda.ErrorText = "Este es un día inhábil";
                         objeto_celda.Value = null;
@@ -318,11 +298,11 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
                 }
                 if (Convert.ToDateTime(objeto_celda.Value) == Convert.ToDateTime("01/01/0001"))
                     objeto_celda.Value = string.Empty;
-            }
+            
 
         }
 
-        private static int pegarUno(string[] lineas, DataGridView datagrid, int fila, int columna, int error)
+        public static int pegarUno(string[] lineas, DataGridView datagrid, int fila, int columna, int error)
         {
 
             string[] linea = lineas;

@@ -35,13 +35,15 @@ namespace WindowsFormsApp6
             this.cmbEjercicio = new System.Windows.Forms.ComboBox();
             this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgReqPLUS = new System.Windows.Forms.DataGridView();
-            this.detalleEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.referenciaNumerciaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.cTableroAdminBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.catableroJefeRCOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetRIF = new WindowsFormsApp6.DataSetRIF();
             this.listadoRIFBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.detalleEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.referenciaNumerciaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Oficios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Firmados = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,7 +108,9 @@ namespace WindowsFormsApp6
             this.dgReqPLUS.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.detalleEmisionDataGridViewTextBoxColumn,
             this.referenciaNumerciaDataGridViewTextBoxColumn,
-            this.idEmisionDataGridViewTextBoxColumn});
+            this.idEmisionDataGridViewTextBoxColumn,
+            this.Oficios,
+            this.Firmados});
             this.dgReqPLUS.DataSource = this.cTableroAdminBOBindingSource;
             this.dgReqPLUS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgReqPLUS.Location = new System.Drawing.Point(0, 0);
@@ -115,6 +119,24 @@ namespace WindowsFormsApp6
             this.dgReqPLUS.Size = new System.Drawing.Size(639, 405);
             this.dgReqPLUS.TabIndex = 0;
             this.dgReqPLUS.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // cTableroAdminBOBindingSource
+            // 
+            this.cTableroAdminBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CTableroAdminBO);
+            // 
+            // catableroJefeRCOBindingSource
+            // 
+            this.catableroJefeRCOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatableroJefeRCO);
+            // 
+            // dataSetRIF
+            // 
+            this.dataSetRIF.DataSetName = "DataSetRIF";
+            this.dataSetRIF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // listadoRIFBindingSource
+            // 
+            this.listadoRIFBindingSource.DataMember = "ListadoRIF";
+            this.listadoRIFBindingSource.DataSource = this.dataSetRIF;
             // 
             // detalleEmisionDataGridViewTextBoxColumn
             // 
@@ -139,23 +161,19 @@ namespace WindowsFormsApp6
             this.idEmisionDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.idEmisionDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // cTableroAdminBOBindingSource
+            // Oficios
             // 
-            this.cTableroAdminBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CTableroAdminBO);
+            this.Oficios.DataPropertyName = "_idEmision";
+            this.Oficios.HeaderText = "Oficio";
+            this.Oficios.Name = "Oficios";
+            this.Oficios.ReadOnly = true;
             // 
-            // catableroJefeRCOBindingSource
+            // Firmados
             // 
-            this.catableroJefeRCOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatableroJefeRCO);
-            // 
-            // dataSetRIF
-            // 
-            this.dataSetRIF.DataSetName = "DataSetRIF";
-            this.dataSetRIF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // listadoRIFBindingSource
-            // 
-            this.listadoRIFBindingSource.DataMember = "ListadoRIF";
-            this.listadoRIFBindingSource.DataSource = this.dataSetRIF;
+            this.Firmados.DataPropertyName = "_idEmision";
+            this.Firmados.HeaderText = "Firmados";
+            this.Firmados.Name = "Firmados";
+            this.Firmados.ReadOnly = true;
             // 
             // selectorOficios
             // 
@@ -195,5 +213,7 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn detalleEmisionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn referenciaNumerciaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewLinkColumn idEmisionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Oficios;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Firmados;
     }
 }

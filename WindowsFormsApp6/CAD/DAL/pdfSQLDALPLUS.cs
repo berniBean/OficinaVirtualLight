@@ -16,6 +16,43 @@ namespace WindowsFormsApp6.CAD.DAL
 
         }
 
+        private async Task<ListPdfSql> GetPdfSQLFirmados(int idEmision)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("pdfSqlFirmadosPlus", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    OrdenSql.Parameters.AddWithValue("@idEmision", idEmision);
+                    //Crear conexion para todos los datos
+                    ListPdfSql listpdfSql = new ListPdfSql();
+                    conn.Open();
+                    MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
+
+                    while (await lector.ReadAsync())
+                    {
+
+                        pdfSQL fila = new pdfSQL(
+                            (string)lector["numReq"],
+                            (string)lector["numCtrl"],
+                            (string)lector["PDF"],
+                            (string)lector["ohe"]);
+                        listpdfSql.Add(fila);
+                    }
+
+                    return listpdfSql;
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw new ApplicationException("Error " + e);
+            }
+        }
 
         private async Task<ListPdfSql> GetPdfSQL(int idEmision)
         {
@@ -24,6 +61,44 @@ namespace WindowsFormsApp6.CAD.DAL
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
                     MySqlCommand OrdenSql = new MySqlCommand("pdfSql", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    OrdenSql.Parameters.AddWithValue("@idEmision", idEmision);
+                    //Crear conexion para todos los datos
+                    ListPdfSql listpdfSql = new ListPdfSql();
+                    conn.Open();
+                    MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
+
+                    while (await lector.ReadAsync())
+                    {
+
+                        pdfSQL fila = new pdfSQL(
+                            (string)lector["numReq"],
+                            (string)lector["numCtrl"],
+                            (string)lector["PDF"],
+                            (string)lector["ohe"]);
+                        listpdfSql.Add(fila);
+                    }
+
+                    return listpdfSql;
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw new ApplicationException("Error " + e);
+            }
+        }
+
+        private async Task<ListPdfSql> GetPdfMultasFirmadas(int idEmision)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("pdfSqlMultaFirmadasPLUS", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -148,6 +223,13 @@ namespace WindowsFormsApp6.CAD.DAL
             return await GetPdfSQL(idEmision);
         }
 
+        public override async Task<ListPdfSql> ListadoPdfFirmados(int idEmision)
+        {
+            return await GetPdfSQLFirmados(idEmision);
+        }
+
+
+
         public override async Task modificaEstatusPDf(pdfSQL pdfSQL)
         {
            await modificaEstatusRequerimientosPLUSPdf(pdfSQL);
@@ -157,10 +239,18 @@ namespace WindowsFormsApp6.CAD.DAL
         {
             return await GetPdfPLUSQl(idEmision);
         }
+        public override async Task<ListPdfSql> listadoPdfMultasFirmadosSql(int idEmision)
+        {
+            return await GetPdfMultasFirmadas(idEmision);
+        }
+
+
 
         public override async Task modificaEstatusMultaPDf(pdfSQL pdfSQL)
         {
             await modificaEstatusPDFMultasPLUS(pdfSQL);
         }
+
+
     }
 }

@@ -166,5 +166,15 @@ namespace WindowsFormsApp6.CAD.DAL.factories
         {
             await modificaEstatusPDFMultasRIF(pdfSQL);
         }
+
+        public override Task<ListPdfSql> ListadoPdfFirmados(int idEmision)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<ListPdfSql> listadoPdfMultasFirmadosSql(int idEmision)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

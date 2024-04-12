@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BLL;
+using WindowsFormsApp6.CAD.DAL;
 
 namespace WindowsFormsApp6
 {
@@ -18,6 +19,9 @@ namespace WindowsFormsApp6
         public int id;
         private ErrorProvider ProveerdorDeError = new ErrorProvider();
         private CDiasLaboralesBLL bdDias = new CDiasLaboralesBLL();
+        private CatObservacionesDAL catalogo = new CatObservacionesDAL();
+        private CNotificadoresDAL CatalogoNotificadores = new CNotificadoresDAL();
+
 
         public Login()
         {
@@ -87,6 +91,8 @@ namespace WindowsFormsApp6
                         mainMenu.FormClosed += Logout;
                         this.Hide();
                         cargarDiasCalendarioAsync().Wait();
+                        CatObservaciones();
+                        ListadoNotificador();
 
                     }
                     else {
@@ -113,6 +119,19 @@ namespace WindowsFormsApp6
             var listado = await bdDias.GetDiasFestivosAsync();
             CUserLoggin.DiasFestivos = listado;
         }
+
+        private  void CatObservaciones()
+        {
+            var listado = catalogo.GetCatObservacion();
+            CUserLoggin.ListadoObservaciones = listado;
+        }
+
+        private void ListadoNotificador()
+        {
+            var listado = CatalogoNotificadores.GetListadoNotificadores();
+            CUserLoggin.Notificadores = listado;
+        }
+
 
         private void msgError(string msg)
         {

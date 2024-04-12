@@ -475,7 +475,7 @@ namespace WindowsFormsApp6
         {
             if(e.Control && e.KeyCode == Keys.V)
             {
-                GridHelper<ListaClistaRequeridos>.pegar_portapapeles(dgMultados,ListCalendar,listadoMultas)
+                GridHelper<ListaClistaRequeridos>.pegar_portapapeles(dgMultados, ListCalendar);
             }
         }
     }

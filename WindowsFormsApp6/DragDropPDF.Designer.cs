@@ -30,6 +30,7 @@ namespace WindowsFormsApp6
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.chRemplazo = new System.Windows.Forms.CheckBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblEmision = new System.Windows.Forms.Label();
@@ -42,7 +43,7 @@ namespace WindowsFormsApp6
             this.splitDivisor = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tpbProgresBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.chRemplazo = new System.Windows.Forms.CheckBox();
+            this.ReqFirmados = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +63,7 @@ namespace WindowsFormsApp6
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.ReqFirmados);
             this.splitContainer1.Panel1.Controls.Add(this.chRemplazo);
             this.splitContainer1.Panel1.Controls.Add(this.lblNombre);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -78,6 +80,16 @@ namespace WindowsFormsApp6
             this.splitContainer1.Size = new System.Drawing.Size(863, 553);
             this.splitContainer1.SplitterDistance = 286;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // chRemplazo
+            // 
+            this.chRemplazo.AutoSize = true;
+            this.chRemplazo.Location = new System.Drawing.Point(15, 353);
+            this.chRemplazo.Name = "chRemplazo";
+            this.chRemplazo.Size = new System.Drawing.Size(106, 17);
+            this.chRemplazo.TabIndex = 8;
+            this.chRemplazo.Text = "Reemplazar PDF";
+            this.chRemplazo.UseVisualStyleBackColor = true;
             // 
             // lblNombre
             // 
@@ -199,15 +211,15 @@ namespace WindowsFormsApp6
             this.tpbProgresBar.Name = "tpbProgresBar";
             this.tpbProgresBar.Size = new System.Drawing.Size(100, 24);
             // 
-            // chRemplazo
+            // ReqFirmados
             // 
-            this.chRemplazo.AutoSize = true;
-            this.chRemplazo.Location = new System.Drawing.Point(15, 333);
-            this.chRemplazo.Name = "chRemplazo";
-            this.chRemplazo.Size = new System.Drawing.Size(106, 17);
-            this.chRemplazo.TabIndex = 8;
-            this.chRemplazo.Text = "Reemplazar PDF";
-            this.chRemplazo.UseVisualStyleBackColor = true;
+            this.ReqFirmados.AutoSize = true;
+            this.ReqFirmados.Location = new System.Drawing.Point(15, 319);
+            this.ReqFirmados.Name = "ReqFirmados";
+            this.ReqFirmados.Size = new System.Drawing.Size(118, 17);
+            this.ReqFirmados.TabIndex = 9;
+            this.ReqFirmados.Text = "Req. Firmados PDF";
+            this.ReqFirmados.UseVisualStyleBackColor = true;
             // 
             // DragDropPDF
             // 
@@ -249,5 +261,6 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.Label lblAño;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chRemplazo;
+        private System.Windows.Forms.CheckBox ReqFirmados;
     }
 }

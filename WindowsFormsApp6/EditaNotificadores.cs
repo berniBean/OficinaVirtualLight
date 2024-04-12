@@ -14,7 +14,7 @@ namespace WindowsFormsApp6
         private int DatoID;
         obtenerOHE obOHE;
         private ListCoheActiva ListOHE;
-        private CListNotificadores listNotificador;
+        private List<CNotificadoresBO> listNotificador;
 
         private CNotificadoresDAL CatalogoNotificadores = new CNotificadoresDAL();
         private List<CNotificadoresBO> NuevosNotificadores = new List<CNotificadoresBO>();
@@ -43,7 +43,7 @@ namespace WindowsFormsApp6
         {
             try
             {
-                listNotificador = CatalogoNotificadores.GetListadoNotificadores(cmbOHE.Text);
+                listNotificador = CUserLoggin.Notificadores.Where(x => x.Ohe.Equals(cmbOHE.Text)).ToList();
 
                 DGNotificadores.DataSource = listNotificador;
                                      
