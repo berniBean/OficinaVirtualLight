@@ -150,11 +150,20 @@ namespace WindowsFormsApp6
             {
                 "--Seleccionar--"
             };
-            OheSelect.Items.AddRange(elementos.ToArray());
-            OheSelect.SelectedIndex = 0;
 
-            var source = listadoMultas.Select(x => x._OHE).Distinct().ToList();
-            elementos.AddRange(source);
+            try
+            {
+                var source = listadoMultas.Select(x => x._OHE).Distinct().ToList();
+                elementos.AddRange(source);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
 
             OheSelect.Sorted = true;
             OheSelect.ComboBox.DataSource = elementos;
