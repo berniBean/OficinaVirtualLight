@@ -8,7 +8,6 @@ namespace Singleton
         {
             _name = name;
             _fullName = fullName;
-            
         }
         public ChocoPdfs()
         {
@@ -20,6 +19,8 @@ namespace Singleton
         }
         public string _name { get; set; }
         public string _fullName { get; set; }
+
+        public string _numDocto { get; set; }
 
         public bool Equals(ChocoPdfs other)
         {

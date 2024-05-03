@@ -2,6 +2,10 @@
 {
     public class pdfSQL
     {
+        public pdfSQL()
+        {
+
+        }
         public pdfSQL(string numReq, string numCtrl, string estatusPDF, string rutaFTP)
         {
             this.numReq = numReq;

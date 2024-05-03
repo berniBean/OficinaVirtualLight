@@ -35,7 +35,6 @@ namespace WindowsFormsApp6
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgOficiosConcentrado = new System.Windows.Forms.DataGridView();
-            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oHEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +54,10 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SumaMi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnOficios = new System.Windows.Forms.Button();
+            this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -65,6 +68,8 @@ namespace WindowsFormsApp6
             // 
             // statusStrip1
             // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsProgress});
             this.statusStrip1.Location = new System.Drawing.Point(0, 428);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
@@ -80,6 +85,7 @@ namespace WindowsFormsApp6
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnOficios);
             this.splitContainer1.Panel1.Controls.Add(this.textBox1);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
@@ -139,10 +145,6 @@ namespace WindowsFormsApp6
             this.dgOficiosConcentrado.ReadOnly = true;
             this.dgOficiosConcentrado.Size = new System.Drawing.Size(800, 387);
             this.dgOficiosConcentrado.TabIndex = 0;
-            // 
-            // cOficiosBOBindingSource
-            // 
-            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
             // 
             // zonaDataGridViewTextBoxColumn
             // 
@@ -277,6 +279,25 @@ namespace WindowsFormsApp6
             this.SumaMi.Name = "SumaMi";
             this.SumaMi.ReadOnly = true;
             // 
+            // cOficiosBOBindingSource
+            // 
+            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
+            // 
+            // btnOficios
+            // 
+            this.btnOficios.Location = new System.Drawing.Point(187, 4);
+            this.btnOficios.Name = "btnOficios";
+            this.btnOficios.Size = new System.Drawing.Size(75, 23);
+            this.btnOficios.TabIndex = 2;
+            this.btnOficios.Text = "Oficios";
+            this.btnOficios.UseVisualStyleBackColor = true;
+            this.btnOficios.Click += new System.EventHandler(this.btnOficios_Click);
+            // 
+            // tsProgress
+            // 
+            this.tsProgress.Name = "tsProgress";
+            this.tsProgress.Size = new System.Drawing.Size(100, 16);
+            // 
             // PantallaConcentradoOficosMULTAS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -286,6 +307,8 @@ namespace WindowsFormsApp6
             this.Controls.Add(this.statusStrip1);
             this.Name = "PantallaConcentradoOficosMULTAS";
             this.Text = "PantallaConcentradoOficosPLUS";
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -336,5 +359,7 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn SumaMi;
+        private System.Windows.Forms.Button btnOficios;
+        private System.Windows.Forms.ToolStripProgressBar tsProgress;
     }
 }

@@ -297,6 +297,7 @@
             this.OheSelect.Name = "OheSelect";
             this.OheSelect.Size = new System.Drawing.Size(121, 25);
             this.OheSelect.Leave += new System.EventHandler(this.OheSelect_Leave);
+            this.OheSelect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.OheSelect_KeyUp);
             // 
             // toolStripSeparator1
             // 

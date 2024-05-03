@@ -212,8 +212,7 @@ namespace WindowsFormsApp6
             List<CListaRequeridosBO> consulta = new List<CListaRequeridosBO>();
 
             consulta = (from local in listReq
-                        join busqueda in ReturnLstBusqueda on local.NumCtrl equals busqueda.numCtrl
-                        where local._tipoMulta.Equals(tipoMulta)
+                        join busqueda in ReturnLstBusqueda on local._numMulta equals busqueda.numMulta
                         select new CListaRequeridosBO()
                         {
                             _idMultaRif = local._idMultaRif,
@@ -238,7 +237,7 @@ namespace WindowsFormsApp6
                         }).ToList();
             foreach (var item in consulta)
             {
-                if(!listOHE.Contains(new CListaRequeridosBO { NumCtrl = item.NumCtrl }))
+                if(!listOHE.Contains(new CListaRequeridosBO { _numMulta = item._numMulta }))
                     listOHE.Add(item);
             }
             return listOHE;
@@ -292,13 +291,12 @@ namespace WindowsFormsApp6
 
         }
 
-        private async Task setTipoMulta(string tipoM)
+        private void setTipoMulta(string tipoM)
         {
-            await Task.Run(() =>
-            {
+
                 if (tipoM != "")
                     tipoMulta = tipoM;
-            });
+
 
 
         }
@@ -636,8 +634,8 @@ namespace WindowsFormsApp6
         private void btnBusquedaMasiva_Click(object sender, EventArgs e)
         {
             Form4 Ibusqueda = new Form4();
-
-            Ibusqueda.tipoVentana = "Multas";
+            Ibusqueda._tipo = 2;
+            Ibusqueda.tipoVentana = CUserLoggin.tipoVentana;
             Ibusqueda.tipoMulta = tipoMultaEmision; 
             Ibusqueda.setTipoM += new Form4.SetTipoMulta(setTipoMulta);
             Ibusqueda.ejecutar += new Form4.BusquedaDelegado(busquedaMasiva);

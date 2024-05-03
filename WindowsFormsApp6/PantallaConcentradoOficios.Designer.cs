@@ -31,13 +31,12 @@ namespace WindowsFormsApp6
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnExcel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnOficios = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgOficiosConcentrado = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
+            this.ZonaCombo = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +50,7 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,8 +69,8 @@ namespace WindowsFormsApp6
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.btnExcel);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.ZonaCombo);
+            this.splitContainer1.Panel1.Controls.Add(this.btnOficios);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             // 
             // splitContainer1.Panel2
@@ -81,21 +81,15 @@ namespace WindowsFormsApp6
             this.splitContainer1.SplitterDistance = 46;
             this.splitContainer1.TabIndex = 0;
             // 
-            // btnExcel
+            // btnOficios
             // 
-            this.btnExcel.Location = new System.Drawing.Point(273, 10);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(75, 23);
-            this.btnExcel.TabIndex = 2;
-            this.btnExcel.Text = "Descargar";
-            this.btnExcel.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(53, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 20);
-            this.textBox1.TabIndex = 1;
+            this.btnOficios.Location = new System.Drawing.Point(335, 13);
+            this.btnOficios.Name = "btnOficios";
+            this.btnOficios.Size = new System.Drawing.Size(75, 23);
+            this.btnOficios.TabIndex = 2;
+            this.btnOficios.Text = "Descargar";
+            this.btnOficios.UseVisualStyleBackColor = true;
+            this.btnOficios.Click += new System.EventHandler(this.btnOficios_Click);
             // 
             // label1
             // 
@@ -137,21 +131,26 @@ namespace WindowsFormsApp6
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBar1});
+            this.tsProgress});
             this.statusStrip1.Location = new System.Drawing.Point(0, 378);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(800, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripProgressBar1
+            // tsProgress
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.tsProgress.Name = "tsProgress";
+            this.tsProgress.Size = new System.Drawing.Size(100, 16);
             // 
-            // cOficiosBOBindingSource
+            // ZonaCombo
             // 
-            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
+            this.ZonaCombo.FormattingEnabled = true;
+            this.ZonaCombo.Location = new System.Drawing.Point(68, 15);
+            this.ZonaCombo.Name = "ZonaCombo";
+            this.ZonaCombo.Size = new System.Drawing.Size(231, 21);
+            this.ZonaCombo.TabIndex = 3;
+            this.ZonaCombo.Leave += new System.EventHandler(this.ZonaCombo_Leave);
             // 
             // dataGridViewTextBoxColumn23
             // 
@@ -244,6 +243,10 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
             // 
+            // cOficiosBOBindingSource
+            // 
+            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
+            // 
             // PantallaConcentradoOficios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,11 +272,10 @@ namespace WindowsFormsApp6
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.Button btnOficios;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.ToolStripProgressBar tsProgress;
         private System.Windows.Forms.DataGridView dgOficiosConcentrado;
         private System.Windows.Forms.DataGridViewTextBoxColumn idOficioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn referenciaDataGridViewTextBoxColumn;
@@ -314,5 +316,6 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.ComboBox ZonaCombo;
     }
 }

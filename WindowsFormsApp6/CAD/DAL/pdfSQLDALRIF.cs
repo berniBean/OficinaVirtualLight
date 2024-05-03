@@ -176,5 +176,20 @@ namespace WindowsFormsApp6.CAD.DAL.factories
         {
             throw new NotImplementedException();
         }
+
+        public override Task<ListPdfSql> listadoOficiosPDF(int idEmision, int idSup)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<ListPdfSql> listadoOficiosMultasPDF(int idEmision, int idSup)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override Task<ListPdfSql> listadoRecibosMultasPDF(int idEmision, int idSup)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

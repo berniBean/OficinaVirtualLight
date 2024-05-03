@@ -85,7 +85,7 @@ namespace WindowsFormsApp6
         private void caputraReqPLUS_Click(object sender, EventArgs e)
         {
             Form1 formCaptura = new Form1(2);
-
+            CUserLoggin.tipoVentana = "Requerimientos";
             formCaptura.MdiParent = this;
             formCaptura.Show();
         }
@@ -101,6 +101,7 @@ namespace WindowsFormsApp6
         private void capturaMultaPLUS_Click(object sender, EventArgs e)
         {
             PantallaMultasPendientes formMultas = new PantallaMultasPendientes(2);
+            CUserLoggin.tipoVentana = "Multas";
             formMultas.MdiParent = this;
             formMultas.Show();
         }
@@ -126,6 +127,8 @@ namespace WindowsFormsApp6
         private void requerimientosPLUSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pantallaAdmin admin = new pantallaAdmin(tipoSesion.PLUS);
+            admin.Text = "Informes avance requerimientos PLUS";
+            CUserLoggin.tipoVentana = "Requerimientos";
             admin.MdiParent = this;
             admin.Show();
         }
@@ -145,6 +148,8 @@ namespace WindowsFormsApp6
         private void multasPLUSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             PantallaAdminMultas admin = new PantallaAdminMultas(tipoSesion.PLUS);
+            admin.Text = "Informes avance multas PLUS";
+            CUserLoggin.tipoVentana = "Multas";
             admin.MdiParent = this;
             admin.Show();
         }
@@ -154,6 +159,7 @@ namespace WindowsFormsApp6
         private void capturaOficioRequerimientoPLUS_Click(object sender, EventArgs e)
         {
             selectorOficios admin = new selectorOficios(tipoSesion.PLUS, tipoGestion.oficio);
+            admin.Text = "Capturar oficios requerimientos";
             admin.MdiParent = this;
             admin.Show();
 
@@ -161,6 +167,7 @@ namespace WindowsFormsApp6
         private void tsCapturaOficiosMulta_Click(object sender, EventArgs e)
         {
             selectorOficios admin = new selectorOficios(tipoSesion.MPLUS, tipoGestion.oficio);
+            admin.Text = "Capturar oficios multas";
             admin.MdiParent = this;
             admin.Show();
         }
@@ -189,6 +196,8 @@ namespace WindowsFormsApp6
         private void requerimientosPDFPLUS_Click(object sender, EventArgs e)
         {
             selectorOficios admin = new selectorOficios(tipoSesion.PLUS, tipoGestion.pdf);
+            CUserLoggin.tipoVentana = "Requerimientos";
+            admin.Text = "Cargar documentos requerimientos";
             admin.MdiParent = this;
             admin.Show();
         }
@@ -196,6 +205,8 @@ namespace WindowsFormsApp6
         private void multasPDFPLUS_Click(object sender, EventArgs e)
         {
             selectorOficios admin = new selectorOficios(tipoSesion.MPLUS, tipoGestion.pdf);
+            CUserLoggin.tipoVentana = "Multas";
+            admin.Text = "Cargar documentos multas";
             admin.MdiParent = this;
             admin.Show();
         }
@@ -219,6 +230,11 @@ namespace WindowsFormsApp6
             EditaNotificadores Notificadores = new EditaNotificadores();
             Notificadores.MdiParent = this;
             Notificadores.Show();
+        }
+
+        private void cargaPDFPLUS_Click(object sender, EventArgs e)
+        {
+
         }
 
 

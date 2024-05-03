@@ -36,8 +36,11 @@ namespace WindowsFormsApp6
         obtenerURL obUrl;
         obtenerURL obURLR;
 
+        private string tipoMulta;
+
         obtenerPDFSql listadoPDF;
         ListPdfSql listadoPDFDB;
+        ListPdfSql listadoFirmados;
         List<ChocoPdfs> pdfLocal = new List<ChocoPdfs>();
 
 
@@ -144,12 +147,30 @@ namespace WindowsFormsApp6
                             _estatus = local._estatus,
                             _pdf = local._pdf
                         }).ToList();
-            foreach (var item in consulta)
+
+
+            if (tipoMulta.Equals("Firmados"))
             {
-               var x = item._numReq.ToString() + ".pdf";                
-                listDescarga.Add(item);
-                pdfLocal.Add(new ChocoPdfs() { _name = x});
+                foreach (var item in consulta)
+                {
+                    var x = item._numReq.ToString() + "_" + item._numCtrl.ToString() + ".pdf";
+                    listDescarga.Add(item);
+                    pdfLocal.Add(new ChocoPdfs() { _name = x, _numDocto= item._numReq.ToString() + "_" + item._numCtrl.ToString() + ".pdf" });
+                }
             }
+            else
+            {
+                foreach (var item in consulta)
+                {
+                    var x = item._numReq.ToString() + ".pdf";
+                    listDescarga.Add(item);
+                    pdfLocal.Add(new ChocoPdfs() { _name = x });
+                }
+            }
+
+
+
+
             cListaTableroAdminBindingSource.DataSource = listDescarga.ToDataTable();//moreLinq            
             requeridos.AutoResizeColumns();
             requeridos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -166,6 +187,8 @@ namespace WindowsFormsApp6
             requeridos.AutoResizeColumns();
             requeridos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             listadoPDFDB= await listadoPDF.listadoPDFSql(_emision);
+            listadoFirmados = await listadoPDF.ListadoPdfFirmados(_emision);
+
 
             List<string> elementos = new List<string>
             {
@@ -345,10 +368,22 @@ namespace WindowsFormsApp6
 
         }
 
+        private void setTipoMulta(string tipoM)
+        {
+
+            if (tipoM != "")
+                tipoMulta = tipoM;
+
+
+
+        }
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Form4 Ibusqueda = new Form4();
-            Ibusqueda.tipoVentana = "Super";            
+            Ibusqueda.tipoVentana = "Super";
+            Ibusqueda.tipoMulta = CUserLoggin.tipoVentana;
+            Ibusqueda.setTipoM += new Form4.SetTipoMulta(setTipoMulta);
             Ibusqueda.ejecutar += new Form4.BusquedaDelegado(busquedaMasiva);
             Ibusqueda.setDiligencia += new Form4.SetRequerimiento(SetRequeimientoComo);
             Ibusqueda.ejecutarDescarga += new Form4.DescargarDelegado(DescargaPDF);
@@ -360,17 +395,38 @@ namespace WindowsFormsApp6
         {
             await new CargaPdf(tsProgreso, listadoPDF, _tipoSesion).pdfDescarga(QueryPDF().ToList());
             tsProgreso.Value = 0;
+            pdfLocal.Clear();
         }
 
         private IEnumerable<consultaPDF> QueryPDF()
         {
-            var pd = pdfLocal.Count();
-            //Task<ListPdfSql> listadoPDFDB =  listadoPDF.listadoPDFSql(_emision);
-            var consulta = from local in pdfLocal
-                           join db in listadoPDFDB on local._name equals db.numReq                           
-                           select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+            if (tipoMulta.Equals("Escaneados"))
+            {
+                CUserLoggin.tipoDocumentoDescarga = tipoMulta;
+                var pd = pdfLocal.Count();
+                //Task<ListPdfSql> listadoPDFDB =  listadoPDF.listadoPDFSql(_emision);
+                var consulta = from local in pdfLocal
+                               join db in listadoPDFDB on local._name equals db.numReq
+                               select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
 
-            return consulta;
+                return consulta;
+            }
+            if (tipoMulta.Equals("Firmados"))
+            {
+                CUserLoggin.tipoDocumentoDescarga = tipoMulta;
+                var pd = pdfLocal.Count();
+                //Task<ListPdfSql> listadoPDFDB =  listadoPDF.listadoPDFSql(_emision);
+                var consulta = from local in pdfLocal
+                               join db in listadoFirmados on local._name equals db.numReq
+                               select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numReq };
+
+                return consulta;
+            }
+            else
+            {
+                return default;
+            }
+
         }
 
         private void requeridos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -412,6 +468,9 @@ namespace WindowsFormsApp6
             }
         }
 
+        private void OheSelect_KeyUp(object sender, KeyEventArgs e)
+        {
 
+        }
     }
 }

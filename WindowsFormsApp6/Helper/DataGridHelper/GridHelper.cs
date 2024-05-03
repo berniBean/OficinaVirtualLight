@@ -37,7 +37,7 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
         {
 
         }
-        public static void pegar_portapapeles(DataGridView dataGridView1, MonthCalendar calendarioVacacional, ListCOficios oficios = null)
+        public static void pegar_portapapeles(DataGridView dataGridView1, MonthCalendar calendarioVacacional = null, ListCOficios oficios = null)
         {
             string texto_copiado = Clipboard.GetText();
             string[] lineas = texto_copiado.Split('\n');
@@ -275,7 +275,7 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
 
                     if (!EsFecha(objeto_celda.Value.ToString()))
                     {
-                        objeto_celda.Value = null;
+                        objeto_celda.Value = objeto_celda.Value.ToString();
                     }
                     else
 
@@ -296,8 +296,14 @@ namespace WindowsFormsApp6.Helper.DataGridHelper
                 {
 
                 }
-                if (Convert.ToDateTime(objeto_celda.Value) == Convert.ToDateTime("01/01/0001"))
+
+            if (EsFecha(objeto_celda.Value.ToString()))
+            {
+                if (Convert.ToDateTime(objeto_celda.Value) == Convert.ToDateTime("01/01/0001") || objeto_celda.Value.Equals(default))
                     objeto_celda.Value = string.Empty;
+
+            }
+
             
 
         }

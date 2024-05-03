@@ -44,6 +44,7 @@ namespace WindowsFormsApp6
             this.idEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Oficios = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Firmados = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Recibos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -110,7 +111,8 @@ namespace WindowsFormsApp6
             this.referenciaNumerciaDataGridViewTextBoxColumn,
             this.idEmisionDataGridViewTextBoxColumn,
             this.Oficios,
-            this.Firmados});
+            this.Firmados,
+            this.Recibos});
             this.dgReqPLUS.DataSource = this.cTableroAdminBOBindingSource;
             this.dgReqPLUS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgReqPLUS.Location = new System.Drawing.Point(0, 0);
@@ -175,6 +177,13 @@ namespace WindowsFormsApp6
             this.Firmados.Name = "Firmados";
             this.Firmados.ReadOnly = true;
             // 
+            // Recibos
+            // 
+            this.Recibos.DataPropertyName = "_idEmision";
+            this.Recibos.HeaderText = "Recibos";
+            this.Recibos.Name = "Recibos";
+            this.Recibos.ReadOnly = true;
+            // 
             // selectorOficios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -183,7 +192,6 @@ namespace WindowsFormsApp6
             this.Controls.Add(this.splitContainer1);
             this.Name = "selectorOficios";
             this.Text = "selectorOficios";
-            this.Load += new System.EventHandler(this.selectorOficios_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -215,5 +223,6 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewLinkColumn idEmisionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Oficios;
         private System.Windows.Forms.DataGridViewTextBoxColumn Firmados;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Recibos;
     }
 }

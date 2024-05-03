@@ -10,5 +10,6 @@ namespace WindowsFormsApp6.structs
     {
         public string  numCtrl { get; set; }
         public string tipoMulta { get; set; }
+        public int numMulta { get; set; }
     }
 }

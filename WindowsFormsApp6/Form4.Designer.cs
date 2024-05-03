@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDescargar = new System.Windows.Forms.Button();
             this.groupBoxPLUS = new System.Windows.Forms.GroupBox();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.gbMulta = new System.Windows.Forms.GroupBox();
@@ -43,7 +45,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridBusqueda = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnDescargar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBoxPLUS.SuspendLayout();
             this.gbMulta.SuspendLayout();
@@ -62,42 +63,65 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(442, 109);
+            this.groupBox1.Size = new System.Drawing.Size(442, 135);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // btnDescargar
+            // 
+            this.btnDescargar.Location = new System.Drawing.Point(246, 12);
+            this.btnDescargar.Name = "btnDescargar";
+            this.btnDescargar.Size = new System.Drawing.Size(75, 23);
+            this.btnDescargar.TabIndex = 9;
+            this.btnDescargar.Text = "Descargar";
+            this.btnDescargar.UseVisualStyleBackColor = true;
+            this.btnDescargar.Visible = false;
+            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
+            // 
             // groupBoxPLUS
             // 
+            this.groupBoxPLUS.Controls.Add(this.radioButton5);
             this.groupBoxPLUS.Controls.Add(this.radioButton3);
             this.groupBoxPLUS.Controls.Add(this.radioButton4);
             this.groupBoxPLUS.Location = new System.Drawing.Point(165, 41);
             this.groupBoxPLUS.Name = "groupBoxPLUS";
-            this.groupBoxPLUS.Size = new System.Drawing.Size(121, 62);
+            this.groupBoxPLUS.Size = new System.Drawing.Size(121, 88);
             this.groupBoxPLUS.TabIndex = 8;
             this.groupBoxPLUS.TabStop = false;
-            this.groupBoxPLUS.Text = "Tipo multa:";
+            this.groupBoxPLUS.Text = "Tipo PDF:";
             this.groupBoxPLUS.Visible = false;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(10, 17);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(84, 17);
+            this.radioButton5.TabIndex = 2;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Escaneados";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(10, 35);
+            this.radioButton3.Location = new System.Drawing.Point(10, 63);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(68, 17);
+            this.radioButton3.Size = new System.Drawing.Size(64, 17);
             this.radioButton3.TabIndex = 1;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "MI-PLUS";
+            this.radioButton3.Text = "Recibos";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(10, 17);
+            this.radioButton4.Location = new System.Drawing.Point(10, 40);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(72, 17);
+            this.radioButton4.Size = new System.Drawing.Size(67, 17);
             this.radioButton4.TabIndex = 0;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "ME-PLUS";
+            this.radioButton4.Text = "Firmados";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // gbMulta
@@ -193,7 +217,7 @@
             // 
             this.groupBox2.Controls.Add(this.dataGridBusqueda);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(0, 109);
+            this.groupBox2.Location = new System.Drawing.Point(0, 135);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(442, 256);
             this.groupBox2.TabIndex = 1;
@@ -215,17 +239,6 @@
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.WorkerSupportsCancellation = true;
-            // 
-            // btnDescargar
-            // 
-            this.btnDescargar.Location = new System.Drawing.Point(246, 12);
-            this.btnDescargar.Name = "btnDescargar";
-            this.btnDescargar.Size = new System.Drawing.Size(75, 23);
-            this.btnDescargar.TabIndex = 9;
-            this.btnDescargar.Text = "Descargar";
-            this.btnDescargar.UseVisualStyleBackColor = true;
-            this.btnDescargar.Visible = false;
-            this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
             // 
             // Form4
             // 
@@ -271,5 +284,6 @@
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.Button btnDescargar;
+        private System.Windows.Forms.RadioButton radioButton5;
     }
 }

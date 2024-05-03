@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp6.Cache;
 
 namespace WindowsFormsApp6.structs
 {
@@ -62,8 +63,25 @@ namespace WindowsFormsApp6.structs
         }
         public async Task Descarga(string rutaFtp,string name,string numCtrl, string destino)
         {
-            var fullName = rutaFtp  + name;
-            var finalDestino = destino + '\\' + numCtrl + ".pdf";
+            string finalDestino;
+            var fullName = rutaFtp + name;
+
+            if (CUserLoggin.tipoDocumentoDescarga.Equals("Firmados") && CUserLoggin.tipoVentana.Equals("Multas") )
+            {
+                finalDestino = destino + '\\' + numCtrl;
+            }
+            
+            else if (CUserLoggin.tipoDocumentoDescarga.Equals("Firmados") && CUserLoggin.tipoVentana.Equals("Requerimientos"))
+            {
+                finalDestino = destino + '\\' + numCtrl;
+            }
+            else
+            {
+                finalDestino = destino + '\\' + numCtrl + ".pdf";
+            }
+
+            
+             
             _nuevoNombreArchivo = fullName;           
             uri = new Uri(fullName);
             ClienteRequest = (FtpWebRequest)WebRequest.Create(uri);
@@ -86,7 +104,7 @@ namespace WindowsFormsApp6.structs
                 byte[] bytes = null;
                 using (var memstream = new MemoryStream())
                 {
-                    reader.BaseStream.CopyToAsync(memstream);
+                    reader.BaseStream.CopyTo(memstream);
                     bytes = memstream.ToArray();
                 }
 

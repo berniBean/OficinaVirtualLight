@@ -88,7 +88,10 @@ namespace WindowsFormsApp6
 
             if (e.Control && e.KeyCode == Keys.V)
             {
-                
+
+               
+
+
                 GridHelper<ListCOficios>.pegar_portapapeles(dataGridView1, CalendarioVacacional, oficios);
             }
         }

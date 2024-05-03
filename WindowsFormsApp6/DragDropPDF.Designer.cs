@@ -30,6 +30,7 @@ namespace WindowsFormsApp6
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ReqFirmados = new System.Windows.Forms.CheckBox();
             this.chRemplazo = new System.Windows.Forms.CheckBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@ namespace WindowsFormsApp6
             this.splitDivisor = new System.Windows.Forms.SplitContainer();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tpbProgresBar = new System.Windows.Forms.ToolStripProgressBar();
-            this.ReqFirmados = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -80,6 +80,16 @@ namespace WindowsFormsApp6
             this.splitContainer1.Size = new System.Drawing.Size(863, 553);
             this.splitContainer1.SplitterDistance = 286;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // ReqFirmados
+            // 
+            this.ReqFirmados.AutoSize = true;
+            this.ReqFirmados.Location = new System.Drawing.Point(15, 319);
+            this.ReqFirmados.Name = "ReqFirmados";
+            this.ReqFirmados.Size = new System.Drawing.Size(118, 17);
+            this.ReqFirmados.TabIndex = 9;
+            this.ReqFirmados.Text = "Req. Firmados PDF";
+            this.ReqFirmados.UseVisualStyleBackColor = true;
             // 
             // chRemplazo
             // 
@@ -211,16 +221,6 @@ namespace WindowsFormsApp6
             this.tpbProgresBar.Name = "tpbProgresBar";
             this.tpbProgresBar.Size = new System.Drawing.Size(100, 24);
             // 
-            // ReqFirmados
-            // 
-            this.ReqFirmados.AutoSize = true;
-            this.ReqFirmados.Location = new System.Drawing.Point(15, 319);
-            this.ReqFirmados.Name = "ReqFirmados";
-            this.ReqFirmados.Size = new System.Drawing.Size(118, 17);
-            this.ReqFirmados.TabIndex = 9;
-            this.ReqFirmados.Text = "Req. Firmados PDF";
-            this.ReqFirmados.UseVisualStyleBackColor = true;
-            // 
             // DragDropPDF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -228,7 +228,7 @@ namespace WindowsFormsApp6
             this.ClientSize = new System.Drawing.Size(863, 584);
             this.Controls.Add(this.splitDivisor);
             this.Name = "DragDropPDF";
-            this.Text = "DragDropPDF";
+            this.Text = " ";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

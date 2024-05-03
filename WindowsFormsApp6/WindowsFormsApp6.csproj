@@ -389,6 +389,7 @@
     <Compile Include="FormPrincipal.designer.cs">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CadenaTextoHelper.cs" />
     <Compile Include="Helper\DataGridHelper\GridDataHelper.cs" />
     <Compile Include="Helper\DataGridHelper\GridHelper.cs" />
     <Compile Include="Helper\DataGridHelper\ModificadosHelper.cs" />
@@ -496,6 +497,7 @@
     <Compile Include="structs\busquedaMasivaDO.cs" />
     <Compile Include="structs\CargaFirmadosPdf.cs" />
     <Compile Include="structs\CargaNumOficios.cs" />
+    <Compile Include="structs\CargaOficiosPDF.cs" />
     <Compile Include="structs\CargaPdf.cs" />
     <Compile Include="structs\CargarFechasOficios.cs" />
     <Compile Include="structs\consultaPDF.cs" />

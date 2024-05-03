@@ -1261,7 +1261,7 @@ namespace WindowsFormsApp6
                     listOHE.Add(item);
             }
             listReq = listOHE;
-            cListaRequeridosBOBindingSource.DataSource = listReq;
+            cListaRequeridosBOBindingSource.DataSource = listReq.Distinct();
             DgReqActivos2.DataSource = cListaRequeridosBOBindingSource;
             
 
@@ -1542,7 +1542,8 @@ namespace WindowsFormsApp6
         private void btnBusquedaMasiva_Click(object sender, EventArgs e)
         {
             Form4 Ibusqueda = new Form4();
-            Ibusqueda.tipoVentana = "Requerimientos";
+            Ibusqueda._tipo = 1;
+            Ibusqueda.tipoVentana = CUserLoggin.tipoVentana;
             Ibusqueda.ejecutar += new Form4.BusquedaDelegado(busquedaMasiva);
             Ibusqueda.setDiligencia += new Form4.SetRequerimiento(SetRequeimientoComo);
             Ibusqueda.setFechaReq += new Form4.SetFecha(SetFechaComo);
@@ -1661,6 +1662,25 @@ namespace WindowsFormsApp6
             {
                 DgReqActivos2.Columns[e.ColumnIndex].Visible = false;
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(registrosModificados.Count != 0)
+            {
+                DialogResult result = MessageBox.Show("¿Deseas guardar antes de salir?", "Guardar", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    // Aquí colocas la lógica para guardar los datos, por ejemplo:
+                    guardar().Wait();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true; // Cancela el cierre del formulario si se presiona Cancelar
+                }
+            }
+
         }
     }
 }

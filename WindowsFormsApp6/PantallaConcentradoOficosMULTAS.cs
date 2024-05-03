@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.structs;
 
 namespace WindowsFormsApp6
 {
@@ -19,6 +20,10 @@ namespace WindowsFormsApp6
         private int _emision;
         private string _nombreEmision;
         private ListCOficios oficiosConcentrado;
+        obtenerPDFSql listadoPDF;
+        ListPdfSql listadoPDFDB;
+        private int _tipoSesion;
+
         public PantallaConcentradoOficosMULTAS()
         {
             InitializeComponent();
@@ -28,6 +33,8 @@ namespace WindowsFormsApp6
             InitializeComponent();
             _emision = emision;
             _nombreEmision = nombreEmision;
+            _tipoSesion = tipoS;
+            listadoPDF = default;
             if (tipoS == 1)
             {
                 obtenerOficiosConcentradoSQL = OficiosFactory.maker(OficiosFactory.RIF);
@@ -36,6 +43,7 @@ namespace WindowsFormsApp6
             if (tipoS == 2)
             {
                 obtenerOficiosConcentradoSQL = OficiosFactory.maker(OficiosFactory.PLUS);
+                listadoPDF = pdfSQLFactory.maker(pdfSQLFactory.PLUS);
             }
 
             cargarTableroOficiosConcentrado().Wait();
@@ -44,10 +52,38 @@ namespace WindowsFormsApp6
         private async Task cargarTableroOficiosConcentrado()
         {
             oficiosConcentrado = await obtenerOficiosConcentradoSQL.listadoConcentradoOficioMultasSql(_nombreEmision, _emision, CUserLoggin.idUser);
+            listadoPDFDB = await listadoPDF.listadoOficiosPDF(_emision, CUserLoggin.idUser);
             cOficiosBOBindingSource.DataSource = oficiosConcentrado;
 
             dgOficiosConcentrado.AutoResizeColumns();
             dgOficiosConcentrado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
+
+        private void btnOficios_Click(object sender, EventArgs e)
+        {
+            DescargaPDF().Wait();
+        }
+
+        private async Task DescargaPDF()
+        {
+            await new CargaPdf(tsProgress, listadoPDF, _tipoSesion).pdfDescarga(QueryPDF().ToList());
+            tsProgress.Value = 0;
+            
+        }
+
+        private IEnumerable<consultaPDF> QueryPDF()
+        {
+            CUserLoggin.tipoDocumentoDescarga = "Firmados";
+
+            var consulta = from local in listadoPDFDB
+                           select new consultaPDF()
+                           {
+                               name = local.numReq,rutaFtp=local.rutaFTP,numCtrl=local.numCtrl
+                           };
+
+                return consulta;
+            
+
         }
     }
 }

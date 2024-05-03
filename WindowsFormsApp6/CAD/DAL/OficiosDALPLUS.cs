@@ -30,7 +30,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))
                 {
-                    MySqlCommand OrdenSql = new MySqlCommand("reporteOficiosMultasPLUS", conn)
+                    MySqlCommand OrdenSql = new MySqlCommand("reporteOficiosMultasPLUS2", conn)
                     {
                         CommandType = CommandType.StoredProcedure
                     };
@@ -40,7 +40,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                     OrdenSql.Parameters.AddWithValue("@_idSup", idSup);
                     //Crear conexion para todos los datos
                     ListCOficios listOficios = new ListCOficios();
-                    await conn.OpenAsync();
+                    conn.Open();
                     MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
 
                     while (await lector.ReadAsync())
@@ -98,7 +98,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                     OrdenSql.Parameters.AddWithValue("@_IdSup", idSup);
                     //Crear conexion para todos los datos
                     ListCOficios listOficios = new ListCOficios();
-                    await conn.OpenAsync();
+                    conn.Open();
                     MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
 
                     while (await lector.ReadAsync())
@@ -149,7 +149,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                     OrdenSql.Parameters.AddWithValue("@_ReferenciaNumerica", idEmision);
                     //Crear conexion para todos los datos
                     ListCOficios listOficios = new ListCOficios();
-                    await conn.OpenAsync();
+                    conn.Open();
                     MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
 
                     while (await lector.ReadAsync())

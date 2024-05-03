@@ -42,6 +42,8 @@ namespace WindowsFormsApp6
 
         obtenerPDFSql listadoPDF;
         ListPdfSql listadoPDFDB;
+        ListPdfSql listadoFirmados;
+        ListPdfSql listadoRecibos;
         List<ChocoPdfs> pdfLocal = new List<ChocoPdfs>();
 
         private string tipoMulta;
@@ -96,27 +98,36 @@ namespace WindowsFormsApp6
             }
         }
 
-        private async Task  readListadoAsync() 
+        private async Task readListadoAsync()
         {
-            listadoPDFDB =await listadoPDF.listadoPdfMultasSql(_emision);
+
+
+                listadoPDFDB = await listadoPDF.listadoPdfMultasSql(_emision);
+                listadoFirmados = await listadoPDF.listadoPdfMultasFirmadosSql(_emision);
+                listadoRecibos = await listadoPDF.listadoRecibosMultasPDF(_emision,CUserLoggin.idUser);
+
+
+
         }
         private async Task DescargaPDF()
         {
+
+
             await new CargaPdf(tsProgress, listadoPDF,_tipoSesion).pdfDescarga(QueryPDF().ToList());
             tsProgress.Value = 0;
+            pdfLocal.Clear();
         }
 
         private Task  SetRequeimientoComo(string diligencia)
         {
             return default;
         }
-        private async Task setTipoMulta(string tipoM)
+        private  void setTipoMulta(string tipoM)
         {
-            await Task.Run(() =>
-            {
+
                 if (tipoM != "")
-                    tipoMulta = tipoM;
-            });
+                tipoMulta = tipoM;
+
 
 
         }
@@ -171,10 +182,10 @@ namespace WindowsFormsApp6
 
         private void busquedaMasiva(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda)
         {
+            
             ListaClistaRequeridos listMultaDescarga = new ListaClistaRequeridos();
             var consulta = (from local in listadoMultas
-                            join busqueda in ReturnLstBusqueda on local.NumCtrl equals busqueda.numCtrl
-                            where local._tipoMulta.Equals(tipoMulta)
+                            join busqueda in ReturnLstBusqueda on local._numMulta equals busqueda.numMulta
                             select new CListaRequeridosBO()
                             {
                                     _zona = local._zona,
@@ -200,12 +211,29 @@ namespace WindowsFormsApp6
                                      Estatus = local.Estatus,
                                     _estatusPDF = local._estatusPDF
                             }).ToList();
+            
+
+
+            if (tipoMulta.Equals("Firmados"))
+            {
+                foreach (var item in consulta)
+                {
+                    var x = item._numMulta.ToString() + ".pdf";
+                    listMultaDescarga.Add(item);
+                    pdfLocal.Add(new ChocoPdfs() { _name = x, _numDocto = item._numMulta.ToString() + '-' + item._tipoMulta + '-' + item.Rfc + ".pdf" });
+                }
+            }
+            else
+            {
                 foreach (var item in consulta)
                 {
                     var x = item._numMulta.ToString() + ".pdf";
                     listMultaDescarga.Add(item);
                     pdfLocal.Add(new ChocoPdfs() { _name = x });
                 }
+
+            }
+
             setDTable(listMultaDescarga);
         }
 
@@ -219,7 +247,7 @@ namespace WindowsFormsApp6
         {
             Form4 Ibusqueda = new Form4();
             Ibusqueda.tipoVentana = "Super";
-            Ibusqueda.tipoMulta = "MPLUS_";
+            Ibusqueda.tipoMulta = CUserLoggin.tipoVentana;
             Ibusqueda.setTipoM += new Form4.SetTipoMulta(setTipoMulta);
             Ibusqueda.ejecutar += new Form4.BusquedaDelegado(busquedaMasiva);
             Ibusqueda.setDiligencia += new Form4.SetRequerimiento(SetRequeimientoComo);
@@ -329,12 +357,50 @@ namespace WindowsFormsApp6
         }
         private IEnumerable<consultaPDF> QueryPDF()
         {
-            var pd = pdfLocal.Count();
-            var consulta = from local in pdfLocal
-                           join db in listadoPDFDB on local._name equals db.numReq
-                           select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+            IEnumerable<consultaPDF> consulta;
 
-            return consulta;
+            if (tipoMulta.Equals("Firmados"))
+            {
+                
+                CUserLoggin.tipoDocumentoDescarga = tipoMulta;
+
+                var pd = pdfLocal.Count();
+                 consulta = from local in pdfLocal
+                               join db in listadoFirmados on local._name equals db.numReq into joined
+                               from db in joined.DefaultIfEmpty()
+                               select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = local._numDocto };
+
+                return consulta;
+            }
+            if(tipoMulta.Equals("Escaneados"))
+            {
+
+                CUserLoggin.tipoDocumentoDescarga = tipoMulta;
+                var pd = pdfLocal.Count();
+                 consulta = from local in pdfLocal
+                               join db in listadoPDFDB on local._name equals db.numReq
+                               select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+                return consulta;
+            }
+            if (tipoMulta.Equals("Recibos"))
+            {
+                CUserLoggin.tipoDocumentoDescarga = tipoMulta;
+
+                var pd = pdfLocal.Count();
+                consulta = from local in pdfLocal
+                           join db in listadoRecibos on local._name equals db.numReq into joined
+                           from db in joined.DefaultIfEmpty()
+                           select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = local._numDocto };
+
+                return consulta;
+            }
+            else
+            {
+                return default;
+            }
+
+
+           
         }
 
         private void tsFiltrar_Click(object sender, EventArgs e)

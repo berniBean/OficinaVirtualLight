@@ -4,6 +4,7 @@ using System.Data;
 using System.Threading.Tasks;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper;
 
 namespace WindowsFormsApp6.CAD.DAL
 {
@@ -14,6 +15,91 @@ namespace WindowsFormsApp6.CAD.DAL
         {
             strConn = System.Configuration.ConfigurationManager.AppSettings["k1"];
 
+        }
+
+
+
+        private async Task<ListPdfSql> GetPdfOficiosMultas(int idEmision, int idSup)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("oficioUrlMultas", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    OrdenSql.Parameters.AddWithValue("@_num", idEmision);
+                    OrdenSql.Parameters.AddWithValue("@_idSup", idSup);
+                    //Crear conexion para todos los datos
+                    ListPdfSql listpdfSql = new ListPdfSql();
+                    conn.Open();
+                    MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
+
+                    while (await lector.ReadAsync())
+                    {
+
+                        
+
+                        pdfSQL fila = new pdfSQL()
+                        {
+                            numReq = (string)lector["numOficio"],
+                            numCtrl = CadenaTextoHelper.NormalizarTexto((string)lector["nomOficio"]),
+                            rutaFTP = (string)lector["direccion"]
+                        };
+                        listpdfSql.Add(fila);
+                    }
+
+                    return listpdfSql;
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw new ApplicationException("Error " + e);
+            }
+        }
+
+
+        private async Task<ListPdfSql> GetPdfOficiosRequerimientos(int idEmision, int idSup)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("oficioUrlRequerimientos", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    OrdenSql.Parameters.AddWithValue("@_num", idEmision);
+                    OrdenSql.Parameters.AddWithValue("@_idSup", idSup);
+                    //Crear conexion para todos los datos
+                    ListPdfSql listpdfSql = new ListPdfSql();
+                    conn.Open();
+                    MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
+
+                    while (await lector.ReadAsync())
+                    {
+
+                        pdfSQL fila = new pdfSQL()
+                        {
+                            numReq = (string)lector["numOficio"],
+                            numCtrl = (string)lector["nomOficio"],
+                            rutaFTP = (string)lector["direccion"]
+                        };
+                        listpdfSql.Add(fila);
+                    }
+
+                    return listpdfSql;
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw new ApplicationException("Error " + e);
+            }
         }
 
         private async Task<ListPdfSql> GetPdfSQLFirmados(int idEmision)
@@ -92,6 +178,47 @@ namespace WindowsFormsApp6.CAD.DAL
             }
         }
 
+
+        private async Task<ListPdfSql> GetRecibosMultasPDF(int idEmision, int idSup)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(strConn))
+                {
+                    MySqlCommand OrdenSql = new MySqlCommand("pdfSqlRecibosMultasPLUS", conn)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+
+                    OrdenSql.Parameters.AddWithValue("@idEmision", idEmision);
+                    OrdenSql.Parameters.AddWithValue("@_idSup", idSup);
+                    //Crear conexion para todos los datos
+                    ListPdfSql listpdfSql = new ListPdfSql();
+                    conn.Open();
+                    MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
+
+                    while (await lector.ReadAsync())
+                    {
+
+                        pdfSQL fila = new pdfSQL(
+                            (string)lector["numReq"],
+                            (string)lector["numCtrl"],
+                            (string)lector["PDF"],
+                            (string)lector["ohe"]);
+                        listpdfSql.Add(fila);
+                    }
+
+                    return listpdfSql;
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                throw new ApplicationException("Error " + e);
+            }
+        }
+
+
         private async Task<ListPdfSql> GetPdfMultasFirmadas(int idEmision)
         {
             try
@@ -104,6 +231,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     };
 
                     OrdenSql.Parameters.AddWithValue("@idEmision", idEmision);
+                    
                     //Crear conexion para todos los datos
                     ListPdfSql listpdfSql = new ListPdfSql();
                     conn.Open();
@@ -228,7 +356,15 @@ namespace WindowsFormsApp6.CAD.DAL
             return await GetPdfSQLFirmados(idEmision);
         }
 
+        public override async Task<ListPdfSql> listadoOficiosPDF(int idEmision, int idSup)
+        {
+            return await GetPdfOficiosRequerimientos(idEmision, idSup);
+        }
 
+        public override async Task<ListPdfSql> listadoOficiosMultasPDF(int idEmision, int idSup)
+        {
+            return await GetPdfOficiosMultas(idEmision, idSup);
+        }
 
         public override async Task modificaEstatusPDf(pdfSQL pdfSQL)
         {
@@ -249,6 +385,11 @@ namespace WindowsFormsApp6.CAD.DAL
         public override async Task modificaEstatusMultaPDf(pdfSQL pdfSQL)
         {
             await modificaEstatusPDFMultasPLUS(pdfSQL);
+        }
+
+        public override async Task<ListPdfSql> listadoRecibosMultasPDF(int idEmision, int idSup)
+        {
+            return await GetRecibosMultasPDF(idEmision, idSup);
         }
 
 

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.BLL;
 using WindowsFormsApp6.BO;
+using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
 
@@ -152,6 +147,21 @@ namespace WindowsFormsApp6
             dgReqPLUS.DataSource =listTablero;
             dgReqPLUS.AutoResizeColumns();
             dgReqPLUS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            if (_tipoGestion == 1)
+            {
+                dgReqPLUS.Columns["Oficios"].Visible = false;
+                dgReqPLUS.Columns["Firmados"].Visible = false;
+                dgReqPLUS.Columns["Recibos"].Visible = false;
+            }
+
+            if (!CUserLoggin.nombreSup.Contains("RCO"))
+            {
+                dgReqPLUS.Columns["Oficios"].Visible = false;
+                dgReqPLUS.Columns["Firmados"].Visible = false;
+            }
+
+
         }
 
         private async Task CargarTablero()
@@ -160,6 +170,26 @@ namespace WindowsFormsApp6
             dgReqPLUS.DataSource = listTablero;
             dgReqPLUS.AutoResizeColumns();
             dgReqPLUS.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            if (_tipoGestion == 1 )
+            {
+                dgReqPLUS.Columns["Oficios"].Visible = false;
+                dgReqPLUS.Columns["Firmados"].Visible = false;
+                dgReqPLUS.Columns["Recibos"].Visible = false;
+            }
+
+            if(tipoSesion == 2 && _tipoGestion == 2)
+            {
+                dgReqPLUS.Columns["Recibos"].Visible = false;
+            }
+
+            if (!CUserLoggin.nombreSup.Contains("RCO"))
+            {
+                dgReqPLUS.Columns["Oficios"].Visible = false;
+                dgReqPLUS.Columns["Firmados"].Visible = false;
+                dgReqPLUS.Columns["Recibos"].Visible = false;
+            }
+
         }
 
         private async Task cargarEjercicioFiscal()
@@ -211,7 +241,7 @@ namespace WindowsFormsApp6
                     emisionInt = Convert.ToInt16(dgReqPLUS.CurrentRow.Cells[2].Value.ToString());
                     año = Convert.ToInt16(cmbEjercicio.Text);
                     nombreEmision = dgReqPLUS.CurrentRow.Cells[1].Value.ToString();
-                    DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision);
+                    DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision,"Emision");
                     gestorPDF.Show();
                 }
 
@@ -238,6 +268,20 @@ namespace WindowsFormsApp6
                     DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision,"firmados");
                     gestorPDF.Show();
                 }
+
+                if (e.ColumnIndex == 5)
+                {
+                    int año;
+                    string nombreEmision;
+
+                    emisionInt = Convert.ToInt16(dgReqPLUS.CurrentRow.Cells[2].Value.ToString());
+                    año = Convert.ToInt16(cmbEjercicio.Text);
+                    nombreEmision = dgReqPLUS.CurrentRow.Cells[1].Value.ToString();
+                    DragDropPDF gestorPDF = new DragDropPDF(emisionInt, tipoSesion, año, nombreEmision, "recibos");
+                    gestorPDF.Show();
+                }
+
+
             }
 
         }
@@ -250,9 +294,6 @@ namespace WindowsFormsApp6
                 await CargarTableroMultaPLUS();
         }
 
-        private void selectorOficios_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

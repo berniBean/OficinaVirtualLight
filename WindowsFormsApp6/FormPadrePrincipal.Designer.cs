@@ -277,18 +277,19 @@
             this.cargaPDFPLUS.Name = "cargaPDFPLUS";
             this.cargaPDFPLUS.Size = new System.Drawing.Size(232, 22);
             this.cargaPDFPLUS.Text = "Carga &PDF";
+            this.cargaPDFPLUS.Click += new System.EventHandler(this.cargaPDFPLUS_Click);
             // 
             // requerimientosPDFPLUS
             // 
             this.requerimientosPDFPLUS.Name = "requerimientosPDFPLUS";
-            this.requerimientosPDFPLUS.Size = new System.Drawing.Size(157, 22);
+            this.requerimientosPDFPLUS.Size = new System.Drawing.Size(180, 22);
             this.requerimientosPDFPLUS.Text = "&Requerimientos";
             this.requerimientosPDFPLUS.Click += new System.EventHandler(this.requerimientosPDFPLUS_Click);
             // 
             // multasPDFPLUS
             // 
             this.multasPDFPLUS.Name = "multasPDFPLUS";
-            this.multasPDFPLUS.Size = new System.Drawing.Size(157, 22);
+            this.multasPDFPLUS.Size = new System.Drawing.Size(180, 22);
             this.multasPDFPLUS.Text = "&Multas";
             this.multasPDFPLUS.Click += new System.EventHandler(this.multasPDFPLUS_Click);
             // 

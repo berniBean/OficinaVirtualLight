@@ -21,14 +21,14 @@ namespace WindowsFormsApp6
         public delegate Task SetRequerimiento(string diligencia);        
         public event SetRequerimiento setDiligencia;
 
-        public delegate Task SetTipoMulta(string tipoM);
+        public delegate void SetTipoMulta(string tipoM);
         public event SetTipoMulta setTipoM;
 
         public delegate Task DescargarDelegado();
         public event DescargarDelegado ejecutarDescarga;
 
 
-        private int _tipo;
+        public int _tipo;
 
         public delegate Task SetFecha(DateTime fecha);
         public event SetFecha setFechaReq;
@@ -39,6 +39,7 @@ namespace WindowsFormsApp6
         //private ListBusquedaMasiva listMasiva;
         public string tipoVentana { get; set; }
         public string tipoMulta { get; set; }
+        
 
         public Form4()
         {
@@ -49,6 +50,8 @@ namespace WindowsFormsApp6
             dt.Columns.Add("Numero control SAT", typeof(string));
             //dt.Rows.Add();
             dataGridBusqueda.DataSource = dt;
+
+            radioButton3.Visible = false;
 
 
 
@@ -112,11 +115,17 @@ namespace WindowsFormsApp6
                     valor = row.Cells[0].Value.ToString().Replace("\r\n", "").Replace("\n", "").Replace("\r", "");
 
 
-                    if (valor != null)
+
+
+                    if (valor != null && tipoVentana == "Multas" || tipoMulta == "Multas")
                     {
                         //bd.CrearListaBusquedaMasiva(valor);
-                        resultado.Add(new busquedaMasivaDO() { numCtrl = valor });
+                        resultado.Add(new busquedaMasivaDO() { numMulta = Convert.ToInt32( valor) });
 
+                    }
+                    if (valor != null && tipoVentana == "Requerimientos" || tipoMulta == "Requerimientos")
+                    {
+                        resultado.Add(new busquedaMasivaDO() { numCtrl = valor });
                     }
 
 
@@ -183,8 +192,45 @@ namespace WindowsFormsApp6
         private void btnDescargar_Click(object sender, EventArgs e)
         {
             itemsBusqueda();
-            ejecutar(ReturnLstBusqueda());            
-            ejecutarDescarga();
+
+            if (_tipo == 1)
+            {
+                ejecutar(ReturnLstBusqueda());
+
+            }
+            else if (_tipo == 2)
+            {
+                setTipoM(EstablecerTipoMulta());
+                ejecutar(ReturnLstBusqueda());
+
+
+
+            }
+            else if (_tipo == 3)
+            {
+
+
+                if (tipoMulta == "Multas" )
+                {
+                    setTipoM(EstablecerTipoMulta());
+                    ejecutar(ReturnLstBusqueda());
+                    setDiligencia(EstablecerComo());
+                    ejecutarDescarga();
+                }
+                else
+                {
+                    setTipoM(EstablecerTipoMulta());
+                    ejecutar(ReturnLstBusqueda());
+                    ejecutarDescarga();
+                }
+
+
+
+                //ejecutarDescarga();
+            }
+
+
+
         }
 
         private IEnumerable<busquedaMasivaDO> ReturnLstBusqueda()
@@ -205,19 +251,7 @@ namespace WindowsFormsApp6
         private string EstablecerTipoMulta()
         {
             string resultado="";
-            if(tipoMulta == "MRIF_")
-            {
-                foreach (RadioButton rdo in gbMulta.Controls.OfType<RadioButton>())
-                {
-                    if (rdo.Checked)
-                    {
-                        resultado = rdo.Text;
-                    }
-                }
-            }
 
-            if(tipoMulta == "MPLUS_")
-            {
                 foreach (RadioButton rdo in groupBoxPLUS.Controls.OfType<RadioButton>())
                 {
                     if (rdo.Checked)
@@ -225,7 +259,7 @@ namespace WindowsFormsApp6
                         resultado = rdo.Text;
                     }
                 }
-            }
+            
 
             return resultado;
         }
@@ -298,16 +332,18 @@ namespace WindowsFormsApp6
             if (tipoVentana == "Requerimientos")
             {
                 gbMulta.Visible = false;
-                groupBoxPLUS.Visible = false;
+                //groupBoxPLUS.Visible = false;
                 _tipo = 1;
             }
                 
             if (tipoVentana == "Multas")
             {
-                if(tipoMulta == "MRIF_")
+
+                radioButton3.Visible = true;
+                if (tipoMulta == "MRIF_")
                 {
                     gbMulta.Visible = true;
-                    groupBoxPLUS.Visible = false;
+                   // groupBoxPLUS.Visible = false;
                     
                 }
 
@@ -323,8 +359,10 @@ namespace WindowsFormsApp6
             {
                 gbSet.Visible = false;
                 btnDescargar.Visible = true;
+                groupBoxPLUS.Visible = true;
                 if (tipoVentana == "Multas" || tipoVentana == "Super")
                 {
+                    radioButton3.Visible = true;
                     if (tipoMulta == "MRIF_")
                     {
                         gbMulta.Visible = true;

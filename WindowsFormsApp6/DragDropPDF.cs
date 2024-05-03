@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
 using WindowsFormsApp6.Helper;
@@ -23,12 +24,14 @@ namespace WindowsFormsApp6
         List<ChocoPdfs> pdfLocal = new List<ChocoPdfs>();
         private BindingSource bs;        
         obtenerPDFSql listadoPDF;
-        ListPdfSql listadoPDFDB;        
+        ListPdfSql listadoPDFDB;
+        ListPdfSql listadoRecibosPDF;
         private int _emision;
         private int _ejercicioFiscal;
         private string _nombreEmision;
         private int _tipoSesion;
         private string _documento;
+        private string _tipoVentana;
         
 
         public DragDropPDF(int emision, int tipoS, int año, string nombre, string documento = null)
@@ -58,13 +61,13 @@ namespace WindowsFormsApp6
                     readListadoFirmadosAsync().Wait();
                 }
 
-                if (documento.Equals("oficos"))
+                if (documento.Equals("oficios"))
                 {
-
+                    readOficiosAsync().Wait();
                 }
-                    
 
-                else
+
+                if (documento.Equals("Emision"))
                 {
                     readListadoRequerimientosAsync().Wait();
 
@@ -84,7 +87,17 @@ namespace WindowsFormsApp6
                 {
                     ReadListMultasFirmadosAsync().Wait();
                 }
-                else
+
+                if (documento.Equals("recibos"))
+                {
+                    readRecibosMultasAsync().Wait();
+                }
+
+                if (documento.Equals("oficios"))
+                {
+                    readMultasOficiosAsync().Wait();
+                }
+                if(documento.Equals("Emision"))
                 {
                     readListadoMultasAsync().Wait();
                 }
@@ -93,11 +106,28 @@ namespace WindowsFormsApp6
             }
         }
 
+        private async Task readRecibosMultasAsync()
+        {
+            listadoRecibosPDF = await listadoPDF.listadoRecibosMultasPDF(_emision,CUserLoggin.idUser);
+        }
+
         private async Task readListadoFirmadosAsync()
         {
             listadoPDFDB = await listadoPDF.ListadoPdfFirmados(_emision);
         }
 
+
+        private async Task readMultasOficiosAsync()
+        {
+            listadoPDFDB = await listadoPDF.listadoOficiosMultasPDF(_emision, CUserLoggin.idUser);
+
+        }
+
+        private async Task readOficiosAsync()
+        {
+            listadoPDFDB = await listadoPDF.listadoOficiosPDF(_emision, CUserLoggin.idUser);
+            
+        }
 
 
         private async Task readListadoRequerimientosAsync()
@@ -139,9 +169,15 @@ namespace WindowsFormsApp6
             }
 
 
+            if (CUserLoggin.tipoVentana.Equals("Requerimientos"))
+            {
+                var x = QueryPDF().OrderBy(x => x.name);
+                bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuionBajo(x.name));
+            }else if (CUserLoggin.tipoVentana.Equals("Multas"))
+            {
+                bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuion(x.name));
+            }
 
-
-            bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuionBajo(x.name));
 
             DropFiles.DataSource = bs;
             DropFiles.DisplayMember = "name";
@@ -151,14 +187,42 @@ namespace WindowsFormsApp6
         private IEnumerable<consultaPDF> QueryPDF()
         {
             IEnumerable<consultaPDF> consulta = default;
-            
-            if (chRemplazo.Checked || _documento.Equals("firmados")) {
+
+            var x = pdfLocal.ToList();
+
+
+            if (chRemplazo.Checked || _documento.Equals("firmados") && CUserLoggin.tipoVentana.Equals("Requerimientos"))
+            {
                 consulta = from local in pdfLocal
                            join db in listadoPDFDB on local._name equals db.numReq
                            select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
 
             }
-            else
+
+            //if (chRemplazo.Checked || _documento.Equals("firmados")) {
+            //    consulta = from local in pdfLocal
+            //               join db in listadoPDFDB on local._name equals db.numCtrl
+            //               select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+
+            //}
+
+
+
+            if (_documento.Equals("oficios"))
+            {
+                consulta = from local in pdfLocal
+                           join db in listadoPDFDB on local._name equals db.numReq
+                           select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+            }
+
+            if (_documento.Equals("recibos"))
+            {
+                consulta = from local in pdfLocal
+                           join db in listadoRecibosPDF on local._name equals db.numReq
+                           select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+            }
+
+            if (_documento.Equals("multas"))
             {
                 consulta = from local in pdfLocal
                            join db in listadoPDFDB on local._name equals db.numReq
@@ -200,7 +264,7 @@ namespace WindowsFormsApp6
             btnCargar.Enabled = false;
             try
             {
-                if (_documento.Equals("firmados"))
+                if (_documento.Equals("firmados") || _documento.Equals("oficios") || _documento.Equals("recibos"))
                 {
                     await new CargaFirmadosPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
                     btnCargar.Enabled = true;
@@ -213,7 +277,7 @@ namespace WindowsFormsApp6
             }
             catch (Exception)
             {
-                if (_documento.Equals("firmados"))
+                if (_documento.Equals("firmados") || _documento.Equals("oficios") || _documento.Equals("recibos"))
                 {
                     new CargaFirmadosPdf(tpbProgresBar, listadoPDF, _tipoSesion).crearCarpetaFTP(QueryPDF().ToList());
                     
@@ -223,7 +287,7 @@ namespace WindowsFormsApp6
             }
             finally
             {
-                if (_documento.Equals("firmados"))
+                if (_documento.Equals("firmados") || _documento.Equals("oficios") || _documento.Equals("recibos"))
                 {
                     await new CargaFirmadosPdf(tpbProgresBar, listadoPDF, _tipoSesion).pdfCargar(QueryPDF());
                     btnCargar.Enabled = true;
