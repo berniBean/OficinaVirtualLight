@@ -85,9 +85,9 @@ namespace WindowsFormsApp6.CAD.DAL
 
                         pdfSQL fila = new pdfSQL()
                         {
-                            numReq = (string)lector["numOficio"],
-                            numCtrl = (string)lector["nomOficio"],
-                            rutaFTP = (string)lector["direccion"]
+                            numReq = Convert.ToString(lector["numOficio"] is DBNull ? default : lector["numOficio"]),
+                            numCtrl = Convert.ToString(lector["nomOficio"] is DBNull ? default : lector["nomOficio"]),
+                            rutaFTP = Convert.ToString(lector["direccion"] is DBNull ? default : lector["direccion"])
                         };
                         listpdfSql.Add(fila);
                     }

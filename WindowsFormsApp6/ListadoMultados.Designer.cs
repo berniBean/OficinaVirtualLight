@@ -42,20 +42,23 @@ namespace WindowsFormsApp6
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.OheSelect = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.cmbTipoDoc = new System.Windows.Forms.ToolStripComboBox();
+            this.BtnDescarga = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.tsBusqueda = new System.Windows.Forms.ToolStripTextBox();
             this.tsFiltrar = new System.Windows.Forms.ToolStripButton();
             this.tsBusquedaMasiva = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.dgMultados = new System.Windows.Forms.DataGridView();
-            this.DataGridTipoC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.DataGridestatusPDF = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.idMultaRif = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridzona = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridOHE = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridTMulta = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridnumMulta = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridRFC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.DataGridTipoC = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridnumCtrlReq = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridrs = new System.Windows.Forms.DataGridViewLinkColumn();
             this.DataGridDetalleEmi = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
@@ -70,7 +73,9 @@ namespace WindowsFormsApp6
             this.DataGridobservaciones = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridejecucion = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.DataGridestatus = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
+            this.DataGridestatusPDF = new DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn();
             this.cListaRequeridosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tsProgreso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -78,8 +83,8 @@ namespace WindowsFormsApp6
             this.splitContainer1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultados)).BeginInit();
-            this.toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).BeginInit();
+            this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsProgreso
@@ -90,7 +95,7 @@ namespace WindowsFormsApp6
             this.ShowAllLabel});
             this.tsProgreso.Location = new System.Drawing.Point(0, 428);
             this.tsProgreso.Name = "tsProgreso";
-            this.tsProgreso.Size = new System.Drawing.Size(1219, 22);
+            this.tsProgreso.Size = new System.Drawing.Size(1326, 22);
             this.tsProgreso.TabIndex = 0;
             this.tsProgreso.Text = "statusStrip1";
             // 
@@ -129,13 +134,13 @@ namespace WindowsFormsApp6
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgMultados);
-            this.splitContainer1.Size = new System.Drawing.Size(1219, 428);
+            this.splitContainer1.Size = new System.Drawing.Size(1326, 428);
             this.splitContainer1.SplitterDistance = 47;
             this.splitContainer1.TabIndex = 1;
             // 
             // ListCalendar
             // 
-            this.ListCalendar.Location = new System.Drawing.Point(978, 9);
+            this.ListCalendar.Location = new System.Drawing.Point(1069, 0);
             this.ListCalendar.Name = "ListCalendar";
             this.ListCalendar.TabIndex = 1;
             this.ListCalendar.Visible = false;
@@ -147,13 +152,18 @@ namespace WindowsFormsApp6
             this.toolStripLabel2,
             this.OheSelect,
             this.toolStripSeparator1,
+            this.toolStripLabel3,
+            this.cmbTipoDoc,
+            this.BtnDescarga,
+            this.toolStripSeparator3,
             this.toolStripLabel1,
             this.tsBusqueda,
             this.tsFiltrar,
-            this.tsBusquedaMasiva});
+            this.tsBusquedaMasiva,
+            this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1219, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(1326, 47);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -173,6 +183,32 @@ namespace WindowsFormsApp6
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 47);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(98, 44);
+            this.toolStripLabel3.Text = "Tipo documento:";
+            // 
+            // cmbTipoDoc
+            // 
+            this.cmbTipoDoc.Name = "cmbTipoDoc";
+            this.cmbTipoDoc.Size = new System.Drawing.Size(121, 47);
+            // 
+            // BtnDescarga
+            // 
+            this.BtnDescarga.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.BtnDescarga.Image = ((System.Drawing.Image)(resources.GetObject("BtnDescarga.Image")));
+            this.BtnDescarga.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnDescarga.Name = "BtnDescarga";
+            this.BtnDescarga.Size = new System.Drawing.Size(63, 44);
+            this.BtnDescarga.Text = "Descargar";
+            this.BtnDescarga.Click += new System.EventHandler(this.BtnDescarga_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 47);
             // 
             // toolStripLabel1
             // 
@@ -207,6 +243,11 @@ namespace WindowsFormsApp6
             this.tsBusquedaMasiva.Text = "Busqueda masiva";
             this.tsBusquedaMasiva.Click += new System.EventHandler(this.tsBusquedaMasiva_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 47);
+            // 
             // dgMultados
             // 
             this.dgMultados.AllowUserToAddRows = false;
@@ -240,7 +281,7 @@ namespace WindowsFormsApp6
             this.dgMultados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgMultados.Location = new System.Drawing.Point(0, 0);
             this.dgMultados.Name = "dgMultados";
-            this.dgMultados.Size = new System.Drawing.Size(1219, 377);
+            this.dgMultados.Size = new System.Drawing.Size(1326, 377);
             this.dgMultados.TabIndex = 0;
             this.dgMultados.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgMultados_CellContentDoubleClick);
             this.dgMultados.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMultados_ColumnHeaderMouseDoubleClick);
@@ -248,37 +289,6 @@ namespace WindowsFormsApp6
             this.dgMultados.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgMultados_DataError);
             this.dgMultados.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgMultados_EditingControlShowing);
             this.dgMultados.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgMultados_KeyDown);
-            // 
-            // DataGridTipoC
-            // 
-            this.DataGridTipoC.DataPropertyName = "_tipoc";
-            this.DataGridTipoC.FilteringEnabled = false;
-            this.DataGridTipoC.HeaderText = "Tipo contribuyente";
-            this.DataGridTipoC.Name = "DataGridTipoC";
-            this.DataGridTipoC.ReadOnly = true;
-            this.DataGridTipoC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // DataGridestatusPDF
-            // 
-            this.DataGridestatusPDF.DataPropertyName = "_estatusPDF";
-            this.DataGridestatusPDF.FilteringEnabled = false;
-            this.DataGridestatusPDF.HeaderText = "Estatus PDF";
-            this.DataGridestatusPDF.Name = "DataGridestatusPDF";
-            this.DataGridestatusPDF.ReadOnly = true;
-            this.DataGridestatusPDF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1219, 425);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1219, 450);
-            this.toolStripContainer1.TabIndex = 2;
-            this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // idMultaRif
             // 
@@ -331,6 +341,15 @@ namespace WindowsFormsApp6
             this.DataGridRFC.Name = "DataGridRFC";
             this.DataGridRFC.ReadOnly = true;
             this.DataGridRFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // DataGridTipoC
+            // 
+            this.DataGridTipoC.DataPropertyName = "_tipoc";
+            this.DataGridTipoC.FilteringEnabled = false;
+            this.DataGridTipoC.HeaderText = "Tipo contribuyente";
+            this.DataGridTipoC.Name = "DataGridTipoC";
+            this.DataGridTipoC.ReadOnly = true;
+            this.DataGridTipoC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // DataGridnumCtrlReq
             // 
@@ -451,15 +470,37 @@ namespace WindowsFormsApp6
             this.DataGridestatus.ReadOnly = true;
             this.DataGridestatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // DataGridestatusPDF
+            // 
+            this.DataGridestatusPDF.DataPropertyName = "_estatusPDF";
+            this.DataGridestatusPDF.FilteringEnabled = false;
+            this.DataGridestatusPDF.HeaderText = "Estatus PDF";
+            this.DataGridestatusPDF.Name = "DataGridestatusPDF";
+            this.DataGridestatusPDF.ReadOnly = true;
+            this.DataGridestatusPDF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
             // cListaRequeridosBOBindingSource
             // 
             this.cListaRequeridosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaRequeridosBO);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1326, 425);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(1326, 450);
+            this.toolStripContainer1.TabIndex = 2;
+            this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // ListadoMultados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1219, 450);
+            this.ClientSize = new System.Drawing.Size(1326, 450);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.tsProgreso);
             this.Controls.Add(this.toolStripContainer1);
@@ -476,9 +517,9 @@ namespace WindowsFormsApp6
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMultados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
             this.toolStripContainer1.ResumeLayout(false);
             this.toolStripContainer1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cListaRequeridosBOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,5 +566,10 @@ namespace WindowsFormsApp6
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn DataGridestatus;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn DataGridestatusPDF;
         private System.Windows.Forms.MonthCalendar ListCalendar;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripComboBox cmbTipoDoc;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton BtnDescarga;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }

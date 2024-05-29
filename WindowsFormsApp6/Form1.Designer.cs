@@ -188,6 +188,7 @@
             this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.85714F));
             this.PanelEmisionRequerimientos.Size = new System.Drawing.Size(1465, 280);
             this.PanelEmisionRequerimientos.TabIndex = 19;
+            this.PanelEmisionRequerimientos.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelEmisionRequerimientos_Paint);
             // 
             // SelectEmision
             // 

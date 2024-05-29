@@ -212,7 +212,7 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
 
-        private async Task<CListaTableroAdmin> GetListadoRequeridos(int emision, int idSup)
+        private async Task<List<CTableroAdminBO>> GetListadoRequeridos(int emision, int idSup)
         {
             try
             {
@@ -224,7 +224,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     };
                     OrdenSql.Parameters.AddWithValue("@_idEmision", emision);
                     OrdenSql.Parameters.AddWithValue("@_idSup", idSup);
-                    CListaTableroAdmin listTablero = new CListaTableroAdmin();
+                    List<CTableroAdminBO> listTablero = new List<CTableroAdminBO>();
                     conn.Open();
                     MySqlDataReader lector = (MySqlDataReader)await OrdenSql.ExecuteReaderAsync();
 
@@ -423,7 +423,7 @@ namespace WindowsFormsApp6.CAD.DAL
             return GetAvanceGeneralEmision(emision, idSup);
         }
 
-        public override async Task<CListaTableroAdmin> GetListadoCompleto(int emision, int idSup)
+        public override async Task<List<CTableroAdminBO>> GetListadoCompleto(int emision, int idSup)
         {
             return await GetListadoRequeridos(emision, idSup);
         }

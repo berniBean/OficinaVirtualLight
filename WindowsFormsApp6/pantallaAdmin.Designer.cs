@@ -31,15 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cTableroAdminBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbEjercicio = new System.Windows.Forms.ComboBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tspProgreso = new System.Windows.Forms.ToolStripProgressBar();
-            this.dataSetRIF = new WindowsFormsApp6.DataSetRIF();
-            this.listadoRIFBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.catableroJefeRCOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._idEmision = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._referenciaNumercia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._anho = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +58,15 @@
             this.cobradosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalImporteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.honorariosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTableroAdminBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbEjercicio = new System.Windows.Forms.ComboBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tspProgreso = new System.Windows.Forms.ToolStripProgressBar();
+            this.dataSetRIF = new WindowsFormsApp6.DataSetRIF();
+            this.listadoRIFBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.catableroJefeRCOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTableroAdminBOBindingSource)).BeginInit();
@@ -135,65 +135,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(794, 404);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // cTableroAdminBOBindingSource
-            // 
-            this.cTableroAdminBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CTableroAdminBO);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cmbEjercicio);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(794, 34);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Selecciona el año";
-            // 
-            // cmbEjercicio
-            // 
-            this.cmbEjercicio.DataSource = this.cTableroAdminBOBindingSource;
-            this.cmbEjercicio.DisplayMember = "_anho";
-            this.cmbEjercicio.FormattingEnabled = true;
-            this.cmbEjercicio.Location = new System.Drawing.Point(120, 9);
-            this.cmbEjercicio.Name = "cmbEjercicio";
-            this.cmbEjercicio.Size = new System.Drawing.Size(121, 21);
-            this.cmbEjercicio.TabIndex = 0;
-            this.cmbEjercicio.Leave += new System.EventHandler(this.cmbEjercicio_Leave);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tspProgreso});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // tspProgreso
-            // 
-            this.tspProgreso.Name = "tspProgreso";
-            this.tspProgreso.Size = new System.Drawing.Size(100, 16);
-            // 
-            // dataSetRIF
-            // 
-            this.dataSetRIF.DataSetName = "DataSetRIF";
-            this.dataSetRIF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // listadoRIFBindingSource
-            // 
-            this.listadoRIFBindingSource.DataMember = "ListadoRIF";
-            this.listadoRIFBindingSource.DataSource = this.dataSetRIF;
-            // 
-            // catableroJefeRCOBindingSource
-            // 
-            this.catableroJefeRCOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatableroJefeRCO);
-            // 
-            // cListaTableroAdminBindingSource
-            // 
-            this.cListaTableroAdminBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaTableroAdmin);
             // 
             // _idEmision
             // 
@@ -415,6 +356,65 @@
             this.honorariosDataGridViewTextBoxColumn.ReadOnly = true;
             this.honorariosDataGridViewTextBoxColumn.Visible = false;
             // 
+            // cTableroAdminBOBindingSource
+            // 
+            this.cTableroAdminBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CTableroAdminBO);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cmbEjercicio);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(794, 34);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Selecciona el año";
+            // 
+            // cmbEjercicio
+            // 
+            this.cmbEjercicio.DataSource = this.cTableroAdminBOBindingSource;
+            this.cmbEjercicio.DisplayMember = "_anho";
+            this.cmbEjercicio.FormattingEnabled = true;
+            this.cmbEjercicio.Location = new System.Drawing.Point(120, 9);
+            this.cmbEjercicio.Name = "cmbEjercicio";
+            this.cmbEjercicio.Size = new System.Drawing.Size(121, 21);
+            this.cmbEjercicio.TabIndex = 0;
+            this.cmbEjercicio.Leave += new System.EventHandler(this.cmbEjercicio_Leave);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tspProgreso});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tspProgreso
+            // 
+            this.tspProgreso.Name = "tspProgreso";
+            this.tspProgreso.Size = new System.Drawing.Size(100, 16);
+            // 
+            // dataSetRIF
+            // 
+            this.dataSetRIF.DataSetName = "DataSetRIF";
+            this.dataSetRIF.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // listadoRIFBindingSource
+            // 
+            this.listadoRIFBindingSource.DataMember = "ListadoRIF";
+            this.listadoRIFBindingSource.DataSource = this.dataSetRIF;
+            // 
+            // catableroJefeRCOBindingSource
+            // 
+            this.catableroJefeRCOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CatableroJefeRCO);
+            // 
+            // cListaTableroAdminBindingSource
+            // 
+            this.cListaTableroAdminBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CListaTableroAdmin);
+            // 
             // pantallaAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,6 +424,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "pantallaAdmin";
             this.Text = "pantallaAdmin";
+            this.Load += new System.EventHandler(this.pantallaAdmin_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cTableroAdminBOBindingSource)).EndInit();

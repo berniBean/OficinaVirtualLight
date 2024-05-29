@@ -95,15 +95,17 @@
             this._notasObservaciones});
             this.requeridos.DataSource = this.cListaTableroAdminBindingSource;
             this.requeridos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.requeridos.Location = new System.Drawing.Point(3, 53);
+            this.requeridos.Location = new System.Drawing.Point(3, 47);
             this.requeridos.Name = "requeridos";
-            this.requeridos.ReadOnly = true;
-            this.requeridos.Size = new System.Drawing.Size(1577, 560);
+            this.requeridos.Size = new System.Drawing.Size(1577, 566);
             this.requeridos.TabIndex = 0;
             this.requeridos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellClick);
             this.requeridos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellContentClick);
             this.requeridos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellContentDoubleClick);
+            this.requeridos.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.requeridos_CellValidated);
+            this.requeridos.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.requeridos_CellValidating);
             this.requeridos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.requeridos_DataBindingComplete);
+            this.requeridos.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.requeridos_EditingControlShowing);
             this.requeridos.KeyDown += new System.Windows.Forms.KeyEventHandler(this.requeridos_KeyDown);
             // 
             // dataGridZona
@@ -184,7 +186,6 @@
             this.dataGridFC.FilteringEnabled = false;
             this.dataGridFC.HeaderText = "Fecha citatorio";
             this.dataGridFC.Name = "dataGridFC";
-            this.dataGridFC.ReadOnly = true;
             this.dataGridFC.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dataGridFN
@@ -193,7 +194,6 @@
             this.dataGridFN.FilteringEnabled = false;
             this.dataGridFN.HeaderText = "Fecha Notificacion";
             this.dataGridFN.Name = "dataGridFN";
-            this.dataGridFN.ReadOnly = true;
             this.dataGridFN.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // dataGridEstatus
@@ -262,7 +262,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -312,7 +312,6 @@
             // 
             // tbBusqueda
             // 
-            this.tbBusqueda.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.tbBusqueda.HideSelection = false;
             this.tbBusqueda.Name = "tbBusqueda";
             this.tbBusqueda.Size = new System.Drawing.Size(300, 25);
@@ -398,6 +397,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ListadoRequeridos";
             this.Text = "ListadoRequeridos";
+            this.Load += new System.EventHandler(this.ListadoRequeridos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.requeridos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cListaTableroAdminBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -473,6 +473,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataX;
         private System.Windows.Forms.ToolStripButton tsExcel;
         private System.Windows.Forms.DataGridViewTextBoxColumn _observaciones;
+        private System.Windows.Forms.ToolStripLabel OheLabel;
+        private System.Windows.Forms.ToolStripComboBox OheSelect;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.MonthCalendar CalendarioFechas;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridZona;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridOHE;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridNumReq;
@@ -489,9 +493,5 @@
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridMalCapturado;
         private DataGridViewAutoFilter.DataGridViewAutoFilterTextBoxColumn dataGridObvservaciones;
         private System.Windows.Forms.DataGridViewTextBoxColumn _notasObservaciones;
-        private System.Windows.Forms.ToolStripLabel OheLabel;
-        private System.Windows.Forms.ToolStripComboBox OheSelect;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.MonthCalendar CalendarioFechas;
     }
 }

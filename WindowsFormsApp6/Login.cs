@@ -21,6 +21,7 @@ namespace WindowsFormsApp6
         private CDiasLaboralesBLL bdDias = new CDiasLaboralesBLL();
         private CatObservacionesDAL catalogo = new CatObservacionesDAL();
         private CNotificadoresDAL CatalogoNotificadores = new CNotificadoresDAL();
+        private CEmisionActualDALPLUs cEmisionActualDALPLUs = new CEmisionActualDALPLUs();
 
 
         public Login()
@@ -120,6 +121,10 @@ namespace WindowsFormsApp6
             CUserLoggin.DiasFestivos = listado;
         }
 
+        private void FechaEmision()
+        {
+            var listado = cEmisionActualDALPLUs.GetPeriodo("2024");
+        }
         private  void CatObservaciones()
         {
             var listado = catalogo.GetCatObservacion();

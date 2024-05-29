@@ -15,6 +15,9 @@ using CleanArchitecture.ClasesDB;
 using CleanArchitecture.Helpers;
 using System.Threading.Tasks;
 using WindowsFormsApp6.Helper.DataGridHelper;
+using WindowsFormsApp6.Helper.Validator;
+using FluentValidation.Results;
+using System.Globalization;
 
 namespace WindowsFormsApp6
 {
@@ -28,7 +31,7 @@ namespace WindowsFormsApp6
         obtenerRequeridos obReq;
         obtenerBusqueda obBusqueda;
         obtenerBusquedaMultas obBuscarMultas;
-        CListaTableroAdmin listadoReq;
+        List<CTableroAdminBO> listadoReq;
         private int _emision;
         private int _tipoSesion;
         private string _NombreEmision;
@@ -147,35 +150,67 @@ namespace WindowsFormsApp6
                             _estatus = local._estatus,
                             _pdf = local._pdf
                         }).ToList();
-
-
-            if (tipoMulta.Equals("Firmados"))
-            {
-                foreach (var item in consulta)
-                {
-                    var x = item._numReq.ToString() + "_" + item._numCtrl.ToString() + ".pdf";
-                    listDescarga.Add(item);
-                    pdfLocal.Add(new ChocoPdfs() { _name = x, _numDocto= item._numReq.ToString() + "_" + item._numCtrl.ToString() + ".pdf" });
-                }
-            }
-            else
+            
+            if(tipoMulta is null)
             {
                 foreach (var item in consulta)
                 {
                     var x = item._numReq.ToString() + ".pdf";
                     listDescarga.Add(item);
-                    pdfLocal.Add(new ChocoPdfs() { _name = x });
                 }
+                cListaTableroAdminBindingSource.DataSource = listDescarga.ToDataTable();//moreLinq            
+                requeridos.AutoResizeColumns();
+                requeridos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            }
+            else
+            {
+
+                if (tipoMulta.Equals("Firmados"))
+                {
+                    foreach (var item in consulta)
+                    {
+                        var x = item._numReq.ToString() + "_" + item._numCtrl.ToString() + ".pdf";
+                        listDescarga.Add(item);
+                        pdfLocal.Add(new ChocoPdfs() { _name = x, _numDocto= item._numReq.ToString() + "_" + item._numCtrl.ToString() + ".pdf" });
+                    }
+                }
+                else
+                {
+                    foreach (var item in consulta)
+                    {
+                        var x = item._numReq.ToString() + ".pdf";
+                        listDescarga.Add(item);
+                        pdfLocal.Add(new ChocoPdfs() { _name = x });
+                    }
+                }
+
+
+
+
+                cListaTableroAdminBindingSource.DataSource = listDescarga.ToDataTable();//moreLinq            
+                requeridos.AutoResizeColumns();
+                requeridos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
 
-
-
-
-            cListaTableroAdminBindingSource.DataSource = listDescarga.ToDataTable();//moreLinq            
-            requeridos.AutoResizeColumns();
-            requeridos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
+        private void OheSelect_Leave(object sender, EventArgs e)
+        {
+
+            if (OheSelect.SelectedIndex == 0)
+            {
+                cListaTableroAdminBindingSource.DataSource = listadoReq;
+                tbBusqueda.SelectAll();
+            }
+            else
+            {
+                var consulta = (from requerimiento in listadoReq
+                                where requerimiento._ohe.Contains(OheSelect.Text)
+                                select requerimiento).ToList();
+                cListaTableroAdminBindingSource.DataSource = consulta.ToDataTable();
+            }
+
+        }
 
 
         private async void cargarTableroListadoRequeridos()
@@ -256,26 +291,7 @@ namespace WindowsFormsApp6
 
 
 
-        private void OheSelect_Leave(object sender, EventArgs e)
-        {
-
-            if(OheSelect.SelectedIndex == 0)
-            {
-                cListaTableroAdminBindingSource.DataSource = listadoReq;
-                tbBusqueda.SelectAll();
-            }
-            else
-            {
-                var consulta = (from requerimiento in listadoReq
-                                where requerimiento._ohe.Contains(OheSelect.Text)
-                                select requerimiento).ToList();
-                cListaTableroAdminBindingSource.DataSource = consulta;
-            }
-
-
-
-
-        }
+        
 
         private void BusquedaRIF(string datoBusqueda)
         {
@@ -431,12 +447,6 @@ namespace WindowsFormsApp6
 
         private void requeridos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-        }
-
-        private void requeridos_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
             if (e.ColumnIndex == 6)
             {
                 listaUrl = obURLR.listaURI();
@@ -452,9 +462,15 @@ namespace WindowsFormsApp6
                 string emision = _emision.ToString();
                 int tipo = 1;
 
-                pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatirio,Notificacion, uri, emision, ohe);
+                pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia, Citatirio, Notificacion, uri, emision, ohe);
                 vistaPDf.ShowDialog();
             }
+
+        }
+
+        private void requeridos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
 
         private void requeridos_KeyDown(object sender, KeyEventArgs e)
@@ -471,6 +487,166 @@ namespace WindowsFormsApp6
         private void OheSelect_KeyUp(object sender, KeyEventArgs e)
         {
 
+        }
+
+
+        private bool EsFormatoFechaValido(string valor)
+        {
+            // Verifica que el valor tenga el formato dd/MM/aaaa utilizando TryParseExact
+            DateTime fecha;
+            return DateTime.TryParseExact(valor, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha);
+        }
+
+        private void ListadoRequeridos_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void requeridos_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string notificacion = default;
+            string citatorio = default;
+
+            if (e.RowIndex == -1 || e.ColumnIndex == -1)
+            {
+                return;
+            }
+            else
+            {
+                if (requeridos.Columns[e.ColumnIndex].Name == "dataGridFN") // Reemplaza "FechaNotificacion" con el nombre real de tu columna
+                {
+                    notificacion = e.FormattedValue.ToString();
+
+                    notificacion = notificacion is "" ? "01/01/0001" : notificacion;
+
+                }
+
+                if (requeridos.Columns[e.ColumnIndex].Name == "dataGridFC")
+                {
+                    citatorio = e.FormattedValue.ToString();
+
+                    citatorio = citatorio is "" ? "01/01/0001" : citatorio;
+
+                }
+
+
+                var dgData = cListaTableroAdminBindingSource.Current;
+                DataRowView dato = (DataRowView)dgData;
+                DataRow fila = dato.Row;
+
+                CTableroAdminBO requerimiento = default;
+                var filaItem = fila.ItemArray;
+
+
+
+                if (!this.EsFecha(notificacion) || !this.EsFecha(citatorio))
+                {
+                    requerimiento = new CTableroAdminBO()
+                    {
+                        _fechaCitatorio = Convert.ToDateTime(citatorio),
+                        _fechaNotificacion = Convert.ToDateTime(notificacion)
+                    };
+                }
+
+
+
+                if (requerimiento != null)
+                {
+                    var validator = new NoWeekendsValidator();
+                    ValidationResult result = validator.Validate(requerimiento);
+                    IList<ValidationFailure> failures = result.Errors;
+
+                    if (!result.IsValid)
+                    {
+
+
+                        foreach (ValidationFailure item in failures)
+                        {
+                            //MessageBox.Show(item.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            requeridos.CurrentCell.ErrorText = item.ErrorMessage;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        requeridos.CurrentCell.ErrorText = null;
+                    }
+                }
+
+            }
+
+
+
+
+        }
+        private void requeridos_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            string notificacion = default;
+            string citatorio = default;
+
+        }
+
+        private void requeridos_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            var colIndex = requeridos.CurrentCell.ColumnIndex;
+            var colName = requeridos.Columns[colIndex].Name;
+
+          
+            //if(colName )
+            if(colName != "_diligencia")
+            {
+                try
+                {
+                    DataGridViewTextBoxEditingControl dText = (DataGridViewTextBoxEditingControl)e.Control;
+                    dText.KeyPress -= new KeyPressEventHandler(dText_KeyPress);
+                    dText.KeyPress += new KeyPressEventHandler(dText_KeyPress);
+                }
+                catch (InvalidCastException ex)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+        private void dText_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var colIndex = requeridos.CurrentCell.ColumnIndex;
+            var colName = requeridos.Columns[colIndex].Name;
+
+            if (colName == "ActaNotificacion" || colName == "ActaCitatorio" || colName == "NotificacionCitatorio"
+                || colName == "_diligencia" || colName == "NombreNotificador" || colName == "Observaciones" || colName == "NotasObservaciones")
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                if (char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else if (e.KeyChar == 8 || e.KeyChar == '/' || e.KeyChar == '-')
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private Boolean EsFecha(string fecha)
+        {
+            try
+            {
+                DateTime.Parse(fecha);
+                return true;
+            }
+            catch (Exception e)
+            {
+
+                return false;
+            }
         }
     }
 }

@@ -85,6 +85,11 @@ namespace WindowsFormsApp6
         private async Task DescargaPDF()
         {
             await new CargaPdf(tsProgress, listadoPDF, _tipoSesion).pdfDescarga(QueryPDF().ToList());
+
+            if (pdfLocal.Count() > 0)
+            {
+                pdfLocal.Clear();
+            }
         }
 
         private IEnumerable<consultaPDF> QueryPDF()
@@ -116,8 +121,13 @@ namespace WindowsFormsApp6
                                    numCtrl = local.numCtrl
                                };
 
+
                 return consulta;
+
+
+
             }
+
 
 
 

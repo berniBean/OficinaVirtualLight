@@ -19,7 +19,7 @@ namespace WindowsFormsApp6
         private int _emision;
         private int _tipo;
         private string _nombreEmision;
-        private CListaTableroAdmin _datosQuery;
+        private List<CTableroAdminBO> _datosQuery;
         public AvanceGeneral(int emision,string nombreEmision, int tipoS)
         {
             _emision = emision;
@@ -75,7 +75,7 @@ namespace WindowsFormsApp6
         }
 
 
-        private List<CTableroAdminBO> QueryListRequerimientos(CListaTableroAdmin datos)
+        private List<CTableroAdminBO> QueryListRequerimientos(List<CTableroAdminBO> datos)
         {
             var gato = (from item in datos
                         group item by new { item._zona, OHE = item._ohe } into grupo

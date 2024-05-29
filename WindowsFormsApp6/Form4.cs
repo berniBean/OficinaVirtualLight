@@ -75,14 +75,23 @@ namespace WindowsFormsApp6
 
         public void pegar_portapapeles(DataGridView dataGrid)
         {
+            try
+            {
+                string texto_copiado = Clipboard.GetText();
+                string[] lineas = texto_copiado.Split('\n');
+                int ultima = lineas.Count() - 1;
+                crearFilas(lineas, dataGrid, ultima);
+                dataGridBusqueda.DataSource = dt;
 
-            string texto_copiado = Clipboard.GetText();
-            string[] lineas = texto_copiado.Split('\n');
-            int ultima = lineas.Count() - 1;
-            crearFilas(lineas, dataGrid, ultima);
-            dataGridBusqueda.DataSource = dt;
+                dataGridBusqueda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; 
 
-            dataGridBusqueda.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells; 
+            }
+            catch
+            {
+
+                throw;
+            }
+
 
         }
 
@@ -350,7 +359,7 @@ namespace WindowsFormsApp6
                 if(tipoMulta == "MPLUS_")
                 {
                     gbMulta.Visible = false;
-                    groupBoxPLUS.Visible = true;
+                    groupBoxPLUS.Visible = false;
                 }
                 _tipo = 2;
             }

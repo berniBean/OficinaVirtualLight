@@ -12,6 +12,7 @@ using WindowsFormsApp6.BO;
 using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BLL;
 using WindowsFormsApp6.CAD.BO;
+using WindowsFormsApp6.CAD.DAL;
 using WindowsFormsApp6.CAD.DAL.factories;
 
 namespace WindowsFormsApp6
@@ -21,7 +22,7 @@ namespace WindowsFormsApp6
         //private CTableroAdminBLL bd = new CTableroAdminBLL();
         //private CTableroAdminBO obTablero = new CTableroAdminBO();
         private CListaTableroAdmin listTablero;
-
+        private CEmisionActualDALPLUs cEmisionActualDALPLUs = new CEmisionActualDALPLUs();
         private CTableroAdminBO obTablero = new CTableroAdminBO();
         obtenerTableroSup tableroSuper;
         obtenerTableroSup cmbFiscal;
@@ -97,6 +98,9 @@ namespace WindowsFormsApp6
         private async void cargarEjercicioFiscal()
         {
             cmbEjercicio.DataSource = await cmbFiscal.GetEjerciciosFisales();
+
+            var listado = cEmisionActualDALPLUs.GetPeriodo(cmbEjercicio.Text);
+            CUserLoggin.FechasEmision = listado;
         }
 
 
@@ -112,7 +116,7 @@ namespace WindowsFormsApp6
             int emision;
             nombreEmision = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             emision = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-
+            CUserLoggin.DetalleEmision = CUserLoggin.FechasEmision.FirstOrDefault(x => x.NomEmision.Equals(dataGridView1.CurrentRow.Cells[3].Value.ToString()));
             if (e.ColumnIndex == 4)
             {
 
@@ -146,9 +150,14 @@ namespace WindowsFormsApp6
 
         private void cmbEjercicio_Leave(object sender, EventArgs e)
         {
+            var listado = cEmisionActualDALPLUs.GetPeriodo(cmbEjercicio.Text);
+            CUserLoggin.FechasEmision = listado;
             CargarTablero();
         }
 
-
+        private void pantallaAdmin_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

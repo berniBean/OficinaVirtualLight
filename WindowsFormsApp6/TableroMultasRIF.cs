@@ -660,7 +660,13 @@ namespace WindowsFormsApp6
                 cell.Value = "";
                 tiG.mensaje = string.Format("procesando...{0}% ", i * 100 / total);
                 backgroundWorker1.ReportProgress(i * 100 / total, tiG);
-                elementoModificado = listReq[cell.RowIndex];
+               
+
+               var c=   dgTablaMultasRIF[2, cell.RowIndex].Value.ToString();
+                elementoModificado = listReq.FirstOrDefault(x => x._numMulta == Convert.ToInt32(c));
+
+
+                
 
                 if (!registrosModificados.Contains(elementoModificado))
                 {
@@ -1437,12 +1443,20 @@ namespace WindowsFormsApp6
         {
             int rowIndex = e.RowIndex;
 
-            var elementoModificado = listReq[rowIndex];
+            CListaRequeridosBO elementoModificado;
+
+            var c = dgTablaMultasRIF[2, rowIndex].Value.ToString();
+            elementoModificado = listReq.FirstOrDefault(x => x._numMulta == Convert.ToInt32(c));
 
             if (!registrosModificados.Contains(elementoModificado))
             {
                 registrosModificados.Add(elementoModificado);
             }
+        }
+
+        private void dgTablaMultasRIF_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

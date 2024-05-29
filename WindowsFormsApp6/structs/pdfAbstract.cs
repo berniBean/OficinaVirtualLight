@@ -66,7 +66,7 @@ namespace WindowsFormsApp6.structs
             string finalDestino;
             var fullName = rutaFtp + name;
 
-            if (CUserLoggin.tipoDocumentoDescarga.Equals("Firmados") && CUserLoggin.tipoVentana.Equals("Multas") )
+            if (CUserLoggin.tipoDocumentoDescarga.Equals("Firmados") || CUserLoggin.tipoDocumentoDescarga.Equals("Recibos") && CUserLoggin.tipoVentana.Equals("Multas"))
             {
                 finalDestino = destino + '\\' + numCtrl;
             }

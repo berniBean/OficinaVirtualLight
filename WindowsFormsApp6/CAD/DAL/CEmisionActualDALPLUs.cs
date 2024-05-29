@@ -20,7 +20,7 @@ namespace WindowsFormsApp6.CAD.DAL
             strConn = conn;
         }
 
-        public ListCEmisionActual  GetPeriodo(string anhoFiscal) {
+        public ListCEmisionActual  GetPeriodo(string anhoFiscal)    {
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(strConn))

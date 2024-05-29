@@ -132,22 +132,9 @@ namespace WindowsFormsApp6
 
         }
 
-        private void OheSelect_Leave(object sender, EventArgs e)
-        {
-            if (OheSelect.SelectedIndex == 0)
-            {
-                cListaRequeridosBOBindingSource.DataSource = listadoMultas.ToDataTable();
 
-            }
-            else
-            {
-                var consulta = (from multas in listadoMultas
-                                where multas._OHE.Contains(OheSelect.Text)
-                                select multas).ToList();
 
-                cListaRequeridosBOBindingSource.DataSource = consulta;
-            }
-        }
+
 
         private void  setDTable(ListaClistaRequeridos listadoMultas) 
         {
@@ -160,6 +147,14 @@ namespace WindowsFormsApp6
             List<string> elementos = new List<string>
             {
                 "--Seleccionar--"
+            };
+
+            List<string> tipoDoc = new List<string>
+            {
+                "--Seleccionar--",
+                "Escaneados",
+                "Firmados", 
+                "Recibos"
             };
 
             try
@@ -178,6 +173,55 @@ namespace WindowsFormsApp6
 
             OheSelect.Sorted = true;
             OheSelect.ComboBox.DataSource = elementos;
+            cmbTipoDoc.ComboBox.DataSource = tipoDoc;
+        }
+
+        private void OheSelect_Leave(object sender, EventArgs e)
+        {
+            if (OheSelect.SelectedIndex == 0)
+            {
+                cListaRequeridosBOBindingSource.DataSource = listadoMultas.ToDataTable();
+
+            }
+            else
+            {
+                var consulta = (from multas in listadoMultas
+                                where multas._OHE.Contains(OheSelect.Text)
+                                select multas).ToList();
+
+                cListaRequeridosBOBindingSource.DataSource = consulta;
+            }
+        }
+
+        private void BtnDescarga_Click(object sender, EventArgs e)
+        {
+            tipoMulta = cmbTipoDoc.Text;
+            CUserLoggin.tipoDocumentoDescarga = cmbTipoDoc.Text;
+            List<busquedaMasivaDO> resultado = new List<busquedaMasivaDO>();
+
+            if (OheSelect.SelectedIndex == 0)
+            {
+                cListaRequeridosBOBindingSource.DataSource = listadoMultas.ToDataTable();
+
+            }
+            else
+            {
+                var consulta = (from multas in listadoMultas
+                                where multas._OHE.Contains(OheSelect.Text)
+                                select multas).ToList();
+
+                foreach (var item in consulta)
+                {
+                    resultado.Add(new busquedaMasivaDO() { numMulta = item._numMulta });
+                }
+
+                busquedaMasiva(resultado);
+
+                //cListaRequeridosBOBindingSource.DataSource = consulta;
+            }
+
+
+            DescargaPDF().Wait();
         }
 
         private void busquedaMasiva(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda)
@@ -364,11 +408,12 @@ namespace WindowsFormsApp6
                 
                 CUserLoggin.tipoDocumentoDescarga = tipoMulta;
 
-                var pd = pdfLocal.Count();
+                var pd = pdfLocal.ToList() ;
+               
                  consulta = from local in pdfLocal
                                join db in listadoFirmados on local._name equals db.numReq into joined
                                from db in joined.DefaultIfEmpty()
-                               select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = local._numDocto };
+                               select new consultaPDF() { name = local._numDocto, rutaFtp = db.rutaFTP, numCtrl = local._numDocto };
 
                 return consulta;
             }
@@ -390,7 +435,7 @@ namespace WindowsFormsApp6
                 consulta = from local in pdfLocal
                            join db in listadoRecibos on local._name equals db.numReq into joined
                            from db in joined.DefaultIfEmpty()
-                           select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = local._numDocto };
+                           select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl};
 
                 return consulta;
             }
@@ -553,5 +598,7 @@ namespace WindowsFormsApp6
                 GridHelper<ListaClistaRequeridos>.pegar_portapapeles(dgMultados, ListCalendar);
             }
         }
+
+
     }
 }

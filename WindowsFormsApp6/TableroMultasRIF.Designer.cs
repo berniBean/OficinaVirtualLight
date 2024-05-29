@@ -620,6 +620,7 @@
             this.dgTablaMultasRIF.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellContentDoubleClick);
             this.dgTablaMultasRIF.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellEndEdit);
             this.dgTablaMultasRIF.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgTablaMultasRIF_CellValidating);
+            this.dgTablaMultasRIF.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTablaMultasRIF_CellValueChanged);
             this.dgTablaMultasRIF.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgTablaMultasRIF_ColumnHeaderMouseDoubleClick);
             this.dgTablaMultasRIF.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgTablaMultasRIF_DataError);
             this.dgTablaMultasRIF.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgTablaMultasRIF_EditingControlShowing);

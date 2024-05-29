@@ -865,7 +865,9 @@ namespace WindowsFormsApp6
 
                     if (!EsFecha(objeto_celda.Value.ToString()))
                     {
+
                         elementoModificado = listReq[objeto_celda.RowIndex];
+
                         if (registrosModificados.Contains(elementoModificado))
                         {
                             registrosModificados.Remove(elementoModificado);
@@ -1231,7 +1233,9 @@ namespace WindowsFormsApp6
             ListaClistaRequeridos listOHE = new ListaClistaRequeridos();
             List<CListaRequeridosBO> consulta = new List<CListaRequeridosBO>();
 
-            
+            var x = ReturnLstBusqueda.ToList();
+
+
                consulta = (from local in listReq
                                 join busqueda in ReturnLstBusqueda on local.NumCtrl equals busqueda.numCtrl
                                 select new CListaRequeridosBO()
@@ -1680,6 +1684,11 @@ namespace WindowsFormsApp6
                     e.Cancel = true; // Cancela el cierre del formulario si se presiona Cancelar
                 }
             }
+
+        }
+
+        private void PanelEmisionRequerimientos_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

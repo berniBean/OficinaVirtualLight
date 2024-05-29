@@ -159,6 +159,7 @@ namespace WindowsFormsApp6
             {
                 dgReqPLUS.Columns["Oficios"].Visible = false;
                 dgReqPLUS.Columns["Firmados"].Visible = false;
+                dgReqPLUS.Columns["Recibos"].Visible = false;
             }
 
 

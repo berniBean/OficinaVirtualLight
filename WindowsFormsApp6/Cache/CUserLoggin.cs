@@ -23,8 +23,10 @@ namespace WindowsFormsApp6.Cache
         public static string tipoVentana { get; set; }
         public static string tipoUsuario { get; set; }
         public static string tipoDocumentoDescarga { get; set; }
+        public static CEmisionActualBO DetalleEmision { get; set; }
         public static List<CdiasFeriadosBO> DiasFestivos { get; set; }
 
+        public static ListCEmisionActual FechasEmision { get; set; }
         public static CListNotificadores Notificadores { get; set; }
         public static CListaCatObservaciones ListadoObservaciones { get; set; }
 
