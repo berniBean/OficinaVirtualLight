@@ -219,9 +219,21 @@ namespace WindowsFormsApp6
 
                 //cListaRequeridosBOBindingSource.DataSource = consulta;
             }
+            try
+            {
+                DescargaPDF().Wait();
 
+            }
+            catch (AggregateException ex)
+            {
 
-            DescargaPDF().Wait();
+                foreach (var innerException in ex.InnerExceptions)
+                {
+                    Console.WriteLine(innerException.Message);
+                    // Aquí puedes manejar cada excepción individualmente
+                }
+            }
+
         }
 
         private void busquedaMasiva(IEnumerable<busquedaMasivaDO> ReturnLstBusqueda)
@@ -266,6 +278,15 @@ namespace WindowsFormsApp6
                     listMultaDescarga.Add(item);
                     pdfLocal.Add(new ChocoPdfs() { _name = x, _numDocto = item._numMulta.ToString() + '-' + item._tipoMulta + '-' + item.Rfc + ".pdf" });
                 }
+            }else if (tipoMulta.Equals("Recibos")) 
+            {
+                foreach (var item in consulta)
+                {
+                    var x = item._numMulta.ToString() + "-" + item._tipoMulta + "-"+item._OHE + ".pdf";
+                    listMultaDescarga.Add(item);
+                    pdfLocal.Add(new ChocoPdfs() { _name = x });
+                }
+            
             }
             else
             {
@@ -433,7 +454,7 @@ namespace WindowsFormsApp6
 
                 var pd = pdfLocal.Count();
                 consulta = from local in pdfLocal
-                           join db in listadoRecibos on local._name equals db.numReq into joined
+                           join db in listadoRecibos on local._name equals db.numCtrl into joined
                            from db in joined.DefaultIfEmpty()
                            select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl};
 

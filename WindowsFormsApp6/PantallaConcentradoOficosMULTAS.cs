@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoreLinq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,8 +53,10 @@ namespace WindowsFormsApp6
         private async Task cargarTableroOficiosConcentrado()
         {
             oficiosConcentrado = await obtenerOficiosConcentradoSQL.listadoConcentradoOficioMultasSql(_nombreEmision, _emision, CUserLoggin.idUser);
-            listadoPDFDB = await listadoPDF.listadoOficiosPDF(_emision, CUserLoggin.idUser);
+            listadoPDFDB = await listadoPDF.listadoOficiosMultasPDF(_emision, CUserLoggin.idUser);
             cOficiosBOBindingSource.DataSource = oficiosConcentrado;
+
+            setDTable(oficiosConcentrado);
 
             dgOficiosConcentrado.AutoResizeColumns();
             dgOficiosConcentrado.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -84,6 +87,45 @@ namespace WindowsFormsApp6
                 return consulta;
             
 
+        }
+
+        private void setDTable(ListCOficios listadoMultas)
+        {
+            List<string> elementos = new List<string>
+            {
+                "--Seleccionar--"
+            };
+
+            try
+            {
+                var source = listadoMultas.Select(x => x.Zona).Distinct().ToList();
+                elementos.AddRange(source);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            ZonaCmb.Sorted = true;
+            ZonaCmb.DataSource = elementos;
+            
+        }
+
+        private void ZonaCmb_Leave(object sender, EventArgs e)
+        {
+            if(ZonaCmb.SelectedIndex == 0)
+            {
+                cOficiosBOBindingSource.DataSource = oficiosConcentrado.ToDataTable();
+            }
+            else
+            {
+                var consulta = (from oficios in oficiosConcentrado
+                                where oficios.Zona.Contains(ZonaCmb.Text)
+                                select oficios).ToList();
+
+                cOficiosBOBindingSource.DataSource = consulta;
+            }
         }
     }
 }

@@ -202,7 +202,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
                         pdfSQL fila = new pdfSQL(
                             (string)lector["numReq"],
-                            (string)lector["numCtrl"],
+                            CadenaTextoHelper.NormalizarTexto((string)lector["numCtrl"]),
                             (string)lector["PDF"],
                             (string)lector["ohe"]);
                         listpdfSql.Add(fila);

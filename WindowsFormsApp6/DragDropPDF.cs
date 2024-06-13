@@ -175,6 +175,7 @@ namespace WindowsFormsApp6
                 bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuionBajo(x.name));
             }else if (CUserLoggin.tipoVentana.Equals("Multas"))
             {
+                var x = QueryPDF().OrderBy(x => x.name).ToString();
                 bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuion(x.name));
             }
 
@@ -218,16 +219,17 @@ namespace WindowsFormsApp6
             if (_documento.Equals("recibos"))
             {
                 consulta = from local in pdfLocal
-                           join db in listadoRecibosPDF on local._name equals db.numReq
+                           join db in listadoRecibosPDF on local._name equals db.numCtrl
                            select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
             }
 
-            if (_documento.Equals("multas"))
+            if (_documento.Equals("firmados"))
             {
                 consulta = from local in pdfLocal
-                           join db in listadoPDFDB on local._name equals db.numReq
-                           where db.estatusPDF.Equals("pendiente")
-                           select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+                           join db in listadoPDFDB on local._name equals db.numCtrl
+                           //where db.estatusPDF.Equals("pendiente")
+                           select new consultaPDF() { 
+                               name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
             }
 
 
