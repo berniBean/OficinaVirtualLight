@@ -192,12 +192,43 @@ namespace WindowsFormsApp6
             var x = pdfLocal.ToList();
 
 
-            if (chRemplazo.Checked || _documento.Equals("firmados") && CUserLoggin.tipoVentana.Equals("Requerimientos"))
+            if (chRemplazo.Checked.Equals(true) && CUserLoggin.tipoVentana.Equals("Requerimientos"))
             {
                 consulta = from local in pdfLocal
                            join db in listadoPDFDB on local._name equals db.numReq
                            select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
 
+            }
+
+            if (chRemplazo.Checked.Equals(false) && CUserLoggin.tipoVentana.Equals("Requerimientos"))
+            {
+                consulta = from local in pdfLocal
+                           join db in listadoPDFDB on local._name equals db.numReq
+                           where db.estatusPDF.Equals("pendiente")
+                           select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
+
+            }
+
+
+            if (chRemplazo.Checked.Equals(false) && _documento.Equals("firmados") && CUserLoggin.tipoVentana.Equals("Requerimientos"))
+            {
+                consulta = from local in pdfLocal
+                           join db in listadoPDFDB on local._name equals db.numReq
+                           select new consultaPDF()
+                           {
+                               name = local._name,
+                               fullName = local._fullName,
+                               rutaFtp = db.rutaFTP,
+                               numCtrl = db.numCtrl
+                           };
+            }
+            if (_documento.Equals("firmados") && CUserLoggin.tipoVentana.Equals("Multas"))
+            {
+                consulta = from local in pdfLocal
+                           join db in listadoPDFDB on local._name equals db.numCtrl
+                           //where db.estatusPDF.Equals("pendiente")
+                           select new consultaPDF() { 
+                               name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
             }
 
             //if (chRemplazo.Checked || _documento.Equals("firmados")) {
@@ -223,14 +254,6 @@ namespace WindowsFormsApp6
                            select new consultaPDF() { name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
             }
 
-            if (_documento.Equals("firmados"))
-            {
-                consulta = from local in pdfLocal
-                           join db in listadoPDFDB on local._name equals db.numCtrl
-                           //where db.estatusPDF.Equals("pendiente")
-                           select new consultaPDF() { 
-                               name = local._name, fullName = local._fullName, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl };
-            }
 
 
 

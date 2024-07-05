@@ -75,7 +75,7 @@ namespace WindowsFormsApp6
         }
 
         private IEnumerable<consultaPDF> QueryPDF()
-        {
+         {
             CUserLoggin.tipoDocumentoDescarga = "Firmados";
 
             var consulta = from local in listadoPDFDB

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper;
 using WindowsFormsApp6.Helper.DataGridHelper;
 using WindowsFormsApp6.structs;
 using static WindowsFormsApp6.Form4;
@@ -144,36 +145,7 @@ namespace WindowsFormsApp6
             dgMultados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             
 
-            List<string> elementos = new List<string>
-            {
-                "--Seleccionar--"
-            };
 
-            List<string> tipoDoc = new List<string>
-            {
-                "--Seleccionar--",
-                "Escaneados",
-                "Firmados", 
-                "Recibos"
-            };
-
-            try
-            {
-                var source = listadoMultas.Select(x => x._OHE).Distinct().ToList();
-                elementos.AddRange(source);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-
-
-            OheSelect.Sorted = true;
-            OheSelect.ComboBox.DataSource = elementos;
-            cmbTipoDoc.ComboBox.DataSource = tipoDoc;
         }
 
         private void OheSelect_Leave(object sender, EventArgs e)
@@ -206,11 +178,11 @@ namespace WindowsFormsApp6
             }
             else
             {
-                var consulta = (from multas in listadoMultas
+                var seleccion = (from multas in listadoMultas
                                 where multas._OHE.Contains(OheSelect.Text)
                                 select multas).ToList();
 
-                foreach (var item in consulta)
+                foreach (var item in seleccion)
                 {
                     resultado.Add(new busquedaMasivaDO() { numMulta = item._numMulta });
                 }
@@ -229,9 +201,14 @@ namespace WindowsFormsApp6
 
                 foreach (var innerException in ex.InnerExceptions)
                 {
-                    Console.WriteLine(innerException.Message);
+                    MessageBox.Show(innerException.Message);
                     // Aquí puedes manejar cada excepción individualmente
                 }
+            }
+            finally
+            {
+                tsProgress.Value = 0;
+                pdfLocal.Clear();
             }
 
         }
@@ -282,9 +259,9 @@ namespace WindowsFormsApp6
             {
                 foreach (var item in consulta)
                 {
-                    var x = item._numMulta.ToString() + "-" + item._tipoMulta + "-"+item._OHE + ".pdf";
+                    var x = item._numMulta.ToString() + "-" + item._tipoMulta + "-"+ CadenaTextoHelper.NormalizarTexto(  item._OHE )+ ".pdf";
                     listMultaDescarga.Add(item);
-                    pdfLocal.Add(new ChocoPdfs() { _name = x });
+                    pdfLocal.Add(new ChocoPdfs() { _name = x ,_numDocto = item._numMulta.ToString() + ".pdf"});
                 }
             
             }
@@ -306,6 +283,37 @@ namespace WindowsFormsApp6
         {
             listadoMultas = await tableroSuper.GetTableroMultasGENAdmin(_emision, CUserLoggin.idUser);
             setDTable(listadoMultas);
+
+            List<string> elementos = new List<string>
+            {
+                "--Seleccionar--"
+            };
+
+            List<string> tipoDoc = new List<string>
+            {
+                "--Seleccionar--",
+                "Escaneados",
+                "Firmados",
+                "Recibos"
+            };
+
+            try
+            {
+                var source = listadoMultas.Select(x => x._OHE).Distinct().ToList();
+                elementos.AddRange(source);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+
+
+            OheSelect.Sorted = true;
+            OheSelect.ComboBox.DataSource = elementos;
+            cmbTipoDoc.ComboBox.DataSource = tipoDoc;
         }
 
         private void tsBusquedaMasiva_Click(object sender, EventArgs e)
@@ -454,7 +462,7 @@ namespace WindowsFormsApp6
 
                 var pd = pdfLocal.Count();
                 consulta = from local in pdfLocal
-                           join db in listadoRecibos on local._name equals db.numCtrl into joined
+                           join db in listadoRecibos on local._numDocto equals db.numReq into joined
                            from db in joined.DefaultIfEmpty()
                            select new consultaPDF() { name = local._name, rutaFtp = db.rutaFTP, numCtrl = db.numCtrl};
 

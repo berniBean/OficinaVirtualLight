@@ -276,12 +276,12 @@ namespace WindowsFormsApp6.CAD.DAL
                         CListaRequeridosBO fila = new CListaRequeridosBO(
                             Convert.ToString(lector["idMultaRIF"]),
                             (string)lector["TIPO_MULTA"],
-                            Convert.ToInt16(lector["CTRL_MULTA"] is DBNull ? null : lector["CTRL_MULTA"]),
+                            Convert.ToInt32(lector["CTRL_MULTA"] is DBNull ? null : lector["CTRL_MULTA"]),
                             (string)lector["rfc"],
                             (string)lector["NUM_CTRL_REQUERIMIENTO"],
                             (string)lector["razonSocial"],
                             (string)lector["detalleEmision"],
-                            Convert.ToInt16(lector["numReq"]),
+                            Convert.ToInt32(lector["numReq"]),
                             lector["diligencia"] is DBNull ? "" : ((Int32)lector["diligencia"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligencia"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),
                             Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
                             Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//__fechaCitatorio
@@ -336,7 +336,7 @@ namespace WindowsFormsApp6.CAD.DAL
                         CListaRequeridosBO fila = new CListaRequeridosBO(
                             Convert.ToString(lector["idMultaRIF"]),
                             (string)lector["TIPO_MULTA"],
-                            Convert.ToInt16(lector["CTRL_MULTA"] is DBNull ? null : lector["CTRL_MULTA"]),
+                            Convert.ToInt32(lector["CTRL_MULTA"] is DBNull ? null : lector["CTRL_MULTA"]),
                             (string)lector["rfc"],
                             (string)lector["NUM_CTRL_REQUERIMIENTO"],
                             (string)lector["razonSocial"],
@@ -396,12 +396,12 @@ namespace WindowsFormsApp6.CAD.DAL
                         CListaRequeridosBO fila = new CListaRequeridosBO(
                             Convert.ToString(lector["idMultaRIF"]),
                             (string)lector["TIPO_MULTA"],
-                            Convert.ToInt16(lector["CTRL_MULTA"] is DBNull ? null : lector["CTRL_MULTA"]),
+                            Convert.ToInt32(lector["CTRL_MULTA"] is DBNull ? null : lector["CTRL_MULTA"]),
                             (string)lector["rfc"],
                             (string)lector["NUM_CTRL_REQUERIMIENTO"],
                             (string)lector["razonSocial"],
                             (string)lector["detalleEmision"],
-                            Convert.ToInt16(lector["numReq"]),
+                            Convert.ToInt32(lector["numReq"]),
                             lector["diligencia"] is DBNull ? "" : ((Int32)lector["diligencia"] == 2 ? "NO TRABAJADO" : ((Int32)lector["diligencia"] == 0 ? "NO LOCALIZADO" : "LOCALIZADO")),//_diligencia
                             Convert.ToDateTime(lector["fechaCitatorio"] is DBNull ? null : lector["fechaCitatorio"]),//__fechaCitatorio
                             Convert.ToDateTime(lector["fechaNotificacion"] is DBNull ? null : lector["fechaNotificacion"]),//__fechaCitatorio

@@ -512,6 +512,7 @@ namespace WindowsFormsApp6
             }
             else
             {
+
                 if (requeridos.Columns[e.ColumnIndex].Name == "dataGridFN") // Reemplaza "FechaNotificacion" con el nombre real de tu columna
                 {
                     notificacion = e.FormattedValue.ToString();
@@ -529,48 +530,65 @@ namespace WindowsFormsApp6
                 }
 
 
-                var dgData = cListaTableroAdminBindingSource.Current;
-                DataRowView dato = (DataRowView)dgData;
-                DataRow fila = dato.Row;
-
-                CTableroAdminBO requerimiento = default;
-                var filaItem = fila.ItemArray;
-
-
-
-                if (!this.EsFecha(notificacion) || !this.EsFecha(citatorio))
+                try
                 {
-                    requerimiento = new CTableroAdminBO()
+                    var dgData = cListaTableroAdminBindingSource.Current;
+                    DataRowView dato = (DataRowView)dgData;
+                    DataRow fila = dato.Row;
+                    CTableroAdminBO requerimiento = default;
+                    var filaItem = fila.ItemArray;
+
+                    if (!this.EsFecha(notificacion) || !this.EsFecha(citatorio))
                     {
-                        _fechaCitatorio = Convert.ToDateTime(citatorio),
-                        _fechaNotificacion = Convert.ToDateTime(notificacion)
-                    };
-                }
-
-
-
-                if (requerimiento != null)
-                {
-                    var validator = new NoWeekendsValidator();
-                    ValidationResult result = validator.Validate(requerimiento);
-                    IList<ValidationFailure> failures = result.Errors;
-
-                    if (!result.IsValid)
-                    {
-
-
-                        foreach (ValidationFailure item in failures)
+                        requerimiento = new CTableroAdminBO()
                         {
-                            //MessageBox.Show(item.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            requeridos.CurrentCell.ErrorText = item.ErrorMessage;
-                            return;
+                            _fechaCitatorio = Convert.ToDateTime(citatorio),
+                            _fechaNotificacion = Convert.ToDateTime(notificacion)
+                        };
+                    }
+
+
+
+                    if (requerimiento != null)
+                    {
+                        var validator = new NoWeekendsValidator();
+                        ValidationResult result = validator.Validate(requerimiento);
+                        IList<ValidationFailure> failures = result.Errors;
+
+                        if (!result.IsValid)
+                        {
+
+
+                            foreach (ValidationFailure item in failures)
+                            {
+                                //MessageBox.Show(item.ErrorMessage, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                requeridos.CurrentCell.ErrorText = item.ErrorMessage;
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            requeridos.CurrentCell.ErrorText = null;
                         }
                     }
-                    else
-                    {
-                        requeridos.CurrentCell.ErrorText = null;
-                    }
                 }
+                catch
+                {
+
+                   
+                }
+
+
+
+
+
+
+
+
+
+
+
+
 
             }
 
@@ -646,6 +664,49 @@ namespace WindowsFormsApp6
             {
 
                 return false;
+            }
+        }
+
+        private void Down_SelectedBtn_Click(object sender, EventArgs e)
+        {
+            List<busquedaMasivaDO> resultado = new List<busquedaMasivaDO>();
+
+            if(OheSelect.SelectedIndex == 0)
+            {
+                cListaTableroAdminBindingSource.DataSource = listadoReq.ToDataTable();
+            }
+            else
+            {
+                var seleccion = (from requerimiento in listadoReq
+                                 where requerimiento._ohe.Contains(OheSelect.Text)
+                                 select requerimiento).ToList();
+
+                foreach (var item in seleccion)
+                {
+                    resultado.Add(new busquedaMasivaDO() { numCtrl = item._numCtrl });
+                }
+                tipoMulta = "Firmados";
+                busquedaMasiva(resultado);
+            }
+
+            try
+            {
+                //tipoMulta = "Firmados";
+                DescargaPDF().Wait();
+                tipoMulta = default;
+            }
+            catch (AggregateException ex)
+            {
+                foreach (var innerException in ex.InnerExceptions)
+                {
+                    MessageBox.Show(innerException.Message);
+                    // Aquí puedes manejar cada excepción individualmente
+                }
+            }
+            finally
+            {
+                tsProgreso.Value = 0;
+                pdfLocal.Clear();
             }
         }
     }
