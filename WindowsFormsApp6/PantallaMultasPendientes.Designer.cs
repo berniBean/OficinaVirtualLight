@@ -33,11 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cListaTableroAdminBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgTableroMultas = new System.Windows.Forms.DataGridView();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cmbEjercicio = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.ejercicioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this._origenMultaRIF = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +48,11 @@
             this._cobrados = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._totalImporte = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._honorarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmbEjercicio = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             ((System.ComponentModel.ISupportInitialize)(this.cListaTableroAdminBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTableroMultas)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
@@ -105,74 +105,9 @@
             this.dgTableroMultas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTableroMultas.Size = new System.Drawing.Size(1064, 410);
             this.dgTableroMultas.TabIndex = 1;
-            this.dgTableroMultas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTableroMultas_CellClick);
-            this.dgTableroMultas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTableroMultas_CellContentClick);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1070, 450);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.Controls.Add(this.cmbEjercicio);
-            this.splitContainer1.Panel1.Controls.Add(this.label1);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.dgTableroMultas);
-            this.splitContainer1.Size = new System.Drawing.Size(1064, 444);
-            this.splitContainer1.SplitterDistance = 30;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // cmbEjercicio
-            // 
-            this.cmbEjercicio.DataSource = this.cListaTableroAdminBindingSource;
-            this.cmbEjercicio.DisplayMember = "_anho";
-            this.cmbEjercicio.FormattingEnabled = true;
-            this.cmbEjercicio.Location = new System.Drawing.Point(110, 3);
-            this.cmbEjercicio.Name = "cmbEjercicio";
-            this.cmbEjercicio.Size = new System.Drawing.Size(121, 21);
-            this.cmbEjercicio.TabIndex = 1;
-            this.cmbEjercicio.Leave += new System.EventHandler(this.cmbEjercicio_Leave);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Selecciona el año:";
-            // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1070, 425);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(1070, 450);
-            this.toolStripContainer1.TabIndex = 2;
-            this.toolStripContainer1.Text = "toolStripContainer1";
+
+       
+            this.dgTableroMultas.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTableroMultas_CellContentDoubleClick);
             // 
             // ejercicioDataGridViewTextBoxColumn
             // 
@@ -283,6 +218,72 @@
             this._honorarios.HeaderText = "Honorarios";
             this._honorarios.Name = "_honorarios";
             this._honorarios.ReadOnly = true;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 450F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1070, 450);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmbEjercicio);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dgTableroMultas);
+            this.splitContainer1.Size = new System.Drawing.Size(1064, 444);
+            this.splitContainer1.SplitterDistance = 30;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // cmbEjercicio
+            // 
+            this.cmbEjercicio.DataSource = this.cListaTableroAdminBindingSource;
+            this.cmbEjercicio.DisplayMember = "_anho";
+            this.cmbEjercicio.FormattingEnabled = true;
+            this.cmbEjercicio.Location = new System.Drawing.Point(110, 3);
+            this.cmbEjercicio.Name = "cmbEjercicio";
+            this.cmbEjercicio.Size = new System.Drawing.Size(121, 21);
+            this.cmbEjercicio.TabIndex = 1;
+            this.cmbEjercicio.Leave += new System.EventHandler(this.cmbEjercicio_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Selecciona el año:";
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1070, 425);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.Size = new System.Drawing.Size(1070, 450);
+            this.toolStripContainer1.TabIndex = 2;
+            this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // PantallaMultasPendientes
             // 

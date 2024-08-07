@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
-using WindowsFormsApp6.CAD.BLL;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
 using static WindowsFormsApp6.TableroMultasRIF;
@@ -74,7 +73,29 @@ namespace WindowsFormsApp6
             }
         }
 
-        private void dgTableroMultas_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void SetFormating()
+        {
+            this.dgTableroMultas.Columns["_totalImporte"].DefaultCellStyle.Format = "C";
+            this.dgTableroMultas.Columns["_honorarios"].DefaultCellStyle.Format = "C";
+            
+        }
+        private void PantallaMultasPendientes_Load(object sender, EventArgs e)
+        {
+
+           
+        }
+
+        private void dgTableroMultas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private  void cmbEjercicio_Leave(object sender, EventArgs e)
+        {
+            CargarTableroAsync().Wait();
+        }
+
+        private void dgTableroMultas_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1 || e.ColumnIndex == -1)
             {
@@ -97,45 +118,23 @@ namespace WindowsFormsApp6
                 CUserLoggin.totalMultasEmitido = Convert.ToInt16(totalEmitidos);
                 CUserLoggin.nombreEmisionMultaRIF = nombreEmisionMulta;
                 CUserLoggin.origenMultaRIF = origenMultaRIF;
-                
+
                 if (_tipo == 1)
                 {
                     TableroMultasRIF MultasRifSup = new TableroMultasRIF(1);
                     MultasRifSup.ejecutar += new TableroMultasRIF.ActualizarDelegado(CargarTablero);
                     MultasRifSup.Show();
                 }
-                    
+
                 else if (_tipo == 2)
                 {
                     TableroMultasRIF MultasRifSup = new TableroMultasRIF(2);
                     MultasRifSup.ejecutar += new TableroMultasRIF.ActualizarDelegado(CargarTablero);
                     MultasRifSup.Show();
                 }
-                
+
 
             }
-            
-        }
-        private void SetFormating()
-        {
-            this.dgTableroMultas.Columns["_totalImporte"].DefaultCellStyle.Format = "C";
-            this.dgTableroMultas.Columns["_honorarios"].DefaultCellStyle.Format = "C";
-            
-        }
-        private void PantallaMultasPendientes_Load(object sender, EventArgs e)
-        {
-
-           
-        }
-
-        private void dgTableroMultas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private  void cmbEjercicio_Leave(object sender, EventArgs e)
-        {
-            CargarTableroAsync().Wait();
         }
     }
 }
