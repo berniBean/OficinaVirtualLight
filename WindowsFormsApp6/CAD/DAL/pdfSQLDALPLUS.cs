@@ -44,9 +44,9 @@ namespace WindowsFormsApp6.CAD.DAL
 
                         pdfSQL fila = new pdfSQL()
                         {
-                            numReq = (string)lector["numOficio"],
-                            numCtrl = CadenaTextoHelper.NormalizarTexto((string)lector["nomOficio"]),
-                            rutaFTP = (string)lector["direccion"]
+                            numReq = Convert.ToString(lector["numOficio"] is DBNull ?  null : lector["numOficio"]),
+                            numCtrl = CadenaTextoHelper.NormalizarTexto(Convert.ToString(lector["nomOficio"] is DBNull? null : lector["nomOficio"])),
+                            rutaFTP = Convert.ToString(lector["direccion"] is DBNull ? null : lector["direccion"])
                         };
                         listpdfSql.Add(fila);
                     }
@@ -307,6 +307,7 @@ namespace WindowsFormsApp6.CAD.DAL
                         CommandType = CommandType.StoredProcedure
                     };
 
+                    //lector["fechaEntregaNotificador"] is DBNull ? null
                     //Parametros
                     OrdenSql.Parameters.AddWithValue("@_numCtrl", pdfSQL.numCtrl);
                     OrdenSql.Parameters.AddWithValue("@_estatus", pdfSQL.estatusPDF);
