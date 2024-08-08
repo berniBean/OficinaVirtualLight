@@ -19,10 +19,10 @@
             this.estatusPDF = estatusPDF;
         }
 
-        public string numReq { get; set; }
-        public string numCtrl { get; set; }
-        public string estatusPDF { get; set; }
-        public string rutaFTP { get; set; }
+        public string? numReq { get; set; }
+        public string? numCtrl { get; set; }
+        public string? estatusPDF { get; set; }
+        public string? rutaFTP { get; set; }
 
     }
 }
