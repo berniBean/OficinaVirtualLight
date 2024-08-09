@@ -1670,20 +1670,6 @@ namespace WindowsFormsApp6
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(registrosModificados.Count != 0)
-            {
-                DialogResult result = MessageBox.Show("¿Deseas guardar antes de salir?", "Guardar", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    // Aquí colocas la lógica para guardar los datos, por ejemplo:
-                    guardar().Wait();
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    e.Cancel = true; // Cancela el cierre del formulario si se presiona Cancelar
-                }
-            }
 
         }
 

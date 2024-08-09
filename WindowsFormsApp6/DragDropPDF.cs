@@ -175,7 +175,7 @@ namespace WindowsFormsApp6
                 bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuionBajo(x.name));
             }else if (CUserLoggin.tipoVentana.Equals("Multas"))
             {
-                var x = QueryPDF().OrderBy(x => x.name).ToString();
+                        var x = QueryPDF().OrderBy(x => x.name).ToString();
                 bs.DataSource = QueryPDF().OrderBy(x => NumberOrderHelper.ObtenerNumeroAntesGuion(x.name));
             }
 
@@ -222,6 +222,20 @@ namespace WindowsFormsApp6
                                numCtrl = db.numCtrl
                            };
             }
+            if (_documento.Equals("Emision") && CUserLoggin.tipoVentana.Equals("Multas"))
+            {
+                consulta = from local in pdfLocal
+                           join db in listadoPDFDB on local._name equals db.numReq
+                           where db.estatusPDF.Equals("pendiente")
+                           select new consultaPDF()
+                           {
+                               name = local._name,
+                               fullName = local._fullName,
+                               rutaFtp = db.rutaFTP,
+                               numCtrl = db.numCtrl
+                           };
+            }
+
             if (_documento.Equals("firmados") && CUserLoggin.tipoVentana.Equals("Multas"))
             {
                 consulta = from local in pdfLocal

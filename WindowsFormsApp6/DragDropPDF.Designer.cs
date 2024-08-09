@@ -90,6 +90,7 @@ namespace WindowsFormsApp6
             this.ReqFirmados.TabIndex = 9;
             this.ReqFirmados.Text = "Req. Firmados PDF";
             this.ReqFirmados.UseVisualStyleBackColor = true;
+            this.ReqFirmados.Visible = false;
             // 
             // chRemplazo
             // 
