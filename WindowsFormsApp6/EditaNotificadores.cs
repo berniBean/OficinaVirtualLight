@@ -43,7 +43,7 @@ namespace WindowsFormsApp6
         {
             try
             {
-                listNotificador = CUserLoggin.Notificadores.Where(x => x.Ohe.Equals(cmbOHE.Text)).ToList();
+                listNotificador = CUserLoggin.Notificadores.Where(x => x.Ohe.Equals(cmbOHE.Text) && !string.IsNullOrWhiteSpace(x.NombreNotificador) ).ToList();
 
                 DGNotificadores.DataSource = listNotificador;
                                      
@@ -104,6 +104,9 @@ namespace WindowsFormsApp6
             Notificador.Status = true;
 
             CatalogoNotificadores.NuevoNotificador(Notificador);
+
+            var listado = CatalogoNotificadores.GetListadoNotificadores();
+            CUserLoggin.Notificadores = listado;
 
             txtClaveNot.Clear();
             txtNombre.Clear();
