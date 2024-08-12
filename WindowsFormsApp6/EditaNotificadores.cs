@@ -31,6 +31,7 @@ namespace WindowsFormsApp6
         {
             DatoID = CUserLoggin.idUser;
             CargarOficinasHacienda();
+            Actualizar();
             CargarNotificadores();
 
             DGNotificadores.AutoResizeColumns();
@@ -105,8 +106,7 @@ namespace WindowsFormsApp6
 
             CatalogoNotificadores.NuevoNotificador(Notificador);
 
-            var listado = CatalogoNotificadores.GetListadoNotificadores();
-            CUserLoggin.Notificadores = listado;
+            Actualizar();
 
             txtClaveNot.Clear();
             txtNombre.Clear();
@@ -129,7 +129,7 @@ namespace WindowsFormsApp6
                 Notificador.NombreNotificador = DGNotificadores.CurrentRow.Cells[3].Value.ToString();
 
                 CatalogoNotificadores.EditaNotificador(Notificador);
-
+                Actualizar();
                 MessageBox.Show("Registro guardado");
             }
 
@@ -147,9 +147,15 @@ namespace WindowsFormsApp6
                 {
                     CatalogoNotificadores.EliminarNotificador(Notificador);
                 }
-
+                Actualizar();
                 CargarNotificadores();
             }
+        }
+
+        private void Actualizar()
+        {
+            var listado = CatalogoNotificadores.GetListadoNotificadores();
+            CUserLoggin.Notificadores = listado;
         }
 
         private void lblNombramiento_Click(object sender, EventArgs e)

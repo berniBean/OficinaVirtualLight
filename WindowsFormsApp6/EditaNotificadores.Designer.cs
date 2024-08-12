@@ -33,6 +33,12 @@ namespace WindowsFormsApp6
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditaNotificadores));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DGNotificadores = new System.Windows.Forms.DataGridView();
+            this.idNotificadorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idClaveOHEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.claveNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.cListNotificadoresBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,12 +49,6 @@ namespace WindowsFormsApp6
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.cmbOHE = new System.Windows.Forms.ComboBox();
             this.listCoheActivaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.idNotificadorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idClaveOHEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.claveNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreNotificador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGNotificadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cListNotificadoresBindingSource)).BeginInit();
@@ -90,6 +90,53 @@ namespace WindowsFormsApp6
             this.DGNotificadores.Size = new System.Drawing.Size(988, 250);
             this.DGNotificadores.TabIndex = 1;
             this.DGNotificadores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGNotificadores_CellContentDoubleClick);
+            // 
+            // idNotificadorDataGridViewTextBoxColumn
+            // 
+            this.idNotificadorDataGridViewTextBoxColumn.DataPropertyName = "IdNotificador";
+            this.idNotificadorDataGridViewTextBoxColumn.HeaderText = "IdNotificador";
+            this.idNotificadorDataGridViewTextBoxColumn.Name = "idNotificadorDataGridViewTextBoxColumn";
+            this.idNotificadorDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idClaveOHEDataGridViewTextBoxColumn
+            // 
+            this.idClaveOHEDataGridViewTextBoxColumn.DataPropertyName = "IdClaveOHE";
+            this.idClaveOHEDataGridViewTextBoxColumn.HeaderText = "IdClaveOHE";
+            this.idClaveOHEDataGridViewTextBoxColumn.Name = "idClaveOHEDataGridViewTextBoxColumn";
+            this.idClaveOHEDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // claveNotificador
+            // 
+            this.claveNotificador.DataPropertyName = "ClaveNotificador";
+            this.claveNotificador.HeaderText = "ClaveNotificador";
+            this.claveNotificador.Name = "claveNotificador";
+            this.claveNotificador.Visible = false;
+            // 
+            // nombreNotificador
+            // 
+            this.nombreNotificador.DataPropertyName = "NombreNotificador";
+            this.nombreNotificador.HeaderText = "NombreNotificador";
+            this.nombreNotificador.Name = "nombreNotificador";
+            // 
+            // Edit
+            // 
+            this.Edit.HeaderText = "Editar";
+            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
+            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Edit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Delete
+            // 
+            this.Delete.HeaderText = "Eliminar";
+            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
+            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // cListNotificadoresBindingSource
             // 
@@ -155,6 +202,7 @@ namespace WindowsFormsApp6
             this.btnGuardar.TabIndex = 2;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Visible = false;
             // 
             // BtnNuevo
             // 
@@ -181,53 +229,6 @@ namespace WindowsFormsApp6
             // listCoheActivaBindingSource
             // 
             this.listCoheActivaBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.ListCoheActiva);
-            // 
-            // idNotificadorDataGridViewTextBoxColumn
-            // 
-            this.idNotificadorDataGridViewTextBoxColumn.DataPropertyName = "IdNotificador";
-            this.idNotificadorDataGridViewTextBoxColumn.HeaderText = "IdNotificador";
-            this.idNotificadorDataGridViewTextBoxColumn.Name = "idNotificadorDataGridViewTextBoxColumn";
-            this.idNotificadorDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idClaveOHEDataGridViewTextBoxColumn
-            // 
-            this.idClaveOHEDataGridViewTextBoxColumn.DataPropertyName = "IdClaveOHE";
-            this.idClaveOHEDataGridViewTextBoxColumn.HeaderText = "IdClaveOHE";
-            this.idClaveOHEDataGridViewTextBoxColumn.Name = "idClaveOHEDataGridViewTextBoxColumn";
-            this.idClaveOHEDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // claveNotificador
-            // 
-            this.claveNotificador.DataPropertyName = "ClaveNotificador";
-            this.claveNotificador.HeaderText = "ClaveNotificador";
-            this.claveNotificador.Name = "claveNotificador";
-            this.claveNotificador.Visible = false;
-            // 
-            // nombreNotificador
-            // 
-            this.nombreNotificador.DataPropertyName = "NombreNotificador";
-            this.nombreNotificador.HeaderText = "NombreNotificador";
-            this.nombreNotificador.Name = "nombreNotificador";
-            // 
-            // Edit
-            // 
-            this.Edit.HeaderText = "Editar";
-            this.Edit.Image = ((System.Drawing.Image)(resources.GetObject("Edit.Image")));
-            this.Edit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Edit.Name = "Edit";
-            this.Edit.ReadOnly = true;
-            this.Edit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Edit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Delete
-            // 
-            this.Delete.HeaderText = "Eliminar";
-            this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
-            this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Delete.Name = "Delete";
-            this.Delete.ReadOnly = true;
-            this.Delete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Delete.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // EditaNotificadores
             // 

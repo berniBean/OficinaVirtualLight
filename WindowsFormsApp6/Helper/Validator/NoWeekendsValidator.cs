@@ -19,6 +19,7 @@ namespace WindowsFormsApp6.Helper.Validator
 
             RuleFor(x => x._fechaCitatorio)
                 .GreaterThan(CUserLoggin.DetalleEmision._fechaImpresion)
+                .LessThan(fecha => fecha._fechaNotificacion)
                 .When(fecha => fecha._fechaCitatorio != default);
                 
 
