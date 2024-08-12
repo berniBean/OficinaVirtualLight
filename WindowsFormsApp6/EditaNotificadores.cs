@@ -39,21 +39,7 @@ namespace WindowsFormsApp6
 
 
 
-        private void CargarNotificadores()
-        {
-            try
-            {
-                listNotificador = CUserLoggin.Notificadores.Where(x => x.Ohe.Equals(cmbOHE.Text) && !string.IsNullOrWhiteSpace(x.NombreNotificador) ).ToList();
-
-                DGNotificadores.DataSource = listNotificador;
-                                     
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+        
 
         private void CargarOficinasHacienda()
         {
@@ -91,6 +77,23 @@ namespace WindowsFormsApp6
             }
         }
 
+
+        private void CargarNotificadores()
+        {
+            try
+            {
+                listNotificador = CUserLoggin.Notificadores.Where(x => x.Ohe.Equals(cmbOHE.Text) && !string.IsNullOrWhiteSpace(x.NombreNotificador)).ToList();
+
+                DGNotificadores.DataSource = listNotificador;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         private void BtnNuevo_Click(object sender, EventArgs e)
         {
 
@@ -105,8 +108,7 @@ namespace WindowsFormsApp6
 
             CatalogoNotificadores.NuevoNotificador(Notificador);
 
-            var listado = CatalogoNotificadores.GetListadoNotificadores();
-            CUserLoggin.Notificadores = listado;
+            RecargaNotificadores();
 
             txtClaveNot.Clear();
             txtNombre.Clear();
@@ -148,8 +150,18 @@ namespace WindowsFormsApp6
                     CatalogoNotificadores.EliminarNotificador(Notificador);
                 }
 
+
+                RecargaNotificadores();
+
                 CargarNotificadores();
             }
+        }
+
+
+        private void RecargaNotificadores()
+        {
+            var listado = CatalogoNotificadores.GetListadoNotificadores();
+            CUserLoggin.Notificadores = listado;
         }
 
         private void lblNombramiento_Click(object sender, EventArgs e)

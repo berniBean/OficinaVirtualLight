@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.BLL;
 using WindowsFormsApp6.BO;
 using WindowsFormsApp6.Cache;
-using WindowsFormsApp6.CAD.BLL;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL;
 using WindowsFormsApp6.CAD.DAL.factories;
@@ -149,7 +142,7 @@ namespace WindowsFormsApp6
         }
 
         private void cmbEjercicio_Leave(object sender, EventArgs e)
-        {
+         {
             var listado = cEmisionActualDALPLUs.GetPeriodo(cmbEjercicio.Text);
             CUserLoggin.FechasEmision = listado;
             CargarTablero();
