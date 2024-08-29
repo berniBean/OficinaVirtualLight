@@ -67,7 +67,7 @@ namespace WindowsFormsApp6.CAD.DAL
 
         public async Task ModificarObservacionesRIF(List<CListaRequeridosBO> bo,IProgress<int> progress = null)
         {
-            using var semaforo = new SemaphoreSlim(50);
+            using var semaforo = new SemaphoreSlim(250);
             var tareas = new List<Task<bool>>();
             var total = bo.Count();
 
@@ -114,8 +114,12 @@ namespace WindowsFormsApp6.CAD.DAL
                             }
                             catch (Exception ex)
                             {
-
+                               
                                 MessageBox.Show(ex.Message);
+                            }
+                            finally
+                            {
+                                semaforo.Release();
                             }
 
                             return r.Modificado;
@@ -687,7 +691,8 @@ namespace WindowsFormsApp6.CAD.DAL
                
 
                 }
-            } catch (MySqlException err) {
+            } 
+            catch (MySqlException err) {
                 throw new ApplicationException("Error Insert Fechas" + err);
             }
 

@@ -32,6 +32,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
         private async Task ProcesoGuardadoAsync(List<CListaRequeridosBO> listaClistaRequeridos, IProgress<int> progress = null)
         {
+            
 
             List<CListaRequeridosBO> gato = new List<CListaRequeridosBO>();
             var res = listaClistaRequeridos.Any(x => x.Estatus.Equals("enviado"));

@@ -19,16 +19,21 @@ namespace WindowsFormsApp6.Helper.Validator
 
             RuleFor(x => x._fechaCitatorio)
                 .GreaterThan(CUserLoggin.DetalleEmision._fechaImpresion)
-                .LessThan(fecha => fecha._fechaNotificacion)
-                .When(fecha => fecha._fechaCitatorio != default);
-                
+                .WithMessage(modelo => $"El citatorio es mayor a la fecha de emisión{CUserLoggin.DetalleEmision._fechaImpresion:dd/MM/yyyy}")
+                .When(fecha => fecha._fechaCitatorio != default)
+                .LessThanOrEqualTo(DateTime.Today)
+                .WithMessage("La fecha no puede ser mayor al día actual.");
 
-            RuleFor(x=> x._fechaNotificacion)
+
+            RuleFor(x => x._fechaNotificacion)
                 .Must(fecha => DateTime.TryParse(fecha.ToString(), out _))
                 .Must(NotBeHoliday).WithMessage("No puede ser un día feriado")
-                //.Must(BeAValidDate).WithMessage("La FechaCitatorio no es una fecha válida")
                 .Must(NotBeWeekend)
-                .WithMessage("La fecha de citatorio no puede ser fin de semana");
+                .WithMessage("La fecha de citatorio no puede ser fin de semana")
+                .LessThanOrEqualTo(DateTime.Today)
+                .WithMessage("La fecha no puede ser mayor al día actual.");
+
+
 
 
             RuleFor(x => x._fechaNotificacion)
@@ -36,13 +41,34 @@ namespace WindowsFormsApp6.Helper.Validator
                 .When(fecha => fecha._fechaNotificacion != default);
 
         }
+        private bool EsDiaHabilSiguiente(DateTime fechaCitatorio, DateTime fechaNotificacion)
+        {
+            if(fechaCitatorio == default) 
+            {
+                return false;
+            }
+
+            DateTime siguienteDiaHabil = ObtenerSiguienteDiaHabil(fechaCitatorio);
+
+            return fechaNotificacion.Date == siguienteDiaHabil.Date;
+        }
+
+        private DateTime ObtenerSiguienteDiaHabil(DateTime fecha)
+        {
+            DateTime siguienteDia = fecha.AddDays(1);
+
+            // Si el siguiente día es sábado o domingo, busca el siguiente día hábil (lunes)
+            while (siguienteDia.DayOfWeek == DayOfWeek.Saturday || siguienteDia.DayOfWeek == DayOfWeek.Sunday)
+            {
+                siguienteDia = siguienteDia.AddDays(1);
+            }
+
+            return siguienteDia;
+        }
+
         private bool NotBeWeekend(DateTime date)
         {
             return date.DayOfWeek != DayOfWeek.Saturday && date.DayOfWeek != DayOfWeek.Sunday;
-        }
-        private bool BeAValidDate(DateTime date)
-        {
-            return date != default(DateTime);
         }
         private bool NotBeHoliday(DateTime date)
         {

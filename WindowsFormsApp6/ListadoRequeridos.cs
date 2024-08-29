@@ -251,7 +251,6 @@ namespace WindowsFormsApp6
             dataGridNumCtrl.FilteringEnabled = v;
             dataGridRFC.FilteringEnabled = v;
             dataGridTipoC.FilteringEnabled = v;
-            dataGridDiligencia.FilteringEnabled = v;
             dataGridFC.FilteringEnabled = v;
             dataGridFN.FilteringEnabled = v;
             dataGridEstatus.FilteringEnabled = v;
@@ -549,7 +548,7 @@ namespace WindowsFormsApp6
 
 
 
-                    if (requerimiento != null)
+                    if (requerimiento != null && (requeridos.Columns[e.ColumnIndex].Name == "dataGridFN" || requeridos.Columns[e.ColumnIndex].Name == "dataGridFC"))
                     {
                         var validator = new NoWeekendsValidator();
                         ValidationResult result = validator.Validate(requerimiento);
@@ -708,6 +707,11 @@ namespace WindowsFormsApp6
                 tsProgreso.Value = 0;
                 pdfLocal.Clear();
             }
+        }
+
+        private void requeridos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
