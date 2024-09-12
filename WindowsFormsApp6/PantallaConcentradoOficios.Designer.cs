@@ -31,16 +31,17 @@ namespace WindowsFormsApp6
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ZonaCombo = new System.Windows.Forms.ComboBox();
             this.btnOficios = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgOficiosConcentrado = new System.Windows.Forms.DataGridView();
+            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
-            this.ZonaCombo = new System.Windows.Forms.ComboBox();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.fechaOficiosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaRetroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.generoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,14 +51,13 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOficiosConcentrado)).BeginInit();
-            this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cOficiosBOBindingSource)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -80,6 +80,15 @@ namespace WindowsFormsApp6
             this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 46;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // ZonaCombo
+            // 
+            this.ZonaCombo.FormattingEnabled = true;
+            this.ZonaCombo.Location = new System.Drawing.Point(68, 15);
+            this.ZonaCombo.Name = "ZonaCombo";
+            this.ZonaCombo.Size = new System.Drawing.Size(231, 21);
+            this.ZonaCombo.TabIndex = 3;
+            this.ZonaCombo.Leave += new System.EventHandler(this.ZonaCombo_Leave);
             // 
             // btnOficios
             // 
@@ -127,6 +136,11 @@ namespace WindowsFormsApp6
             this.dgOficiosConcentrado.ReadOnly = true;
             this.dgOficiosConcentrado.Size = new System.Drawing.Size(800, 378);
             this.dgOficiosConcentrado.TabIndex = 1;
+            this.dgOficiosConcentrado.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOficiosConcentrado_CellContentDoubleClick);
+            // 
+            // cOficiosBOBindingSource
+            // 
+            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
             // 
             // statusStrip1
             // 
@@ -142,15 +156,6 @@ namespace WindowsFormsApp6
             // 
             this.tsProgress.Name = "tsProgress";
             this.tsProgress.Size = new System.Drawing.Size(100, 16);
-            // 
-            // ZonaCombo
-            // 
-            this.ZonaCombo.FormattingEnabled = true;
-            this.ZonaCombo.Location = new System.Drawing.Point(68, 15);
-            this.ZonaCombo.Name = "ZonaCombo";
-            this.ZonaCombo.Size = new System.Drawing.Size(231, 21);
-            this.ZonaCombo.TabIndex = 3;
-            this.ZonaCombo.Leave += new System.EventHandler(this.ZonaCombo_Leave);
             // 
             // dataGridViewTextBoxColumn23
             // 
@@ -179,6 +184,8 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn3.HeaderText = "NUMERO DE OFICIO";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // fechaOficiosDataGridViewTextBoxColumn
             // 
@@ -243,10 +250,6 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
             // 
-            // cOficiosBOBindingSource
-            // 
-            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
-            // 
             // PantallaConcentradoOficios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,9 +265,9 @@ namespace WindowsFormsApp6
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgOficiosConcentrado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cOficiosBOBindingSource)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cOficiosBOBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -303,10 +306,11 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn inicioMIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn finalMIDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource cOficiosBOBindingSource;
+        private System.Windows.Forms.ComboBox ZonaCombo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEmisionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaOficiosDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaRetroDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn generoDataGridViewTextBoxColumn;
@@ -316,6 +320,5 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.ComboBox ZonaCombo;
     }
 }

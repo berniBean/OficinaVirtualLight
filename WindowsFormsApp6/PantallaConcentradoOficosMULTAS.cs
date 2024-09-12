@@ -1,11 +1,8 @@
 ﻿using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
@@ -24,6 +21,9 @@ namespace WindowsFormsApp6
         obtenerPDFSql listadoPDF;
         ListPdfSql listadoPDFDB;
         private int _tipoSesion;
+
+        obtenerURL obUrl;
+        private CListaURL listaUrl;
 
         public PantallaConcentradoOficosMULTAS()
         {
@@ -45,6 +45,7 @@ namespace WindowsFormsApp6
             {
                 obtenerOficiosConcentradoSQL = OficiosFactory.maker(OficiosFactory.PLUS);
                 listadoPDF = pdfSQLFactory.maker(pdfSQLFactory.PLUS);
+                obUrl = factoryURL.maker(factoryURL.MPLUS);
             }
 
             cargarTableroOficiosConcentrado().Wait();
@@ -125,6 +126,22 @@ namespace WindowsFormsApp6
                                 select oficios).ToList();
 
                 cOficiosBOBindingSource.DataSource = consulta;
+            }
+        }
+
+        private void dgOficiosConcentrado_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                listaUrl = obUrl.listaURI();
+                string uri = listaUrl[0]._URL.ToString();
+                string numReq = dgOficiosConcentrado.CurrentRow.Cells[3].Value.ToString();
+                string idSAT = dgOficiosConcentrado.CurrentRow.Cells[3].Value.ToString();
+                string ohe = "Oficios";
+                string emision = _emision.ToString();
+                int tipo = 1;
+                pdfGestor vistaPDf = new pdfGestor(tipo, uri, numReq, idSAT, ohe, emision);
+                vistaPDf.ShowDialog();
             }
         }
     }

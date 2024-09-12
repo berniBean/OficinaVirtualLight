@@ -33,16 +33,15 @@ namespace WindowsFormsApp6
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsProgress = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.ZonaCmb = new System.Windows.Forms.ComboBox();
             this.btnOficios = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgOficiosConcentrado = new System.Windows.Forms.DataGridView();
-            this.SumaMe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SumaMi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ZonaCmb = new System.Windows.Forms.ComboBox();
+            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.zonaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oHEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaEmisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numOficioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numOficioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.fechaOficiosDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaRetroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.generoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,9 +53,10 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SumaMe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOficiosBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SumaMi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -100,6 +100,15 @@ namespace WindowsFormsApp6
             this.splitContainer1.Size = new System.Drawing.Size(800, 428);
             this.splitContainer1.SplitterDistance = 37;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // ZonaCmb
+            // 
+            this.ZonaCmb.FormattingEnabled = true;
+            this.ZonaCmb.Location = new System.Drawing.Point(53, 6);
+            this.ZonaCmb.Name = "ZonaCmb";
+            this.ZonaCmb.Size = new System.Drawing.Size(264, 21);
+            this.ZonaCmb.TabIndex = 3;
+            this.ZonaCmb.Leave += new System.EventHandler(this.ZonaCmb_Leave);
             // 
             // btnOficios
             // 
@@ -153,29 +162,11 @@ namespace WindowsFormsApp6
             this.dgOficiosConcentrado.ReadOnly = true;
             this.dgOficiosConcentrado.Size = new System.Drawing.Size(800, 387);
             this.dgOficiosConcentrado.TabIndex = 0;
+            this.dgOficiosConcentrado.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOficiosConcentrado_CellContentDoubleClick);
             // 
-            // SumaMe
+            // cOficiosBOBindingSource
             // 
-            this.SumaMe.DataPropertyName = "TotalMEMultas";
-            this.SumaMe.HeaderText = "SUMA ME";
-            this.SumaMe.Name = "SumaMe";
-            this.SumaMe.ReadOnly = true;
-            // 
-            // SumaMi
-            // 
-            this.SumaMi.DataPropertyName = "TotalMIMultas";
-            this.SumaMi.HeaderText = "SUMA MI";
-            this.SumaMi.Name = "SumaMi";
-            this.SumaMi.ReadOnly = true;
-            // 
-            // ZonaCmb
-            // 
-            this.ZonaCmb.FormattingEnabled = true;
-            this.ZonaCmb.Location = new System.Drawing.Point(53, 6);
-            this.ZonaCmb.Name = "ZonaCmb";
-            this.ZonaCmb.Size = new System.Drawing.Size(264, 21);
-            this.ZonaCmb.TabIndex = 3;
-            this.ZonaCmb.Leave += new System.EventHandler(this.ZonaCmb_Leave);
+            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
             // 
             // zonaDataGridViewTextBoxColumn
             // 
@@ -204,6 +195,8 @@ namespace WindowsFormsApp6
             this.numOficioDataGridViewTextBoxColumn.HeaderText = "NumOficio";
             this.numOficioDataGridViewTextBoxColumn.Name = "numOficioDataGridViewTextBoxColumn";
             this.numOficioDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numOficioDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.numOficioDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // fechaOficiosDataGridViewTextBoxColumn
             // 
@@ -282,6 +275,13 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
             // 
+            // SumaMe
+            // 
+            this.SumaMe.DataPropertyName = "TotalMEMultas";
+            this.SumaMe.HeaderText = "SUMA ME";
+            this.SumaMe.Name = "SumaMe";
+            this.SumaMe.ReadOnly = true;
+            // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "InicioMI";
@@ -296,9 +296,12 @@ namespace WindowsFormsApp6
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             // 
-            // cOficiosBOBindingSource
+            // SumaMi
             // 
-            this.cOficiosBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.COficiosBO);
+            this.SumaMi.DataPropertyName = "TotalMIMultas";
+            this.SumaMi.HeaderText = "SUMA MI";
+            this.SumaMi.Name = "SumaMi";
+            this.SumaMi.ReadOnly = true;
             // 
             // PantallaConcentradoOficosMULTAS
             // 
@@ -341,10 +344,13 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn inicioMIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn finalMIDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource cOficiosBOBindingSource;
+        private System.Windows.Forms.Button btnOficios;
+        private System.Windows.Forms.ToolStripProgressBar tsProgress;
+        private System.Windows.Forms.ComboBox ZonaCmb;
         private System.Windows.Forms.DataGridViewTextBoxColumn zonaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn oHEDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaEmisionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numOficioDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn numOficioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaOficiosDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaRetroDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn generoDataGridViewTextBoxColumn;
@@ -360,8 +366,5 @@ namespace WindowsFormsApp6
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn SumaMi;
-        private System.Windows.Forms.Button btnOficios;
-        private System.Windows.Forms.ToolStripProgressBar tsProgress;
-        private System.Windows.Forms.ComboBox ZonaCmb;
     }
 }

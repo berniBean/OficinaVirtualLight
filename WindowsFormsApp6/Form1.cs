@@ -347,7 +347,7 @@ namespace WindowsFormsApp6
         }
 
         private async Task ActualizarBD()
-        {
+         {
             if (registrosModificados.Count > 0)
             {
                 string TipoDato = "requerimiento";

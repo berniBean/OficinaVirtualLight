@@ -105,7 +105,7 @@
             this.LayObservaciones.Location = new System.Drawing.Point(3, 16);
             this.LayObservaciones.Name = "LayObservaciones";
             this.LayObservaciones.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("LayObservaciones.OcxState")));
-            this.LayObservaciones.Size = new System.Drawing.Size(684, 663);
+            this.LayObservaciones.Size = new System.Drawing.Size(861, 663);
             this.LayObservaciones.TabIndex = 2;
             // 
             // btnAbrir
@@ -161,7 +161,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(597, 682);
+            this.groupBox1.Size = new System.Drawing.Size(420, 682);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos requerimiento";
@@ -181,7 +181,7 @@
             this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60.77348F));
             this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.PanelDeDatos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.PanelDeDatos.Size = new System.Drawing.Size(591, 663);
+            this.PanelDeDatos.Size = new System.Drawing.Size(414, 663);
             this.PanelDeDatos.TabIndex = 23;
             // 
             // BoxGeneralesRequerimientos
@@ -204,7 +204,7 @@
             this.BoxGeneralesRequerimientos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxGeneralesRequerimientos.Location = new System.Drawing.Point(3, 3);
             this.BoxGeneralesRequerimientos.Name = "BoxGeneralesRequerimientos";
-            this.BoxGeneralesRequerimientos.Size = new System.Drawing.Size(585, 207);
+            this.BoxGeneralesRequerimientos.Size = new System.Drawing.Size(408, 207);
             this.BoxGeneralesRequerimientos.TabIndex = 24;
             this.BoxGeneralesRequerimientos.TabStop = false;
             this.BoxGeneralesRequerimientos.Text = "Generales";
@@ -336,7 +336,7 @@
             this.BoxObservaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxObservaciones.Location = new System.Drawing.Point(3, 216);
             this.BoxObservaciones.Name = "BoxObservaciones";
-            this.BoxObservaciones.Size = new System.Drawing.Size(585, 324);
+            this.BoxObservaciones.Size = new System.Drawing.Size(408, 324);
             this.BoxObservaciones.TabIndex = 25;
             this.BoxObservaciones.TabStop = false;
             this.BoxObservaciones.Text = "Observaciones del requerimiento";
@@ -354,7 +354,7 @@
             this.panelDescripcionObservaciones.RowCount = 2;
             this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.42105F));
             this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.57895F));
-            this.panelDescripcionObservaciones.Size = new System.Drawing.Size(579, 305);
+            this.panelDescripcionObservaciones.Size = new System.Drawing.Size(402, 305);
             this.panelDescripcionObservaciones.TabIndex = 0;
             // 
             // BoxIndetificarPorblema
@@ -363,7 +363,7 @@
             this.BoxIndetificarPorblema.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxIndetificarPorblema.Location = new System.Drawing.Point(3, 3);
             this.BoxIndetificarPorblema.Name = "BoxIndetificarPorblema";
-            this.BoxIndetificarPorblema.Size = new System.Drawing.Size(573, 202);
+            this.BoxIndetificarPorblema.Size = new System.Drawing.Size(396, 202);
             this.BoxIndetificarPorblema.TabIndex = 0;
             this.BoxIndetificarPorblema.TabStop = false;
             this.BoxIndetificarPorblema.Text = "Identificar las observaciones";
@@ -382,8 +382,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitObservacion);
-            this.splitContainer2.Size = new System.Drawing.Size(567, 183);
-            this.splitContainer2.SplitterDistance = 188;
+            this.splitContainer2.Size = new System.Drawing.Size(390, 183);
+            this.splitContainer2.SplitterDistance = 128;
             this.splitContainer2.TabIndex = 4;
             // 
             // ChkChitatorio
@@ -422,7 +422,7 @@
             // splitObservacion.Panel2
             // 
             this.splitObservacion.Panel2.Controls.Add(this.cmbObservacion);
-            this.splitObservacion.Size = new System.Drawing.Size(375, 183);
+            this.splitObservacion.Size = new System.Drawing.Size(258, 183);
             this.splitObservacion.SplitterDistance = 59;
             this.splitObservacion.TabIndex = 4;
             // 
@@ -433,7 +433,7 @@
             this.txtDescripcionCorta.Location = new System.Drawing.Point(0, 0);
             this.txtDescripcionCorta.Multiline = true;
             this.txtDescripcionCorta.Name = "txtDescripcionCorta";
-            this.txtDescripcionCorta.Size = new System.Drawing.Size(375, 59);
+            this.txtDescripcionCorta.Size = new System.Drawing.Size(258, 59);
             this.txtDescripcionCorta.TabIndex = 2;
             // 
             // lblDescripcionCorta
@@ -463,7 +463,7 @@
             this.cmbObservacion.FormattingEnabled = true;
             this.cmbObservacion.Location = new System.Drawing.Point(0, 0);
             this.cmbObservacion.Name = "cmbObservacion";
-            this.cmbObservacion.Size = new System.Drawing.Size(375, 21);
+            this.cmbObservacion.Size = new System.Drawing.Size(258, 21);
             this.cmbObservacion.TabIndex = 3;
             this.cmbObservacion.SelectedIndexChanged += new System.EventHandler(this.cmbObservacion_SelectedIndexChanged);
             // 
@@ -477,7 +477,7 @@
             this.boxNotas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.boxNotas.Location = new System.Drawing.Point(3, 211);
             this.boxNotas.Name = "boxNotas";
-            this.boxNotas.Size = new System.Drawing.Size(573, 91);
+            this.boxNotas.Size = new System.Drawing.Size(396, 91);
             this.boxNotas.TabIndex = 1;
             this.boxNotas.TabStop = false;
             this.boxNotas.Text = "Notas de observaciones";
@@ -487,7 +487,7 @@
             this.textNotas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textNotas.Location = new System.Drawing.Point(3, 16);
             this.textNotas.Name = "textNotas";
-            this.textNotas.Size = new System.Drawing.Size(567, 72);
+            this.textNotas.Size = new System.Drawing.Size(390, 72);
             this.textNotas.TabIndex = 0;
             this.textNotas.Text = "";
             // 
@@ -500,7 +500,7 @@
             this.boxAcciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.boxAcciones.Location = new System.Drawing.Point(3, 546);
             this.boxAcciones.Name = "boxAcciones";
-            this.boxAcciones.Size = new System.Drawing.Size(585, 83);
+            this.boxAcciones.Size = new System.Drawing.Size(408, 83);
             this.boxAcciones.TabIndex = 26;
             this.boxAcciones.TabStop = false;
             this.boxAcciones.Text = "Acciones";
@@ -519,7 +519,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(690, 682);
+            this.groupBox2.Size = new System.Drawing.Size(867, 682);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Visor PDF requerimiento";
@@ -538,7 +538,7 @@
             // 
             this.SplitControlesObservaciones.Panel2.Controls.Add(this.groupBox2);
             this.SplitControlesObservaciones.Size = new System.Drawing.Size(1291, 682);
-            this.SplitControlesObservaciones.SplitterDistance = 597;
+            this.SplitControlesObservaciones.SplitterDistance = 420;
             this.SplitControlesObservaciones.TabIndex = 17;
             // 
             // backgroundWorker

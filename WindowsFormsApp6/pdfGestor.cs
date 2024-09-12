@@ -42,6 +42,35 @@ namespace WindowsFormsApp6
         private CListaCatObservaciones ListaObservaciones;
 
         obtenerRequeridos obReq;
+        public pdfGestor(int tipo, string URI, string numReq, string idSAT, string ohe,string emision)
+        {
+            InitializeComponent();
+            btnAbrir.Visible = false;
+            btnGuardar.Visible = false;
+            groupBox1.Visible = false;
+            SplitControlesObservaciones.SplitterDistance = 85;
+            _numReq = numReq;
+            _idSAT = idSAT;
+            _tipo = tipo;
+            _uri = URI;
+            _emision = emision;
+            _ohe = ohe;
+            lblNumREQ.Text = _numReq;
+            lblSAT.Text = _idSAT;
+            lblRFC.Text = _RFC;
+            lblRs.Text = _rs;
+            lblDiligencia.Text = _diligencia;
+            lblCitatorio.Text = DateFormatHelper.ConvertTime(_citatorio);
+            lblNotificacion.Text = DateFormatHelper.ConvertTime(_notificacion);
+            lblURI.Text = _uri + "/" + _ohe;
+            path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            folder = path + "\\temp";
+            fullFilePath = folder + "\\" + _idSAT + ".pdf";
+
+            obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
+            abrirArchivo();
+            CargarCatalogo();
+        }
         public pdfGestor(int tipo,string numReq,string RFC,string rs,string idSAT,string diligencia,string citatorio,string notificacion, string URI,string emision,string ohe)
         {
             InitializeComponent();

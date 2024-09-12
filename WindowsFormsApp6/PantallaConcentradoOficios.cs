@@ -26,6 +26,9 @@ namespace WindowsFormsApp6
         ListPdfSql listadoPDFDB;
         private int _tipoSesion;
         List<ChocoPdfs> pdfLocal = new List<ChocoPdfs>();
+
+        obtenerURL obUrl;
+        private CListaURL listaUrl;
         public PantallaConcentradoOficios(int idSup,int emision, string nombreEmision,int tipoS)
         {
             InitializeComponent();
@@ -44,6 +47,7 @@ namespace WindowsFormsApp6
             {
                 obtenerOficiosConcentradoSQL = OficiosFactory.maker(OficiosFactory.PLUS);
                 listadoPDF = pdfSQLFactory.maker(pdfSQLFactory.PLUS);
+                obUrl = factoryURL.maker(factoryURL.PLUS);
             }
 
             cargarTableroOficiosConcentrado().Wait();
@@ -155,6 +159,22 @@ namespace WindowsFormsApp6
                 
                 cOficiosBOBindingSource.DataSource = consulta;
             } 
+        }
+
+        private void dgOficiosConcentrado_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                listaUrl = obUrl.listaURI();
+                string uri = listaUrl[0]._URL.ToString();
+                string numReq = dgOficiosConcentrado.CurrentRow.Cells[3].Value.ToString();
+                string idSAT = dgOficiosConcentrado.CurrentRow.Cells[3].Value.ToString();
+                string ohe = "Oficios";
+                string emision = _emision.ToString();
+                int tipo = 1;
+                pdfGestor vistaPDf = new pdfGestor( tipo, uri,  numReq, idSAT, ohe, emision);
+                vistaPDf.ShowDialog();
+            }
         }
     }
 }
