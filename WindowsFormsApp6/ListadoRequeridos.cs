@@ -251,12 +251,15 @@ namespace WindowsFormsApp6
             dataGridNumCtrl.FilteringEnabled = v;
             dataGridRFC.FilteringEnabled = v;
             dataGridTipoC.FilteringEnabled = v;
+            dataGridDiligencia.FilteringEnabled = v;
             dataGridFC.FilteringEnabled = v;
             dataGridFN.FilteringEnabled = v;
             dataGridEstatus.FilteringEnabled = v;
             dataGridPDF.FilteringEnabled = v;
+            _nombreNotificador.FilteringEnabled = v;
             dataGridMalCapturado.FilteringEnabled = v;
             dataGridObvservaciones.FilteringEnabled = v;
+
             
         }
 
