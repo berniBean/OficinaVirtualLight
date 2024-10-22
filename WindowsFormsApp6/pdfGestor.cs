@@ -125,7 +125,7 @@ namespace WindowsFormsApp6
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     FileInfo fi = new FileInfo(ofd.FileName);
-                    credenciales.Domain = "eflorespp";
+                    credenciales.Domain = "efloresp";
                     credenciales.UserName = "PinkyNet";
                     credenciales.Password = "berni3235";
                     _inputParameter.Server = _uri;
@@ -212,7 +212,7 @@ namespace WindowsFormsApp6
 
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "eflorespp";
+            credenciales.Domain = "efloresp";
             credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
@@ -245,7 +245,8 @@ namespace WindowsFormsApp6
             } 
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.ToString());
+                
                 MessageBox.Show("Sin archivo de pdf");
                 btnAbrir.Enabled = true;
                 btnGuardar.Enabled = true;
