@@ -267,7 +267,7 @@ namespace WindowsFormsApp6
             credenciales = new NetworkCredential();
 
 
-            credenciales.Domain = "eflorespp";
+            credenciales.Domain = "efloresp";
             credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
@@ -294,7 +294,7 @@ namespace WindowsFormsApp6
             
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "eflorespp";
+            credenciales.Domain = "efloresp";
             credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
