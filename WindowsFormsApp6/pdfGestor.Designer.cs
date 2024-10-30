@@ -73,6 +73,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.SplitControlesObservaciones = new System.Windows.Forms.SplitContainer();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.LayObservaciones)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.PanelDeDatos.SuspendLayout();
@@ -352,8 +353,8 @@
             this.panelDescripcionObservaciones.Location = new System.Drawing.Point(3, 16);
             this.panelDescripcionObservaciones.Name = "panelDescripcionObservaciones";
             this.panelDescripcionObservaciones.RowCount = 2;
-            this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.42105F));
-            this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.57895F));
+            this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70.81967F));
+            this.panelDescripcionObservaciones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 29.18033F));
             this.panelDescripcionObservaciones.Size = new System.Drawing.Size(402, 305);
             this.panelDescripcionObservaciones.TabIndex = 0;
             // 
@@ -363,7 +364,7 @@
             this.BoxIndetificarPorblema.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BoxIndetificarPorblema.Location = new System.Drawing.Point(3, 3);
             this.BoxIndetificarPorblema.Name = "BoxIndetificarPorblema";
-            this.BoxIndetificarPorblema.Size = new System.Drawing.Size(396, 202);
+            this.BoxIndetificarPorblema.Size = new System.Drawing.Size(396, 210);
             this.BoxIndetificarPorblema.TabIndex = 0;
             this.BoxIndetificarPorblema.TabStop = false;
             this.BoxIndetificarPorblema.Text = "Identificar las observaciones";
@@ -382,7 +383,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitObservacion);
-            this.splitContainer2.Size = new System.Drawing.Size(390, 183);
+            this.splitContainer2.Size = new System.Drawing.Size(390, 191);
             this.splitContainer2.SplitterDistance = 128;
             this.splitContainer2.TabIndex = 4;
             // 
@@ -422,8 +423,8 @@
             // splitObservacion.Panel2
             // 
             this.splitObservacion.Panel2.Controls.Add(this.cmbObservacion);
-            this.splitObservacion.Size = new System.Drawing.Size(258, 183);
-            this.splitObservacion.SplitterDistance = 59;
+            this.splitObservacion.Size = new System.Drawing.Size(258, 191);
+            this.splitObservacion.SplitterDistance = 61;
             this.splitObservacion.TabIndex = 4;
             // 
             // txtDescripcionCorta
@@ -433,7 +434,7 @@
             this.txtDescripcionCorta.Location = new System.Drawing.Point(0, 0);
             this.txtDescripcionCorta.Multiline = true;
             this.txtDescripcionCorta.Name = "txtDescripcionCorta";
-            this.txtDescripcionCorta.Size = new System.Drawing.Size(258, 59);
+            this.txtDescripcionCorta.Size = new System.Drawing.Size(258, 61);
             this.txtDescripcionCorta.TabIndex = 2;
             // 
             // lblDescripcionCorta
@@ -475,9 +476,9 @@
             // 
             this.boxNotas.Controls.Add(this.textNotas);
             this.boxNotas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.boxNotas.Location = new System.Drawing.Point(3, 211);
+            this.boxNotas.Location = new System.Drawing.Point(3, 219);
             this.boxNotas.Name = "boxNotas";
-            this.boxNotas.Size = new System.Drawing.Size(396, 91);
+            this.boxNotas.Size = new System.Drawing.Size(396, 83);
             this.boxNotas.TabIndex = 1;
             this.boxNotas.TabStop = false;
             this.boxNotas.Text = "Notas de observaciones";
@@ -487,7 +488,7 @@
             this.textNotas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textNotas.Location = new System.Drawing.Point(3, 16);
             this.textNotas.Name = "textNotas";
-            this.textNotas.Size = new System.Drawing.Size(390, 72);
+            this.textNotas.Size = new System.Drawing.Size(390, 64);
             this.textNotas.TabIndex = 0;
             this.textNotas.Text = "";
             // 
@@ -548,6 +549,11 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // pdfGestor
             // 
@@ -633,5 +639,6 @@
         private System.Windows.Forms.CheckBox ChkChitatorio;
         private System.Windows.Forms.Label lblDescripcionCorta;
         private System.Windows.Forms.TextBox txtDescripcionCorta;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

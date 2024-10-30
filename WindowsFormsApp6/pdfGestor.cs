@@ -243,10 +243,8 @@ namespace WindowsFormsApp6
                 LayObservaciones.src = fullFilePath;
 
             } 
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                
+            catch (Exception )
+            {               
                 MessageBox.Show("Sin archivo de pdf");
                 btnAbrir.Enabled = true;
                 btnGuardar.Enabled = true;

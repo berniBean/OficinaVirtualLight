@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using WindowsFormsApp6.CAD.BLL;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
+using WindowsFormsApp6.Helper;
 
 
 
@@ -145,6 +146,7 @@ namespace WindowsFormsApp6
         {
             listaUrl = obUrl.listaURI();
             string uri = listaUrl[0]._URL.ToString();
+            string tipoMulta = DgbusquedaMultasRIF.CurrentRow.Cells[5].Value.ToString();
             string numReq = DgbusquedaMultasRIF.CurrentRow.Cells[6].Value.ToString();
             string RFC = DgbusquedaMultasRIF.CurrentRow.Cells[8].Value.ToString();
             string idSAT = DgbusquedaMultasRIF.CurrentRow.Cells[9].Value.ToString();
@@ -154,9 +156,11 @@ namespace WindowsFormsApp6
             string Notificacion = DateFormatHelper.FechaCorta(Convert.ToDateTime(  DgbusquedaMultasRIF.CurrentRow.Cells[13].Value.ToString()));
             string ohe = DgbusquedaMultasRIF.CurrentRow.Cells[3].Value.ToString(); ;
             string emision = DgbusquedaMultasRIF.CurrentRow.Cells[4].Value.ToString();
-            int tipo = 1;
-            pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
-            vistaPDf.ShowDialog();
+
+            PDFTipo select = new PDFTipo(Pdf.Multa, tipoMulta, uri,  numReq, idSAT, ohe, emision,RFC);
+            select.ShowDialog();
+            //pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
+            //vistaPDf.ShowDialog();
         }
 
         private void DgReqRIF_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -166,6 +170,7 @@ namespace WindowsFormsApp6
 
         private void DgReqRIF_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             listaUrl = obURLR.listaURI();
             string uri = listaUrl[0]._URL.ToString();
             string numReq = DgReqRIF.CurrentRow.Cells[2].Value.ToString();
@@ -178,8 +183,11 @@ namespace WindowsFormsApp6
             string ohe = DgReqRIF.CurrentRow.Cells[5].Value.ToString(); ;
             string emision = DgReqRIF.CurrentRow.Cells[0].Value.ToString();
             int tipo = 1;
-            pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
-            vistaPDf.ShowDialog();
+            
+            PDFTipo select = new PDFTipo(Pdf.Requerimiento, tipo, numReq, RFC, rs, idSAT, diligencia, Citatorio, Notificacion, uri, emision, ohe);
+            select.ShowDialog();
+            //pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
+            //vistaPDf.ShowDialog();
         }
     }
 }
