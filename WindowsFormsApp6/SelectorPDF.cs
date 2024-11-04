@@ -228,7 +228,7 @@ namespace WindowsFormsApp6
             {
                 if (seleccionado == "Escaneados")
                 {
-                    _nuevoNombreArchivo = _emision + "/REQFirma/" + _numReq + "_" + _idSAT + ".pdf";
+                    _nuevoNombreArchivo = _emision + "/" + _ohe + "/" + _numReq + ".pdf";
                     FileInfo objFile = new FileInfo(_nuevoNombreArchivo);
                     uri = new Uri(_uri + "/" + _nuevoNombreArchivo);
                     ClienteRequest = (FtpWebRequest)WebRequest.Create(uri);
