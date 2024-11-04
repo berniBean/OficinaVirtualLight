@@ -20,7 +20,7 @@ namespace WindowsFormsApp6.structs
 
         public void setUpload()
         {          
-            credenciales.Domain = "eflorespp";
+            credenciales.Domain = "efloresp";
             credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
@@ -37,7 +37,7 @@ namespace WindowsFormsApp6.structs
             ClienteRequest = (FtpWebRequest)WebRequest.Create(uri);
 
             credenciales = new NetworkCredential();
-            credenciales.Domain = "eflorespp";
+            credenciales.Domain = "efloresp";
             credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
@@ -88,7 +88,7 @@ namespace WindowsFormsApp6.structs
 
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "eflorespp";
+            credenciales.Domain = "efloresp";
             credenciales.UserName = "PinkyNet";
             credenciales.Password = "berni3235";
 
@@ -130,7 +130,7 @@ namespace WindowsFormsApp6.structs
                 reqFTP = (FtpWebRequest)WebRequest.Create(nuevaRuta);
                 reqFTP.Method = WebRequestMethods.Ftp.MakeDirectory;
                 reqFTP.UseBinary = true;
-                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "eflorespp");
+                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "efloresp");
                 FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
                 ftpStream = response.GetResponseStream();
                 ftpStream.Close();
@@ -151,7 +151,7 @@ namespace WindowsFormsApp6.structs
             {
                 FtpWebRequest reqFTP = (FtpWebRequest)WebRequest.Create(rutaCarpeta);
                 reqFTP.Method = WebRequestMethods.Ftp.ListDirectory;
-                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "eflorespp");
+                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "efloresp");
 
                 using (FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse())
                 {
@@ -186,7 +186,7 @@ namespace WindowsFormsApp6.structs
                 FtpWebRequest reqFTP = (FtpWebRequest)WebRequest.Create(nuevaRuta);
                 reqFTP.Method = WebRequestMethods.Ftp.MakeDirectory;
                 reqFTP.UseBinary = true;
-                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "eflorespp");
+                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "efloresp");
 
                 using (FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse())
                 {
