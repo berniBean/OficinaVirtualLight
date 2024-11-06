@@ -9,7 +9,7 @@ namespace WindowsFormsApp6.CAD.BO
     public class CBusquedaMultasBO
     {
         public string _emision { get; set; }
-        public int _emisionMulta { get; set; }
+        public string _emisionMulta { get; set; }
         
         public int _numReq { get; set; }
         public string _municipio { get; set; }
@@ -43,7 +43,7 @@ namespace WindowsFormsApp6.CAD.BO
         }
 
 
-        public CBusquedaMultasBO(string emision,int emisionMulta, int numReq,  string zona, string municipio, string tipoMulta, string CtrlMulta,
+        public CBusquedaMultasBO(string emision,string emisionMulta, int numReq,  string zona, string municipio, string tipoMulta, string CtrlMulta,
                                    DateTime FechaEmision, string RFC, string numSAT, string RazonSocial, string diligencia, DateTime notificacion, 
                                    DateTime fechaPago,double honorarios, double importe, DateTime vencimiento, string ejecucion)
         {

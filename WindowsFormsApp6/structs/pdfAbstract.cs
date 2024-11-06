@@ -1,9 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using WindowsFormsApp6.Cache;
 
 namespace WindowsFormsApp6.structs
@@ -16,13 +15,17 @@ namespace WindowsFormsApp6.structs
         private string _direccionArchivo;
         private string _nuevoNombreArchivo;
 
+        private string nasCredentials = ConfigurationManager.AppSettings["NAS"];
+        private string _userNAS;
+        private string _passwordNAS;
+
         FtpSettings _inputParameter;
 
-        public void setUpload()
-        {          
-            credenciales.Domain = "eflorespp";
-            credenciales.UserName = "PinkyNet";
-            credenciales.Password = "berni3235";
+        private void setNasConnection()
+        {
+            var credentials = nasCredentials.Split(';');
+            _userNAS = credentials[0].Split('=')[1];
+            _passwordNAS = credentials[1].Split('=')[1];
 
         }
 
@@ -30,6 +33,7 @@ namespace WindowsFormsApp6.structs
 
         public async Task cargar(string nameUri, string pdfName, string fullName)
         {
+            setNasConnection();
 
             _nuevoNombreArchivo = nameUri + pdfName;
 
@@ -37,9 +41,9 @@ namespace WindowsFormsApp6.structs
             ClienteRequest = (FtpWebRequest)WebRequest.Create(uri);
 
             credenciales = new NetworkCredential();
-            credenciales.Domain = "eflorespp";
-            credenciales.UserName = "PinkyNet";
-            credenciales.Password = "berni3235";
+            
+            credenciales.UserName = _userNAS;
+            credenciales.Password = _passwordNAS;
 
             ClienteRequest.Credentials = credenciales;
             ClienteRequest.EnableSsl = false;
@@ -63,6 +67,7 @@ namespace WindowsFormsApp6.structs
         }
         public async Task Descarga(string rutaFtp,string name,string numCtrl, string destino)
         {
+            setNasConnection();
             string finalDestino;
             var fullName = rutaFtp + name;
 
@@ -88,9 +93,9 @@ namespace WindowsFormsApp6.structs
 
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "eflorespp";
-            credenciales.UserName = "PinkyNet";
-            credenciales.Password = "berni3235";
+            
+            credenciales.UserName = _userNAS;
+            credenciales.Password = _passwordNAS;
 
             ClienteRequest.Credentials = credenciales;
             ClienteRequest.EnableSsl = false;
@@ -123,6 +128,7 @@ namespace WindowsFormsApp6.structs
         }
         public void crearCarpetaEmision(string nuevaRuta)
         {
+            setNasConnection();
             try
             {
                 FtpWebRequest reqFTP = null;
@@ -130,7 +136,7 @@ namespace WindowsFormsApp6.structs
                 reqFTP = (FtpWebRequest)WebRequest.Create(nuevaRuta);
                 reqFTP.Method = WebRequestMethods.Ftp.MakeDirectory;
                 reqFTP.UseBinary = true;
-                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "eflorespp");
+                reqFTP.Credentials = new NetworkCredential(_userNAS, _passwordNAS);
                 FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse();
                 ftpStream = response.GetResponseStream();
                 ftpStream.Close();
@@ -147,11 +153,12 @@ namespace WindowsFormsApp6.structs
 
         public async Task VerificarYCrearCarpeta(string rutaCarpeta)
         {
+            setNasConnection();
             try
             {
                 FtpWebRequest reqFTP = (FtpWebRequest)WebRequest.Create(rutaCarpeta);
                 reqFTP.Method = WebRequestMethods.Ftp.ListDirectory;
-                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "eflorespp");
+                reqFTP.Credentials = new NetworkCredential(_userNAS, _passwordNAS);
 
                 using (FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse())
                 {
@@ -181,12 +188,13 @@ namespace WindowsFormsApp6.structs
 
         public void CrearCarpetaFTP(string nuevaRuta)
         {
+            setNasConnection();
             try
             {
                 FtpWebRequest reqFTP = (FtpWebRequest)WebRequest.Create(nuevaRuta);
                 reqFTP.Method = WebRequestMethods.Ftp.MakeDirectory;
                 reqFTP.UseBinary = true;
-                reqFTP.Credentials = new NetworkCredential("PinkyNet", "berni3235", "eflorespp");
+                reqFTP.Credentials = new NetworkCredential(_userNAS, _passwordNAS);
 
                 using (FtpWebResponse response = (FtpWebResponse)reqFTP.GetResponse())
                 {

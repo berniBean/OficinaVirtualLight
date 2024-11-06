@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Helpers;
 using System;
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Windows.Forms;
@@ -35,6 +36,10 @@ namespace WindowsFormsApp6
         private string folder;
         private string fullFilePath;
 
+        private string nasCredentials = ConfigurationManager.AppSettings["NAS"];
+        private string _userNAS;
+        private string _passwordNAS;
+
         obtenerRequeridos obReq;
 
 
@@ -58,7 +63,7 @@ namespace WindowsFormsApp6
             _numReq = numReq;
             _idSAT = idSAT;
             _uri = URI;
-            _emision = emision;
+            _emision = CadenaTextoHelper.QuitarDespuesDelEspacio( emision);
             _ohe = ohe;
             lblNumREQ.Text = _numReq;
             lblSAT.Text = _idSAT;
@@ -71,6 +76,11 @@ namespace WindowsFormsApp6
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             folder = path + "\\temp";
             fullFilePath = folder + "\\" + _idSAT + ".pdf";
+
+            var credentials = nasCredentials.Split(';');
+            _userNAS = credentials[0].Split('=')[1];
+            _passwordNAS = credentials[1].Split('=')[1];
+
 
             obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
 
@@ -115,6 +125,10 @@ namespace WindowsFormsApp6
             folder = path + "\\temp";
             fullFilePath = folder + "\\" + _idSAT + ".pdf";
 
+            var credentials = nasCredentials.Split(';');
+            _userNAS = credentials[0].Split('=')[1];
+            _passwordNAS = credentials[1].Split('=')[1];
+
             obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
         }
 
@@ -133,9 +147,9 @@ namespace WindowsFormsApp6
 
                     credenciales = new NetworkCredential();
 
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "PinkyNet";
-                    credenciales.Password = "berni3235";
+                    
+                    credenciales.UserName = _userNAS;
+                    credenciales.Password = _passwordNAS;
 
                     ClienteRequest.Credentials = credenciales;
                     ClienteRequest.EnableSsl = false;
@@ -185,9 +199,9 @@ namespace WindowsFormsApp6
 
                     credenciales = new NetworkCredential();
 
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "PinkyNet";
-                    credenciales.Password = "berni3235";
+                    
+                    credenciales.UserName = _userNAS;
+                    credenciales.Password = _passwordNAS;
 
                     ClienteRequest.Credentials = credenciales;
                     ClienteRequest.EnableSsl = false;
@@ -235,9 +249,9 @@ namespace WindowsFormsApp6
 
                     credenciales = new NetworkCredential();
 
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "PinkyNet";
-                    credenciales.Password = "berni3235";
+                    
+                    credenciales.UserName = _userNAS;
+                    credenciales.Password = _passwordNAS;
 
                     ClienteRequest.Credentials = credenciales;
                     ClienteRequest.EnableSsl = false;
@@ -282,9 +296,9 @@ namespace WindowsFormsApp6
 
                     credenciales = new NetworkCredential();
 
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "PinkyNet";
-                    credenciales.Password = "berni3235";
+                    
+                    credenciales.UserName = _userNAS;
+                    credenciales.Password = _passwordNAS;
 
                     ClienteRequest.Credentials = credenciales;
                     ClienteRequest.EnableSsl = false;
@@ -322,16 +336,16 @@ namespace WindowsFormsApp6
                 }
                 if(seleccionado == "Recibo")
                 {
-                    _nuevoNombreArchivo = _emision + "/RecibosMultas/" + _numReq + "-" + _tipoMulta + "-" + _ohe + ".pdf";
+                    _nuevoNombreArchivo = _emision + "/RecibosMultas/" + _numReq + "-" + _tipoMulta + "-" + CadenaTextoHelper.QuitarAcentosYReemplazarEspacios(_ohe) + ".pdf";
                     FileInfo objFile = new FileInfo(_nuevoNombreArchivo);
                     uri = new Uri(_uri + "/" + _nuevoNombreArchivo);
                     ClienteRequest = (FtpWebRequest)WebRequest.Create(uri);
 
                     credenciales = new NetworkCredential();
 
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "PinkyNet";
-                    credenciales.Password = "berni3235";
+                    
+                    credenciales.UserName = _userNAS;
+                    credenciales.Password = _passwordNAS;
 
                     ClienteRequest.Credentials = credenciales;
                     ClienteRequest.EnableSsl = false;

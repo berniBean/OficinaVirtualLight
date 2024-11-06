@@ -1,14 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Globalization;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WindowsFormsApp6.Helper
 {
     public static class CadenaTextoHelper
     {
+
+        public static string QuitarDespuesDelEspacio(string texto)
+        {
+            int indiceEspacio = texto.IndexOf(' ');
+
+            if (indiceEspacio != -1)
+            {
+                return texto.Substring(0, indiceEspacio);
+            }
+
+            return texto; // Devuelve el texto original si no hay espacio
+        }
+
+        public static string QuitarAcentosYReemplazarEspacios(string texto)
+        {
+            // Quitar acentos
+            string textoNormalizado = texto.Normalize(NormalizationForm.FormD);
+            Regex regex = new Regex(@"\p{Mn}");
+            string textoSinAcentos = regex.Replace(textoNormalizado, "");
+
+            // Reemplazar espacios en blanco con guión bajo
+            return textoSinAcentos.Replace(" ", "_");
+        }
+
         public static string NormalizarTexto(string texto)
         {
 

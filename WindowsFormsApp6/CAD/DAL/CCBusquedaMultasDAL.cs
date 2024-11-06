@@ -1,9 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
@@ -49,7 +45,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     {
                         CBusquedaMultasBO fila = new CBusquedaMultasBO(
                             Convert.ToString(lector["_emision"]),
-                            Convert.ToInt32(lector["_emisionMulta"]),
+                            Convert.ToString(lector["_emisionMulta"]),
                             Convert.ToInt32(lector["_numReq"]),
                             Convert.ToString(lector["_zona"]),
                             Convert.ToString(lector["_municipio"]),

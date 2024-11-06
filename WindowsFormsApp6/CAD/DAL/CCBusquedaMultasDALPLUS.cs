@@ -49,7 +49,7 @@ namespace WindowsFormsApp6.CAD.DAL
                     {
                         CBusquedaMultasBO fila = new CBusquedaMultasBO(
                             Convert.ToString(lector["_emision"]),
-                            Convert.ToInt32(lector["_emisionMulta"]),
+                            Convert.ToString(lector["_emisionMulta"]),
                             Convert.ToInt32(lector["_numReq"]),
                             Convert.ToString(lector["_zona"]),
                             Convert.ToString(lector["_municipio"]),

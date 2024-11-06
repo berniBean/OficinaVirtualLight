@@ -8,6 +8,8 @@ using WindowsFormsApp6.CAD.DAL;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.CAD.DAL.factories;
 using CleanArchitecture.Helpers;
+using System.Configuration;
+using WindowsFormsApp6.Helper;
 
 namespace WindowsFormsApp6
 {
@@ -36,6 +38,10 @@ namespace WindowsFormsApp6
         private string path;
         private string folder;
         private string fullFilePath;
+
+        private string nasCredentials = ConfigurationManager.AppSettings["NAS"];
+        private string _userNAS;
+        private string _passwordNAS;
 
         private CatObservacionesDAL catalogo = new CatObservacionesDAL();
         private CatObservacionesBO ObCatalogo = new CatObservacionesBO();
@@ -67,6 +73,11 @@ namespace WindowsFormsApp6
             folder = path + "\\temp";
             fullFilePath = folder + "\\" + _idSAT + ".pdf";
 
+            var credentials = nasCredentials.Split(';');
+             _userNAS = credentials[0].Split('=')[1];
+             _passwordNAS = credentials[1].Split('=')[1];
+
+
             obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
             abrirArchivo();
             CargarCatalogo();
@@ -85,7 +96,7 @@ namespace WindowsFormsApp6
             _notificacion = notificacion;
             _tipo = tipo;
             _uri = URI;
-            _emision = emision;
+            _emision = CadenaTextoHelper.QuitarDespuesDelEspacio(emision);
             _ohe = ohe;
             lblNumREQ.Text = _numReq;
             lblSAT.Text = _idSAT;
@@ -98,6 +109,12 @@ namespace WindowsFormsApp6
             path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             folder = path + "\\temp";
             fullFilePath = folder + "\\" + _idSAT + ".pdf";
+
+
+            var credentials = nasCredentials.Split(';');
+            _userNAS = credentials[0].Split('=')[1];
+            _passwordNAS = credentials[1].Split('=')[1];
+
 
             obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
             abrirArchivo();
@@ -125,9 +142,9 @@ namespace WindowsFormsApp6
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
                     FileInfo fi = new FileInfo(ofd.FileName);
-                    credenciales.Domain = "efloresp";
-                    credenciales.UserName = "PinkyNet";
-                    credenciales.Password = "berni3235";
+
+                    credenciales.UserName = _userNAS;
+                    credenciales.Password = _passwordNAS;
                     _inputParameter.Server = _uri;
                     _inputParameter.FileName = fi.Name;
                     _inputParameter.FullName = fi.FullName;
@@ -212,9 +229,9 @@ namespace WindowsFormsApp6
 
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "efloresp";
-            credenciales.UserName = "PinkyNet";
-            credenciales.Password = "berni3235";
+
+            credenciales.UserName = _userNAS;
+            credenciales.Password = _passwordNAS;
 
             ClienteRequest.Credentials = credenciales;
             ClienteRequest.EnableSsl = false;
@@ -265,9 +282,9 @@ namespace WindowsFormsApp6
             credenciales = new NetworkCredential();
 
 
-            credenciales.Domain = "efloresp";
-            credenciales.UserName = "PinkyNet";
-            credenciales.Password = "berni3235";
+
+            credenciales.UserName = _userNAS;
+            credenciales.Password = _passwordNAS;
 
             ClienteRequest.Credentials = credenciales;
             ClienteRequest.EnableSsl = false;
@@ -292,9 +309,9 @@ namespace WindowsFormsApp6
             
             credenciales = new NetworkCredential();
 
-            credenciales.Domain = "efloresp";
-            credenciales.UserName = "PinkyNet";
-            credenciales.Password = "berni3235";
+
+            credenciales.UserName = _userNAS;
+            credenciales.Password = _passwordNAS;
 
             ClienteRequest.Credentials = credenciales;
             ClienteRequest.EnableSsl = false;
