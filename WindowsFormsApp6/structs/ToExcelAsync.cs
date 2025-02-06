@@ -26,7 +26,7 @@ namespace WindowsFormsApp6.structs
             _datos = datos;
             _tsStatus = tsStatus;
             if (tipo.Equals("ListadoSinDatos"))            
-                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelListadoSinDatos(_progressBar, _tsStatus, _lblProgress));                           
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new SpreadRequerimientoSinDato(_progressBar, _tsStatus, _lblProgress));                           
             if (tipo.Equals("ListadoConDatos"))
                 _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelListadoConDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("MultasSinDatos"))
