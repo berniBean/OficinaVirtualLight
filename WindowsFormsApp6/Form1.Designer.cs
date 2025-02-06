@@ -630,7 +630,7 @@
             this.btnExcel.Image = global::WindowsFormsApp6.Properties.Resources.excel;
             this.btnExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(38, 28);
+            this.btnExcel.Size = new System.Drawing.Size(37, 28);
             this.btnExcel.Text = "Excel";
             this.btnExcel.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -640,7 +640,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(70, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(69, 28);
             this.toolStripButton1.Text = "Excel datos";
             this.toolStripButton1.ToolTipText = "Excel";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);

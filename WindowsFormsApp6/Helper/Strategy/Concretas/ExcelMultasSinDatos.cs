@@ -242,6 +242,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                 Directory.CreateDirectory(ruta);
             try
             {
+                
 
                 libroExcel.SaveAs(s + @"\RIF\" + _datos.TipoMultaEmision + hojaExcel.Name + "_" + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() + ".xls");
                 libroExcel.Close();

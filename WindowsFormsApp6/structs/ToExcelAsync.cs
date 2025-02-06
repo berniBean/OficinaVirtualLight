@@ -30,7 +30,7 @@ namespace WindowsFormsApp6.structs
             if (tipo.Equals("ListadoConDatos"))
                 _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelListadoConDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("MultasSinDatos"))
-                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelMultasSinDatos(_progressBar, _tsStatus, _lblProgress));
+                _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new SpreadMultaSinDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("MultasConDatos"))
                 _contextExcel = new ExcelMakerContext<CListaRequeridosBO>(new ExcelMultasConDatos(_progressBar, _tsStatus, _lblProgress));
             if (tipo.Equals("Ejecucion"))

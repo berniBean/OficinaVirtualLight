@@ -418,6 +418,7 @@
     <Compile Include="Helper\Strategy\Concretas\RecibosMultas.cs" />
     <Compile Include="Helper\Strategy\Concretas\RequerimientoEscaneado.cs" />
     <Compile Include="Helper\Strategy\Concretas\RequerimientoFirmado.cs" />
+    <Compile Include="Helper\Strategy\Concretas\SpreadMultaSinDatos.cs" />
     <Compile Include="Helper\Strategy\Concretas\StoreMultasAsync.cs" />
     <Compile Include="Helper\Strategy\Concretas\StoreRequerimientosAsync.cs" />
     <Compile Include="Helper\Strategy\CopyPasteMakerContext.cs" />

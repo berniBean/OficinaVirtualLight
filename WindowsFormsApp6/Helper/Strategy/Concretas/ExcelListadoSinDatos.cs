@@ -238,7 +238,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             try
             {
 
-                libroExcel.SaveAs(s + @"\RIF\" + _datos.LblEmision + "_" + hojaExcel.Name + " " + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() + ".xls");
+                libroExcel.SaveAs(s + @"\RIF\" + _datos.LblEmision + "_" + hojaExcel.Name + " " + _datos.CmbOHE + "_" + listaRequerimientos.Count.ToString() + ".xlsx");
                 libroExcel.Close();
                 releaseObject(libroExcel);
                 MessageBox.Show("Libro guardado en Escritorio\\RIF");
