@@ -142,7 +142,8 @@ namespace WindowsFormsApp6
             toolStripTextBusqueda.SelectAll();
         }
 
-        private void DgbusquedaMultasRIF_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void DgbusquedaMultasRIF_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             listaUrl = obUrl.listaURI();
             string uri = listaUrl[0]._URL.ToString();
@@ -151,26 +152,26 @@ namespace WindowsFormsApp6
             string RFC = DgbusquedaMultasRIF.CurrentRow.Cells[8].Value.ToString();
             string idSAT = DgbusquedaMultasRIF.CurrentRow.Cells[9].Value.ToString();
             string rs = DgbusquedaMultasRIF.CurrentRow.Cells[10].Value.ToString();
-            string diligencia =  DgbusquedaMultasRIF.CurrentRow.Cells[11].Value.ToString();
-            string Citatorio = DateFormatHelper.FechaCorta( Convert.ToDateTime( DgbusquedaMultasRIF.CurrentRow.Cells[12].Value.ToString()));
-            string Notificacion = DateFormatHelper.FechaCorta(Convert.ToDateTime(  DgbusquedaMultasRIF.CurrentRow.Cells[13].Value.ToString()));
+            string diligencia = DgbusquedaMultasRIF.CurrentRow.Cells[11].Value.ToString();
+            string Citatorio = DateFormatHelper.FechaCorta(Convert.ToDateTime(DgbusquedaMultasRIF.CurrentRow.Cells[12].Value.ToString()));
+            string Notificacion = DateFormatHelper.FechaCorta(Convert.ToDateTime(DgbusquedaMultasRIF.CurrentRow.Cells[13].Value.ToString()));
             string ohe = DgbusquedaMultasRIF.CurrentRow.Cells[3].Value.ToString(); ;
             string emision = DgbusquedaMultasRIF.CurrentRow.Cells[4].Value.ToString();
 
-            PDFTipo select = new PDFTipo(Pdf.Multa, tipoMulta, uri,  numReq, idSAT, ohe, emision,RFC);
+            PDFTipo select = new PDFTipo(Pdf.Multa, tipoMulta, uri, numReq, idSAT, ohe, emision, RFC);
             select.ShowDialog();
+        }
+
+
+        private void DgbusquedaMultasRIF_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
             //pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
             //vistaPDf.ShowDialog();
         }
 
         private void DgReqRIF_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        }
-
-        private void DgReqRIF_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
             listaUrl = obURLR.listaURI();
             string uri = listaUrl[0]._URL.ToString();
             string numReq = DgReqRIF.CurrentRow.Cells[2].Value.ToString();
@@ -178,16 +179,29 @@ namespace WindowsFormsApp6
             string idSAT = DgReqRIF.CurrentRow.Cells[3].Value.ToString();
             string rs = DgReqRIF.CurrentRow.Cells[7].Value.ToString();
             string diligencia = DgReqRIF.CurrentRow.Cells[8].Value.ToString();
-            string Citatorio = DateFormatHelper.FechaCorta(Convert.ToDateTime( DgReqRIF.CurrentRow.Cells[9].Value.ToString()));
-            string Notificacion = DateFormatHelper.FechaCorta(Convert.ToDateTime( DgReqRIF.CurrentRow.Cells[10].Value.ToString()));
+            string Citatorio = DateFormatHelper.FechaCorta(Convert.ToDateTime(DgReqRIF.CurrentRow.Cells[9].Value.ToString()));
+            string Notificacion = DateFormatHelper.FechaCorta(Convert.ToDateTime(DgReqRIF.CurrentRow.Cells[10].Value.ToString()));
             string ohe = DgReqRIF.CurrentRow.Cells[5].Value.ToString(); ;
             string emision = DgReqRIF.CurrentRow.Cells[0].Value.ToString();
             int tipo = 1;
-            
+
             PDFTipo select = new PDFTipo(Pdf.Requerimiento, tipo, numReq, RFC, rs, idSAT, diligencia, Citatorio, Notificacion, uri, emision, ohe);
             select.ShowDialog();
+        }
+
+        private void DgReqRIF_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+
             //pdfGestor vistaPDf = new pdfGestor(tipo, numReq, RFC, rs, idSAT, diligencia,Citatorio,Notificacion, uri, emision, ohe);
             //vistaPDf.ShowDialog();
         }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+
     }
 }

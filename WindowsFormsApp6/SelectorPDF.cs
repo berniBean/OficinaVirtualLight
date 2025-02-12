@@ -44,19 +44,28 @@ namespace WindowsFormsApp6
 
 
         private int selectorTypo = 0;
+
+        private void PDFTipo_Load(object sender, EventArgs e)
+        {
+            if (selectorTypo == Pdf.Requerimiento)
+            {
+                cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados" });
+            }
+            if (selectorTypo == Pdf.Multa)
+            {
+                cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados", "Recibo" });
+            }
+
+            cbDocumento.SelectedIndex = 0;
+
+
+        }
+
         public PDFTipo(int tipoDocumento,string tipoMulta, string URI, string numReq, string idSAT, string ohe, string emision,string RFC)
         {
             selectorTypo = tipoDocumento;
             
             InitializeComponent();
-            if (tipoDocumento == Pdf.Requerimiento) 
-            {
-                cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados" });
-            }
-            if(tipoDocumento == Pdf.Multa)
-            {
-                cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados","Recibo" });
-            }
 
             _RFC = RFC;
             _tipoMulta = tipoMulta;
@@ -93,15 +102,16 @@ namespace WindowsFormsApp6
 
             InitializeComponent();
 
-            if (tipoDocumento == Pdf.Requerimiento)
-            {
-                cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados" });
-            }
-            if (tipoDocumento == Pdf.Multa)
-            {
-                cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados", "Recibo" });
-            }
+            //if (tipoDocumento == Pdf.Requerimiento)
+            //{
+            //    cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados" });
+            //}
+            //if (tipoDocumento == Pdf.Multa)
+            //{
+            //    cbDocumento.Items.AddRange(new object[] { "Escaneados", "Firmados", "Recibo" });
+            //}
 
+            
             _numReq = numReq;
             _RFC = RFC;
             _rs = rs;
@@ -383,6 +393,8 @@ namespace WindowsFormsApp6
             
 
         }
+
+
     }
 
 

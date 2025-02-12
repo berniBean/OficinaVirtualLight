@@ -81,6 +81,8 @@ namespace WindowsFormsApp6
             obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
             abrirArchivo();
             CargarCatalogo();
+
+           
         }
         public pdfGestor(int tipo,string numReq,string RFC,string rs,string idSAT,string diligencia,string citatorio,string notificacion, string URI,string emision,string ohe)
         {
@@ -119,6 +121,7 @@ namespace WindowsFormsApp6
             obReq = factoryRequerimientos.maker(factoryRequerimientos.PLUS);
             abrirArchivo();
             CargarCatalogo();
+            
 
 
         }
@@ -209,6 +212,8 @@ namespace WindowsFormsApp6
             ListaObservaciones = catalogo.GetCatObservacion();
 
             cmbObservacion.DataSource = ListaObservaciones;
+
+            
             
             
         }

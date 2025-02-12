@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.cBusquedaMultasBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -43,17 +42,9 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBusqueda = new System.Windows.Forms.ToolStripTextBox();
             this.DgbusquedaMultasRIF = new System.Windows.Forms.DataGridView();
-            this.emisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numReqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._zona = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.municipioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._emisionMulta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoMultaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctrlMultaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaEmision = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rFCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._numSAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.razonSocialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._diligencia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._notificacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._fechaPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,14 +67,23 @@
             this.fechaCitatorioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaNotificacionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cBusquedaRIFBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.emisionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numReqDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.municipioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoMultaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctrlMultaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaEmision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rFCDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.razonSocialDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cBusquedaMultasBOBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cBusquedaMultasBOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgbusquedaMultasRIF)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgReqRIF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cBusquedaRIFBOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cBusquedaMultasBOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bindingNavigator1
@@ -115,10 +115,6 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(1234, 25);
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // cBusquedaMultasBOBindingSource
-            // 
-            this.cBusquedaMultasBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CBusquedaMultasBO);
             // 
             // bindingNavigatorCountItem
             // 
@@ -229,21 +225,8 @@
             this.DgbusquedaMultasRIF.Size = new System.Drawing.Size(1228, 263);
             this.DgbusquedaMultasRIF.TabIndex = 1;
             this.DgbusquedaMultasRIF.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgbusquedaMultasRIF_CellContentClick);
+            this.DgbusquedaMultasRIF.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgbusquedaMultasRIF_CellContentDoubleClick);
             this.DgbusquedaMultasRIF.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgbusquedaMultasRIF_CellFormatting);
-            // 
-            // emisionDataGridViewTextBoxColumn
-            // 
-            this.emisionDataGridViewTextBoxColumn.DataPropertyName = "_emision";
-            this.emisionDataGridViewTextBoxColumn.HeaderText = "Emisión del requerimiento";
-            this.emisionDataGridViewTextBoxColumn.Name = "emisionDataGridViewTextBoxColumn";
-            this.emisionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // numReqDataGridViewTextBoxColumn
-            // 
-            this.numReqDataGridViewTextBoxColumn.DataPropertyName = "_numReq";
-            this.numReqDataGridViewTextBoxColumn.HeaderText = "Número de requerimiento";
-            this.numReqDataGridViewTextBoxColumn.Name = "numReqDataGridViewTextBoxColumn";
-            this.numReqDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // _zona
             // 
@@ -252,13 +235,6 @@
             this._zona.Name = "_zona";
             this._zona.ReadOnly = true;
             // 
-            // municipioDataGridViewTextBoxColumn
-            // 
-            this.municipioDataGridViewTextBoxColumn.DataPropertyName = "_municipio";
-            this.municipioDataGridViewTextBoxColumn.HeaderText = "Municipio";
-            this.municipioDataGridViewTextBoxColumn.Name = "municipioDataGridViewTextBoxColumn";
-            this.municipioDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // _emisionMulta
             // 
             this._emisionMulta.DataPropertyName = "_emisionMulta";
@@ -266,47 +242,12 @@
             this._emisionMulta.Name = "_emisionMulta";
             this._emisionMulta.ReadOnly = true;
             // 
-            // tipoMultaDataGridViewTextBoxColumn
-            // 
-            this.tipoMultaDataGridViewTextBoxColumn.DataPropertyName = "_tipoMulta";
-            this.tipoMultaDataGridViewTextBoxColumn.HeaderText = "Tipo multa";
-            this.tipoMultaDataGridViewTextBoxColumn.Name = "tipoMultaDataGridViewTextBoxColumn";
-            this.tipoMultaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ctrlMultaDataGridViewTextBoxColumn
-            // 
-            this.ctrlMultaDataGridViewTextBoxColumn.DataPropertyName = "_CtrlMulta";
-            this.ctrlMultaDataGridViewTextBoxColumn.HeaderText = "Número de multa";
-            this.ctrlMultaDataGridViewTextBoxColumn.Name = "ctrlMultaDataGridViewTextBoxColumn";
-            this.ctrlMultaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fechaEmision
-            // 
-            this.fechaEmision.DataPropertyName = "_FechaEmision";
-            this.fechaEmision.HeaderText = "Fecha de emisión de la multa";
-            this.fechaEmision.Name = "fechaEmision";
-            this.fechaEmision.ReadOnly = true;
-            // 
-            // rFCDataGridViewTextBoxColumn
-            // 
-            this.rFCDataGridViewTextBoxColumn.DataPropertyName = "_RFC";
-            this.rFCDataGridViewTextBoxColumn.HeaderText = "RFC";
-            this.rFCDataGridViewTextBoxColumn.Name = "rFCDataGridViewTextBoxColumn";
-            this.rFCDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // _numSAT
             // 
             this._numSAT.DataPropertyName = "_numSAT";
             this._numSAT.HeaderText = "Número de control";
             this._numSAT.Name = "_numSAT";
             this._numSAT.ReadOnly = true;
-            // 
-            // razonSocialDataGridViewTextBoxColumn
-            // 
-            this.razonSocialDataGridViewTextBoxColumn.DataPropertyName = "_RazonSocial";
-            this.razonSocialDataGridViewTextBoxColumn.HeaderText = "Razón social";
-            this.razonSocialDataGridViewTextBoxColumn.Name = "razonSocialDataGridViewTextBoxColumn";
-            this.razonSocialDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // _diligencia
             // 
@@ -490,6 +431,66 @@
             // 
             this.cBusquedaRIFBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CBusquedaRIFBO);
             // 
+            // emisionDataGridViewTextBoxColumn
+            // 
+            this.emisionDataGridViewTextBoxColumn.DataPropertyName = "_emision";
+            this.emisionDataGridViewTextBoxColumn.HeaderText = "Emisión del requerimiento";
+            this.emisionDataGridViewTextBoxColumn.Name = "emisionDataGridViewTextBoxColumn";
+            this.emisionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // numReqDataGridViewTextBoxColumn
+            // 
+            this.numReqDataGridViewTextBoxColumn.DataPropertyName = "_numReq";
+            this.numReqDataGridViewTextBoxColumn.HeaderText = "Número de requerimiento";
+            this.numReqDataGridViewTextBoxColumn.Name = "numReqDataGridViewTextBoxColumn";
+            this.numReqDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // municipioDataGridViewTextBoxColumn
+            // 
+            this.municipioDataGridViewTextBoxColumn.DataPropertyName = "_municipio";
+            this.municipioDataGridViewTextBoxColumn.HeaderText = "Municipio";
+            this.municipioDataGridViewTextBoxColumn.Name = "municipioDataGridViewTextBoxColumn";
+            this.municipioDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tipoMultaDataGridViewTextBoxColumn
+            // 
+            this.tipoMultaDataGridViewTextBoxColumn.DataPropertyName = "_tipoMulta";
+            this.tipoMultaDataGridViewTextBoxColumn.HeaderText = "Tipo multa";
+            this.tipoMultaDataGridViewTextBoxColumn.Name = "tipoMultaDataGridViewTextBoxColumn";
+            this.tipoMultaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ctrlMultaDataGridViewTextBoxColumn
+            // 
+            this.ctrlMultaDataGridViewTextBoxColumn.DataPropertyName = "_CtrlMulta";
+            this.ctrlMultaDataGridViewTextBoxColumn.HeaderText = "Número de multa";
+            this.ctrlMultaDataGridViewTextBoxColumn.Name = "ctrlMultaDataGridViewTextBoxColumn";
+            this.ctrlMultaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fechaEmision
+            // 
+            this.fechaEmision.DataPropertyName = "_FechaEmision";
+            this.fechaEmision.HeaderText = "Fecha de emisión de la multa";
+            this.fechaEmision.Name = "fechaEmision";
+            this.fechaEmision.ReadOnly = true;
+            // 
+            // rFCDataGridViewTextBoxColumn
+            // 
+            this.rFCDataGridViewTextBoxColumn.DataPropertyName = "_RFC";
+            this.rFCDataGridViewTextBoxColumn.HeaderText = "RFC";
+            this.rFCDataGridViewTextBoxColumn.Name = "rFCDataGridViewTextBoxColumn";
+            this.rFCDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // razonSocialDataGridViewTextBoxColumn
+            // 
+            this.razonSocialDataGridViewTextBoxColumn.DataPropertyName = "_RazonSocial";
+            this.razonSocialDataGridViewTextBoxColumn.HeaderText = "Razón social";
+            this.razonSocialDataGridViewTextBoxColumn.Name = "razonSocialDataGridViewTextBoxColumn";
+            this.razonSocialDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // cBusquedaMultasBOBindingSource
+            // 
+            this.cBusquedaMultasBOBindingSource.DataSource = typeof(WindowsFormsApp6.CAD.BO.CBusquedaMultasBO);
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,15 +504,16 @@
             this.MinimumSize = new System.Drawing.Size(1250, 312);
             this.Name = "Form5";
             this.Text = "Búsqueda general";
+            this.Load += new System.EventHandler(this.Form5_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cBusquedaMultasBOBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgbusquedaMultasRIF)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgReqRIF)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cBusquedaRIFBOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cBusquedaMultasBOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

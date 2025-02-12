@@ -11,16 +11,15 @@ using System.Windows.Forms;
 using WindowsFormsApp6.CAD.BO;
 using WindowsFormsApp6.structs;
 
-
 namespace WindowsFormsApp6.Helper.Strategy.Concretas
 {
-    public class SpreadRequerimientoSinDato : AbstractProgress, IStrategyExcel<CListaRequeridosBO>
+    internal class SpreadRequerimientoConDatos : AbstractProgress, IStrategyExcel<CListaRequeridosBO>
     {
         private readonly ToolStripProgressBar _progressBar;
         private readonly ToolStripStatusLabel _tsStatus;
         private readonly System.Windows.Forms.Label _lblProgress;
 
-        public SpreadRequerimientoSinDato(ToolStripProgressBar progressBar, ToolStripStatusLabel tsStatus, System.Windows.Forms.Label lblProgress)
+        public SpreadRequerimientoConDatos(ToolStripProgressBar progressBar, ToolStripStatusLabel tsStatus, System.Windows.Forms.Label lblProgress)
         {
             _progressBar = progressBar;
             _tsStatus = tsStatus;
@@ -39,7 +38,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
 
             // Crear un nuevo documento de SpreadsheetLight
             SLDocument sl = new SLDocument();
-           
+
             #region Formato de excel
 
 
@@ -102,7 +101,7 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
             sl.SetCellValue("C5", listaRequerimientos.Count);
             sl.MergeWorksheetCells("C5", "D5");
             sl.SetCellStyle("C5", "D5", new SLStyle { Alignment = { Horizontal = HorizontalAlignmentValues.Left } });
-            
+
             #endregion
 
             #region addData
@@ -119,19 +118,18 @@ namespace WindowsFormsApp6.Helper.Strategy.Concretas
                         if (progress != null)
                         {
                             // Escribir los datos en las celdas correspondientes
-                            sl.SetCellValue(i, 1, item.NumReq.ToString());
-                            sl.SetCellValue(i, 2, item.Rfc.ToString());
-                            sl.SetCellValue(i, 3, item.NumCtrl.ToString());
-                            sl.SetCellValue(i, 4, item.RazonSocial.ToString());
-                            sl.SetCellValue(i, 5, item.Localidad.ToString());
-
-                            // Formato de celda para la columna A (NumReq) como texto con ceros a la izquierda
-                            sl.SetCellStyle(i, 1, new SLStyle { FormatCode = "000000" });
-
-                            // Formato de celda para las columnas F, G y H como fecha en formato "dd/mm/aaaa"
-                            sl.SetCellStyle(i, 6, new SLStyle { FormatCode = "dd/mm/aaaa" });
-                            sl.SetCellStyle(i, 7, new SLStyle { FormatCode = "dd/mm/aaaa" });
-                            sl.SetCellStyle(i, 8, new SLStyle { FormatCode = "dd/mm/aaaa" });
+                            sl.SetCellValue(i, 1, item.NumReq.ToString("000000")); // Columna A (Num)
+                            sl.SetCellValue(i, 2, item.Rfc.ToString()); // Columna B (RFC)
+                            sl.SetCellValue(i, 3, item.NumCtrl.ToString()); // Columna C (NUM_CONTROL)
+                            sl.SetCellValue(i, 4, item.RazonSocial.ToString()); // Columna D (RAZÓN SOCIAL)
+                            sl.SetCellValue(i, 5, item.Localidad.ToString()); // Columna E (LOCALIDAD)
+                            sl.SetCellValue(i, 6, item.Diligencia == "NO LOCALIZADO" ? DateFormatHelper.FechaCorta(item.FechaNotificacion) : ""); // Columna F (FECHA ACTA / NO LOCALIZADO)
+                            sl.SetCellValue(i, 7, DateFormatHelper.FechaCorta(item.FechaCitatorio)); // Columna G (FECHA DE CITATORIO)
+                            sl.SetCellValue(i, 8, item.Diligencia == "LOCALIZADO" ? DateFormatHelper.FechaCorta(item.FechaNotificacion) : ""); // Columna H (FECHA DE NOTIFICACION)
+                            sl.SetCellValue(i, 9, item.OficioSEFIPLAN); // Columna I (OFICIO ENVIO A SEFIPLAN)
+                            sl.SetCellValue(i, 10, DateFormatHelper.FechaCorta(item.FechaEnvioSefiplan)); // Columna J (FECHA DE ENVIO A SEFIPLAN)
+                            sl.SetCellValue(i, 11, DateFormatHelper.FechaCorta(item.FechaEntregaNotificador)); // Columna K (FECHA DE ENTREGA AL NOTIFICADOR)
+                            sl.SetCellValue(i, 12, item.NombreNotificador); // Columna L (NOMBRE DEL NOTIFICADOR)
 
                             p++; // Incrementar el contador de progreso
                             i++; // Mover a la siguiente fila

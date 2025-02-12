@@ -117,6 +117,8 @@ namespace WindowsFormsApp6
         }
 
 
+
+
         private void busquedaPLUS_Click(object sender, EventArgs e)
         {
             Form5 formBusqueda = new Form5(tipoSesion.PLUS);
