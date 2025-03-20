@@ -65,18 +65,20 @@
             this.busquedaPLUS = new System.Windows.Forms.ToolStripMenuItem();
             this.tableroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.muestraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.crearEmisionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.opcionMenu,
             this.herramientasToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 35);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -91,7 +93,7 @@
             this.usuarioToolStripMenuItem,
             this.menuCerrar});
             this.opcionMenu.Name = "opcionMenu";
-            this.opcionMenu.Size = new System.Drawing.Size(50, 20);
+            this.opcionMenu.Size = new System.Drawing.Size(73, 29);
             this.opcionMenu.Text = "&Menú";
             // 
             // toolStripMenuItem1
@@ -105,21 +107,21 @@
             this.capturaOficiosRIF,
             this.cargaPDFRIF});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.toolStripMenuItem1.Text = "DATOS &RIF";
             this.toolStripMenuItem1.Visible = false;
             // 
             // menuAvance
             // 
             this.menuAvance.Name = "menuAvance";
-            this.menuAvance.Size = new System.Drawing.Size(226, 22);
+            this.menuAvance.Size = new System.Drawing.Size(343, 34);
             this.menuAvance.Text = "Consulta &Avance";
             this.menuAvance.Visible = false;
             // 
             // JefeRif_Item
             // 
             this.JefeRif_Item.Name = "JefeRif_Item";
-            this.JefeRif_Item.Size = new System.Drawing.Size(226, 22);
+            this.JefeRif_Item.Size = new System.Drawing.Size(343, 34);
             this.JefeRif_Item.Text = "&Informes Requerimientos RIF";
             this.JefeRif_Item.Visible = false;
             this.JefeRif_Item.Click += new System.EventHandler(this.JefeRif_Item_Click);
@@ -127,14 +129,14 @@
             // capturaReqRIF
             // 
             this.capturaReqRIF.Name = "capturaReqRIF";
-            this.capturaReqRIF.Size = new System.Drawing.Size(226, 22);
+            this.capturaReqRIF.Size = new System.Drawing.Size(343, 34);
             this.capturaReqRIF.Text = "Captura &Requerimientos";
             this.capturaReqRIF.Click += new System.EventHandler(this.capturaReqRIF_Click);
             // 
             // MultasRIF_Item
             // 
             this.MultasRIF_Item.Name = "MultasRIF_Item";
-            this.MultasRIF_Item.Size = new System.Drawing.Size(226, 22);
+            this.MultasRIF_Item.Size = new System.Drawing.Size(343, 34);
             this.MultasRIF_Item.Text = "Informes M&ultas RIF";
             this.MultasRIF_Item.Visible = false;
             this.MultasRIF_Item.Click += new System.EventHandler(this.MultasRIF_Item_Click);
@@ -142,7 +144,7 @@
             // capturaMultasRIF
             // 
             this.capturaMultasRIF.Name = "capturaMultasRIF";
-            this.capturaMultasRIF.Size = new System.Drawing.Size(226, 22);
+            this.capturaMultasRIF.Size = new System.Drawing.Size(343, 34);
             this.capturaMultasRIF.Text = "Captura &Multas";
             this.capturaMultasRIF.Click += new System.EventHandler(this.capturaMultasRIF_Click);
             // 
@@ -152,21 +154,21 @@
             this.tsOficiosReqRIF,
             this.tsOficiosMultasRIF});
             this.capturaOficiosRIF.Name = "capturaOficiosRIF";
-            this.capturaOficiosRIF.Size = new System.Drawing.Size(226, 22);
+            this.capturaOficiosRIF.Size = new System.Drawing.Size(343, 34);
             this.capturaOficiosRIF.Text = "Captura &Oficios";
             this.capturaOficiosRIF.Visible = false;
             // 
             // tsOficiosReqRIF
             // 
             this.tsOficiosReqRIF.Name = "tsOficiosReqRIF";
-            this.tsOficiosReqRIF.Size = new System.Drawing.Size(157, 22);
+            this.tsOficiosReqRIF.Size = new System.Drawing.Size(237, 34);
             this.tsOficiosReqRIF.Text = "Requerimientos";
             this.tsOficiosReqRIF.Click += new System.EventHandler(this.tsOficiosReqRIF_Click);
             // 
             // tsOficiosMultasRIF
             // 
             this.tsOficiosMultasRIF.Name = "tsOficiosMultasRIF";
-            this.tsOficiosMultasRIF.Size = new System.Drawing.Size(157, 22);
+            this.tsOficiosMultasRIF.Size = new System.Drawing.Size(237, 34);
             this.tsOficiosMultasRIF.Text = "Multas";
             this.tsOficiosMultasRIF.Click += new System.EventHandler(this.tsOficiosMultasRIF_Click);
             // 
@@ -176,20 +178,20 @@
             this.requerimientosPDFRIF,
             this.multasPDFRIF});
             this.cargaPDFRIF.Name = "cargaPDFRIF";
-            this.cargaPDFRIF.Size = new System.Drawing.Size(226, 22);
+            this.cargaPDFRIF.Size = new System.Drawing.Size(343, 34);
             this.cargaPDFRIF.Text = "Carga &PDF";
             // 
             // requerimientosPDFRIF
             // 
             this.requerimientosPDFRIF.Name = "requerimientosPDFRIF";
-            this.requerimientosPDFRIF.Size = new System.Drawing.Size(157, 22);
+            this.requerimientosPDFRIF.Size = new System.Drawing.Size(237, 34);
             this.requerimientosPDFRIF.Text = "&Requerimientos";
             this.requerimientosPDFRIF.Click += new System.EventHandler(this.requerimientosPDFRIF_Click);
             // 
             // multasPDFRIF
             // 
             this.multasPDFRIF.Name = "multasPDFRIF";
-            this.multasPDFRIF.Size = new System.Drawing.Size(157, 22);
+            this.multasPDFRIF.Size = new System.Drawing.Size(237, 34);
             this.multasPDFRIF.Text = "&Multas";
             this.multasPDFRIF.Click += new System.EventHandler(this.multasPDFRIF_Click);
             // 
@@ -202,15 +204,16 @@
             this.multasPLUSToolStripMenuItem,
             this.capturaMultaPLUS,
             this.capturaOficiosPLUS,
-            this.cargaPDFPLUS});
+            this.cargaPDFPLUS,
+            this.crearEmisionToolStripMenuItem});
             this.dATOSPLUSToolStripMenuItem.Name = "dATOSPLUSToolStripMenuItem";
-            this.dATOSPLUSToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dATOSPLUSToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.dATOSPLUSToolStripMenuItem.Text = "DATOS &PLUS";
             // 
             // avanceReqPLUS
             // 
             this.avanceReqPLUS.Name = "avanceReqPLUS";
-            this.avanceReqPLUS.Size = new System.Drawing.Size(232, 22);
+            this.avanceReqPLUS.Size = new System.Drawing.Size(350, 34);
             this.avanceReqPLUS.Text = "Consulta &Avance";
             this.avanceReqPLUS.Visible = false;
             this.avanceReqPLUS.Click += new System.EventHandler(this.avanceReqPLUS_Click);
@@ -218,7 +221,7 @@
             // requerimientosPLUSToolStripMenuItem
             // 
             this.requerimientosPLUSToolStripMenuItem.Name = "requerimientosPLUSToolStripMenuItem";
-            this.requerimientosPLUSToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.requerimientosPLUSToolStripMenuItem.Size = new System.Drawing.Size(350, 34);
             this.requerimientosPLUSToolStripMenuItem.Text = "&Informe Requerimientos PLUS";
             this.requerimientosPLUSToolStripMenuItem.Visible = false;
             this.requerimientosPLUSToolStripMenuItem.Click += new System.EventHandler(this.requerimientosPLUSToolStripMenuItem_Click);
@@ -226,14 +229,14 @@
             // caputraReqPLUS
             // 
             this.caputraReqPLUS.Name = "caputraReqPLUS";
-            this.caputraReqPLUS.Size = new System.Drawing.Size(232, 22);
+            this.caputraReqPLUS.Size = new System.Drawing.Size(350, 34);
             this.caputraReqPLUS.Text = "Captura &Requerimientos PLUS";
             this.caputraReqPLUS.Click += new System.EventHandler(this.caputraReqPLUS_Click);
             // 
             // multasPLUSToolStripMenuItem
             // 
             this.multasPLUSToolStripMenuItem.Name = "multasPLUSToolStripMenuItem";
-            this.multasPLUSToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.multasPLUSToolStripMenuItem.Size = new System.Drawing.Size(350, 34);
             this.multasPLUSToolStripMenuItem.Text = "Informe M&ultas PLUS";
             this.multasPLUSToolStripMenuItem.Visible = false;
             this.multasPLUSToolStripMenuItem.Click += new System.EventHandler(this.multasPLUSToolStripMenuItem_Click);
@@ -241,7 +244,7 @@
             // capturaMultaPLUS
             // 
             this.capturaMultaPLUS.Name = "capturaMultaPLUS";
-            this.capturaMultaPLUS.Size = new System.Drawing.Size(232, 22);
+            this.capturaMultaPLUS.Size = new System.Drawing.Size(350, 34);
             this.capturaMultaPLUS.Text = "Captura &Multas PLUS";
             this.capturaMultaPLUS.Click += new System.EventHandler(this.capturaMultaPLUS_Click);
             // 
@@ -251,21 +254,21 @@
             this.capturaOficioRequerimientoPLUS,
             this.tsCapturaOficiosMulta});
             this.capturaOficiosPLUS.Name = "capturaOficiosPLUS";
-            this.capturaOficiosPLUS.Size = new System.Drawing.Size(232, 22);
+            this.capturaOficiosPLUS.Size = new System.Drawing.Size(350, 34);
             this.capturaOficiosPLUS.Text = "Captura &Oficios";
             this.capturaOficiosPLUS.Visible = false;
             // 
             // capturaOficioRequerimientoPLUS
             // 
             this.capturaOficioRequerimientoPLUS.Name = "capturaOficioRequerimientoPLUS";
-            this.capturaOficioRequerimientoPLUS.Size = new System.Drawing.Size(157, 22);
+            this.capturaOficioRequerimientoPLUS.Size = new System.Drawing.Size(237, 34);
             this.capturaOficioRequerimientoPLUS.Text = "Requerimientos";
             this.capturaOficioRequerimientoPLUS.Click += new System.EventHandler(this.capturaOficioRequerimientoPLUS_Click);
             // 
             // tsCapturaOficiosMulta
             // 
             this.tsCapturaOficiosMulta.Name = "tsCapturaOficiosMulta";
-            this.tsCapturaOficiosMulta.Size = new System.Drawing.Size(157, 22);
+            this.tsCapturaOficiosMulta.Size = new System.Drawing.Size(237, 34);
             this.tsCapturaOficiosMulta.Text = "Multas";
             this.tsCapturaOficiosMulta.Click += new System.EventHandler(this.tsCapturaOficiosMulta_Click);
             // 
@@ -275,28 +278,28 @@
             this.requerimientosPDFPLUS,
             this.multasPDFPLUS});
             this.cargaPDFPLUS.Name = "cargaPDFPLUS";
-            this.cargaPDFPLUS.Size = new System.Drawing.Size(232, 22);
+            this.cargaPDFPLUS.Size = new System.Drawing.Size(350, 34);
             this.cargaPDFPLUS.Text = "Carga &PDF";
             this.cargaPDFPLUS.Click += new System.EventHandler(this.cargaPDFPLUS_Click);
             // 
             // requerimientosPDFPLUS
             // 
             this.requerimientosPDFPLUS.Name = "requerimientosPDFPLUS";
-            this.requerimientosPDFPLUS.Size = new System.Drawing.Size(180, 22);
+            this.requerimientosPDFPLUS.Size = new System.Drawing.Size(237, 34);
             this.requerimientosPDFPLUS.Text = "&Requerimientos";
             this.requerimientosPDFPLUS.Click += new System.EventHandler(this.requerimientosPDFPLUS_Click);
             // 
             // multasPDFPLUS
             // 
             this.multasPDFPLUS.Name = "multasPDFPLUS";
-            this.multasPDFPLUS.Size = new System.Drawing.Size(180, 22);
+            this.multasPDFPLUS.Size = new System.Drawing.Size(237, 34);
             this.multasPDFPLUS.Text = "&Multas";
             this.multasPDFPLUS.Click += new System.EventHandler(this.multasPDFPLUS_Click);
             // 
             // notificadoresToolStripMenuItem
             // 
             this.notificadoresToolStripMenuItem.Name = "notificadoresToolStripMenuItem";
-            this.notificadoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.notificadoresToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.notificadoresToolStripMenuItem.Text = "&Notificadores";
             this.notificadoresToolStripMenuItem.Click += new System.EventHandler(this.notificadoresToolStripMenuItem_Click);
             // 
@@ -304,26 +307,26 @@
             // 
             this.menuAgenda.MergeIndex = 2;
             this.menuAgenda.Name = "menuAgenda";
-            this.menuAgenda.Size = new System.Drawing.Size(180, 22);
+            this.menuAgenda.Size = new System.Drawing.Size(270, 34);
             this.menuAgenda.Text = "A&genda";
             this.menuAgenda.Click += new System.EventHandler(this.menuAgenda_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // usuarioToolStripMenuItem
             // 
             this.usuarioToolStripMenuItem.Name = "usuarioToolStripMenuItem";
-            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usuarioToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.usuarioToolStripMenuItem.Text = "&Usuario";
             // 
             // menuCerrar
             // 
             this.menuCerrar.MergeIndex = 3;
             this.menuCerrar.Name = "menuCerrar";
-            this.menuCerrar.Size = new System.Drawing.Size(180, 22);
+            this.menuCerrar.Size = new System.Drawing.Size(270, 34);
             this.menuCerrar.Text = "&Cerrar";
             // 
             // herramientasToolStripMenuItem
@@ -333,7 +336,7 @@
             this.tableroToolStripMenuItem,
             this.muestraToolStripMenuItem});
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
-            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
+            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(133, 29);
             this.herramientasToolStripMenuItem.Text = "&Herramientas";
             // 
             // menuBusquedaMasiva
@@ -342,45 +345,53 @@
             this.busquedaRIF,
             this.busquedaPLUS});
             this.menuBusquedaMasiva.Name = "menuBusquedaMasiva";
-            this.menuBusquedaMasiva.Size = new System.Drawing.Size(209, 22);
+            this.menuBusquedaMasiva.Size = new System.Drawing.Size(316, 34);
             this.menuBusquedaMasiva.Text = "&Busqueda requerimientos";
             // 
             // busquedaRIF
             // 
             this.busquedaRIF.Name = "busquedaRIF";
-            this.busquedaRIF.Size = new System.Drawing.Size(101, 22);
+            this.busquedaRIF.Size = new System.Drawing.Size(154, 34);
             this.busquedaRIF.Text = "RIF";
             this.busquedaRIF.Click += new System.EventHandler(this.busquedaRIF_Click);
             // 
             // busquedaPLUS
             // 
             this.busquedaPLUS.Name = "busquedaPLUS";
-            this.busquedaPLUS.Size = new System.Drawing.Size(101, 22);
+            this.busquedaPLUS.Size = new System.Drawing.Size(154, 34);
             this.busquedaPLUS.Text = "PLUS";
             this.busquedaPLUS.Click += new System.EventHandler(this.busquedaPLUS_Click);
             // 
             // tableroToolStripMenuItem
             // 
             this.tableroToolStripMenuItem.Name = "tableroToolStripMenuItem";
-            this.tableroToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.tableroToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
             this.tableroToolStripMenuItem.Text = "Tablero";
             this.tableroToolStripMenuItem.Visible = false;
             // 
             // muestraToolStripMenuItem
             // 
             this.muestraToolStripMenuItem.Name = "muestraToolStripMenuItem";
-            this.muestraToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.muestraToolStripMenuItem.Size = new System.Drawing.Size(316, 34);
             this.muestraToolStripMenuItem.Text = "muestra";
             this.muestraToolStripMenuItem.Visible = false;
             // 
+            // crearEmisionToolStripMenuItem
+            // 
+            this.crearEmisionToolStripMenuItem.Name = "crearEmisionToolStripMenuItem";
+            this.crearEmisionToolStripMenuItem.Size = new System.Drawing.Size(350, 34);
+            this.crearEmisionToolStripMenuItem.Text = "Crear Emision";
+            this.crearEmisionToolStripMenuItem.Click += new System.EventHandler(this.crearEmisionToolStripMenuItem_Click);
+            // 
             // FormPadrePrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1200, 692);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormPadrePrincipal";
             this.Text = "Oficina digital";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -430,5 +441,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuAvance;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem notificadoresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem crearEmisionToolStripMenuItem;
     }
 }
