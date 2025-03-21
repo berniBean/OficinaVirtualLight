@@ -1,16 +1,22 @@
 ﻿using App_VerFormsAPI;
-using App_VerFormsAPI.Strategy;
 using App_VerFormsAPI.Strategy.Concretas;
+using App_VerFormsAPI.Strategy;
 using RestSharp;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp6
 {
-    public partial class FormCrearEmision : Form
+    public partial class RequerimientosControl : UserControl
     {
+
         private string url = System.Configuration.ConfigurationManager.AppSettings["ASP_BASE_URL"];
         private class Datos
         {
@@ -23,26 +29,19 @@ namespace WindowsFormsApp6
             public int Ejercicio { get; set; }
             public string OficioSat { get; set; }
             public string DetalleEmision { get; set; }
-            public double UltimoRegistro {  get; set; } 
+            public double UltimoRegistro { get; set; }
 
         }
 
-
-        public FormCrearEmision()
+        public RequerimientosControl()
         {
             InitializeComponent();
-
-           
         }
 
-
-        private async void Form7_Load(object sender, EventArgs e)
+        private void RequerimientosControl_Load(object sender, EventArgs e)
         {
-           //var res = await NuevoCatalogo();
-
-           // MessageBox.Show(res.Content);
-           lblCatalogo.Text = string.Empty;
-           lblOmisos.Text = string.Empty;
+            lblCatalogo.Text = string.Empty;
+            lblOmisos.Text = string.Empty;
 
             LstResultados.View = View.Details; // Modo detalles
             LstResultados.FullRowSelect = true;
@@ -50,10 +49,12 @@ namespace WindowsFormsApp6
             LstResultados.Dock = DockStyle.Fill; // Para ocupar todo el formulario
         }
 
+
+
         #region operaciones insert
         private async Task<RestResponse> NuevoCatalogo(Datos dto)
         {
-            
+
             StringBuilder sb = new StringBuilder();
             sb.Append(url);
             sb.Append("/api/Catalogo");
@@ -66,7 +67,7 @@ namespace WindowsFormsApp6
 
             var response = await RequestGenerico.PostAsync(sb.ToString(), body);
             return response;
-            
+
         }
 
         private async Task<RestResponse> AgregarDireccionesOmisosAsync(Datos dto)
@@ -108,12 +109,12 @@ namespace WindowsFormsApp6
             var body = new
             {
                 idEmision = 0,
-                referenciaEmision= dto.ReferenciaEmision,
-                fechaEmision= dto.FechaEmision,
-                fechaRetroAlimentacion= dto.FechaRetroAlimentacion,
-                ejercicio= dto.Ejercicio,
-                oficioSat= dto.OficioSat,
-                detalleEmision= dto.DetalleEmision
+                referenciaEmision = dto.ReferenciaEmision,
+                fechaEmision = dto.FechaEmision,
+                fechaRetroAlimentacion = dto.FechaRetroAlimentacion,
+                ejercicio = dto.Ejercicio,
+                oficioSat = dto.OficioSat,
+                detalleEmision = dto.DetalleEmision
             };
 
             var response = await RequestGenerico.PostAsync(sb.ToString(), body);
@@ -196,7 +197,7 @@ namespace WindowsFormsApp6
 
 
                 }
-                    return res;
+                return res;
             }
         }
 
@@ -215,6 +216,9 @@ namespace WindowsFormsApp6
         }
         #endregion
 
+
+
+
         private async void BtnEjecutar_Click(object sender, EventArgs e)
         {
             var dto = new Datos()
@@ -222,13 +226,13 @@ namespace WindowsFormsApp6
                 pathCatalogo = lblCatalogo.Text,
                 pathOmisos = lblOmisos.Text,
                 ReferenciaEmision = txtNombreEmisión.Text,
-                FechaEmision = DateTime.Parse(  DtFechaEmision.Value.ToShortDateString()),
+                FechaEmision = DateTime.Parse(DtFechaEmision.Value.ToShortDateString()),
                 FechaRetroAlimentacion = DateTime.Parse(DtFechaRetro.Value.ToShortDateString()),
-                Ejercicio = Convert.ToInt16( TbEjercicio.Text),
+                Ejercicio = Convert.ToInt16(TbEjercicio.Text),
                 OficioSat = txtOficioSat.Text,
                 DetalleEmision = txtDetalleEmision.Text,
-                UltimoRegistro = Convert.ToDouble( txtUltimoReq.Text)
-            
+                UltimoRegistro = Convert.ToDouble(txtUltimoReq.Text)
+
             };
 
             try
@@ -250,7 +254,7 @@ namespace WindowsFormsApp6
                 var resActualizar = await ActualizarDireccionesOmisosAsync(dto);
                 procesar.EstablecerEstrategia(new ActualizaDireccionesStrategy());
                 procesar.Procesar(resActualizar, LstResultados);
-                
+
                 var resDirecciones = await AgregarDireccionesOmisosAsync(dto);
                 procesar.EstablecerEstrategia(new DireccionesResponseStrategy());
                 procesar.Procesar(resDirecciones, LstResultados);
@@ -278,13 +282,12 @@ namespace WindowsFormsApp6
 
                 MessageBox.Show("Ocurrió un error: " + ex.Message);
             }
-            finally 
+            finally
             {
                 BtnEjecutar.Enabled = true;
             }
-
-
-
         }
+
+
     }
 }

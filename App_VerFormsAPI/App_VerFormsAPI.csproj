@@ -84,6 +84,8 @@
     <Compile Include="Strategy\Concretas\ActualizaDireccionesStrategy.cs" />
     <Compile Include="Strategy\Concretas\AgregarRegistroControlRequerimientosStrategy.cs" />
     <Compile Include="Strategy\Concretas\AgregarRegistrosListadoRequerimientosStrategy.cs" />
+    <Compile Include="Strategy\Concretas\AgregarRegistrosRequerimientosStrategy.cs" />
+    <Compile Include="Strategy\Concretas\AtualizaNumeracionRegistrosListadoRequerimientosStrategy.cs" />
     <Compile Include="Strategy\Concretas\CatalogoResponseStrategy.cs" />
     <Compile Include="Strategy\Concretas\DireccionesResponseStrategy.cs" />
     <Compile Include="Strategy\IResultHttpStrategy.cs" />

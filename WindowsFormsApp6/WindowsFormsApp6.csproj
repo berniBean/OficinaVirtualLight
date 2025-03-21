@@ -405,6 +405,12 @@
     <Compile Include="FormCrearEmision.Designer.cs">
       <DependentUpon>FormCrearEmision.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditorCreador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditorCreador.Designer.cs">
+      <DependentUpon>FormEditorCreador.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormPadrePrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -519,6 +525,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequerimientosControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RequerimientosControl.Designer.cs">
+      <DependentUpon>RequerimientosControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Selector de ejercicio Fiscal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -607,6 +619,9 @@
     <EmbeddedResource Include="FormCrearEmision.resx">
       <DependentUpon>FormCrearEmision.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEditorCreador.resx">
+      <DependentUpon>FormEditorCreador.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPadrePrincipal.resx">
       <DependentUpon>FormPadrePrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -656,6 +671,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RequerimientosControl.resx">
+      <DependentUpon>RequerimientosControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Selector de ejercicio Fiscal.resx">
       <DependentUpon>Selector de ejercicio Fiscal.cs</DependentUpon>
     </EmbeddedResource>

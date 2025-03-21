@@ -1,16 +1,16 @@
 ﻿namespace WindowsFormsApp6
 {
-    partial class FormCrearEmision
+    partial class RequerimientosControl
     {
-        /// <summary>
-        /// Required designer variable.
+        /// <summary> 
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
+        /// <summary> 
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Código generado por el Diseñador de componentes
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// <summary> 
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
@@ -263,11 +263,10 @@
             this.LstResultados.TabIndex = 0;
             this.LstResultados.UseCompatibleStateImageBehavior = false;
             // 
-            // FormCrearEmision
+            // RequerimientosControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1383, 526);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.BtnEjecutar);
             this.Controls.Add(this.lblOmisos);
@@ -275,9 +274,9 @@
             this.Controls.Add(this.BtnOmisos);
             this.Controls.Add(this.BtnCatalogo);
             this.Controls.Add(this.groupBox1);
-            this.Name = "FormCrearEmision";
-            this.Text = "Form7";
-            this.Load += new System.EventHandler(this.Form7_Load);
+            this.Name = "RequerimientosControl";
+            this.Size = new System.Drawing.Size(1383, 526);
+            this.Load += new System.EventHandler(this.RequerimientosControl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -287,6 +286,7 @@
         }
 
         #endregion
+
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;

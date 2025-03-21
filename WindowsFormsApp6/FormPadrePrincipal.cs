@@ -241,7 +241,7 @@ namespace WindowsFormsApp6
 
         private void crearEmisionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FormCrearEmision form = new FormCrearEmision();
+            FormEditorCreador form = new FormEditorCreador();
             form.MdiParent= this;
             form.Show();    
         }
