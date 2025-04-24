@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Tab;
 
 namespace App_VerFormsAPI
 {
@@ -33,9 +34,10 @@ namespace App_VerFormsAPI
             return await client.ExecuteAsync(resquest);
         }
 
-            public static async Task<RestResponse> DeleteAsync(string url)
+        public static async Task<RestResponse> DeleteAsync(string url, object body)
         {
             var request = new RestRequest(url, Method.Delete);
+            request.AddJsonBody(body);
             return await client.ExecuteAsync(request);
         }
     }

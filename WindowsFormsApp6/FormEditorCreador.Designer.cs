@@ -31,6 +31,7 @@
             this.tabCrear = new System.Windows.Forms.TabControl();
             this.tabContainer = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.TabDelete = new System.Windows.Forms.TabPage();
             this.tabCrear.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,6 +39,7 @@
             // 
             this.tabCrear.Controls.Add(this.tabContainer);
             this.tabCrear.Controls.Add(this.tabPage2);
+            this.tabCrear.Controls.Add(this.TabDelete);
             this.tabCrear.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabCrear.Location = new System.Drawing.Point(0, 0);
             this.tabCrear.Name = "tabCrear";
@@ -65,6 +67,16 @@
             this.tabPage2.Text = "Editar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // TabDelete
+            // 
+            this.TabDelete.Location = new System.Drawing.Point(4, 29);
+            this.TabDelete.Name = "TabDelete";
+            this.TabDelete.Padding = new System.Windows.Forms.Padding(3);
+            this.TabDelete.Size = new System.Drawing.Size(1464, 751);
+            this.TabDelete.TabIndex = 2;
+            this.TabDelete.Text = "Eliminar";
+            this.TabDelete.UseVisualStyleBackColor = true;
+            // 
             // FormEditorCreador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -84,5 +96,6 @@
         private System.Windows.Forms.TabControl tabCrear;
         private System.Windows.Forms.TabPage tabContainer;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage TabDelete;
     }
 }

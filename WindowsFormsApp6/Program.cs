@@ -16,7 +16,7 @@ namespace WindowsFormsApp6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEditorCreador());
+            Application.Run(new Login());
         }
     }
 }

@@ -77,10 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\DgEliminarDTO.cs" />
     <Compile Include="GolbalesAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestGenerico.cs" />
     <Compile Include="ResponseHttp\ErrorResponse.cs" />
+    <Compile Include="Strategy\ConcretasJSON\ResponseJSonAsync.cs" />
     <Compile Include="Strategy\Concretas\ActualizaDireccionesStrategy.cs" />
     <Compile Include="Strategy\Concretas\AgregarRegistroControlRequerimientosStrategy.cs" />
     <Compile Include="Strategy\Concretas\AgregarRegistrosListadoRequerimientosStrategy.cs" />
@@ -88,8 +90,11 @@
     <Compile Include="Strategy\Concretas\AtualizaNumeracionRegistrosListadoRequerimientosStrategy.cs" />
     <Compile Include="Strategy\Concretas\CatalogoResponseStrategy.cs" />
     <Compile Include="Strategy\Concretas\DireccionesResponseStrategy.cs" />
+    <Compile Include="Strategy\EliminarRequerimientosStrategy.cs" />
+    <Compile Include="Strategy\IResultHttpJson.cs" />
     <Compile Include="Strategy\IResultHttpStrategy.cs" />
     <Compile Include="Strategy\ProcesadorRespuestas.cs" />
+    <Compile Include="Strategy\RespuestaHttpJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

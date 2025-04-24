@@ -143,9 +143,10 @@
             // oHELabel
             // 
             oHELabel.AutoSize = true;
-            oHELabel.Location = new System.Drawing.Point(491, 22);
+            oHELabel.Location = new System.Drawing.Point(736, 34);
+            oHELabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             oHELabel.Name = "oHELabel";
-            oHELabel.Size = new System.Drawing.Size(33, 13);
+            oHELabel.Size = new System.Drawing.Size(48, 20);
             oHELabel.TabIndex = 9;
             oHELabel.Text = "OHE:";
             // 
@@ -155,8 +156,10 @@
             this.groupBox1.Controls.Add(this.bindingNavigator1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1471, 330);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox1.Size = new System.Drawing.Size(1924, 508);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Menú selección";
@@ -167,9 +170,10 @@
             this.PanelDatosLocalizacion.Controls.Add(this.btnGuardar);
             this.PanelDatosLocalizacion.Controls.Add(this.lblZonaName);
             this.PanelDatosLocalizacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelDatosLocalizacion.Location = new System.Drawing.Point(3, 16);
+            this.PanelDatosLocalizacion.Location = new System.Drawing.Point(4, 24);
+            this.PanelDatosLocalizacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PanelDatosLocalizacion.Name = "PanelDatosLocalizacion";
-            this.PanelDatosLocalizacion.Size = new System.Drawing.Size(1465, 280);
+            this.PanelDatosLocalizacion.Size = new System.Drawing.Size(1916, 445);
             this.PanelDatosLocalizacion.TabIndex = 14;
             // 
             // PanelEmisionRequerimientos
@@ -182,11 +186,12 @@
             this.PanelEmisionRequerimientos.Controls.Add(this.GroupDatosContribuyente, 0, 1);
             this.PanelEmisionRequerimientos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelEmisionRequerimientos.Location = new System.Drawing.Point(0, 0);
+            this.PanelEmisionRequerimientos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PanelEmisionRequerimientos.Name = "PanelEmisionRequerimientos";
             this.PanelEmisionRequerimientos.RowCount = 2;
             this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 27.14286F));
             this.PanelEmisionRequerimientos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72.85714F));
-            this.PanelEmisionRequerimientos.Size = new System.Drawing.Size(1465, 280);
+            this.PanelEmisionRequerimientos.Size = new System.Drawing.Size(1916, 445);
             this.PanelEmisionRequerimientos.TabIndex = 19;
             this.PanelEmisionRequerimientos.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelEmisionRequerimientos_Paint);
             // 
@@ -203,9 +208,11 @@
             this.SelectEmision.Controls.Add(this.lblEmision);
             this.SelectEmision.Controls.Add(this.cmbOHE);
             this.SelectEmision.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SelectEmision.Location = new System.Drawing.Point(3, 3);
+            this.SelectEmision.Location = new System.Drawing.Point(4, 5);
+            this.SelectEmision.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.SelectEmision.Name = "SelectEmision";
-            this.SelectEmision.Size = new System.Drawing.Size(1128, 70);
+            this.SelectEmision.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SelectEmision.Size = new System.Drawing.Size(1476, 110);
             this.SelectEmision.TabIndex = 0;
             this.SelectEmision.TabStop = false;
             this.SelectEmision.Text = "Seleccion de emision de requerimientos";
@@ -216,9 +223,10 @@
             this.cmbAnho.DisplayMember = "Anho";
             this.cmbAnho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAnho.FormattingEnabled = true;
-            this.cmbAnho.Location = new System.Drawing.Point(121, 19);
+            this.cmbAnho.Location = new System.Drawing.Point(182, 29);
+            this.cmbAnho.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbAnho.Name = "cmbAnho";
-            this.cmbAnho.Size = new System.Drawing.Size(72, 21);
+            this.cmbAnho.Size = new System.Drawing.Size(106, 28);
             this.cmbAnho.TabIndex = 0;
             this.cmbAnho.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbAnho_KeyDown);
             this.cmbAnho.Leave += new System.EventHandler(this.CmbAnho_Leave);
@@ -230,9 +238,10 @@
             // lblListo
             // 
             this.lblListo.AutoSize = true;
-            this.lblListo.Location = new System.Drawing.Point(728, 53);
+            this.lblListo.Location = new System.Drawing.Point(1092, 82);
+            this.lblListo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblListo.Name = "lblListo";
-            this.lblListo.Size = new System.Drawing.Size(32, 13);
+            this.lblListo.Size = new System.Drawing.Size(47, 20);
             this.lblListo.TabIndex = 13;
             this.lblListo.Text = "Listo.";
             // 
@@ -240,9 +249,10 @@
             // 
             this.FechaImpresion.AutoSize = true;
             this.FechaImpresion.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listCEmisionActualBindingSource, "_fechaImpresion", true));
-            this.FechaImpresion.Location = new System.Drawing.Point(837, 27);
+            this.FechaImpresion.Location = new System.Drawing.Point(1256, 42);
+            this.FechaImpresion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.FechaImpresion.Name = "FechaImpresion";
-            this.FechaImpresion.Size = new System.Drawing.Size(103, 13);
+            this.FechaImpresion.Size = new System.Drawing.Size(154, 20);
             this.FechaImpresion.TabIndex = 15;
             this.FechaImpresion.Text = "Fecha de Impresion:";
             // 
@@ -253,18 +263,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 22);
+            this.label1.Location = new System.Drawing.Point(21, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 13);
+            this.label1.Size = new System.Drawing.Size(155, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "EJERCICO FISCAL:";
             // 
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(728, 27);
+            this.lblFecha.Location = new System.Drawing.Point(1092, 42);
+            this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(103, 13);
+            this.lblFecha.Size = new System.Drawing.Size(154, 20);
             this.lblFecha.TabIndex = 14;
             this.lblFecha.Text = "Fecha de Impresion:";
             // 
@@ -274,9 +286,10 @@
             this.CmbEmision.DisplayMember = "NomEmision";
             this.CmbEmision.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbEmision.FormattingEnabled = true;
-            this.CmbEmision.Location = new System.Drawing.Point(296, 19);
+            this.CmbEmision.Location = new System.Drawing.Point(444, 29);
+            this.CmbEmision.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CmbEmision.Name = "CmbEmision";
-            this.CmbEmision.Size = new System.Drawing.Size(189, 21);
+            this.CmbEmision.Size = new System.Drawing.Size(282, 28);
             this.CmbEmision.TabIndex = 1;
             this.CmbEmision.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbEmision_KeyDown);
             this.CmbEmision.Leave += new System.EventHandler(this.CmbEmision_Leave);
@@ -284,18 +297,20 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(208, 22);
+            this.label2.Location = new System.Drawing.Point(312, 34);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.Size = new System.Drawing.Size(81, 20);
             this.label2.TabIndex = 9;
             this.label2.Text = "EMISION:";
             // 
             // lblEmision
             // 
             this.lblEmision.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.listCEmisionActualBindingSource, "Periodo", true));
-            this.lblEmision.Location = new System.Drawing.Point(258, 22);
+            this.lblEmision.Location = new System.Drawing.Point(387, 34);
+            this.lblEmision.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmision.Name = "lblEmision";
-            this.lblEmision.Size = new System.Drawing.Size(32, 19);
+            this.lblEmision.Size = new System.Drawing.Size(48, 29);
             this.lblEmision.TabIndex = 11;
             this.lblEmision.Text = "1";
             // 
@@ -305,9 +320,10 @@
             this.cmbOHE.DisplayMember = "OHE";
             this.cmbOHE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOHE.FormattingEnabled = true;
-            this.cmbOHE.Location = new System.Drawing.Point(528, 19);
+            this.cmbOHE.Location = new System.Drawing.Point(792, 29);
+            this.cmbOHE.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbOHE.Name = "cmbOHE";
-            this.cmbOHE.Size = new System.Drawing.Size(182, 21);
+            this.cmbOHE.Size = new System.Drawing.Size(271, 28);
             this.cmbOHE.TabIndex = 2;
             this.cmbOHE.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbOHE_KeyDown);
             this.cmbOHE.Leave += new System.EventHandler(this.CmbEmision_Leave);
@@ -318,7 +334,8 @@
             // 
             // monthCalendar1
             // 
-            this.monthCalendar1.Location = new System.Drawing.Point(1143, 9);
+            this.monthCalendar1.Location = new System.Drawing.Point(1498, 14);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(14);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 12;
             // 
@@ -326,9 +343,11 @@
             // 
             this.GroupDatosContribuyente.Controls.Add(this.LayParticulares);
             this.GroupDatosContribuyente.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GroupDatosContribuyente.Location = new System.Drawing.Point(3, 79);
+            this.GroupDatosContribuyente.Location = new System.Drawing.Point(4, 125);
+            this.GroupDatosContribuyente.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GroupDatosContribuyente.Name = "GroupDatosContribuyente";
-            this.GroupDatosContribuyente.Size = new System.Drawing.Size(1128, 198);
+            this.GroupDatosContribuyente.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GroupDatosContribuyente.Size = new System.Drawing.Size(1476, 315);
             this.GroupDatosContribuyente.TabIndex = 13;
             this.GroupDatosContribuyente.TabStop = false;
             this.GroupDatosContribuyente.Text = "Datos particulares del contribuyente";
@@ -349,26 +368,28 @@
             this.LayParticulares.Controls.Add(this.tituloEstatus, 0, 3);
             this.LayParticulares.Controls.Add(this.DatoEstatus, 1, 3);
             this.LayParticulares.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LayParticulares.Location = new System.Drawing.Point(3, 16);
+            this.LayParticulares.Location = new System.Drawing.Point(4, 24);
+            this.LayParticulares.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LayParticulares.Name = "LayParticulares";
             this.LayParticulares.RowCount = 6;
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14F));
             this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 9F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 61F));
-            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.LayParticulares.Size = new System.Drawing.Size(1122, 179);
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 94F));
+            this.LayParticulares.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.LayParticulares.Size = new System.Drawing.Size(1468, 286);
             this.LayParticulares.TabIndex = 0;
             // 
             // tituloRS
             // 
             this.tituloRS.AutoSize = true;
             this.tituloRS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tituloRS.Location = new System.Drawing.Point(3, 0);
+            this.tituloRS.Location = new System.Drawing.Point(4, 0);
+            this.tituloRS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloRS.Name = "tituloRS";
-            this.tituloRS.Size = new System.Drawing.Size(105, 13);
+            this.tituloRS.Size = new System.Drawing.Size(138, 20);
             this.tituloRS.TabIndex = 2;
             this.tituloRS.Text = "Razón social:";
             // 
@@ -377,17 +398,19 @@
             this.DatoRS.AutoSize = true;
             this.DatoRS.Dock = System.Windows.Forms.DockStyle.Top;
             this.DatoRS.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DatoRS.Location = new System.Drawing.Point(114, 0);
+            this.DatoRS.Location = new System.Drawing.Point(150, 0);
+            this.DatoRS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DatoRS.Name = "DatoRS";
-            this.DatoRS.Size = new System.Drawing.Size(1005, 26);
+            this.DatoRS.Size = new System.Drawing.Size(1314, 37);
             this.DatoRS.TabIndex = 3;
             // 
             // tituloNCTRL
             // 
             this.tituloNCTRL.AutoSize = true;
-            this.tituloNCTRL.Location = new System.Drawing.Point(3, 32);
+            this.tituloNCTRL.Location = new System.Drawing.Point(4, 49);
+            this.tituloNCTRL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloNCTRL.Name = "tituloNCTRL";
-            this.tituloNCTRL.Size = new System.Drawing.Size(97, 13);
+            this.tituloNCTRL.Size = new System.Drawing.Size(91, 28);
             this.tituloNCTRL.TabIndex = 4;
             this.tituloNCTRL.Text = "Número de control:";
             // 
@@ -395,18 +418,20 @@
             // 
             this.DatoCTRL.AutoSize = true;
             this.DatoCTRL.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoCTRL.Location = new System.Drawing.Point(114, 32);
+            this.DatoCTRL.Location = new System.Drawing.Point(150, 49);
+            this.DatoCTRL.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DatoCTRL.Name = "DatoCTRL";
-            this.DatoCTRL.Size = new System.Drawing.Size(1005, 13);
+            this.DatoCTRL.Size = new System.Drawing.Size(1314, 20);
             this.DatoCTRL.TabIndex = 5;
             // 
             // tituloDescripcionObservacion
             // 
             this.tituloDescripcionObservacion.AutoSize = true;
             this.tituloDescripcionObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(3, 101);
+            this.tituloDescripcionObservacion.Location = new System.Drawing.Point(4, 155);
+            this.tituloDescripcionObservacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloDescripcionObservacion.Name = "tituloDescripcionObservacion";
-            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(105, 78);
+            this.tituloDescripcionObservacion.Size = new System.Drawing.Size(138, 131);
             this.tituloDescripcionObservacion.TabIndex = 10;
             this.tituloDescripcionObservacion.Text = "Descripcion:";
             // 
@@ -414,9 +439,10 @@
             // 
             this.DatoDescripcion.AutoSize = true;
             this.DatoDescripcion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoDescripcion.Location = new System.Drawing.Point(114, 101);
+            this.DatoDescripcion.Location = new System.Drawing.Point(150, 155);
+            this.DatoDescripcion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DatoDescripcion.Name = "DatoDescripcion";
-            this.DatoDescripcion.Size = new System.Drawing.Size(1005, 13);
+            this.DatoDescripcion.Size = new System.Drawing.Size(1314, 20);
             this.DatoDescripcion.TabIndex = 11;
             this.DatoDescripcion.Text = "Descripcion";
             // 
@@ -424,9 +450,10 @@
             // 
             this.tituloObservacion.AutoSize = true;
             this.tituloObservacion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloObservacion.Location = new System.Drawing.Point(3, 80);
+            this.tituloObservacion.Location = new System.Drawing.Point(4, 123);
+            this.tituloObservacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloObservacion.Name = "tituloObservacion";
-            this.tituloObservacion.Size = new System.Drawing.Size(105, 21);
+            this.tituloObservacion.Size = new System.Drawing.Size(138, 32);
             this.tituloObservacion.TabIndex = 8;
             this.tituloObservacion.Text = "Observaciones:";
             // 
@@ -434,9 +461,10 @@
             // 
             this.DatoObservaciones.AutoSize = true;
             this.DatoObservaciones.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoObservaciones.Location = new System.Drawing.Point(114, 80);
+            this.DatoObservaciones.Location = new System.Drawing.Point(150, 123);
+            this.DatoObservaciones.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DatoObservaciones.Name = "DatoObservaciones";
-            this.DatoObservaciones.Size = new System.Drawing.Size(1005, 13);
+            this.DatoObservaciones.Size = new System.Drawing.Size(1314, 20);
             this.DatoObservaciones.TabIndex = 9;
             this.DatoObservaciones.Text = "Observaciones";
             // 
@@ -444,9 +472,10 @@
             // 
             this.tituloEstatus.AutoSize = true;
             this.tituloEstatus.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tituloEstatus.Location = new System.Drawing.Point(3, 59);
+            this.tituloEstatus.Location = new System.Drawing.Point(4, 91);
+            this.tituloEstatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloEstatus.Name = "tituloEstatus";
-            this.tituloEstatus.Size = new System.Drawing.Size(105, 21);
+            this.tituloEstatus.Size = new System.Drawing.Size(138, 32);
             this.tituloEstatus.TabIndex = 6;
             this.tituloEstatus.Text = "Estatus:";
             // 
@@ -454,17 +483,19 @@
             // 
             this.DatoEstatus.AutoSize = true;
             this.DatoEstatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DatoEstatus.Location = new System.Drawing.Point(114, 59);
+            this.DatoEstatus.Location = new System.Drawing.Point(150, 91);
+            this.DatoEstatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.DatoEstatus.Name = "DatoEstatus";
-            this.DatoEstatus.Size = new System.Drawing.Size(1005, 13);
+            this.DatoEstatus.Size = new System.Drawing.Size(1314, 20);
             this.DatoEstatus.TabIndex = 7;
             this.DatoEstatus.Text = "Estatus";
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(1191, 302);
+            this.btnGuardar.Location = new System.Drawing.Point(1786, 465);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(112, 35);
             this.btnGuardar.TabIndex = 17;
             this.btnGuardar.Text = "&Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -475,8 +506,9 @@
             this.lblZonaName.AutoSize = true;
             this.lblZonaName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblZonaName.Location = new System.Drawing.Point(0, 0);
+            this.lblZonaName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblZonaName.Name = "lblZonaName";
-            this.lblZonaName.Size = new System.Drawing.Size(0, 13);
+            this.lblZonaName.Size = new System.Drawing.Size(0, 20);
             this.lblZonaName.TabIndex = 18;
             // 
             // bindingNavigator1
@@ -508,14 +540,15 @@
             this.guardarToolStripButton,
             this.toolStripSeparator,
             this.toolStripButton2});
-            this.bindingNavigator1.Location = new System.Drawing.Point(3, 296);
+            this.bindingNavigator1.Location = new System.Drawing.Point(4, 469);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1465, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1916, 34);
             this.bindingNavigator1.TabIndex = 10;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -526,7 +559,7 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(37, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 29);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
@@ -536,7 +569,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(28, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 29);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primero";
             // 
             // bindingNavigatorMovePreviousItem
@@ -545,13 +578,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(28, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 29);
             this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 34);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -559,14 +592,14 @@
             this.bindingNavigatorPositionItem.AutoSize = false;
             this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(73, 31);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Posición actual";
             // 
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 34);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -574,7 +607,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(28, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 29);
             this.bindingNavigatorMoveNextItem.Text = "Mover siguiente";
             // 
             // bindingNavigatorMoveLastItem
@@ -583,31 +616,31 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(28, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 29);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 34);
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(45, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(67, 29);
             this.toolStripLabel1.Text = "Buscar:";
             // 
             // toolStripTextBusqueda
             // 
             this.toolStripTextBusqueda.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBusqueda.Name = "toolStripTextBusqueda";
-            this.toolStripTextBusqueda.Size = new System.Drawing.Size(200, 31);
+            this.toolStripTextBusqueda.Size = new System.Drawing.Size(298, 34);
             this.toolStripTextBusqueda.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBusqueda_KeyDown);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 34);
             // 
             // btnBusquedaMasiva
             // 
@@ -615,14 +648,14 @@
             this.btnBusquedaMasiva.Image = ((System.Drawing.Image)(resources.GetObject("btnBusquedaMasiva.Image")));
             this.btnBusquedaMasiva.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBusquedaMasiva.Name = "btnBusquedaMasiva";
-            this.btnBusquedaMasiva.Size = new System.Drawing.Size(103, 28);
+            this.btnBusquedaMasiva.Size = new System.Drawing.Size(154, 29);
             this.btnBusquedaMasiva.Text = "Busqueda masiva";
             this.btnBusquedaMasiva.Click += new System.EventHandler(this.btnBusquedaMasiva_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 34);
             // 
             // btnExcel
             // 
@@ -630,7 +663,7 @@
             this.btnExcel.Image = global::WindowsFormsApp6.Properties.Resources.excel;
             this.btnExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(37, 28);
+            this.btnExcel.Size = new System.Drawing.Size(54, 29);
             this.btnExcel.Text = "Excel";
             this.btnExcel.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -640,7 +673,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(69, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(104, 29);
             this.toolStripButton1.Text = "Excel datos";
             this.toolStripButton1.ToolTipText = "Excel";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
@@ -648,7 +681,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 34);
             // 
             // guardarToolStripButton
             // 
@@ -656,14 +689,14 @@
             this.guardarToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("guardarToolStripButton.Image")));
             this.guardarToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.guardarToolStripButton.Name = "guardarToolStripButton";
-            this.guardarToolStripButton.Size = new System.Drawing.Size(28, 28);
+            this.guardarToolStripButton.Size = new System.Drawing.Size(34, 29);
             this.guardarToolStripButton.Text = "&Guardar";
             this.guardarToolStripButton.Click += new System.EventHandler(this.guardarToolStripButton_Click);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator.Size = new System.Drawing.Size(6, 34);
             // 
             // toolStripButton2
             // 
@@ -671,7 +704,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(94, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(141, 29);
             this.toolStripButton2.Text = "Mostrar ocultos";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_1);
             // 
@@ -684,9 +717,11 @@
             this.groupBox2.Controls.Add(this.DgReqActivos2);
             this.groupBox2.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.cNombreBimestreBOBindingSource, "OHE", true));
             this.groupBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cNombreBimestreBOBindingSource, "OHE", true));
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Location = new System.Drawing.Point(4, 5);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1465, 287);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.groupBox2.Size = new System.Drawing.Size(1916, 441);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
@@ -724,10 +759,12 @@
             this.dataGridViewCheckBoxColumn2});
             this.DgReqActivos2.DataSource = this.cListaRequeridosBOBindingSource;
             this.DgReqActivos2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DgReqActivos2.Location = new System.Drawing.Point(3, 16);
+            this.DgReqActivos2.Location = new System.Drawing.Point(4, 24);
+            this.DgReqActivos2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DgReqActivos2.Name = "DgReqActivos2";
+            this.DgReqActivos2.RowHeadersWidth = 62;
             this.DgReqActivos2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DgReqActivos2.Size = new System.Drawing.Size(1459, 268);
+            this.DgReqActivos2.Size = new System.Drawing.Size(1908, 412);
             this.DgReqActivos2.TabIndex = 0;
             this.DgReqActivos2.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellClick);
             this.DgReqActivos2.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgReqActivos2_CellContentDoubleClick);
@@ -744,43 +781,53 @@
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "NumReq";
             this.dataGridViewTextBoxColumn1.HeaderText = "Número";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "Rfc";
             this.dataGridViewTextBoxColumn2.HeaderText = "RFC";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn2.Width = 150;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "NumCtrl";
             this.dataGridViewTextBoxColumn3.HeaderText = "Número de control";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Visible = false;
+            this.dataGridViewTextBoxColumn3.Width = 150;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "RazonSocial";
             this.dataGridViewTextBoxColumn4.HeaderText = "Razón social";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn4.Visible = false;
+            this.dataGridViewTextBoxColumn4.Width = 150;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "Localidad";
             this.dataGridViewTextBoxColumn5.HeaderText = "Localidad";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Visible = false;
+            this.dataGridViewTextBoxColumn5.Width = 150;
             // 
             // Diligencia
             // 
@@ -790,90 +837,116 @@
             "LOCALIZADO",
             "NO LOCALIZADO",
             "NO TRABAJADO"});
+            this.Diligencia.MinimumWidth = 8;
             this.Diligencia.Name = "Diligencia";
             this.Diligencia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Diligencia.Sorted = true;
             this.Diligencia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Diligencia.Width = 150;
             // 
             // FechaCitatorio
             // 
             this.FechaCitatorio.DataPropertyName = "FechaCitatorio";
             this.FechaCitatorio.HeaderText = "Fecha de citatorio";
+            this.FechaCitatorio.MinimumWidth = 8;
             this.FechaCitatorio.Name = "FechaCitatorio";
+            this.FechaCitatorio.Width = 150;
             // 
             // FechaNotificacion
             // 
             this.FechaNotificacion.DataPropertyName = "FechaNotificacion";
             this.FechaNotificacion.HeaderText = "Fecha de notificacion";
+            this.FechaNotificacion.MinimumWidth = 8;
             this.FechaNotificacion.Name = "FechaNotificacion";
+            this.FechaNotificacion.Width = 150;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "OficioSEFIPLAN";
             this.dataGridViewTextBoxColumn9.HeaderText = "Oficio de envio a SEFIPLAN";
             this.dataGridViewTextBoxColumn9.MaxInputLength = 50;
+            this.dataGridViewTextBoxColumn9.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.Visible = false;
+            this.dataGridViewTextBoxColumn9.Width = 150;
             // 
             // FechaEnvioSefiplan
             // 
             this.FechaEnvioSefiplan.DataPropertyName = "FechaEnvioSefiplan";
             this.FechaEnvioSefiplan.HeaderText = "Fecha de envio a SEFIPLAN";
+            this.FechaEnvioSefiplan.MinimumWidth = 8;
             this.FechaEnvioSefiplan.Name = "FechaEnvioSefiplan";
             this.FechaEnvioSefiplan.Visible = false;
+            this.FechaEnvioSefiplan.Width = 150;
             // 
             // NombreNotificador
             // 
             this.NombreNotificador.DataPropertyName = "NombreNotificador";
             this.NombreNotificador.HeaderText = "Nombre del notificador";
+            this.NombreNotificador.MinimumWidth = 8;
             this.NombreNotificador.Name = "NombreNotificador";
+            this.NombreNotificador.Width = 150;
             // 
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "FechaEntregaNotificador";
             this.dataGridViewTextBoxColumn11.HeaderText = "FechaEntregaNotificador";
+            this.dataGridViewTextBoxColumn11.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.Visible = false;
+            this.dataGridViewTextBoxColumn11.Width = 150;
             // 
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "FechaRecepcion";
             this.dataGridViewTextBoxColumn12.HeaderText = "FechaRecepcion";
+            this.dataGridViewTextBoxColumn12.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.Visible = false;
+            this.dataGridViewTextBoxColumn12.Width = 150;
             // 
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Estatus";
             this.dataGridViewTextBoxColumn14.HeaderText = "Estatus";
+            this.dataGridViewTextBoxColumn14.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
             this.dataGridViewTextBoxColumn14.Visible = false;
+            this.dataGridViewTextBoxColumn14.Width = 150;
             // 
             // MalCapturado
             // 
             this.MalCapturado.DataPropertyName = "MalCapturado";
             this.MalCapturado.HeaderText = "Mal Capturado";
+            this.MalCapturado.MinimumWidth = 8;
             this.MalCapturado.Name = "MalCapturado";
             this.MalCapturado.Visible = false;
+            this.MalCapturado.Width = 150;
             // 
             // ActaNotificacion
             // 
             this.ActaNotificacion.DataPropertyName = "ActaNotificacion";
             this.ActaNotificacion.HeaderText = "ActaNotificacion";
+            this.ActaNotificacion.MinimumWidth = 8;
             this.ActaNotificacion.Name = "ActaNotificacion";
+            this.ActaNotificacion.Width = 150;
             // 
             // ActaCitatorio
             // 
             this.ActaCitatorio.DataPropertyName = "ActaCitatorio";
             this.ActaCitatorio.HeaderText = "ActaCitatorio";
+            this.ActaCitatorio.MinimumWidth = 8;
             this.ActaCitatorio.Name = "ActaCitatorio";
+            this.ActaCitatorio.Width = 150;
             // 
             // NotificacionCitatorio
             // 
             this.NotificacionCitatorio.DataPropertyName = "NotificacionCitatorio";
             this.NotificacionCitatorio.HeaderText = "NotificacionCitatorio";
+            this.NotificacionCitatorio.MinimumWidth = 8;
             this.NotificacionCitatorio.Name = "NotificacionCitatorio";
+            this.NotificacionCitatorio.Width = 150;
             // 
             // Observaciones
             // 
@@ -881,9 +954,11 @@
             this.Observaciones.DataSource = this.cListaCatObservacionesBindingSource;
             this.Observaciones.DisplayMember = "ConatenadoObservacion";
             this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.MinimumWidth = 8;
             this.Observaciones.Name = "Observaciones";
             this.Observaciones.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Observaciones.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Observaciones.Width = 150;
             // 
             // cListaCatObservacionesBindingSource
             // 
@@ -893,23 +968,29 @@
             // 
             this.NotasObservaciones.DataPropertyName = "NotasObservaciones";
             this.NotasObservaciones.HeaderText = "NotasObservaciones";
+            this.NotasObservaciones.MinimumWidth = 8;
             this.NotasObservaciones.Name = "NotasObservaciones";
+            this.NotasObservaciones.Width = 150;
             // 
             // dataGridViewCheckBoxColumn1
             // 
             this.dataGridViewCheckBoxColumn1.DataPropertyName = "Modificado";
             this.dataGridViewCheckBoxColumn1.HeaderText = "Modificado";
+            this.dataGridViewCheckBoxColumn1.MinimumWidth = 8;
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             this.dataGridViewCheckBoxColumn1.Visible = false;
+            this.dataGridViewCheckBoxColumn1.Width = 150;
             // 
             // dataGridViewCheckBoxColumn2
             // 
             this.dataGridViewCheckBoxColumn2.DataPropertyName = "ModificaObservacion";
             this.dataGridViewCheckBoxColumn2.HeaderText = "ModificaObservacion";
+            this.dataGridViewCheckBoxColumn2.MinimumWidth = 8;
             this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
             this.dataGridViewCheckBoxColumn2.ReadOnly = true;
             this.dataGridViewCheckBoxColumn2.Visible = false;
+            this.dataGridViewCheckBoxColumn2.Width = 150;
             // 
             // cNombreBimestreBOBindingSource
             // 
@@ -919,16 +1000,17 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Controls.Add(this.statusStrip1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 330);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 508);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 95.30202F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.697987F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1471, 308);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1924, 474);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // statusStrip1
@@ -938,21 +1020,22 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pbCarga,
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 293);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 452);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1471, 15);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1924, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // pbCarga
             // 
             this.pbCarga.Name = "pbCarga";
-            this.pbCarga.Size = new System.Drawing.Size(100, 9);
+            this.pbCarga.Size = new System.Drawing.Size(150, 14);
             // 
             // lblStatus
             // 
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 10);
+            this.lblStatus.Size = new System.Drawing.Size(0, 15);
             this.lblStatus.TextChanged += new System.EventHandler(this.lblStatus_TextChanged);
             // 
             // listCoheActivaBindingSource
@@ -971,11 +1054,12 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1471, 638);
+            this.ClientSize = new System.Drawing.Size(1924, 982);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Captura requerimientos";
             this.Load += new System.EventHandler(this.Form1_Load);

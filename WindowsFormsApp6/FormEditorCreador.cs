@@ -19,10 +19,15 @@ namespace WindowsFormsApp6
 
         private void FormEditorCreador_Load(object sender, EventArgs e)
         {
-            RequerimientosControl requerimientosControl = new RequerimientosControl();
+            
             tabCrear.Alignment = TabAlignment.Right;
-            tabContainer.Controls.Add(requerimientosControl);           
+            RequerimientosControl requerimientosControl = new RequerimientosControl();
+            EliminaRequerimientoControl1 eliminaRequerimiento = new EliminaRequerimientoControl1(); 
+            tabContainer.Controls.Add(requerimientosControl);
+            TabDelete.Controls.Add(eliminaRequerimiento);
             requerimientosControl.Dock = DockStyle.Fill;
+            eliminaRequerimiento.Dock = DockStyle.Fill;
+            
         }
     }
 }

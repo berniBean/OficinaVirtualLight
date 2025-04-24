@@ -369,6 +369,12 @@
     <Compile Include="EditaNotificadores.Designer.cs">
       <DependentUpon>EditaNotificadores.cs</DependentUpon>
     </Compile>
+    <Compile Include="EliminaRequerimientoControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EliminaRequerimientoControl1.Designer.cs">
+      <DependentUpon>EliminaRequerimientoControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +607,9 @@
     <EmbeddedResource Include="EditaNotificadores.resx">
       <DependentUpon>EditaNotificadores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EliminaRequerimientoControl1.resx">
+      <DependentUpon>EliminaRequerimientoControl1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -701,6 +710,7 @@
       <DependentUpon>DataSetRIF.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\App_VerFormsAPI.DTO.DgEliminarDTO.datasource" />
     <None Include="Properties\DataSources\CleanArchitecture.ClasesDB.COficios.datasource" />
     <None Include="Properties\DataSources\CleanArchitecture.Concretas.fechaOficios.datasource" />
     <None Include="Properties\DataSources\WindowsFormsApp6.BO.CanhoFiscalBO1.datasource" />
