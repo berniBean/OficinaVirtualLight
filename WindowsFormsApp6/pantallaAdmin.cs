@@ -136,7 +136,7 @@ namespace WindowsFormsApp6
 
                 
                 año = Convert.ToInt16(cmbEjercicio.Text);               
-                PantallaConcentradoOficios GestorOficios = new PantallaConcentradoOficios( CUserLoggin.idUser,emision, nombreEmision, tipoSesion);
+                PantallaConcentradoOficios GestorOficios = new PantallaConcentradoOficios( CUserLoggin.zonaSupervisor,emision, nombreEmision, tipoSesion);
                 GestorOficios.Show();
             }
         }

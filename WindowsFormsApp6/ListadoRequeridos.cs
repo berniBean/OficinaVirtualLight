@@ -216,7 +216,7 @@ namespace WindowsFormsApp6
         private async void cargarTableroListadoRequeridos()
         {
 
-            listadoReq = await tableroListado.GetListadoCompleto(_emision,CUserLoggin.idUser);
+            listadoReq = await tableroListado.GetListadoCompleto(_emision,CUserLoggin.zonaSupervisor);
             cListaTableroAdminBindingSource.DataSource = listadoReq.ToDataTable();//moreLinq
             //requeridos.DataSource = listadoReq.ToDataTable();//moreLinq
             requeridos.AutoResizeColumns();

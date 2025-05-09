@@ -13,24 +13,8 @@ namespace WindowsFormsApp6
         {
             InitializeComponent();
 
-           
-            if (CUserLoggin.nombreSup.Contains("BerniP")) 
+            if(CUserLoggin.Rol.Contains("Administrador"))
             {
-                
-                capturaReqRIF.Visible = true;
-                capturaMultasRIF.Visible = true;
-                avanceReqPLUS.Visible = true;
-                caputraReqPLUS.Visible = true;
-                capturaMultaPLUS.Visible = true;
-
-                capturaOficiosRIF.Visible = true;
-                capturaOficiosPLUS.Visible = true;
-            }
-
-            if (CUserLoggin.nombreSup.Contains("RCO"))
-            {
-                
-                
                 capturaReqRIF.Visible = false;
                 capturaMultasRIF.Visible = false;
                 avanceReqPLUS.Visible = false;
@@ -44,15 +28,19 @@ namespace WindowsFormsApp6
                 multasPLUSToolStripMenuItem.Visible = true;
                 capturaOficiosRIF.Visible = true;
                 capturaOficiosPLUS.Visible = true;
+            }
+           
 
+            if (CUserLoggin.Rol.Contains("Supervisor"))
+            {
+                requerimientosPLUSToolStripMenuItem.Visible = true;
+                multasPLUSToolStripMenuItem.Visible = true;
+                JefeRif_Item.Visible = true;
+                MultasRIF_Item.Visible = true;
 
             }
 
 
-            requerimientosPLUSToolStripMenuItem.Visible = true;
-            multasPLUSToolStripMenuItem.Visible = true;
-            JefeRif_Item.Visible = true;
-            MultasRIF_Item.Visible = true;
 
 
 

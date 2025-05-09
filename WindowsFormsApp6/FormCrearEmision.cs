@@ -60,6 +60,7 @@ namespace WindowsFormsApp6
 
             var body = new
             {
+                EjercicoFiscal = dto.Ejercicio,
                 idEmision = 0,
                 rutaNvc = dto.pathCatalogo
             };

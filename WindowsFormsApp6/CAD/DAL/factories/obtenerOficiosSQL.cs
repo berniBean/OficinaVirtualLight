@@ -12,7 +12,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
         public abstract Task<ListCOficios> listadoOficiosSql(string idEmision);
         public abstract Task modificaNumOfico(COficiosBO oficios);
 
-        public abstract Task<ListCOficios> listadoConcentradoOficioSql(string nombreEmision, int idEmision, int idSup);
+        public abstract Task<ListCOficios> listadoConcentradoOficioSql(string nombreEmision, int idEmision, string idSup);
         public abstract Task<ListCOficios> listadoConcentradoOficioMultasSql(string nombreEmision, int idEmision, int idSup);
     }
 }

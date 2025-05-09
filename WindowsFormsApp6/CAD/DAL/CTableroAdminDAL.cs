@@ -212,7 +212,7 @@ namespace WindowsFormsApp6.CAD.DAL
         }
 
 
-        private async Task<List<CTableroAdminBO>> GetListadoRequeridos(int emision, int idSup)
+        private async Task<List<CTableroAdminBO>> GetListadoRequeridos(int emision, string idSup)
         {
             try
             {
@@ -423,7 +423,7 @@ namespace WindowsFormsApp6.CAD.DAL
             return GetAvanceGeneralEmision(emision, idSup);
         }
 
-        public override async Task<List<CTableroAdminBO>> GetListadoCompleto(int emision, int idSup)
+        public override async Task<List<CTableroAdminBO>> GetListadoCompleto(int emision, string idSup)
         {
             return await GetListadoRequeridos(emision, idSup);
         }

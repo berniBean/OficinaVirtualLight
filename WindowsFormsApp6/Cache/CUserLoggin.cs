@@ -9,6 +9,8 @@ namespace WindowsFormsApp6.Cache
         public static int idUser { get; set; }
         public static string nombreSup { get; set; }
         public static string zonaSupervisor { get; set; }
+        public static string Email { get; set; }
+        public static string Rol { get; set; }
         public static int idEmision { get; set; }
         public static int Ejercicio { get; set; }
         public static string nombreEmision { get; set; }

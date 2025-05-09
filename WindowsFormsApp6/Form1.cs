@@ -272,7 +272,7 @@ namespace WindowsFormsApp6
         private void LodadUserDat()
         {
             lblZonaName.Text = CUserLoggin.zonaSupervisor;
-            datoID = CUserLoggin.idUser;
+            datoID = CUserLoggin.zonaSupervisor;
 
         }
         /// carga de los datos de parametros de seleccion

@@ -75,7 +75,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
             }
         }
 
-        private async Task<ListCOficios> ConcentradoOficiosRIF(string nombreEmision, int idEmision, int idSup)
+        private async Task<ListCOficios> ConcentradoOficiosRIF(string nombreEmision, int idEmision, string idSup)
         {
             try
             {
@@ -196,7 +196,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                 throw new ApplicationException("Error Insert Fechas" + err);
             }
         }
-        public override async Task<ListCOficios> listadoConcentradoOficioSql(string nombreEmision, int idEmision, int idSup)
+        public override async Task<ListCOficios> listadoConcentradoOficioSql(string nombreEmision, int idEmision, string idSup)
         {
             return await ConcentradoOficiosRIF(nombreEmision, idEmision, idSup);
         }

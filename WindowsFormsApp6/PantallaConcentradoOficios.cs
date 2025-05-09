@@ -20,7 +20,7 @@ namespace WindowsFormsApp6
         private obtenerOficiosSQL obtenerOficiosConcentradoSQL;
         private int _emision;
         private string _nombreEmision;
-        private int _idSup;
+        private string _idSup;
         private ListCOficios oficiosConcentrado;
         obtenerPDFSql listadoPDF;
         ListPdfSql listadoPDFDB;
@@ -29,7 +29,7 @@ namespace WindowsFormsApp6
 
         obtenerURL obUrl;
         private CListaURL listaUrl;
-        public PantallaConcentradoOficios(int idSup,int emision, string nombreEmision,int tipoS)
+        public PantallaConcentradoOficios(string idSup,int emision, string nombreEmision,int tipoS)
         {
             InitializeComponent();
             _emision = emision;

@@ -82,7 +82,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
                 throw err;
             }
         }
-        private async Task<ListCOficios> ConcentradoOficios(string nombreEmision, int idEmision, int idSup)
+        private async Task<ListCOficios> ConcentradoOficios(string nombreEmision, int idEmision, string idSup)
         {
             try
             {
@@ -216,7 +216,7 @@ namespace WindowsFormsApp6.CAD.DAL.factories
             await ModificaOficios(oficios);
         }
 
-        public override async Task<ListCOficios> listadoConcentradoOficioSql(string nombreEmision, int idEmision, int idSup)
+        public override async Task<ListCOficios> listadoConcentradoOficioSql(string nombreEmision, int idEmision, string idSup)
         {
            return  await ConcentradoOficios(nombreEmision, idEmision, idSup);
         }

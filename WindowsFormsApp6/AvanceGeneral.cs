@@ -45,14 +45,14 @@ namespace WindowsFormsApp6
         {
             if (_tipo == 1) 
             {
-                _datosQuery = tableroAvance.GetListadoCompleto(_emision, CUserLoggin.idUser).Result;                
+                _datosQuery = tableroAvance.GetListadoCompleto(_emision, CUserLoggin.zonaSupervisor).Result;                
                 dataGridView1.DataSource =  QueryListRequerimientos(_datosQuery);
                 dataGridView1.AutoResizeColumns();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
             if (_tipo == 2)
             {
-                _datosQuery = tableroAvance.GetListadoCompleto(_emision, CUserLoggin.idUser).Result;
+                _datosQuery = tableroAvance.GetListadoCompleto(_emision, CUserLoggin.zonaSupervisor).Result;
                 dataGridView1.DataSource = QueryListRequerimientos(_datosQuery); 
                 dataGridView1.AutoResizeColumns();
                 dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
